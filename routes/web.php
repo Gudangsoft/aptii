@@ -16,7 +16,6 @@ use App\Http\Controllers\Admin\QrCodeController;
 */
 
 Route::get('/', function () {
-    dd('hola');
     return view('welcome');
 });
 
