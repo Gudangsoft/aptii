@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\QrCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,14 @@ use App\Http\Controllers\Admin\UserController;
 */
 
 Route::get('/', function () {
+    dd('hola');
     return view('welcome');
 });
 
+// Route::get('qrcodes', [QrCodeController::class, 'index']);
 Route::resource('users', UserController::class);
+
+Route::get('phpinfo', fn () => phpinfo());
 
 
 Route::middleware([
@@ -29,7 +34,4 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-
-    // Route::resource('users', UserController::class);
-
 });
