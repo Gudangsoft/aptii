@@ -36,12 +36,11 @@ class UserTable extends DataTableComponent
         $this->setPrimaryKey('id');
     }
 
-    public function bulkActions(): array
-    {
-        return [
-            'export' => 'Export',
-        ];
-    }
+    public array $bulkActions = [
+        'export' => 'Export',
+        'activate' => 'Activate',
+        'deactivate' => 'Deactivate',
+    ];
 
     public function export()
     {
@@ -52,6 +51,20 @@ class UserTable extends DataTableComponent
         return Excel::download(new UsersExport($users), 'users.xlsx');
     }
 
+    public function activate()
+    {
+        User::whereIn('id', $this->getSelected())->update(['status' => 1]);
+
+        $this->clearSelected();
+    }
+
+    public function deactivate()
+    {
+        User::whereIn('id', $this->getSelected())->update(['status' => 0]);
+
+        $this->clearSelected();
+    }
+
     public function columns(): array
     {
         return [
@@ -59,17 +72,14 @@ class UserTable extends DataTableComponent
                 ->sortable(),
             Column::make('Name')
             ->searchable(),
+            Column::make('Email')
+            ->searchable(),
             Column::make("Created at", "created_at")
                 ->sortable(),
             Column::make("Updated at", "updated_at")
                 ->sortable(),
             ButtonGroupColumn::make('Actions')
             ->unclickable()
-            ->attributes(function($row) {
-                return [
-                    'class' => 'space-x-2',
-                ];
-            })
             ->buttons([
                 LinkColumn::make('Edit')
                     ->title(fn($row) => 'Edit')
@@ -99,13 +109,5 @@ class UserTable extends DataTableComponent
             ->when($this->columnSearch['name'] ?? null, fn ($query, $name) => $query->where('users.name', 'like', '%' . $name . '%'))
             ->when($this->columnSearch['email'] ?? null, fn ($query, $email) => $query->where('users.email', 'like', '%' . $email . '%'));
     }
-
-    // public function bulkActions(): array
-    // {
-    //     return [
-    //         'export' => 'Export',
-    //     ];
-    // }
-
 
 }
