@@ -9,7 +9,7 @@
         <div class="content-body">
             <div class="row" id="basic-table">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card p-1">
                         <livewire:user-table></livewire:user-table>
                     </div>
                 </div>

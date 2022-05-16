@@ -13,4 +13,5 @@
 
 <!-- BEGIN: Page CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/core/menu/menu-types/vertical-menu.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
 <!-- END: Page CSS-->

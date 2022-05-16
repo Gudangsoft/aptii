@@ -2,17 +2,54 @@
 
 namespace App\Http\Livewire;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class UserTable extends DataTableComponent
 {
-    protected $model = User::class;
+    // protected $model = User::class;
+
+    // public string $tableName = 'users';
+    public array $users1 = [];
+
+    public $columnSearch = [
+        'name' => null,
+        'email' => null,
+    ];
 
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+    }
+
+    public function bulkActions(): array
+    {
+        return [
+            'export' => 'Export',
+        ];
+    }
+
+    public function export()
+    {
+        $users = $this->getSelected();
+
+        $this->clearSelected();
+
+        return Excel::download(new UsersExport($users), 'users.xlsx');
     }
 
     public function columns(): array
@@ -20,10 +57,55 @@ class UserTable extends DataTableComponent
         return [
             Column::make("Id", "id")
                 ->sortable(),
+            Column::make('Name')
+            ->searchable(),
             Column::make("Created at", "created_at")
                 ->sortable(),
             Column::make("Updated at", "updated_at")
                 ->sortable(),
+            ButtonGroupColumn::make('Actions')
+            ->unclickable()
+            ->attributes(function($row) {
+                return [
+                    'class' => 'space-x-2',
+                ];
+            })
+            ->buttons([
+                LinkColumn::make('Edit')
+                    ->title(fn($row) => 'Edit')
+                    ->location(fn($row) => route('users.edit', $row->id))
+                    ->attributes(function($row) {
+                        return [
+                            'target' => '_blank',
+                            'class' => 'btn btn-icon btn-success',
+                        ];
+                    }),
+                LinkColumn::make('Delete')
+                    ->title(fn($row) => 'Delete')
+                    ->location(fn($row) => route('users.destroy', $row->id))
+                    ->attributes(function($row) {
+                        return [
+                            'target' => '_blank',
+                            'class' => 'btn btn-icon btn-danger',
+                        ];
+                    }),
+            ]),
         ];
     }
+
+    public function builder(): Builder
+    {
+        return User::query()
+            ->when($this->columnSearch['name'] ?? null, fn ($query, $name) => $query->where('users.name', 'like', '%' . $name . '%'))
+            ->when($this->columnSearch['email'] ?? null, fn ($query, $email) => $query->where('users.email', 'like', '%' . $email . '%'));
+    }
+
+    // public function bulkActions(): array
+    // {
+    //     return [
+    //         'export' => 'Export',
+    //     ];
+    // }
+
+
 }
