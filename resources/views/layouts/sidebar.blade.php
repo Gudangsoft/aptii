@@ -46,7 +46,7 @@
                 <ul class="menu-content">
                     <li><a class="d-flex align-items-center" href="{{ route('users.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Analytics">All</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('users.show') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="eCommerce">Deleted</span></a>
+                    <li><a class="d-flex align-items-center" href="{{ route('usershowTrashed') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="eCommerce">Deleted</span></a>
                     </li>
                 </ul>
             </li>
