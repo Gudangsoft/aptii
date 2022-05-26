@@ -17,13 +17,11 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
-
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class UserTable extends DataTableComponent
 {
-    // protected $model = User::class;
-
-    // public string $tableName = 'users';
+    use LivewireAlert;
     public array $users1 = [];
 
     public $columnSearch = [
@@ -40,6 +38,7 @@ class UserTable extends DataTableComponent
         'export' => 'Export',
         'activate' => 'Activate',
         'deactivate' => 'Deactivate',
+        'delete' => 'Delete',
     ];
 
     public function export()
@@ -63,6 +62,18 @@ class UserTable extends DataTableComponent
         User::whereIn('id', $this->getSelected())->update(['status' => 0]);
 
         $this->clearSelected();
+    }
+
+    public function delete(){
+        User::whereIn('id', $this->getSelected())->delete();
+        $message = 'User successfully deleted !';
+        $this->dispatchBrowserEvent('success', ['message' => $message]);
+    }
+
+    public function restore(){
+        User::withTrashed()->whereIn('id', $this->getSelected())->restore();
+        $message = 'User successfully restored';
+        $this->dispatchBrowserEvent('openModalRestore', ['message' => $message]);
     }
 
     public function columns(): array

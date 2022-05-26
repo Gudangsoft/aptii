@@ -42,7 +42,13 @@
             <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
             </li>
 
-            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('users.index') }}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Contact">User</span></a>
+            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Contact">User</span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{ route('users.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Analytics">All</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{ route('users.show') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="eCommerce">Deleted</span></a>
+                    </li>
+                </ul>
             </li>
 
             {{-- <li class="nav-item"><a class="d-flex align-items-center" href="qrcode"><i data-feather="cpu"></i><span class="menu-title text-truncate" data-i18n="qrcode">QR Code Generator</span></a> --}}
