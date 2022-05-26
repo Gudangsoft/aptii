@@ -27,6 +27,11 @@
 </div>
 @push('custom-scripts')
 <script>
+    window.addEventListener('confirmDeleteForever', event => {
+        $("#confirm").modal('show');
+        $("#message").html(event.detail.message);
+
+    });
     window.addEventListener('success', event => {
         $("#successAlert").modal('show');
         $("#message").html(event.detail.message);

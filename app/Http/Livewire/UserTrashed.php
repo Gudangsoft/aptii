@@ -15,10 +15,14 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class UserTrashed extends DataTableComponent
 {
     public array $users1 = [];
+    public $message;
 
     public $columnSearch = [
         'name' => null,
@@ -33,9 +37,8 @@ class UserTrashed extends DataTableComponent
 
     public array $bulkActions = [
         'export' => 'Export',
-        'activate' => 'Activate',
-        'deactivate' => 'Deactivate',
-        'delete' => 'Delete',
+        'restore' => 'Restore',
+        'delete' => 'Delete Permanent',
     ];
 
     public function export()
@@ -47,30 +50,16 @@ class UserTrashed extends DataTableComponent
         return Excel::download(new UsersExport($users), 'users.xlsx');
     }
 
-    public function activate()
-    {
-        User::whereIn('id', $this->getSelected())->update(['status' => 1]);
-
-        $this->clearSelected();
-    }
-
-    public function deactivate()
-    {
-        User::whereIn('id', $this->getSelected())->update(['status' => 0]);
-
-        $this->clearSelected();
-    }
-
     public function delete(){
-        User::whereIn('id', $this->getSelected())->delete();
-        $message = 'User successfully deleted !';
-        $this->dispatchBrowserEvent('success', ['message' => $message]);
+        User::whereIn('id', $this->getSelected())->forceDelete();
+        $this->message = 'User successfully deleted !';
+        $this->dispatchBrowserEvent('success', ['message' => $this->message]);
     }
 
     public function restore(){
         User::withTrashed()->whereIn('id', $this->getSelected())->restore();
-        $message = 'User successfully restored';
-        $this->dispatchBrowserEvent('openModalRestore', ['message' => $message]);
+        $this->message = 'User successfully restored';
+        $this->dispatchBrowserEvent('success', ['message' => $this->message]);
     }
 
     public function columns(): array
@@ -96,15 +85,6 @@ class UserTrashed extends DataTableComponent
                         return [
                             'target' => '_blank',
                             'class' => 'btn btn-icon btn-success',
-                        ];
-                    }),
-                LinkColumn::make('Delete')
-                    ->title(fn($row) => 'Delete')
-                    ->location(fn($row) => route('users.destroy', $row->id))
-                    ->attributes(function($row) {
-                        return [
-                            'target' => '_blank',
-                            'class' => 'btn btn-icon btn-danger',
                         ];
                     }),
             ]),

@@ -20,8 +20,10 @@ Route::get('/', function () {
 });
 
 // Route::get('qrcodes', [QrCodeController::class, 'index']);
-Route::resource('users', UserController::class);
-Route::get('/user/trashed', [UserController::class, 'showTrashed'])->name('usershowTrashed');
+Route::group(['middleware' => ['role:super admin']], function () {
+    Route::resource('users', UserController::class);
+    Route::get('/user/trashed', [UserController::class, 'showTrashed'])->name('usershowTrashed');
+});
 
 Route::get('phpinfo', fn () => phpinfo());
 

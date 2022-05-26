@@ -17,11 +17,9 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class UserTable extends DataTableComponent
 {
-    use LivewireAlert;
     public array $users1 = [];
 
     public $columnSearch = [
@@ -101,15 +99,15 @@ class UserTable extends DataTableComponent
                             'class' => 'btn btn-icon btn-success',
                         ];
                     }),
-                LinkColumn::make('Delete')
-                    ->title(fn($row) => 'Delete')
-                    ->location(fn($row) => route('users.destroy', $row->id))
-                    ->attributes(function($row) {
-                        return [
-                            'target' => '_blank',
-                            'class' => 'btn btn-icon btn-danger',
-                        ];
-                    }),
+                // LinkColumn::make('Delete')
+                //     ->title(fn($row) => 'Delete')
+                //     ->location(fn($row) => route('users.destroy', $row->id))
+                //     ->attributes(function($row) {
+                //         return [
+                //             'target' => '_blank',
+                //             'class' => 'btn btn-icon btn-danger',
+                //         ];
+                //     }),
             ]),
         ];
     }
