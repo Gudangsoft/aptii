@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Exception;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Alert;
 
 class UserController extends Controller
 {
@@ -30,27 +31,64 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
-        // $user = new User();
-        // $us
+        // dd($request);
+        try {
+            $input  = $request->except(['_token', 'role', 'password']);
+            $user = new User();
+            $user->password = 'cdaaptnia';
+            $user->fill($input)->save();
+
+            if($request->role == 0){
+                $user->assignRole('writer');
+            }else{
+                $user->assignRole($request->role);
+            }
+
+            Alert::success('Success', 'User added successfully');
+            return redirect()->route('users.index');
+        } catch (Exception $error) {
+            Alert::error('Error', $error->getMessage());
+            return redirect()->route('users.index');
+        }
+
     }
 
 
     public function show($id)
     {
-        //
+
     }
 
 
     public function edit($id)
     {
-        //
+        return view('admin.users.edit', [
+            'data' => User::findOrFail($id),
+            'roles' => Role::all()
+        ]);
+
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->role);
+        try {
+            $input  = $request->except(['_token', 'role', 'password']);
+            $user = User::findOrFail($id);
+            $user->password = 'cdaaptnia';
+            $user->fill($input)->save();
+
+            if($request->role != 0){
+                $user->syncRoles($request->role);
+            }
+
+            Alert::success('Success', 'User added successfully');
+            return redirect()->route('users.index');
+        } catch (Exception $error) {
+            Alert::error('Error', $error->getMessage());
+            return redirect()->route('users.index');
+        }
     }
 
 

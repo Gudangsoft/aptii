@@ -8,28 +8,19 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Create New Users</h2>
+                        <h2 class="content-header-title float-left mb-0">Edit Users</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/dashboard">Home</a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="{{ route('users.index') }}">List User</a>
                                 </li>
-                                <li class="breadcrumb-item active">Create
+                                <li class="breadcrumb-item active">Edit
                                 </li>
                             </ol>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="content-header row">
-            <div>
-                @if (session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
-                    </div>
-                @endif
             </div>
         </div>
         <div class="content-body">
@@ -41,8 +32,9 @@
                                 <div class="col-md-12 col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <form class="form form-horizontal" action="{{ route('users.store') }}" method="POST">
+                                            <form class="form form-horizontal" action="{{ route('users.update', $data->id) }}" method="POST">
                                                 @csrf
+                                                @method('PUT')
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row">
@@ -50,7 +42,7 @@
                                                                 <label for="first-name">Full Name</label>
                                                             </div>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="first-name" class="form-control" name="name" placeholder="First Name" required/>
+                                                                <input type="text" id="first-name" class="form-control" name="name" placeholder="First Name" value="{{ $data->name }}" required/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -60,7 +52,7 @@
                                                                 <label for="email-id">Email</label>
                                                             </div>
                                                             <div class="col-sm-9">
-                                                                <input type="email" id="email-id" class="form-control" name="email" placeholder="Email" required/>
+                                                                <input type="email" id="email-id" class="form-control" name="email" placeholder="Email" value="{{ $data->email }}" required/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -71,8 +63,8 @@
                                                             </div>
                                                             <div class="col-sm-9">
                                                                 <select class="form-control mb-1" id="selectDefault" name="role">
-                                                                    <option value="0" selected>-- SELECT ROLES --</option>
-                                                                    @foreach ($data['roles'] as $role)
+                                                                    <option value="0" selected>{{ $data->getRoleNames() ? strtoupper($data->roles->pluck('name')->implode(',')) : '-- SELECT ROLES --' }}</option>
+                                                                    @foreach ($roles as $role)
                                                                         <option value="{{ $role->name }}">{{ strtoupper($role->name) }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -80,8 +72,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-9 offset-sm-3">
-                                                        <button type="submit" class="btn btn-primary mr-1">Create</button>
-                                                        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                                        <button type="submit" class="btn btn-primary mr-1">Update</button>
                                                     </div>
                                                 </div>
                                             </form>

@@ -62,6 +62,10 @@ class UserTable extends DataTableComponent
         $this->clearSelected();
     }
 
+    public function edit($id){
+        dd('test');
+    }
+
     public function delete(){
         User::whereIn('id', $this->getSelected())->delete();
         $message = 'User successfully deleted !';
@@ -98,16 +102,7 @@ class UserTable extends DataTableComponent
                             'target' => '_blank',
                             'class' => 'btn btn-icon btn-success',
                         ];
-                    }),
-                // LinkColumn::make('Delete')
-                //     ->title(fn($row) => 'Delete')
-                //     ->location(fn($row) => route('users.destroy', $row->id))
-                //     ->attributes(function($row) {
-                //         return [
-                //             'target' => '_blank',
-                //             'class' => 'btn btn-icon btn-danger',
-                //         ];
-                //     }),
+                    })
             ]),
         ];
     }
@@ -115,6 +110,7 @@ class UserTable extends DataTableComponent
     public function builder(): Builder
     {
         return User::query()
+            ->orderBy('created_at', 'desc')
             ->when($this->columnSearch['name'] ?? null, fn ($query, $name) => $query->where('users.name', 'like', '%' . $name . '%'))
             ->when($this->columnSearch['email'] ?? null, fn ($query, $email) => $query->where('users.email', 'like', '%' . $email . '%'));
     }

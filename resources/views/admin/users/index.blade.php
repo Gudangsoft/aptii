@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+@include('sweetalert::alert')
 <div class="app-content content ">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
@@ -25,15 +26,6 @@
                     <a href="{{ route('users.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="plus-circle"></i> Create New User</a>
                     <a href="{{ route('usershowTrashed') }}" class="btn-icon btn btn-dark btn-round"><i data-feather="trash"></i> Recycle</a>
                 </div>
-            </div>
-        </div>
-        <div class="content-header row">
-            <div>
-                @if (session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
-                    </div>
-                @endif
             </div>
         </div>
         <div class="content-body">
