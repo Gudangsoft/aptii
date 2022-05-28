@@ -210,9 +210,9 @@
                             <div class="nav-item">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             this.closest('form').submit(); " role="button">
-                                    <i class="fas fa-sign-out-alt"></i>
+                                    <i class="mr-50" data-feather="power"></i>
 
-                                    {{ __('Log Out') }}
+                                    {{ __('Logout') }}
                                 </a>
                             </div>
                         </form>
