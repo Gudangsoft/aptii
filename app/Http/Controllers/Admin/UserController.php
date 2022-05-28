@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -35,6 +36,7 @@ class UserController extends Controller
         try {
             $input  = $request->except(['_token', 'role', 'password']);
             $user = new User();
+            $user->username = Str::slug($request->name);
             $user->password = 'cdaaptnia';
             $user->fill($input)->save();
 

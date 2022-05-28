@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\QrCodeController;
+use App\Http\Controllers\Admin\User\UserSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('qrcodes', [QrCodeController::class, 'index']);
+Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function () {
+    Route::resource('userssetting', UserSettingController::class);
+    // Route::get('qrcodes', [QrCodeController::class, 'index']);
+});
+
 Route::group(['middleware' => ['role:super admin']], function () {
     Route::resource('users', UserController::class);
     Route::get('/user/trashed', [UserController::class, 'showTrashed'])->name('usershowTrashed');
 });
-
-Route::get('phpinfo', fn () => phpinfo());
-
 
 Route::middleware([
     'auth:sanctum',
@@ -37,3 +39,5 @@ Route::middleware([
         return view('admin.dashboard');
     })->name('dashboard');
 });
+
+Route::get('phpinfo', fn () => phpinfo());
