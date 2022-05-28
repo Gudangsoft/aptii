@@ -76,7 +76,6 @@ class UserController extends Controller
         try {
             $input  = $request->except(['_token', 'role', 'password']);
             $user = User::findOrFail($id);
-            $user->password = 'cdaaptnia';
             $user->fill($input)->save();
 
             if($request->role != 0){
