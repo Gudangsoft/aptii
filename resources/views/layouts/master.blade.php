@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/style.css">
 
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+
 </head>
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="">
@@ -37,7 +39,11 @@
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 
     @livewireScripts
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+
     @include('layouts.scripts')
+
 </body>
 
 </html>

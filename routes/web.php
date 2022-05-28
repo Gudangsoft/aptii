@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function () {
     Route::resource('userssetting', UserSettingController::class);
+    Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');
     // Route::get('qrcodes', [QrCodeController::class, 'index']);
 });
 

@@ -65,13 +65,6 @@
                                     <span class="font-weight-bold">Social</span>
                                 </a>
                             </li>
-                            <!-- notification -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="account-pill-notifications" data-toggle="pill" href="#account-vertical-notifications" aria-expanded="false">
-                                    <i data-feather="bell" class="font-medium-3 mr-1"></i>
-                                    <span class="font-weight-bold">Notifications</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                     <!--/ left menu section -->
@@ -81,65 +74,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="tab-content">
-                                    <!-- general tab -->
+
                                     @include('admin.users.settings.general')
-                                    <!--/ general tab -->
+                                    @include('admin.users.settings.change-password')
 
-                                    <!-- change password -->
-                                    <div class="tab-pane fade" id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
-                                        <!-- form -->
-                                        <form class="validate-form">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-old-password">Old Password</label>
-                                                        <div class="input-group form-password-toggle input-group-merge">
-                                                            <input type="password" class="form-control" id="account-old-password" name="password" placeholder="Old Password" />
-                                                            <div class="input-group-append">
-                                                                <div class="input-group-text cursor-pointer">
-                                                                    <i data-feather="eye"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-new-password">New Password</label>
-                                                        <div class="input-group form-password-toggle input-group-merge">
-                                                            <input type="password" id="account-new-password" name="new-password" class="form-control" placeholder="New Password" />
-                                                            <div class="input-group-append">
-                                                                <div class="input-group-text cursor-pointer">
-                                                                    <i data-feather="eye"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-retype-new-password">Retype New Password</label>
-                                                        <div class="input-group form-password-toggle input-group-merge">
-                                                            <input type="password" class="form-control" id="account-retype-new-password" name="confirm-new-password" placeholder="New Password" />
-                                                            <div class="input-group-append">
-                                                                <div class="input-group-text cursor-pointer"><i data-feather="eye"></i></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary mr-1 mt-1">Save changes</button>
-                                                    <button type="reset" class="btn btn-outline-secondary mt-1">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <!--/ form -->
-                                    </div>
-                                    <!--/ change password -->
-
-                                    <!-- information -->
                                     <div class="tab-pane fade" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info" aria-expanded="false">
                                         <!-- form -->
                                         <form class="validate-form">
@@ -301,58 +239,6 @@
                                     </div>
                                     <!--/ social -->
 
-                                    <!-- notifications -->
-                                    <div class="tab-pane fade" id="account-vertical-notifications" role="tabpanel" aria-labelledby="account-pill-notifications" aria-expanded="false">
-                                        <div class="row">
-                                            <h6 class="section-label mx-1 mb-2">Activity</h6>
-                                            <div class="col-12 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch1" />
-                                                    <label class="custom-control-label" for="accountSwitch1">
-                                                        Email me when someone comments onmy article
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch2" />
-                                                    <label class="custom-control-label" for="accountSwitch2">
-                                                        Email me when someone answers on my form
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" id="accountSwitch3" />
-                                                    <label class="custom-control-label" for="accountSwitch3">Email me hen someone follows me</label>
-                                                </div>
-                                            </div>
-                                            <h6 class="section-label mx-1 mt-2">Application</h6>
-                                            <div class="col-12 mt-1 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch4" />
-                                                    <label class="custom-control-label" for="accountSwitch4">News and announcements</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch6" />
-                                                    <label class="custom-control-label" for="accountSwitch6">Weekly product updates</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-75">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" id="accountSwitch5" />
-                                                    <label class="custom-control-label" for="accountSwitch5">Weekly blog digest</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
-                                                <button type="reset" class="btn btn-outline-secondary mt-2">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/ notifications -->
                                 </div>
                             </div>
                         </div>
@@ -367,8 +253,8 @@
 </div>
 @push('custom-scripts')
 <script>
-    $('#password, #confirm_password').on('keyup', function () {
-        if ($('#password').val() == $('#confirm_password').val()) {
+    $('#password, #confirm-password').on('keyup', function () {
+        if ($('#password').val() == $('#confirm-password').val()) {
             $('#message').html('Password sama').css('color', 'green');
             $(':input[type="submit"]').prop('disabled', false);
         }else{
