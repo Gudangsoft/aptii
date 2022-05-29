@@ -13,12 +13,12 @@ class SocialMedia extends Component
     public $twitter, $facebook, $instagram, $youtube, $linkedin, $tiktok;
 
     protected $rules = [
-        'twitter'       => 'required|url',
-        'facebook'      => 'required|url',
-        'instagram'     => 'required|url',
-        'youtube'       => 'required|url',
-        'linkedin'      => 'required|url',
-        'tiktok'        => 'required|url',
+        'twitter'       => 'url',
+        'facebook'      => 'url',
+        'instagram'     => 'url',
+        'youtube'       => 'url',
+        'linkedin'      => 'url',
+        'tiktok'        => 'url',
     ];
 
     public function updated($propertyName){
@@ -26,11 +26,12 @@ class SocialMedia extends Component
     }
 
     public function mount($user){
-        $this->twitter = $user->getSocialMedia->twitter;
-        $this->facebook = $user->getSocialMedia->facebook;
-        $this->instagram = $user->getSocialMedia->instagram;
-        $this->youtube = $user->getSocialMedia->youtube;
-        $this->linkedin = $user->getSocialMedia->linkedin;
+        $this->twitter      = $user->getSocialMedia->twitter;
+        $this->facebook     = $user->getSocialMedia->facebook;
+        $this->instagram    = $user->getSocialMedia->instagram;
+        $this->youtube      = $user->getSocialMedia->youtube;
+        $this->linkedin     = $user->getSocialMedia->linkedin;
+        $this->tiktok       = $user->getSocialMedia->tiktok;
     }
 
     public function submit(){
@@ -43,6 +44,7 @@ class SocialMedia extends Component
                     'twitter'   => $this->twitter,
                     'facebook'  => $this->facebook,
                     'instagram' => $this->instagram,
+                    'youtube'   => $this->youtube,
                     'linkedin'  => $this->linkedin,
                     'tiktok'    => $this->tiktok,
                 ]);
@@ -59,6 +61,7 @@ class SocialMedia extends Component
                     'twitter'   => $this->twitter,
                     'facebook'  => $this->facebook,
                     'instagram' => $this->instagram,
+                    'youtube'   => $this->youtube,
                     'linkedin'  => $this->linkedin,
                     'tiktok'    => $this->tiktok,
                 ]);
@@ -78,8 +81,6 @@ class SocialMedia extends Component
                 'width' => '',
                ]);
         }
-
-        dd($socialMedia);
     }
 
     public function render()
