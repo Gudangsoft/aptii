@@ -21,14 +21,6 @@
                     </div>
                 </div>
             </div>
-            <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
-                <div class="form-group breadcrumb-right">
-                    <div class="dropdown">
-                        <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="app-todo.html"><i class="mr-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="mr-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="mr-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="mr-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="content-body">
             <!-- account setting page -->
@@ -77,54 +69,9 @@
 
                                     @include('admin.users.settings.general')
                                     @include('admin.users.settings.change-password')
+                                    @include('admin.users.settings.information')
 
-                                    <div class="tab-pane fade" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info" aria-expanded="false">
-                                        <!-- form -->
-                                        <form class="validate-form">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="accountTextarea">Bio</label>
-                                                        <textarea class="form-control" id="accountTextarea" rows="4" placeholder="Your Bio data here..."></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-birth-date">Birth date</label>
-                                                        <input type="text" class="form-control flatpickr" placeholder="Birth date" id="account-birth-date" name="dob" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="accountSelect">Country</label>
-                                                        <select class="form-control" id="accountSelect">
-                                                            <option>USA</option>
-                                                            <option>India</option>
-                                                            <option>Canada</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-website">Website</label>
-                                                        <input type="text" class="form-control" name="website" id="account-website" placeholder="Website address" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-phone">Phone</label>
-                                                        <input type="text" class="form-control" id="account-phone" placeholder="Phone number" value="(+656) 254 2568" name="phone" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary mt-1 mr-1">Save changes</button>
-                                                    <button type="reset" class="btn btn-outline-secondary mt-1">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <!--/ form -->
-                                    </div>
-                                    <!--/ information -->
+
 
                                     <!-- social -->
                                     <div class="tab-pane fade" id="account-vertical-social" role="tabpanel" aria-labelledby="account-pill-social" aria-expanded="false">
@@ -251,6 +198,17 @@
         </div>
     </div>
 </div>
+
+
+@push('page-vendor')
+<script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.js"></script>
+<script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.date.js"></script>
+<script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.time.js"></script>
+<script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/legacy.js"></script>
+<script src="{{ asset('assets') }}/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+<script src="{{ asset('assets') }}/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
+@endpush
+
 @push('custom-scripts')
 <script>
     $('#password, #confirm-password').on('keyup', function () {
@@ -267,5 +225,10 @@
         document.getElementById('account-upload-img').src = src
     }
 </script>
+@endpush
+
+@push('page-js')
+<script src="{{ asset('assets') }}/js/scripts/forms/form-number-input.js"></script>
+<script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
 @endpush
 @endsection

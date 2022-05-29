@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Str;
@@ -34,10 +35,11 @@ class UserController extends Controller
     {
         // dd($request);
         try {
-            $input  = $request->except(['_token', 'role', 'password']);
-            $user = new User();
-            $user->username = Str::slug($request->name);
-            $user->password = 'cdaaptnia';
+            $input                  = $request->except(['_token', 'role', 'password']);
+            $user                   = new User();
+            $user->username         = Str::slug($request->name);
+            $user->password         = Hash::make('cdaaptnia');
+            $user->remember_token   = Str::random(8);
             $user->fill($input)->save();
 
             if($request->role == 0){
