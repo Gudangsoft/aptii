@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ChatsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\QrCodeController;
@@ -21,6 +22,7 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function () {
+    Route::resource('chats', ChatsController::class);
     Route::resource('userssetting', UserSettingController::class);
     Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');
     // Route::get('qrcodes', [QrCodeController::class, 'index']);
