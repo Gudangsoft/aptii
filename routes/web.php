@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\QrCodeController;
 use App\Http\Controllers\Admin\User\UserSettingController;
+use App\Http\Controllers\FriendsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function () {
+    Route::resource('friends', FriendsController::class);
+    Route::get('addfriends/{id}', [FriendsController::class, 'add'])->name('addfriends');
+
     Route::resource('chats', ChatsController::class);
     Route::resource('userssetting', UserSettingController::class);
     Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');
