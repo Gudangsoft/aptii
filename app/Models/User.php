@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\SocialMedia;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -38,4 +39,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    function getSocialMedia(){
+        return $this->hasOne(SocialMedia::class, 'user_id');
+    }
 }
