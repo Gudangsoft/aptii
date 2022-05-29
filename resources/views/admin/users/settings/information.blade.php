@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info" aria-expanded="false">
-    <livewire:user.information />
+    @livewire('user.information', ['user' => $user])
 </div>
 
 @push('vendor-css')

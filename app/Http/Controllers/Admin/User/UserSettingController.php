@@ -12,7 +12,9 @@ class UserSettingController extends Controller
 {
     public function index()
     {
-        return view('admin.users.settings.index');
+        return view('admin.users.settings.index', [
+            'user' =>  User::findOrFail(auth()->user()->id)
+        ]);
     }
 
     public function create()
