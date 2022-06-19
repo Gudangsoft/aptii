@@ -40,7 +40,8 @@ class UserSettingController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        // dd($request->image);
+        $imageName = null;
         try {
             if($request->image != null){
                 $request->validate([
@@ -53,7 +54,9 @@ class UserSettingController extends Controller
 
             $input  = $request->except(['_token', 'company', 'image']);
             $user = User::findOrFail($id);
-            $user->profile_photo_path = $imageName;
+            if($imageName != null){
+                $user->profile_photo_path = $imageName;
+            }
             $user->fill($input)->save();
 
             Alert::success('Success', 'User added successfully');

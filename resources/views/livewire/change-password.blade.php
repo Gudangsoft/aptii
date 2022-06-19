@@ -45,7 +45,6 @@
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary mr-1 mt-1">Save changes</button>
-                <button type="change" class="btn btn-outline-secondary mt-1">Cancel</button>
             </div>
         </div>
     </form>

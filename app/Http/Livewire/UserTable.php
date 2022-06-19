@@ -99,7 +99,6 @@ class UserTable extends DataTableComponent
                     ->location(fn($row) => route('users.edit', $row->id))
                     ->attributes(function($row) {
                         return [
-                            'target' => '_blank',
                             'class' => 'btn btn-icon btn-success',
                         ];
                     })
