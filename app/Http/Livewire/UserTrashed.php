@@ -75,19 +75,6 @@ class UserTrashed extends DataTableComponent
                 ->sortable(),
             Column::make("Updated at", "updated_at")
                 ->sortable(),
-            ButtonGroupColumn::make('Actions')
-            ->unclickable()
-            ->buttons([
-                LinkColumn::make('Edit')
-                    ->title(fn($row) => 'Edit')
-                    ->location(fn($row) => route('users.edit', $row->id))
-                    ->attributes(function($row) {
-                        return [
-                            'target' => '_blank',
-                            'class' => 'btn btn-icon btn-success',
-                        ];
-                    }),
-            ]),
         ];
     }
 

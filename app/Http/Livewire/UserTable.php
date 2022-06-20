@@ -102,7 +102,7 @@ class UserTable extends DataTableComponent
                             'class' => 'btn btn-icon btn-success',
                         ];
                     })
-            ]),
+            ])
         ];
     }
 
