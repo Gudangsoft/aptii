@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\QrCodeController;
 use App\Http\Controllers\Admin\User\ProfileController;
 use App\Http\Controllers\Admin\User\UserSettingController;
 use App\Http\Controllers\FriendsController;
+use App\Http\Controllers\Admin\Post\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function
         Route::get('/friends/delete/{id}', 'unfriends')->name('profile.friends.delete');
     });
 
+    Route::resource('articles', ArticleController::class);
     Route::resource('chats', ChatsController::class);
     Route::resource('userssetting', UserSettingController::class);
     Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');

@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        RobertSeghedi\News\NewsProvider::class,
 
         /*
          * Application Service Providers...

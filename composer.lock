@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfd82d6a7ef24eb5f78ae39ae40b6a68",
+    "content-hash": "7dfa963ea2a059972fee2351a7418703",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4699,6 +4699,85 @@
                 }
             ],
             "time": "2022-02-04T09:38:53+00:00"
+        },
+        {
+            "name": "robertseghedi/laravel-advanced-security",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robertseghedi/laravel-advanced-security.git",
+                "reference": "cc250bdd972571ba5ba61bd9a71e118fc8f9fce9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robertseghedi/laravel-advanced-security/zipball/cc250bdd972571ba5ba61bd9a71e118fc8f9fce9",
+                "reference": "cc250bdd972571ba5ba61bd9a71e118fc8f9fce9",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RobertSeghedi\\LAS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Seghedi",
+                    "email": "robertseghedi123@gmail.com"
+                }
+            ],
+            "description": " This is a fresh Laravel plugin which gets security data from your users and gives you the chance to store it crypted or decrypted, with no stress. Educational purposes only / other purposes but on your own liability.",
+            "support": {
+                "issues": "https://github.com/robertseghedi/laravel-advanced-security/issues",
+                "source": "https://github.com/robertseghedi/laravel-advanced-security/tree/main"
+            },
+            "time": "2021-05-01T10:07:17+00:00"
+        },
+        {
+            "name": "robertseghedi/laravel-articles",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robertseghedi/laravel-articles.git",
+                "reference": "2c64be9122067073575fde533d33ec69fbca5b48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robertseghedi/laravel-articles/zipball/2c64be9122067073575fde533d33ec69fbca5b48",
+                "reference": "2c64be9122067073575fde533d33ec69fbca5b48",
+                "shasum": ""
+            },
+            "require": {
+                "robertseghedi/laravel-advanced-security": "dev-main"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RobertSeghedi\\News\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Seghedi",
+                    "email": "robertseghedi123@gmail.com"
+                }
+            ],
+            "description": "Feature-full Laravel advanced plugin for managing your website's articles, categories, likes and comments with a very easy syntax. Add, move, delete any content from your system, really easy.",
+            "support": {
+                "issues": "https://github.com/robertseghedi/laravel-articles/issues",
+                "source": "https://github.com/robertseghedi/laravel-articles/tree/main"
+            },
+            "time": "2021-04-30T19:41:46+00:00"
         },
         {
             "name": "simplesoftwareio/simple-qrcode",
@@ -10075,7 +10154,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "robertseghedi/laravel-articles": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

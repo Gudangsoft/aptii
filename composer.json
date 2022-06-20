@@ -19,6 +19,7 @@
         "mediconesystems/livewire-datatables": "^0.9.4",
         "rappasoft/laravel-livewire-tables": "^2.7",
         "realrashid/sweet-alert": "^5.0",
+        "robertseghedi/laravel-articles": "dev-main",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^5.5",
         "stevebauman/location": "^6.5"

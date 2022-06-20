@@ -12,13 +12,14 @@ use Stevebauman\Location\Facades\Location;
 class DashboardController extends Controller
 {
     public function index(Request $request){
+        $ip = $request->ip();
+
         $friendListId = Friends::where('user_id', auth()->user()->id)->pluck('friend_id');
         $data = array(
             'home' => [
                 'date' => Carbon::now()->Format('D, d M Y'),
                 'time' => Carbon::now()->Format('g:i A'),
-                'ip' => $request->ip(),
-                'currentUserInfo' => Location::get('182.2.37.221'),
+                'currentUserInfo' => Location::get($ip),
             ]
         );
         // dd($data);

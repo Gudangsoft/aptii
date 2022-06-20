@@ -31,8 +31,10 @@
                 </div>
             </div>
             <div class="media-body">
-                <h6 class="mb-0">{{ $data['currentUserInfo']->cityName }}</h6>
-                <small>{{ $data['currentUserInfo']->regionName }}, {{ $data['currentUserInfo']->countryName }}</small>
+                @if ($data['currentUserInfo'] != false)
+                    <h6 class="mb-0">{{ $data['currentUserInfo']->cityName }}</h6>
+                    <small>{{ $data['currentUserInfo']->regionName }}, {{ $data['currentUserInfo']->countryName }}</small>
+                @endif
             </div>
         </div>
         <div class="avatar-group">
