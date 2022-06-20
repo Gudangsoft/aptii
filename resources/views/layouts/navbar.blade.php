@@ -116,10 +116,10 @@
                     <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{ ucwords(auth()->user()->name) }}</span><span class="user-status">{{ auth()->user()->roles->pluck('name')->implode(',') }}</span></div><span class="avatar"><img class="round" src="{{ asset('storage/images/users').'/'.auth()->user()->profile_photo_path }}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-                    <a class="dropdown-item" href=""><i class="mr-50" data-feather="user"></i> Profile</a>
+                    <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="mr-50" data-feather="user"></i> Profile</a>
                     <a class="dropdown-item" href="{{ route('chats.index') }}"><i class="mr-50" data-feather="message-square"></i> Chats</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('userssetting.index') }}"><i class="mr-50" data-feather="settings"></i> Settings</a>
+                    {{-- <a class="dropdown-item" href="{{ route('userssetting.index') }}"><i class="mr-50" data-feather="settings"></i> Settings</a> --}}
 
                     @if (auth()->id())
                         <form method="POST" action="{{ route('logout') }}">
