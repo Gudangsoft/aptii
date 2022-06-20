@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Post;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use RobertSeghedi\News\Models\Category;
 
 class ArticleController extends Controller
 {
@@ -24,7 +25,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('admin.article.create');
+        return view('admin.article.create', [
+            'categories' => Category::all(),
+        ]);
     }
 
     /**

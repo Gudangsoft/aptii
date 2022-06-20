@@ -23,7 +23,7 @@
             </div>
             <div class="content-header-right text-md-right col-md-5 col-12">
                 <div class="form-group">
-                    <a href="{{ route('users.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="edit"></i> Create New Article</a>
+                    <a href="{{ route('articles.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="edit"></i> Create New Article</a>
                 </div>
             </div>
         </div>

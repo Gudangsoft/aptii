@@ -1,5 +1,5 @@
-@extends('layouts.master')
-@section('content')
+<x-master-layouts>
+
 <div class="app-content content ">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
@@ -58,4 +58,5 @@
     });
 </script>
 @endpush
-@endsection
+
+</x-master-layouts>
