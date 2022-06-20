@@ -13,10 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        'name' => $this->faker->name(),
-        'email' => $this->faker->unique()->safeEmail(),
-        'email_verified_at' => now(),
-        'password' => Hash::make('12345678'), // password
-        'remember_token' => Str::random(10),
+        // \App\Models\User::factory(10)->create();
     }
 }

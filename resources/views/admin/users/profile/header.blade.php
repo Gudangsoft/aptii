@@ -33,15 +33,15 @@
                         <div class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0">
                             <ul class="nav nav-pills mb-0">
                                 <li class="nav-item">
-                                    <a class="nav-link font-weight-bold active" href="javascript:void(0)">
+                                    <a class="nav-link font-weight-bold {{ $data['menu'] == 'index' ? 'active' : '' }}" href="{{ route('profile.index') }}">
                                         <span class="d-none d-md-block">Feed</span>
                                         <i data-feather="rss" class="d-block d-md-none"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="javascript:void(0)">
-                                        <span class="d-none d-md-block">About</span>
-                                        <i data-feather="info" class="d-block d-md-none"></i>
+                                    <a class="nav-link font-weight-bold {{ $data['menu'] == 'friends' ? 'active' : '' }}" href="{{ route('profile.friends') }}">
+                                        <span class="d-none d-md-block">Friends&nbsp;&nbsp;<span class="badge badge-glow badge-success badge-pill ml-auto">{{ $data['friends_total'] }}</span></span>
+                                        <i data-feather="users" class="d-block d-md-none"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -50,13 +50,8 @@
                                         <i data-feather="image" class="d-block d-md-none"></i>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="{{ route('profile.friends') }}">
-                                        <span class="d-none d-md-block">Friends</span>
-                                        <i data-feather="users" class="d-block d-md-none"></i>
-                                    </a>
-                                </li>
                             </ul>
+
                             <!-- edit button -->
                             <a href="{{ route('userssetting.index') }}" class="btn btn-primary">
                                 <i data-feather="edit" class="d-block d-md-none"></i>
@@ -72,3 +67,4 @@
     </div>
 </div>
 <!--/ profile header -->
+
