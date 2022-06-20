@@ -51,7 +51,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="javascript:void(0)">
+                                    <a class="nav-link font-weight-bold" href="{{ route('profile.friends') }}">
                                         <span class="d-none d-md-block">Friends</span>
                                         <i data-feather="users" class="d-block d-md-none"></i>
                                     </a>

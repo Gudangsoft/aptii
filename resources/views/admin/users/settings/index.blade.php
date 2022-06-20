@@ -72,9 +72,6 @@
                                     @include('admin.users.settings.information')
                                     @include('admin.users.settings.socialmedia')
 
-
-
-
                                 </div>
                             </div>
                         </div>

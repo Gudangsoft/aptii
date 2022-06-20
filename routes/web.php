@@ -32,6 +32,7 @@ Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function
     Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');
     Route::controller(ProfileController::class)->group(function(){
         Route::get('/profile', 'index')->name('profile.index');
+        Route::get('/profile/friends', 'friends')->name('profile.friends');
     });
     // Route::get('qrcodes', [QrCodeController::class, 'index']);
 });
