@@ -10,7 +10,7 @@
                     <h6 class="mb-0">{{ $user->name }}</h6>
                     <small class="text-muted">6 Mutual Friends</small>
                 </div>
-                <a href="addfriends/{{ $user->id }}" class="btn btn-primary btn-icon btn-sm ml-auto">
+                <a href="{{ route('addfriends', $user->id) }}" class="btn btn-primary btn-icon btn-sm ml-auto">
                     <i data-feather="user-plus"></i>
                 </a>
             </div>

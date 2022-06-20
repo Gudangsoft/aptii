@@ -9,7 +9,7 @@
                     @foreach ($data['friends_list'] as $friend)
                         <div class="d-flex justify-content-start align-items-center mb-1">
                             <div class="avatar mr-1">
-                                <img src="{{ asset('assets') }}/images/avatars/12-small.png" alt="avatar img" height="40" width="40" />
+                                <img src="{{ asset('assets') }}/images/avatars/8-small.png" alt="avatar img" height="40" width="40" />
                             </div>
                             <div class="profile-user-info">
                                 <h6 class="mb-0">{{ $friend->getName->name }}
@@ -21,6 +21,9 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="d-flex justify-content-center mt-3">
+                        {{ $data['friends_list']->onEachSide(3)->links() }}
+                    </div>
                 </div>
             </div>
         </div>

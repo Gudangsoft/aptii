@@ -40,7 +40,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link font-weight-bold {{ $data['menu'] == 'friends' ? 'active' : '' }}" href="{{ route('profile.friends') }}">
-                                        <span class="d-none d-md-block">Friends&nbsp;&nbsp;<span class="badge badge-glow badge-success badge-pill ml-auto">{{ $data['friends_total'] }}</span></span>
+                                        <span class="d-none d-md-block">Friends&nbsp;&nbsp;<span class="badge badge-glow badge-success badge-pill ml-auto">{{ $data['friends_total'] > 99 ? '99+':$data['friends_total']}}</span></span>
                                         <i data-feather="users" class="d-block d-md-none"></i>
                                     </a>
                                 </li>

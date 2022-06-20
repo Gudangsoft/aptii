@@ -25,15 +25,18 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function () {
     Route::resource('friends', FriendsController::class);
-    Route::get('addfriends/{id}', [FriendsController::class, 'add'])->name('addfriends');
+    // Route::get('addfriends/{id}', [FriendsController::class, 'add'])->name('addfriends');
+    Route::controller(FriendsController::class)->group(function(){
+        Route::get('/friends', 'friends')->name('profile.friends');
+        Route::get('/friends/add/{id}', 'add')->name('addfriends');
+        Route::get('/friends/delete/{id}', 'unfriends')->name('profile.friends.delete');
+    });
 
     Route::resource('chats', ChatsController::class);
     Route::resource('userssetting', UserSettingController::class);
     Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');
     Route::controller(ProfileController::class)->group(function(){
         Route::get('/profile', 'index')->name('profile.index');
-        Route::get('/profile/friends', 'friends')->name('profile.friends');
-        Route::get('/profile/friends/delete/{id}', 'unfriends')->name('profile.friends.delete');
     });
     // Route::get('qrcodes', [QrCodeController::class, 'index']);
 });

@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('content')
+@include('sweetalert::alert')
+
 <div class="app-content content ">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
@@ -74,7 +76,14 @@
 
                     <!-- Browser States Card -->
                     <div class="col-lg-4 col-md-6 col-12">
-                        @include('admin.widget.add_friends', ['users' => \App\Models\User::where('status', 1)->get()])
+                        @php
+                            use App\Models\Friends;
+                            use App\Models\User;
+
+                            $friendListId = Friends::where('user_id', auth()->user()->id)->pluck('friend_id');
+                        @endphp
+
+                        @include('admin.widget.add_friends', ['users' => User::where('status', 1)->whereNotIn('id', $friendListId)->limit(7)->get()])
                     </div>
                     <!--/ Browser States Card -->
 
