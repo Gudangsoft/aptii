@@ -1,5 +1,5 @@
-@extends('layouts.master')
-@section('content')
+<x-master-layouts>
+
 @include('sweetalert::alert')
 <div class="app-content content ">
     <div class="content-overlay"></div>
@@ -108,8 +108,5 @@
     });
 </script>
 @endpush
-@endsection
 
-<!-- Hoverable rows start -->
-
-<!-- Hoverable rows end -->
+</x-master-layouts>

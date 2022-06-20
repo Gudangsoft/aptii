@@ -14,10 +14,14 @@
     <link rel="apple-touch-icon" href="{{ asset('assets') }}/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets') }}/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+
     @include('layouts.styles')
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/style.css">
-
     @livewireStyles
 
     {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
@@ -29,7 +33,8 @@
     @include('layouts.navbar')
     @include('layouts.sidebar')
 
-    @yield('content')
+    {{-- @yield('content') --}}
+    {{ $slot }}
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>

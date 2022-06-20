@@ -1,5 +1,4 @@
-@extends('layouts.master')
-@section('content')
+<x-master-layouts>
 @include('sweetalert::alert')
 <div class="app-content content ">
     <div class="content-overlay"></div>
@@ -49,4 +48,4 @@
     });
 </script>
 @endpush
-@endsection
+</x-master-layouts>

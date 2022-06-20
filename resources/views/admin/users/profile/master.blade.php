@@ -1,5 +1,5 @@
-@extends('layouts.master')
-@section('content')
+<x-master-layouts>
+
 @include('sweetalert::alert')
 
     <div class="app-content content ">
@@ -33,10 +33,13 @@
             </div>
         </div>
     </div>
-@endsection
+
+
 @push('page-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/pages/page-profile.css">
 @endpush
 @push('page-js')
 <script src="{{ asset('assets') }}/js/scripts/pages/page-profile.js"></script>
 @endpush
+
+</x-master-layouts>

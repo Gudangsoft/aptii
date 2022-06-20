@@ -1,5 +1,5 @@
-@extends('layouts.master')
-@section('content')
+<x-master-layouts>
+
 @include('sweetalert::alert')
 <div class="app-content content ">
     <div class="content-overlay"></div>
@@ -115,4 +115,4 @@
 <script src="{{ asset('assets') }}/js/scripts/forms/form-number-input.js"></script>
 <script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
 @endpush
-@endsection
+</x-master-layouts>
