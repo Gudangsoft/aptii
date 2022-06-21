@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
@@ -43,6 +45,17 @@ class ArticlesTable extends DataTableComponent
             ->format(function($value, $column, $row) {
                 return $column->getUser->name;
             }),
+            // Column::make('Author IP', 'author_ip')
+            // ->format(function($value) {
+            //     // return $value;
+            //     try {
+            //         $decrypted = Crypt::decryptString($value);
+            //         return $decrypted;
+            //     } catch (DecryptException $e) {
+            //         return $e;
+            //     }
+
+            // }),
             Column::make('Publish','created_at')->sortable()
             ->format(
                 fn($value, $row, Column $column) =>

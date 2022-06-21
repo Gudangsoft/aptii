@@ -97,7 +97,11 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.article.edit', [
+            'categories' => Category::all(),
+            'id' => $id
+            // 'current_categories' => Category::all(),
+        ]);
     }
 
     /**
