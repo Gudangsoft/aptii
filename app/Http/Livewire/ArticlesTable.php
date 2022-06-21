@@ -13,18 +13,31 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use RobertSeghedi\News\Models\Article;
 use Illuminate\Support\Str;
 use RobertSeghedi\News\Models\News;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ArticlesTable extends DataTableComponent
 {
     protected $model = Article::class;
-    // public string $defaultSortColumn = 'created_at';
-    // public string $defaultSortDirection = 'desc';
 
     public $selected_id;
 
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+        $this->setDefaultSort('updated_at', 'desc');
+    }
+
+    public array $bulkActions = [
+        'export' => 'Export',
+    ];
+
+    public function export()
+    {
+        $articles = $this->getSelected();
+        $this->clearSelected();
+
+        return Excel::download(new UsersExport($articles), 'articles.xlsx');
     }
 
     public function columns(): array
@@ -86,18 +99,16 @@ class ArticlesTable extends DataTableComponent
         ];
     }
 
-    public function query(): Builder
+    public function builder(): Builder
     {
         return Article::query()
-                // ->where('status', '!=', 3)
-                ->orderByDesc('updated_at')
-                ->when($this->getFilter('search'), fn ($query, $term) => $query->where('title', 'like', '%'.$term.'%'));
+            ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('articles.title', 'like', '%' . $title . '%'));
     }
 
-    public function rowView(): string
-    {
-        return 'admin.article.table';
-    }
+    // public function rowView(): string
+    // {
+    //     return 'admin.article.table';
+    // }
 
     // public function modalsView(): string
     // {
