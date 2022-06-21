@@ -56,11 +56,11 @@ class ArticlesTable extends DataTableComponent
             //     }
 
             // }),
-            Column::make('Publish','created_at')->sortable()
+            Column::make('Publish','updated_at')->sortable()
             ->format(
                 fn($value, $row, Column $column) =>
-                "<span class='badge badge-light-dark'>".Carbon::parse($row->created_at)->Format('d M Y')."</span>
-                <span class='badge badge-light-warning'>".Carbon::parse($row->created_at)->Format('H:i')."</span>"
+                "<span class='badge badge-light-dark'>".Carbon::parse($row->updated_at)->Format('d M Y')."</span>
+                <span class='badge badge-light-warning'>".Carbon::parse($row->updated_at)->Format('H:i')."</span>"
             )->html(),
 
             ButtonGroupColumn::make('Actions')
@@ -90,6 +90,7 @@ class ArticlesTable extends DataTableComponent
     {
         return Article::query()
                 // ->where('status', '!=', 3)
+                ->orderByDesc('updated_at')
                 ->when($this->getFilter('search'), fn ($query, $term) => $query->where('title', 'like', '%'.$term.'%'));
     }
 

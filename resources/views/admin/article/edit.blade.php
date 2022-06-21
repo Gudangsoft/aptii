@@ -49,28 +49,45 @@
                                         </div>
                                     </div>
                                     <!-- Form -->
-                                    <form action="{{ route('articles.update', $id) }}" method="POST" enctype="multipart/form-data" class="mt-2">
+                                    <form action="{{ route('articles.update', $data->id) }}" method="POST" enctype="multipart/form-data" class="mt-2">
                                         @csrf
+                                        @method('PUT')
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group mb-2">
                                                     <label for="blog-edit-title">Title</label>
-                                                    <input type="text" name="title" id="title" class="form-control" onInput="edValueKeyPress()">
+                                                    <input type="text" name="title" id="title" class="form-control" onInput="edValueKeyPress()" value="{{ $data->title }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group mb-2">
+                                                    <label for="fp-date-time">Date & Time</label>
+                                                    <input type="text" name="date" id="fp-date-time" class="form-control flatpickr-date-time" placeholder="YYYY-MM-DD HH:MM" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group mb-2">
+                                                    <label for="blog-edit-slug">Slug</label>
+                                                    <input type="text" name="slug" id="slug" class="form-control" value="{{ $data->slug }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12 mb-1">
                                                 <label for="blog-edit-category">Category</label>
                                                 <select class="select2 form-control" name="category">
-                                                    @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ strtoupper($category->name) }}</option>
-                                                    @endforeach
+                                                    @if ($currentCategory != null)
+                                                        <option value="{{ $currentCategory->id }}">{{ strtoupper($currentCategory->name) }}</option>
+                                                    @else
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}">{{ strtoupper($category->name) }}</option>
+                                                        @endforeach
+                                                    @endif
                                                 </select>
                                             </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group mb-2">
-                                                    <label for="blog-edit-slug">Slug</label>
-                                                    <input type="text" name="slug" id="slug" class="form-control">
-                                                </div>
+
+                                            <div class="col-12 mb-2">
+                                                <label for="blog-edit-title">Content</label>
+                                                <textarea name="content" class="ckeditor" id="" cols="30" rows="10">{!! $data->content !!}</textarea>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group mb-2">
@@ -82,18 +99,25 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-12 mb-2">
-                                                <textarea name="content" class="ckeditor" id="" cols="30" rows="10"></textarea>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group mb-2">
+                                                    <label for="blog-edit-title">Tags</label>
+                                                    <input type="text" name="tags" id="tags" class="form-control" value="{{ $data->tags }}" placeholder="news, top, viral">
+                                                </div>
                                             </div>
                                             <div class="col-12 mb-2">
                                                 <div class="border rounded p-2">
                                                     <h4 class="mb-1">Featured Image</h4>
                                                     <div class="media flex-column flex-md-row">
-                                                        <img src="{{ asset('assets') }}/images/slider/03.jpg" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                        @if ($data->image != null)
+                                                            <img src="{{ asset('storage') }}/articles/thumbnail/{{ $data->image }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                        @else
+                                                            <img src="{{ asset('assets') }}/images/slider/03.jpg" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                        @endif
                                                         <div class="media-body">
-                                                            <small class="text-muted">Required image resolution 800x400, image size 10mb.</small>
+                                                            <small class="text-muted">Required image resolution 800x400, image size 5mb.</small>
                                                             <p class="my-50">
-                                                                <a href="javascript:void(0);" id="blog-image-text">C:\fakepath\banner.jpg</a>
+                                                                <a href="javascript:void(0);" id="blog-image-text">{{ $data->image ? 'storage/articles/thumbnail/'.$data->image : 'C:\fakepath\banner.jpg'}}</a>
                                                             </p>
                                                             <div class="d-inline-block">
                                                                 <div class="form-group mb-0">
@@ -129,12 +153,21 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/editors/quill/katex.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/editors/quill/monokai-sublime.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/editors/quill/quill.snow.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/pickers/pickadate/pickadate.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/pickers/flatpickr/flatpickr.min.css">
     @endpush
     @push('page-css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/form-quill-editor.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/pickers/form-flat-pickr.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/pickers/form-pickadate.css">
     @endpush
     @push('custom-scripts')
+    <script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.js"></script>
+    <script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.date.js"></script>
+    <script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.time.js"></script>
+    <script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/legacy.js"></script>
+    <script src="{{ asset('assets') }}/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <script src="{{ asset('assets') }}/vendors/js/forms/select/select2.full.min.js"></script>
     <script src="{{ asset('assets') }}/vendors/js/editors/quill/katex.min.js"></script>
     <script src="{{ asset('assets') }}/vendors/js/editors/quill/highlight.min.js"></script>
@@ -143,6 +176,7 @@
     @push('page-js')
     <script src="{{ asset('assets') }}/js/scripts/pages/page-blog-edit.js"></script>
     <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
+    <script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('.ckeditor').ckeditor();

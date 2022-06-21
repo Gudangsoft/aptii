@@ -66,14 +66,23 @@ class ArticleController extends Controller
         $image->move($destinationPath, $input['imagename']);
 
         try {
-            $article = News::post($request->title, $request->slug, $request->content, $request->category, $request->status,  $input['imagename']);
+            $article = News::post(
+                $request->title,
+                $request->slug,
+                $request->content,
+                $request->category,
+                $request->status,
+                $input['imagename'],
+                $request->tags,
+                $request->date,
+            );
+
             if($article){
-                Alert::success('Success', 'Article post successuflly');
+                Alert::success('Created', 'Article post successuflly');
                 return redirect()->route('articles.index');
             }
         } catch (Exception $error) {
-            dd($error->getMessage());
-            // Alert::error('Fail', $error->getMessage());
+            Alert::error('Fail', $error->getMessage());
             return back();
         }
     }
@@ -97,9 +106,11 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
+        $data = Article::findOrFail($id);
         return view('admin.article.edit', [
-            'categories' => Category::all(),
-            'id' => $id
+            'categories'        => Category::all(),
+            'currentCategory'    => Category::findOrFail($data->category),
+            'data' => $data
             // 'current_categories' => Category::all(),
         ]);
     }
@@ -113,7 +124,45 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->image != null){
+            $image = $request->file('image');
+            $input['imagename'] = time().'.'.$image->extension();
+
+            $destinationPath = public_path('/storage/articles/thumbnail');
+            $img = Image::make($image->path());
+            $img->resize(400, 400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
+
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['imagename']);
+        }
+        try {
+            $article = Article::findOrFail($id);
+            $article->title = $request->title;
+            $article->slug = $request->slug;
+            $article->content = $request->content;
+            $article->category = $request->category;
+            $article->author = auth()->user()->id;
+            $article->status = $request->status;
+            $article->tags = $request->tags;
+
+            if ($request->date != null) {
+                $article->updated_at = $request->date;
+            }
+
+            if($request->image != null){
+                $article->image = $input['imagename'];
+            }
+
+            $article->save();
+
+            Alert::success('Updated', 'Article updated successuflly');
+            return redirect()->route('articles.index');
+        } catch (Exception $error) {
+            Alert::error('Fail', $error->getMessage());
+            return back();
+        }
     }
 
     /**

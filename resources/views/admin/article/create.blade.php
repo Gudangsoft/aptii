@@ -58,6 +58,19 @@
                                                 <input type="text" name="title" id="title" class="form-control" onInput="edValueKeyPress()">
                                             </div>
                                         </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group mb-2">
+                                                <label for="fp-date-time">Date & Time</label>
+                                                <input type="text" id="fp-date-time" class="form-control flatpickr-date-time" placeholder="YYYY-MM-DD HH:MM" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group mb-2">
+                                                <label for="blog-edit-slug">Slug</label>
+                                                <input type="text" name="slug" id="slug" class="form-control">
+                                            </div>
+                                        </div>
                                         <div class="col-md-6 col-12 mb-1">
                                             <label for="blog-edit-category">Category</label>
                                             <select class="select2 form-control" name="category">
@@ -66,11 +79,10 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group mb-2">
-                                                <label for="blog-edit-slug">Slug</label>
-                                                <input type="text" name="slug" id="slug" class="form-control">
-                                            </div>
+
+                                        <div class="col-12 mb-2">
+                                            <label for="blog-edit-title">Content</label>
+                                            <textarea name="content" class="ckeditor" id="" cols="30" rows="10"></textarea>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
@@ -82,8 +94,11 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-12 mb-2">
-                                            <textarea name="content" class="ckeditor" id="" cols="30" rows="10"></textarea>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group mb-2">
+                                                <label for="blog-edit-title">Tags</label>
+                                                <input type="text" name="tags" id="tags" class="form-control" placeholder="news, top, viral">
+                                            </div>
                                         </div>
                                         <div class="col-12 mb-2">
                                             <div class="border rounded p-2">
@@ -129,12 +144,21 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/editors/quill/katex.min.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/editors/quill/monokai-sublime.min.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/editors/quill/quill.snow.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/pickers/pickadate/pickadate.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/pickers/flatpickr/flatpickr.min.css">
 @endpush
 @push('page-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/core/menu/menu-types/vertical-menu.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/form-quill-editor.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/pickers/form-flat-pickr.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/pickers/form-pickadate.css">
 @endpush
 @push('custom-scripts')
+<script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.js"></script>
+<script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.date.js"></script>
+<script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.time.js"></script>
+<script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/legacy.js"></script>
+<script src="{{ asset('assets') }}/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/js/forms/select/select2.full.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/js/editors/quill/katex.min.js"></script>
 <script src="{{ asset('assets') }}/vendors/js/editors/quill/highlight.min.js"></script>
@@ -143,6 +167,7 @@
 @push('page-js')
 <script src="{{ asset('assets') }}/js/scripts/pages/page-blog-edit.js"></script>
 <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
+<script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.ckeditor').ckeditor();
