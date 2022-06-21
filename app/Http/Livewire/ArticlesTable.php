@@ -53,6 +53,14 @@ class ArticlesTable extends DataTableComponent
             ButtonGroupColumn::make('Actions')
             ->unclickable()
             ->buttons([
+                LinkColumn::make('View') // make() has no effect in this case but needs to be set anyway
+                    ->title(fn($row) => 'View ' . $row->name)
+                    ->location(fn($row) => route('articles.show', $row->id))
+                    ->attributes(function($row) {
+                        return [
+                            'class' => 'btn btn-icon btn-primary',
+                        ];
+                    }),
                 LinkColumn::make('Edit')
                     ->title(fn($row) => 'Edit')
                     ->location(fn($row) => route('articles.edit', $row->id))

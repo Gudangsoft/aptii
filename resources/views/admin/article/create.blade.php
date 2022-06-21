@@ -1,6 +1,6 @@
 <x-master-layouts>
-
 @include('sweetalert::alert')
+
 <div class="app-content content ">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
@@ -51,17 +51,18 @@
                                     </div>
                                 </div>
                                 <!-- Form -->
-                                <form action="javascript:;" class="mt-2">
+                                <form action="{{ route('articles.store') }}" method="POST" enctype="multipart/form-data" class="mt-2">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
                                                 <label for="blog-edit-title">Title</label>
-                                                <input type="text" id="blog-edit-title" class="form-control" value="The Best Features Coming to iOS and Web design" />
+                                                <input type="text" name="title" id="title" class="form-control" onInput="edValueKeyPress()">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12 mb-1">
                                             <label for="blog-edit-category">Category</label>
-                                            <select class="select2 form-control">
+                                            <select class="select2 form-control" name="category">
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ strtoupper($category->name) }}</option>
                                                 @endforeach
@@ -70,43 +71,27 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
                                                 <label for="blog-edit-slug">Slug</label>
-                                                <input type="text" id="blog-edit-slug" class="form-control" value="the-best-features-coming-to-ios-and-web-design" />
+                                                <input type="text" name="slug" id="slug" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
                                                 <label for="blog-edit-status">Status</label>
-                                                <select class="form-control" id="blog-edit-status">
-                                                    <option value="Published">Published</option>
-                                                    <option value="Pending">Pending</option>
-                                                    <option value="Draft">Draft</option>
+                                                <select class="form-control" id="blog-edit-status" name="status">
+                                                    <option value="1">Published</option>
+                                                    <option value="2">Pending</option>
+                                                    <option value="3">Draft</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="form-group mb-2">
-                                                <label>Content</label>
-                                                <div id="blog-editor-wrapper">
-                                                    <div id="blog-editor-container">
-                                                        <div class="editor">
-                                                            <p>
-                                                                Cupcake ipsum dolor sit. Amet dessert donut candy chocolate bar cotton dessert candy
-                                                                chocolate. Candy muffin danish. Macaroon brownie jelly beans marzipan cheesecake oat cake.
-                                                                Carrot cake macaroon chocolate cake. Jelly brownie jelly. Marzipan pie sweet roll.
-                                                            </p>
-                                                            <p><br /></p>
-                                                            <p>
-                                                                Liquorice dragée cake chupa chups pie cotton candy jujubes bear claw sesame snaps. Fruitcake
-                                                                chupa chups chocolate bonbon lemon drops croissant caramels lemon drops. Candy jelly cake
-                                                                marshmallow jelly beans dragée macaroon. Gummies sugar plum fruitcake. Candy canes candy
-                                                                cupcake caramels cotton candy jujubes fruitcake.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="col-12 mb-2">
+                                            <textarea name="content" class="ckeditor" id="" cols="30" rows="10"></textarea>
                                         </div>
                                         <div class="col-12 mb-2">
+                                            <input type="file" name="images" required/>
+                                            <p class="help-block">{{ $errors->first('avatar') }}</p>
+                                        </div>
+                                        {{-- <div class="col-12 mb-2">
                                             <div class="border rounded p-2">
                                                 <h4 class="mb-1">Featured Image</h4>
                                                 <div class="media flex-column flex-md-row">
@@ -119,7 +104,7 @@
                                                         <div class="d-inline-block">
                                                             <div class="form-group mb-0">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="blogCustomFile" accept="image/*" />
+                                                                    <input type="file" name="image" class="custom-file-input" id="blogCustomFile" accept="image/*" />
                                                                     <label class="custom-file-label" for="blogCustomFile">Choose file</label>
                                                                 </div>
                                                             </div>
@@ -127,7 +112,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-12 mt-50">
                                             <button type="submit" class="btn btn-primary mr-1">Save Changes</button>
                                             <button type="reset" class="btn btn-outline-secondary">Cancel</button>
@@ -145,6 +130,7 @@
         </div>
     </div>
 </div>
+
 @push('vendor-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/forms/select/select2.min.css">
@@ -155,6 +141,7 @@
 @push('page-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/core/menu/menu-types/vertical-menu.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/form-quill-editor.css">
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 @endpush
 @push('custom-scripts')
 <script src="{{ asset('assets') }}/vendors/js/forms/select/select2.full.min.js"></script>
@@ -164,6 +151,42 @@
 @endpush
 @push('page-js')
 <script src="{{ asset('assets') }}/js/scripts/pages/page-blog-edit.js"></script>
+<script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ckeditor').ckeditor();
+    });
+</script>
+<script>
+    function edValueKeyPress() {
+        var edValue = document.getElementById("title");
+        var s = edValue.value;
+
+        var lblValue = document.getElementById("slug");
+        lblValue.value = s.toLowerCase().replace(/[^\w-]+/g, '-');
+    }
+
+</script>
+
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+<script>
+    // Set default FilePond options
+    FilePond.setOptions({
+        server: {
+            url: "{{ config('filepond.server.url') }}",
+            headers: {
+                'X-CSRF-TOKEN': "{{ @csrf_token() }}",
+            }
+        }
+    });
+
+    FilePond.parse(document.body);
+    // Create the FilePond instance
+    FilePond.create(document.querySelector('input[name="images"]'));
+    FilePond.create(document.querySelector('input[name="gallery[]"]'), {chunkUploads: true});
+</script>
+
 @endpush
 </x-master-layouts>
 

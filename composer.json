@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
         "mediconesystems/livewire-datatables": "^0.9.4",
+        "rahulhaque/laravel-filepond": "^1.8",
         "rappasoft/laravel-livewire-tables": "^2.7",
         "realrashid/sweet-alert": "^5.0",
         "robertseghedi/laravel-articles": "dev-main",

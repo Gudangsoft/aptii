@@ -1,5 +1,4 @@
-@extends('layouts.master')
-@section('content')
+<x-master-layouts>
 @include('sweetalert::alert')
 
 <div class="app-content content ">
@@ -216,4 +215,4 @@
         </div>
     </div>
 </div>
-@endsection
+</x-master-layouts>
