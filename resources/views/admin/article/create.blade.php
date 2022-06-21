@@ -88,10 +88,6 @@
                                             <textarea name="content" class="ckeditor" id="" cols="30" rows="10"></textarea>
                                         </div>
                                         <div class="col-12 mb-2">
-                                            <input type="file" name="images" required/>
-                                            <p class="help-block">{{ $errors->first('avatar') }}</p>
-                                        </div>
-                                        {{-- <div class="col-12 mb-2">
                                             <div class="border rounded p-2">
                                                 <h4 class="mb-1">Featured Image</h4>
                                                 <div class="media flex-column flex-md-row">
@@ -112,20 +108,18 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         <div class="col-12 mt-50">
                                             <button type="submit" class="btn btn-primary mr-1">Save Changes</button>
                                             <button type="reset" class="btn btn-outline-secondary">Cancel</button>
                                         </div>
                                     </div>
                                 </form>
-                                <!--/ Form -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--/ Blog Edit -->
 
         </div>
     </div>
@@ -141,7 +135,6 @@
 @push('page-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/core/menu/menu-types/vertical-menu.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/form-quill-editor.css">
-<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 @endpush
 @push('custom-scripts')
 <script src="{{ asset('assets') }}/vendors/js/forms/select/select2.full.min.js"></script>
@@ -166,25 +159,6 @@
         lblValue.value = s.toLowerCase().replace(/[^\w-]+/g, '-');
     }
 
-</script>
-
-<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-
-<script>
-    // Set default FilePond options
-    FilePond.setOptions({
-        server: {
-            url: "{{ config('filepond.server.url') }}",
-            headers: {
-                'X-CSRF-TOKEN': "{{ @csrf_token() }}",
-            }
-        }
-    });
-
-    FilePond.parse(document.body);
-    // Create the FilePond instance
-    FilePond.create(document.querySelector('input[name="images"]'));
-    FilePond.create(document.querySelector('input[name="gallery[]"]'), {chunkUploads: true});
 </script>
 
 @endpush

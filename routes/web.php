@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\User\ProfileController;
 use App\Http\Controllers\Admin\User\UserSettingController;
 use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\Admin\Post\ArticleController;
+use App\Http\Controllers\Admin\Post\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function
     });
 
     Route::resource('articles', ArticleController::class);
+    Route::post('upload', [UploadController::class, 'store']);
 
     Route::resource('chats', ChatsController::class);
     Route::resource('userssetting', UserSettingController::class);

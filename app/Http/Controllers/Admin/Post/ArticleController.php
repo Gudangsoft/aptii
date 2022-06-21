@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admin\Post;
 
 use App\Http\Controllers\Controller;
+use Exception;
+use Image;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use RobertSeghedi\News\Models\Article;
 use RobertSeghedi\News\Models\Category;
+use RobertSeghedi\News\Models\News;
 
 class ArticleController extends Controller
 {
@@ -38,7 +43,39 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request->image);
+        $this->validate($request, [
+            'title' => 'required',
+            'category' => 'required',
+            'slug' => 'required',
+            'status' => 'required',
+            'content' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+        ]);
+
+        $image = $request->file('image');
+        $input['imagename'] = time().'.'.$image->extension();
+
+        $destinationPath = public_path('/storage/articles/thumbnail');
+        $img = Image::make($image->path());
+        $img->resize(400, 400, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['imagename']);
+
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $input['imagename']);
+
+        try {
+            $article = News::post($request->title, $request->slug, $request->content, $request->category, $request->status,  $input['imagename']);
+            if($article){
+                Alert::success('Success', 'Article post successuflly');
+                return redirect()->route('articles.index');
+            }
+        } catch (Exception $error) {
+            dd($error->getMessage());
+            // Alert::error('Fail', $error->getMessage());
+            return back();
+        }
     }
 
     /**

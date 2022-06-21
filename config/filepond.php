@@ -97,6 +97,6 @@ return [
     |
     */
     'server' => [
-        'url' => env('FILEPOND_URL', '/storage/filepond'),
+        'url' => env('FILEPOND_URL', '/filepond'),
     ]
 ];
