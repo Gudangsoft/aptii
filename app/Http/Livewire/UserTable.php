@@ -62,15 +62,11 @@ class UserTable extends DataTableComponent
         $this->clearSelected();
     }
 
-    public function edit($id){
-        dd('test');
+    public function delete(){
+        User::whereIn('id', $this->getSelected())->delete();
+        $message = 'User successfully deleted !';
+        $this->dispatchBrowserEvent('success', ['message' => $message]);
     }
-
-            public function delete(){
-                User::whereIn('id', $this->getSelected())->delete();
-                $message = 'User successfully deleted !';
-                $this->dispatchBrowserEvent('success', ['message' => $message]);
-            }
 
     public function restore(){
         User::withTrashed()->whereIn('id', $this->getSelected())->restore();
@@ -78,18 +74,31 @@ class UserTable extends DataTableComponent
         $this->dispatchBrowserEvent('openModalRestore', ['message' => $message]);
     }
 
+    public function deleteModal($id)
+    {
+        $this->selected_id = $id;
+        $this->dispatchBrowserEvent('openModalDelete');
+    }
+
+    public function deleteStatus(){
+        User::findOrFail($this->selected_id)->delete();
+        $this->dispatchBrowserEvent('closeModalDelete');
+    }
+
     public function columns(): array
     {
         return [
             Column::make("Id", "id")
-                ->sortable(),
+                ->sortable()
+                ->format(fn($value, $row, Column $column) =>
+                "<span class='badge badge-light-dark'>".$value."</span>
+                <span class='badge badge-light-primary'>".$row->roles->pluck('name')->implode(',')."</span>"
+            )->html(),
             Column::make('Name')
             ->searchable(),
             Column::make('Email')
             ->searchable(),
             Column::make("Created at", "created_at")
-                ->sortable(),
-            Column::make("Updated at", "updated_at")
                 ->sortable(),
             ButtonGroupColumn::make('Actions')
             ->unclickable()
@@ -101,7 +110,16 @@ class UserTable extends DataTableComponent
                         return [
                             'class' => 'btn btn-icon btn-success',
                         ];
-                    })
+                    }),
+                LinkColumn::make('Delete')
+                ->title(fn($row) => 'Delete')
+                ->location(fn($row) => '#')
+                ->attributes(function($row) {
+                    return [
+                        'class' => 'btn btn-icon btn-danger',
+                        'wire:click' => "deleteModal($row->id)",
+                    ];
+                }),
             ])
         ];
     }
@@ -112,6 +130,11 @@ class UserTable extends DataTableComponent
             ->orderBy('created_at', 'desc')
             ->when($this->columnSearch['name'] ?? null, fn ($query, $name) => $query->where('users.name', 'like', '%' . $name . '%'))
             ->when($this->columnSearch['email'] ?? null, fn ($query, $email) => $query->where('users.email', 'like', '%' . $email . '%'));
+    }
+
+    public function customView(): string
+    {
+        return 'admin.users.modal';
     }
 
 }

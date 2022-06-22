@@ -46,6 +46,25 @@
         $("#message").html(event.detail.message);
 
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        Livewire.hook('message.processed', (message, component) => {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        })
+    });
+
+    window.addEventListener('openModalDelete', event => {
+        $("#delete-modal").modal('show');
+    });
+
+    window.addEventListener('closeModalDelete', event => {
+        $("#delete-modal").modal('hide');
+    });
 </script>
 @endpush
 </x-master-layouts>

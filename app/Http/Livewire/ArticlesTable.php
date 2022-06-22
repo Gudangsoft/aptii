@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use RobertSeghedi\News\Models\News;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
 class ArticlesTable extends DataTableComponent
 {
@@ -30,36 +31,6 @@ class ArticlesTable extends DataTableComponent
     {
         $this->setPrimaryKey('id');
         $this->setDefaultSort('updated_at', 'desc');
-    }
-
-    public array $bulkActions = [
-        'export' => 'Export',
-        'delete' => 'Delete',
-    ];
-
-    public function export()
-    {
-        $articles = $this->getSelected();
-        $this->clearSelected();
-
-        return Excel::download(new UsersExport($articles), 'articles.xlsx');
-    }
-
-    public function deleteModal($id)
-    {
-        $this->selected_id = $id;
-        $this->dispatchBrowserEvent('openModalDelete');
-    }
-
-    public function deleteStatus(){
-        Article::findOrFail($this->selected_id)->delete();
-        $this->dispatchBrowserEvent('closeModalDelete');
-    }
-
-    public function delete(){
-        Article::whereIn('id', $this->getSelected())->delete();
-        $message = 'Articles deleted successfully !';
-        $this->dispatchBrowserEvent('success', ['message' => $message]);
     }
 
     public function columns(): array
@@ -114,6 +85,7 @@ class ArticlesTable extends DataTableComponent
                     ->title(fn($row) => 'Edit')
                     ->location(fn($row) => route('articles.edit', $row->id))
                     ->attributes(function($row) {
+
                         return [
                             'class' => 'btn btn-icon btn-success',
                         ];
@@ -133,10 +105,45 @@ class ArticlesTable extends DataTableComponent
 
     public function builder(): Builder
     {
-        return Article::query()
-            ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('articles.title', 'like', '%' . $title . '%'));
+        if(auth()->user()->roles->pluck('name')->implode(',') == 'writer'){
+            return Article::query()
+                ->where('author', auth()->user()->id)
+                ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('articles.title', 'like', '%' . $title . '%'));
+        }else{
+            return Article::query()
+                ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('articles.title', 'like', '%' . $title . '%'));
+        }
     }
 
+    public array $bulkActions = [
+        'export' => 'Export',
+        'delete' => 'Delete',
+    ];
+
+    public function export()
+    {
+        $articles = $this->getSelected();
+        $this->clearSelected();
+
+        return Excel::download(new UsersExport($articles), 'articles.xlsx');
+    }
+
+    public function deleteModal($id)
+    {
+        $this->selected_id = $id;
+        $this->dispatchBrowserEvent('openModalDelete');
+    }
+
+    public function deleteStatus(){
+        Article::findOrFail($this->selected_id)->delete();
+        $this->dispatchBrowserEvent('closeModalDelete');
+    }
+
+    public function delete(){
+        Article::whereIn('id', $this->getSelected())->delete();
+        $message = 'Articles deleted successfully !';
+        $this->dispatchBrowserEvent('success', ['message' => $message]);
+    }
 
     public function customView(): string
     {

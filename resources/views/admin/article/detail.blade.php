@@ -33,7 +33,8 @@
                                     {{-- <img src="{{ $data->image ? asset('storage').'/articles/thumbnail/'.$data->image : asset('assets').'/images/banner/banner-12.jpg'}}" class="img-flui card-img-top" alt="Blog Detail Pic" /> --}}
 
                                     <div class="card-body">
-                                        <h4 class="card-title">{!! $data->title !!}</h4>
+                                        <h4 class="card-title">{!! $data->title !!} </h4>
+
                                         <div class="media">
                                             <div class="avatar mr-50">
                                                 <img src="{{ $data->getUser->profile_photo_path ? asset('storage/images/users').'/'.$data->getUser->profile_photo_path : asset('assets').'/images/portrait/small/avatar-s-7.jpg'}}" alt="Avatar" width="30" height="30" />
@@ -42,16 +43,25 @@
                                                 <small class="text-muted mr-25">by</small>
                                                 <small><a href="javascript:void(0);" class="text-body">{{ $data->getUser->name }}</a></small>
                                                 <span class="text-muted ml-50 mr-25">|</span>
-                                                <small class="text-muted">{{ \Carbon\Carbon::parse($data->updated_at)->Format('d M Y - H:i') }}</small>
+                                                <small class="text-muted">{{ \Carbon\Carbon::parse($data->updated_at)->Format('d M Y - H:i') }} | </small>
+                                                <a href="javascript:void(0);">
+                                                    <div class="badge badge-light-primary">{{ strtoupper($data->getCategory->name) }}</div>
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="my-1 py-25">
-                                            <a href="javascript:void(0);">
-                                                <div class="badge badge-pill badge-light-danger mr-50">{{ $data->tags }}</div>
-                                            </a>
-                                            <a href="javascript:void(0);">
-                                                <div class="badge badge-light-warning">{{ strtoupper($data->getCategory->name) }}</div>
-                                            </a>
+                                            tags :
+                                            @php
+                                                $explode = explode(',', $data->tags);
+                                            @endphp
+                                                @foreach ( $explode as $item)
+                                                    <a href="/tags/{{ $item }}">
+                                                        <div class="badge badge-pill badge-light-danger mr-50">
+                                                            #{{ $item }}
+                                                        </div>
+                                                    </a>
+                                                @endforeach
+
                                         </div>
                                         <div class="media">
                                             <div class="media-left">
@@ -61,8 +71,6 @@
                                                 {!! $data->content !!}
                                             </div>
                                         </div>
-                                        {{-- <p class="card-text mb-2"> --}}
-                                        {{-- </p> --}}
                                         <hr class="my-2" />
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-center">
