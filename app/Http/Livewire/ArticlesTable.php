@@ -18,9 +18,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ArticlesTable extends DataTableComponent
 {
-    protected $model = Article::class;
+    // protected $model = Article::class;
 
-    public $selected_id;
+    public $columnSearch = [
+        'title' => null,
+    ];
 
     public function configure(): void
     {
@@ -46,6 +48,7 @@ class ArticlesTable extends DataTableComponent
             Column::make("Id", "id")
             ->sortable(),
             Column::make('Title')
+            ->searchable()
             ->format(function($value){
                 return '<strong>'.$value.'</strong>';
             })
@@ -105,13 +108,4 @@ class ArticlesTable extends DataTableComponent
             ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('articles.title', 'like', '%' . $title . '%'));
     }
 
-    // public function rowView(): string
-    // {
-    //     return 'admin.article.table';
-    // }
-
-    // public function modalsView(): string
-    // {
-    //     return 'admin.pages.modal';
-    // }
 }
