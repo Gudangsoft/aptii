@@ -24,13 +24,14 @@
                     </div>
                 </div>
             </div>
-            <div class="content-detached content-left">
+            <div class="content-detached">
                 <div class="content-body">
                     <div class="blog-detail-wrapper">
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <img src="{{ asset('assets') }}/images/banner/banner-12.jpg" class="img-fluid card-img-top" alt="Blog Detail Pic" />
+                                    {{-- <img src="{{ $data->image ? asset('storage').'/articles/thumbnail/'.$data->image : asset('assets').'/images/banner/banner-12.jpg'}}" class="img-flui card-img-top" alt="Blog Detail Pic" /> --}}
+
                                     <div class="card-body">
                                         <h4 class="card-title">{!! $data->title !!}</h4>
                                         <div class="media">
@@ -52,9 +53,16 @@
                                                 <div class="badge badge-light-warning">{{ strtoupper($data->getCategory->name) }}</div>
                                             </a>
                                         </div>
-                                        <p class="card-text mb-2">
-                                            {!! $data->content !!}
-                                        </p>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img src="{{ $data->image ? asset('storage').'/articles/thumbnail/'.$data->image : asset('assets').'/images/portrait/small/avatar-s-6.jpg'}}" alt="thumbnail" title="thumbnail" height="100" width="100" class="cursor-pointer" />
+                                            </div>
+                                            <div class="media-body ml-2 text-justify">
+                                                {!! $data->content !!}
+                                            </div>
+                                        </div>
+                                        {{-- <p class="card-text mb-2"> --}}
+                                        {{-- </p> --}}
                                         <hr class="my-2" />
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-center">
@@ -112,145 +120,6 @@
                         </div>
                     </div>
                     <!--/ Blog Detail -->
-
-                </div>
-            </div>
-            <div class="sidebar-detached sidebar-right">
-                <div class="sidebar">
-                    <div class="blog-sidebar my-2 my-lg-0">
-                        <!-- Search bar -->
-                        <div class="blog-search">
-                            <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Search here" />
-                                <div class="input-group-append">
-                                    <span class="input-group-text cursor-pointer">
-                                        <i data-feather="search"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Search bar -->
-
-                        <!-- Recent Posts -->
-                        <div class="blog-recent-posts mt-3">
-                            <h6 class="section-label">Recent Posts</h6>
-                            <div class="mt-75">
-                                <div class="media mb-2">
-                                    <a href="page-blog-detail.html" class="mr-2">
-                                        <img class="rounded" src="{{ asset('assets') }}/images/banner/banner-22.jpg" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a href="page-blog-detail.html" class="text-body-heading">Why Should Forget Facebook?</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">Jan 14 2020</div>
-                                    </div>
-                                </div>
-                                <div class="media mb-2">
-                                    <a href="page-blog-detail.html" class="mr-2">
-                                        <img class="rounded" src="{{ asset('assets') }}/images/banner/banner-27.jpg" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a href="page-blog-detail.html" class="text-body-heading">Publish your passions, your way</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">Mar 04 2020</div>
-                                    </div>
-                                </div>
-                                <div class="media mb-2">
-                                    <a href="page-blog-detail.html" class="mr-2">
-                                        <img class="rounded" src="{{ asset('assets') }}/images/banner/banner-39.jpg" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a href="page-blog-detail.html" class="text-body-heading">The Best Ways to Retain More</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">Feb 18 2020</div>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <a href="page-blog-detail.html" class="mr-2">
-                                        <img class="rounded" src="{{ asset('assets') }}/images/banner/banner-35.jpg" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a href="page-blog-detail.html" class="text-body-heading">Share a Shocking Fact or Statistic</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">Oct 08 2020</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Recent Posts -->
-
-                        <!-- Categories -->
-                        <div class="blog-categories mt-3">
-                            <h6 class="section-label">Categories</h6>
-                            <div class="mt-1">
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-primary rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="watch" class="avatar-icon font-medium-1"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">Fashion</div>
-                                    </a>
-                                </div>
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-success rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="shopping-cart" class="avatar-icon font-medium-1"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">Food</div>
-                                    </a>
-                                </div>
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-danger rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="command" class="avatar-icon font-medium-1"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">Gaming</div>
-                                    </a>
-                                </div>
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-info rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="hash" class="avatar-icon font-medium-1"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">Quote</div>
-                                    </a>
-                                </div>
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-warning rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="video" class="avatar-icon font-medium-1"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">Video</div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Categories -->
-                    </div>
 
                 </div>
             </div>
