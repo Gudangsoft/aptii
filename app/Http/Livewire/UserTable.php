@@ -16,6 +16,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 use App\Exports\UsersExport;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserTable extends DataTableComponent
@@ -30,59 +31,6 @@ class UserTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
-    }
-
-    public array $bulkActions = [
-        'export' => 'Export',
-        'activate' => 'Activate',
-        'deactivate' => 'Deactivate',
-        'delete' => 'Delete',
-    ];
-
-    public function export()
-    {
-        $users = $this->getSelected();
-
-        $this->clearSelected();
-
-        return Excel::download(new UsersExport($users), 'users.xlsx');
-    }
-
-    public function activate()
-    {
-        User::whereIn('id', $this->getSelected())->update(['status' => 1]);
-
-        $this->clearSelected();
-    }
-
-    public function deactivate()
-    {
-        User::whereIn('id', $this->getSelected())->update(['status' => 0]);
-
-        $this->clearSelected();
-    }
-
-    public function delete(){
-        User::whereIn('id', $this->getSelected())->delete();
-        $message = 'User successfully deleted !';
-        $this->dispatchBrowserEvent('success', ['message' => $message]);
-    }
-
-    public function restore(){
-        User::withTrashed()->whereIn('id', $this->getSelected())->restore();
-        $message = 'User successfully restored';
-        $this->dispatchBrowserEvent('openModalRestore', ['message' => $message]);
-    }
-
-    public function deleteModal($id)
-    {
-        $this->selected_id = $id;
-        $this->dispatchBrowserEvent('openModalDelete');
-    }
-
-    public function deleteStatus(){
-        User::findOrFail($this->selected_id)->delete();
-        $this->dispatchBrowserEvent('closeModalDelete');
     }
 
     public function columns(): array
@@ -122,6 +70,70 @@ class UserTable extends DataTableComponent
                 }),
             ])
         ];
+    }
+
+
+    public array $bulkActions = [
+        'export' => 'Export',
+        'activate' => 'Activate',
+        'deactivate' => 'Deactivate',
+        'resetPassword' => 'Reset Password',
+        'delete' => 'Delete',
+    ];
+
+    public function export()
+    {
+        $users = $this->getSelected();
+
+        $this->clearSelected();
+
+        return Excel::download(new UsersExport($users), 'users.xlsx');
+    }
+
+    public function activate()
+    {
+        User::whereIn('id', $this->getSelected())->update(['status' => 1]);
+
+        $this->clearSelected();
+    }
+
+    public function deactivate()
+    {
+        User::whereIn('id', $this->getSelected())->update(['status' => 0]);
+
+        $this->clearSelected();
+    }
+
+    public function resetPassword(){
+        // User::whereIn('id', $this->getSelected())->delete();
+        User::where('id', $this->getSelected())->update([
+            'password' => Hash::make('12345678')
+        ]);
+        $message = 'Password reset successfully, default password = 12345678';
+        $this->dispatchBrowserEvent('success', ['message' => $message]);
+    }
+
+    public function delete(){
+        User::whereIn('id', $this->getSelected())->delete();
+        $message = 'User successfully deleted !';
+        $this->dispatchBrowserEvent('success', ['message' => $message]);
+    }
+
+    public function restore(){
+        User::withTrashed()->whereIn('id', $this->getSelected())->restore();
+        $message = 'User successfully restored';
+        $this->dispatchBrowserEvent('openModalRestore', ['message' => $message]);
+    }
+
+    public function deleteModal($id)
+    {
+        $this->selected_id = $id;
+        $this->dispatchBrowserEvent('openModalDelete');
+    }
+
+    public function deleteStatus(){
+        User::findOrFail($this->selected_id)->delete();
+        $this->dispatchBrowserEvent('closeModalDelete');
     }
 
     public function builder(): Builder
