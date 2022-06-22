@@ -20,6 +20,7 @@ class ArticlesTable extends DataTableComponent
 {
     // protected $model = Article::class;
     public $selected_id;
+    public $title, $slug, $category, $status, $content, $date, $tags, $image;
 
     public $columnSearch = [
         'title' => null,
@@ -101,8 +102,8 @@ class ArticlesTable extends DataTableComponent
             ButtonGroupColumn::make('Actions')
             ->unclickable()
             ->buttons([
-                LinkColumn::make('View') // make() has no effect in this case but needs to be set anyway
-                    ->title(fn($row) => 'View ')
+                LinkColumn::make('Detail') // make() has no effect in this case but needs to be set anyway
+                    ->title(fn($row) => 'Detail ')
                     ->location(fn($row) => route('articles.show', $row->id))
                     ->attributes(function($row) {
                         return [

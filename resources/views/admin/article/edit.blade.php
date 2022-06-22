@@ -62,7 +62,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group mb-2">
                                                     <label for="fp-date-time">Date & Time</label>
-                                                    <input type="text" name="date" id="fp-date-time" class="form-control flatpickr-date-time" placeholder="YYYY-MM-DD HH:MM" />
+                                                    <input type="text" name="date" id="fp-date-time" class="form-control flatpickr-date-time" value="{{ $data->updated_at }}" placeholder="YYYY-MM-DD HH:MM" />
                                                 </div>
                                             </div>
 
@@ -77,11 +77,10 @@
                                                 <select class="select2 form-control" name="category">
                                                     @if ($currentCategory != null)
                                                         <option value="{{ $currentCategory->id }}">{{ strtoupper($currentCategory->name) }}</option>
-                                                    @else
-                                                        @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}">{{ strtoupper($category->name) }}</option>
-                                                        @endforeach
                                                     @endif
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ strtoupper($category->name) }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
 

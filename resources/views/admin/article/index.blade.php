@@ -119,9 +119,6 @@
             })
         })
     });
-    window.addEventListener('openModalDetail', event => {
-        $("#detail-modal").modal('show');
-    });
 
     window.addEventListener('openModalDelete', event => {
         $("#delete-modal").modal('show');
