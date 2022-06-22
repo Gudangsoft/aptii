@@ -33,6 +33,7 @@ class ArticlesTable extends DataTableComponent
 
     public array $bulkActions = [
         'export' => 'Export',
+        'delete' => 'Delete',
     ];
 
     public function export()
@@ -52,6 +53,12 @@ class ArticlesTable extends DataTableComponent
     public function deleteStatus(){
         Article::findOrFail($this->selected_id)->delete();
         $this->dispatchBrowserEvent('closeModalDelete');
+    }
+
+    public function delete(){
+        Article::whereIn('id', $this->getSelected())->delete();
+        $message = 'Articles deleted successfully !';
+        $this->dispatchBrowserEvent('success', ['message' => $message]);
     }
 
     public function columns(): array

@@ -55,7 +55,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete the data!
+                Are you sure you want to delete permanent the data!
             </div>
             <div class="modal-footer">
                 <button wire:click.prevent="deleteStatus()" type="button" class="btn btn-primary">Ok</button>

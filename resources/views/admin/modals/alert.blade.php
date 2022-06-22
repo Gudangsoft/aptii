@@ -1,4 +1,4 @@
-<div class="modal fade text-left modal-success" id="successAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
+<div class="modal fade text-left modal-primary" id="successAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,7 +11,7 @@
                 <span id="message"></span>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
