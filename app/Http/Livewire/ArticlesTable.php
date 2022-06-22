@@ -19,6 +19,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class ArticlesTable extends DataTableComponent
 {
     // protected $model = Article::class;
+    public $selected_id;
 
     public $columnSearch = [
         'title' => null,
@@ -40,6 +41,17 @@ class ArticlesTable extends DataTableComponent
         $this->clearSelected();
 
         return Excel::download(new UsersExport($articles), 'articles.xlsx');
+    }
+
+    public function deleteModal($id)
+    {
+        $this->selected_id = $id;
+        $this->dispatchBrowserEvent('openModalDelete');
+    }
+
+    public function deleteStatus(){
+        Article::findOrFail($this->selected_id)->delete();
+        $this->dispatchBrowserEvent('closeModalDelete');
     }
 
     public function columns(): array
@@ -97,7 +109,16 @@ class ArticlesTable extends DataTableComponent
                         return [
                             'class' => 'btn btn-icon btn-success',
                         ];
-                    })
+                    }),
+                LinkColumn::make('Delete')
+                    ->title(fn($row) => 'Delete')
+                    ->location(fn($row) => '#')
+                    ->attributes(function($row) {
+                        return [
+                            'class' => 'btn btn-icon btn-danger',
+                            'wire:click' => "deleteModal($row->id)",
+                        ];
+                    }),
             ])
         ];
     }
@@ -106,6 +127,12 @@ class ArticlesTable extends DataTableComponent
     {
         return Article::query()
             ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('articles.title', 'like', '%' . $title . '%'));
+    }
+
+
+    public function customView(): string
+    {
+        return 'admin.article.modal';
     }
 
 }

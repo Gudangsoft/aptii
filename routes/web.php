@@ -35,6 +35,7 @@ Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function
     });
 
     Route::resource('articles', ArticleController::class);
+    Route::get('/article/delete/{id}', [ArticleController::class, 'delete'])->name('article.delete');
     Route::post('upload', [UploadController::class, 'store']);
 
     Route::resource('chats', ChatsController::class);

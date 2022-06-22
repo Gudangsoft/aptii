@@ -95,6 +95,7 @@
                     </div>
                 </div>
             </div>
+            @include('admin.article.modal')
             @include('admin.modals.alert')
         </div>
     </div>
@@ -105,6 +106,29 @@
         $("#successAlert").modal('show');
         $("#message").html(event.detail.message);
 
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        Livewire.hook('message.processed', (message, component) => {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        })
+    });
+    window.addEventListener('openModalDetail', event => {
+        $("#detail-modal").modal('show');
+    });
+
+    window.addEventListener('openModalDelete', event => {
+        $("#delete-modal").modal('show');
+    });
+
+    window.addEventListener('closeModalDelete', event => {
+        $("#delete-modal").modal('hide');
     });
 </script>
 @endpush
