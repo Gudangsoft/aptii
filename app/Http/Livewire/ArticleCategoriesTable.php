@@ -26,37 +26,6 @@ class ArticleCategoriesTable extends DataTableComponent
         $this->setDefaultSort('updated_at', 'desc');
     }
 
-    public function createModal($id)
-    {
-        $this->selected_id = $id;
-        $this->dispatchBrowserEvent('openModalCreate');
-    }
-
-    public function createStatus(){
-        $save = Category::findOrFail($this->selected_id);
-        dd($save);
-        $this->dispatchBrowserEvent('closeModalCreate');
-    }
-
-    public function openEditModal($id)
-    {
-        $this->selected_id = $id;
-        $data = Category::findOrFail($id);
-        $this->name = $data->name;
-
-        $this->dispatchBrowserEvent('openModalEdit');
-    }
-
-    public function editCategorySave()
-    {
-        $save = Category::findOrFail($this->selected_id);
-        $save->name = $this->name;
-        $save->slug = Str::slug($this->name);
-        $save->save();
-        // dd($save);
-        $this->dispatchBrowserEvent('closeModalEdit');
-    }
-
     public function columns(): array
     {
         return [
@@ -104,6 +73,48 @@ class ArticleCategoriesTable extends DataTableComponent
                     }),
             ])
         ];
+    }
+
+    public function createModal($id)
+    {
+        $this->selected_id = $id;
+        $this->dispatchBrowserEvent('openModalCreate');
+    }
+
+    public function createStatus(){
+        $save = Category::findOrFail($this->selected_id);
+        dd($save);
+        $this->dispatchBrowserEvent('closeModalCreate');
+    }
+
+    public function openEditModal($id)
+    {
+        $this->selected_id = $id;
+        $data = Category::findOrFail($id);
+        $this->name = $data->name;
+
+        $this->dispatchBrowserEvent('openModalEdit');
+    }
+
+    public function editCategorySave()
+    {
+        $save = Category::findOrFail($this->selected_id);
+        $save->name = $this->name;
+        $save->slug = Str::slug($this->name);
+        $save->save();
+        // dd($save);
+        $this->dispatchBrowserEvent('closeModalEdit');
+    }
+
+    public function deleteModal($id)
+    {
+        $this->selected_id = $id;
+        $this->dispatchBrowserEvent('openModalDelete');
+    }
+
+    public function deleteStatus(){
+        Category::findOrFail($this->selected_id)->delete();
+        $this->dispatchBrowserEvent('closeModalDelete');
     }
 
     public function builder(): Builder
