@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\User\ProfileController;
 use App\Http\Controllers\Admin\User\UserSettingController;
 use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\Admin\Post\ArticleController;
+use App\Http\Controllers\Admin\Post\CategoryController;
 use App\Http\Controllers\Admin\Post\UploadController;
+use App\Http\Livewire\ArticleCategoriesTable;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,8 @@ Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function
     });
 
     Route::resource('articles', ArticleController::class);
-    Route::get('/article/delete/{id}', [ArticleController::class, 'delete'])->name('article.delete');
+    Route::resource('categories', CategoryController::class);
+
     Route::post('upload', [UploadController::class, 'store']);
 
     Route::resource('chats', ChatsController::class);

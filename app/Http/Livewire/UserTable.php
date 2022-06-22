@@ -66,11 +66,11 @@ class UserTable extends DataTableComponent
         dd('test');
     }
 
-    public function delete(){
-        User::whereIn('id', $this->getSelected())->delete();
-        $message = 'User successfully deleted !';
-        $this->dispatchBrowserEvent('success', ['message' => $message]);
-    }
+            public function delete(){
+                User::whereIn('id', $this->getSelected())->delete();
+                $message = 'User successfully deleted !';
+                $this->dispatchBrowserEvent('success', ['message' => $message]);
+            }
 
     public function restore(){
         User::withTrashed()->whereIn('id', $this->getSelected())->restore();

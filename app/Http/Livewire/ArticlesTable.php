@@ -102,7 +102,7 @@ class ArticlesTable extends DataTableComponent
             ->unclickable()
             ->buttons([
                 LinkColumn::make('View') // make() has no effect in this case but needs to be set anyway
-                    ->title(fn($row) => 'View ' . $row->name)
+                    ->title(fn($row) => 'View ')
                     ->location(fn($row) => route('articles.show', $row->id))
                     ->attributes(function($row) {
                         return [
