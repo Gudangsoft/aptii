@@ -14,7 +14,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 class ArticleCategoriesTable extends DataTableComponent
 {
     protected $model = Category::class;
-    public $selected_id;
+    public $selected_id, $name;
 
     public $columnSearch = [
         'name' => null,
@@ -38,15 +38,23 @@ class ArticleCategoriesTable extends DataTableComponent
         $this->dispatchBrowserEvent('closeModalCreate');
     }
 
-    public function editModal($id)
+    public function openEditModal($id)
     {
         $this->selected_id = $id;
-        $save = Category::findOrFail($id);
-        $save->name = $this->name;
-        $save->slug = Str::slug($name);
-        $save->save();
+        $data = Category::findOrFail($id);
+        $this->name = $data->name;
 
-        // $this->dispatchBrowserEvent('openModalCreate');
+        $this->dispatchBrowserEvent('openModalEdit');
+    }
+
+    public function editCategorySave()
+    {
+        $save = Category::findOrFail($this->selected_id);
+        $save->name = $this->name;
+        $save->slug = Str::slug($this->name);
+        $save->save();
+        // dd($save);
+        $this->dispatchBrowserEvent('closeModalEdit');
     }
 
     public function columns(): array
@@ -76,21 +84,13 @@ class ArticleCategoriesTable extends DataTableComponent
             ButtonGroupColumn::make('Actions')
             ->unclickable()
             ->buttons([
-                LinkColumn::make('View') // make() has no effect in this case but needs to be set anyway
-                    ->title(fn($row) => 'View ')
-                    ->location(fn($row) => route('articles.show', $row->id))
-                    ->attributes(function($row) {
-                        return [
-                            'class' => 'btn btn-icon btn-primary',
-                        ];
-                    }),
                 LinkColumn::make('Edit')
                     ->title(fn($row) => 'Edit')
                     ->location(fn($row) => '#')
                     ->attributes(function($row) {
                         return [
                             'class' => 'btn btn-icon btn-success',
-                            'wire:click' => "editModal($row->id)",
+                            'wire:click' => "openEditModal($row->id)",
                         ];
                     }),
                 LinkColumn::make('Delete')

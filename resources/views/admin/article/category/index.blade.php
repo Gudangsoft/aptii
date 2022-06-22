@@ -72,8 +72,16 @@
         window.addEventListener('openModalCreate', event => {
             $("#create-modal").modal('show');
         });
+
         window.addEventListener('closeModalCreate', event => {
             $("#create-modal").modal('hide');
+        });
+
+        window.addEventListener('openModalEdit', event => {
+            $("#edit-modal").modal('show');
+        });
+        window.addEventListener('closeModalEdit', event => {
+            $("#edit-modal").modal('hide');
         });
 
         window.addEventListener('loadModalCreate', event => {
