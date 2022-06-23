@@ -7,11 +7,11 @@
         @forelse ($data as $item)
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="type-post color-6">
-                    <div class="entry-cover"><a href="#"><img src="{{ asset('frontend') }}/assets/images/recent-post-1-376x299.jpg" alt="Post" /></a></div>
+                    <div class="entry-cover"><a href="#"><img src="{{ $item->image ? asset('storage').'/articles/thumbnail/'.$item->image : asset('frontend').'/assets/images/recent-post-1-376x299.jpg'}}" alt="Post" /></a></div>
                     <div class="entry-content">
                         <div class="post-category"><a href="/category/{{ $item->getCategory->slug }}" title="{{ $item->getCategory->name }}">{{ $item->getCategory->name }}</a></div>
                         <h3 class="entry-title"><a href="/post/{{ $item->slug }}">{{ $item->title }}</a></h3>
-                        <p>Reporter is one of the excellent magazine in the world.Newshub magazine reached many readers very soon.</p>
+                        <p>{!! \Illuminate\Support\Str::words($item->content, 15) !!}</p>
                         <div class="entry-footer">
                             <span class="post-date"><a href="#">{{ \Carbon\Carbon::parse($item->created_at)->format('D, d M Y') }}</a></span>
                             <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">651</a></span>
@@ -19,7 +19,7 @@
                         </div>
                         <a href="/post/{{ $item->slug }}" title="Read More">Read More <i class="fa fa-angle-right"></i></a>
                     </div>
-                </div><
+                </div>
             </div>
         @empty
             <div class="col-12 p-2">

@@ -26,6 +26,7 @@ use App\Http\Livewire\ArticleCategoriesTable;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/post/{slug}', [HomeController::class, 'post']);
 
 
 

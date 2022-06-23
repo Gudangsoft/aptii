@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use RealRashid\SweetAlert\Facades\Alert;
 use RobertSeghedi\News\Models\Article;
 use RobertSeghedi\News\Models\Category;
@@ -64,6 +65,8 @@ class ArticleController extends Controller
                 $request->date,
             );
 
+            Cache::flush();
+
             if($article){
                 Alert::success('Created', 'Article post successuflly');
                 return redirect()->route('articles.index');
@@ -95,7 +98,12 @@ class ArticleController extends Controller
 
     public function update(Request $request, $id)
     {
+        $currentImage = Article::findOrFail($id)->image;
+
         if($request->image != null){
+            if (file_exists(public_path('/storage/articles/thumbnail/').$currentImage)){
+                unlink(public_path('/storage/articles/thumbnail/').$currentImage);
+            }
             $image = $request->file('image');
             $input['imagename'] = time().'.'.$image->extension();
 
@@ -127,6 +135,9 @@ class ArticleController extends Controller
             }
 
             $article->save();
+
+            // Cache::flush();
+            Cache::flush('article-'.$article->id);
 
             Alert::success('Updated', 'Article updated successuflly');
             return redirect()->route('articles.index');

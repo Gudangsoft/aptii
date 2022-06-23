@@ -52,7 +52,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown active">
-                        <a href="index.html" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                        <a href="/" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
                     </li>
                     <li><a href="aboutus.html" title="Article">Article</a></li>
                     <li><a href="aboutus.html" title="About Us">About Us</a></li>
