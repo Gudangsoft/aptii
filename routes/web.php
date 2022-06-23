@@ -11,6 +11,7 @@ use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\Admin\Post\ArticleController;
 use App\Http\Controllers\Admin\Post\CategoryController;
 use App\Http\Controllers\Admin\Post\UploadController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Livewire\ArticleCategoriesTable;
 
 /*
@@ -24,9 +25,9 @@ use App\Http\Livewire\ArticleCategoriesTable;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+
 
 Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function () {
     Route::resource('friends', FriendsController::class);

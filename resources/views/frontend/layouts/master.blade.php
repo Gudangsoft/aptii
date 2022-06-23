@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 
@@ -39,6 +35,8 @@
 	<link href="{{ asset('frontend') }}/assets/css/rtl.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/style.css">
 
+    @method('css')
+
 	<!--[if lt IE 9]>
 		<script src="js/html5/respond.min.js"></script>
     <![endif]-->
@@ -72,6 +70,8 @@
 
 	<!-- Library - Theme JS -->
 	<script src="{{ asset('frontend') }}/assets/js/functions.js"></script>
+
+    @stack('scripts')
 
 </body>
 </html>

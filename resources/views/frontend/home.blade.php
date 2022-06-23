@@ -4,7 +4,7 @@
 		<main class="site-main">
 
 			@include('frontend.sections.slider')
-			@include('frontend.sections.recent')
+			@include('frontend.sections.recent', ['data' => $recent])
 			@include('frontend.sections.other-articles')
 			{{-- @include('frontend.sections.videos') --}}
 
