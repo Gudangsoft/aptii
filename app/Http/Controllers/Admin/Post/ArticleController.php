@@ -60,6 +60,7 @@ class ArticleController extends Controller
                 $request->content,
                 $request->category,
                 $request->status,
+                $request->type,
                 $input['imagename'],
                 $request->tags,
                 $request->date,
@@ -98,6 +99,7 @@ class ArticleController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         $currentImage = Article::findOrFail($id)->image;
 
         if($request->image != null){
@@ -124,6 +126,7 @@ class ArticleController extends Controller
             $article->category = $request->category;
             $article->author = auth()->user()->id;
             $article->status = $request->status;
+            $article->type = $request->type;
             $article->tags = $request->tags;
 
             if ($request->date != null) {

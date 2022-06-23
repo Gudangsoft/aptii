@@ -79,7 +79,23 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
+                                        <div class="col-12 mb-2">
+                                            <label for="blog-edit-title">Post Type</label>
+                                            <div class="demo-inline-spacing">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="customRadio1" name="type" value="0" class="custom-control-input" checked />
+                                                    <label class="custom-control-label" for="customRadio1">Standard</label>
+                                                </div>
+                                                <div class="custom-control custom-control-warning custom-radio">
+                                                    <input type="radio" id="customRadio2" name="type" value="1" class="custom-control-input" />
+                                                    <label class="custom-control-label" for="customRadio2">Headline</label>
+                                                </div>
+                                                <div class="custom-control custom-control-success custom-radio">
+                                                    <input type="radio" id="customRadio3" name="type" value="2" class="custom-control-input" />
+                                                    <label class="custom-control-label" for="customRadio3">Latest Slider</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-12 mb-2">
                                             <label for="blog-edit-title">Content</label>
                                             <textarea name="content" class="ckeditor" id="" cols="30" rows="10"></textarea>

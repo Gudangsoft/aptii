@@ -16,4 +16,20 @@ class PagesController extends Controller
         });
         return $data;
     }
+
+    public static function headlineArticles($limit){
+        $data = Cache::rememberForever('articles', function () use($limit) {
+            $rows = Article::where('type', 1)->orderByDesc('created_at')->paginate($limit);
+            return $rows;
+        });
+        return $data;
+    }
+
+    public static function sliderArticles($limit){
+        $data = Cache::rememberForever('articles', function () use($limit) {
+            $rows = Article::where('type', 2)->orderByDesc('created_at')->paginate($limit);
+            return $rows;
+        });
+        return $data;
+    }
 }

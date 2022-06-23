@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-
+        // dd(PagesController::sliderArticles(4));
         return view('frontend.home', [
             'recent'    => PagesController::recentArticles(4),
+            'slider'    => PagesController::sliderArticles(4),
         ]);
     }
 

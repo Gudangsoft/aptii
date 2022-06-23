@@ -1,44 +1,61 @@
-<!-- Slider Section -->
 <div class="container-fluid no-left-padding no-right-padding slider-section2">
-    <!-- Container -->
     <div class="container">
-        <!-- Slider Block -->
+
         <div class="col-md-9 col-sm-12 col-xs-12 slider-block">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <div class="type-post color-7">
-                            <div class="entry-cover">
-                                <a href="#"><img src="{{ asset('frontend') }}/assets/images/slider2-slide.jpg" alt="Slide" /></a>
-                            </div>
-                            <div class="entry-content">
-                                <div class="post-category"><a href="#" title="Economic">Economic</a></div>
-                                <h3 class="entry-title"><a href="#">No, budget cuts aren't the reason we don't have an Ebola vaccine</a></h3>
-                                <div class="entry-footer">
-                                    <span class="post-date"><a href="#">08 July, 2016</a></span>
-                                    <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">356</a></span>
-                                    <span class="post-view"><i class="fa fa-eye"></i><a href="#">589</a></span>
+                    @forelse ($data as $key=>$item)
+                        <div class="item {{ $key == 0 ? 'active' : '' }}">
+                            <div class="type-post color-7">
+                                <div class="entry-cover">
+                                    <a href="#"><img src="{{ asset('frontend') }}/assets/images/slider2-slide.jpg" alt="Slide" /></a>
+                                </div>
+                                <div class="entry-content">
+                                    <div class="post-category"><a href="/category/{{ $item->getCategory->slug }}">{{ $item->getCategory->name }}</a></div>
+                                    <h3 class="entry-title"><a href="/post/{{ $item->slug }}">{{ $item->title }}</a></h3>
+                                    <div class="entry-footer">
+                                        <span class="post-date"><a href="#">{{ \Carbon\Carbon::parse($item->created_at)->format('D, d M Y') }}</a></span>
+                                        <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">356</a></span>
+                                        <span class="post-view"><i class="fa fa-eye"></i><a href="#">{{ $item->counter }}</a></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="type-post color-7">
-                            <div class="entry-cover">
-                                <a href="#"><img src="{{ asset('frontend') }}/assets/images/slider2-slide.jpg" alt="Slide" /></a>
-                            </div>
-                            <div class="entry-content">
-                                <div class="post-category"><a href="#" title="Economic">Economic</a></div>
-                                <h3 class="entry-title"><a href="#">No, budget cuts aren't the reason we don't have an Ebola vaccine</a></h3>
-                                <div class="entry-footer">
-                                    <span class="post-date"><a href="#">08 July, 2016</a></span>
-                                    <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">356</a></span>
-                                    <span class="post-view"><i class="fa fa-eye"></i><a href="#">589</a></span>
+                    @empty
+                        <div class="item active">
+                            <div class="type-post color-7">
+                                <div class="entry-cover">
+                                    <a href="#"><img src="{{ asset('frontend') }}/assets/images/slider2-slide.jpg" alt="Slide" /></a>
+                                </div>
+                                <div class="entry-content">
+                                    <div class="post-category"><a href="#" title="Economic">Economic</a></div>
+                                    <h3 class="entry-title"><a href="#">No, budget cuts aren't the reason we don't have an Ebola vaccine</a></h3>
+                                    <div class="entry-footer">
+                                        <span class="post-date"><a href="#">08 July, 2016</a></span>
+                                        <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">356</a></span>
+                                        <span class="post-view"><i class="fa fa-eye"></i><a href="#">589</a></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="item">
+                            <div class="type-post color-7">
+                                <div class="entry-cover">
+                                    <a href="#"><img src="{{ asset('frontend') }}/assets/images/slider2-slide.jpg" alt="Slide" /></a>
+                                </div>
+                                <div class="entry-content">
+                                    <div class="post-category"><a href="#" title="Economic">Coinima</a></div>
+                                    <h3 class="entry-title"><a href="#">No, budget cuts aren't the reason we don't have an Ebola vaccine</a></h3>
+                                    <div class="entry-footer">
+                                        <span class="post-date"><a href="#">08 July, 2016</a></span>
+                                        <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">356</a></span>
+                                        <span class="post-view"><i class="fa fa-eye"></i><a href="#">589</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse
                 </div>
 
                 <!-- Controls -->
@@ -49,9 +66,8 @@
                     <span class="fa fa-angle-right"></span>
                 </a>
             </div>
-        </div><!-- Slider Block /- -->
+        </div>
 
-        <!-- Post -->
         <div class="col-md-3 col-sm-12 col-xs-12 slide-post-block">
             <div class="col-md-12 col-xs-6 no-padding">
                 <div class="type-post color-6">
@@ -86,7 +102,6 @@
                 </div>
             </div>
         </div>
-        <!-- Post /- -->
-    </div><!-- Container /- -->
+
+    </div>
 </div>
-<!-- Slider Section /- -->
