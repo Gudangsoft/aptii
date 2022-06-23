@@ -69,38 +69,57 @@
         </div>
 
         <div class="col-md-3 col-sm-12 col-xs-12 slide-post-block">
-            <div class="col-md-12 col-xs-6 no-padding">
-                <div class="type-post color-6">
-                    <div class="entry-cover">
-                        <a href="#"><img src="{{ asset('frontend') }}/assets/images/slider2-post1.jpg" alt="Post" /></a>
-                    </div>
-                    <div class="entry-content">
-                        <div class="entry-footer">
-                            <span class="post-date"><a href="#">15 Augest, 2016</a></span>
-                            <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">127</a></span>
-                            <span class="post-view"><i class="fa fa-eye"></i><a href="#">756</a></span>
+            @forelse ($headline as $item)
+                <div class="col-md-12 col-xs-6 no-padding">
+                    <div class="type-post color-6">
+                        <div class="entry-cover">
+                            <a href="/post/{{ $item->slug }}"><img src="{{ asset('frontend') }}/assets/images/slider2-post1.jpg" alt="Post" /></a>
                         </div>
-                        <h3 class="entry-title"><a href="#">Australian forces step up Iraq missions</a></h3>
-                        <a href="#" title="Read Now">READ NOW <i class="fa fa-angle-right"></i></a>
+                        <div class="entry-content">
+                            <div class="entry-footer">
+                                <span class="post-date"><a href="#">{{ $item->date }}</a></span>
+                                {{-- <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">127</a></span>
+                                <span class="post-view"><i class="fa fa-eye"></i><a href="#">756</a></span> --}}
+                            </div>
+                            <h3 class="entry-title"><a href="/post/{{ $item->slug }}">{{ $item->title }}</a></h3>
+                            <a href="/post/{{ $item->slug }}" title="Read Now">READ NOW <i class="fa fa-angle-right"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12 col-xs-6 no-padding">
-                <div class="type-post">
-                    <div class="entry-cover">
-                        <a href="#"><img src="{{ asset('frontend') }}/assets/images/slider2-post2.jpg" alt="Post" /></a>
-                    </div>
-                    <div class="entry-content">
-                        <div class="entry-footer">
-                            <span class="post-date"><a href="#">15 Augest, 2016</a></span>
-                            <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">127</a></span>
-                            <span class="post-view"><i class="fa fa-eye"></i><a href="#">756</a></span>
+            @empty
+                <div class="col-md-12 col-xs-6 no-padding">
+                    <div class="type-post">
+                        <div class="entry-cover">
+                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/slider2-post2.jpg" alt="Post" /></a>
                         </div>
-                        <h3 class="entry-title"><a href="#">Steenkamp's death ' <br>horrific'</a></h3>
-                        <a href="#" title="Read Now">READ NOW <i class="fa fa-angle-right"></i></a>
+                        <div class="entry-content">
+                            <div class="entry-footer">
+                                <span class="post-date"><a href="#">15 Augest, 2016</a></span>
+                                <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">127</a></span>
+                                <span class="post-view"><i class="fa fa-eye"></i><a href="#">756</a></span>
+                            </div>
+                            <h3 class="entry-title"><a href="#">Steenkamp's death ' <br>horrific'</a></h3>
+                            <a href="#" title="Read Now">READ NOW <i class="fa fa-angle-right"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-md-12 col-xs-6 no-padding">
+                    <div class="type-post">
+                        <div class="entry-cover">
+                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/slider2-post2.jpg" alt="Post" /></a>
+                        </div>
+                        <div class="entry-content">
+                            <div class="entry-footer">
+                                <span class="post-date"><a href="#">15 Augest, 2016</a></span>
+                                <span class="post-like"><i class="fa fa-heart-o"></i><a href="#">127</a></span>
+                                <span class="post-view"><i class="fa fa-eye"></i><a href="#">756</a></span>
+                            </div>
+                            <h3 class="entry-title"><a href="#">Steenkamp's death ' <br>horrific'</a></h3>
+                            <a href="#" title="Read Now">READ NOW <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            @endforelse
         </div>
 
     </div>

@@ -12,6 +12,7 @@ class HomeController extends Controller
         return view('frontend.home', [
             'recent'    => PagesController::recentArticles(4),
             'slider'    => PagesController::sliderArticles(4),
+            'headline'  => PagesController::headlineArticles(2),
         ]);
     }
 
