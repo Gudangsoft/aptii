@@ -139,8 +139,8 @@ class ArticleController extends Controller
 
             $article->save();
 
-            // Cache::flush();
-            Cache::flush('article-'.$article->id);
+            Cache::flush();
+            // Cache::flush('article-'.$article->id);
 
             Alert::success('Updated', 'Article updated successuflly');
             return redirect()->route('articles.index');

@@ -18,7 +18,7 @@ class PagesController extends Controller
     }
 
     public static function headlineArticles($limit){
-        $data = Cache::rememberForever('articles', function () use($limit) {
+        $data = Cache::rememberForever('headline', function () use($limit) {
             $rows = Article::where('type', 1)->orderByDesc('created_at')->paginate($limit);
             return $rows;
         });
@@ -26,7 +26,7 @@ class PagesController extends Controller
     }
 
     public static function sliderArticles($limit){
-        $data = Cache::rememberForever('articles', function () use($limit) {
+        $data = Cache::rememberForever('slider', function () use($limit) {
             $rows = Article::where('type', 2)->orderByDesc('created_at')->paginate($limit);
             return $rows;
         });
