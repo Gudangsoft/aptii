@@ -2,7 +2,7 @@
 <div class="container-fluid no-left-padding no-right-padding largest-post-block full-largest-post">
     <!-- Section Header -->
     <div class="section-header">
-        <h3>RECENT POSTS</h3>
+        <h3>ALL POSTS</h3>
     </div><!-- Section Header /- -->
     <!-- Row -->
     <div class="row">
