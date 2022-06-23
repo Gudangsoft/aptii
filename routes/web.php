@@ -25,7 +25,7 @@ use App\Http\Livewire\ArticleCategoriesTable;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.home');
 });
 
 Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function () {
