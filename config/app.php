@@ -167,7 +167,7 @@ return [
          */
         RobertSeghedi\News\NewsProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+        App\Providers\MetaTagsServiceProvider::class,
         /*
          * Application Service Providers...
          */
