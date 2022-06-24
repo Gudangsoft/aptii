@@ -115,16 +115,14 @@
                                                         <option value="3">Draft</option>
                                                     </select>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
                                                 <div class="form-group mb-2">
                                                     <label for="blog-edit-title">Tags</label>
                                                     <input type="text" name="tags" id="tags" class="form-control" value="{{ $data->tags }}" placeholder="news, top, viral">
                                                 </div>
                                             </div>
-                                            <div class="col-12 mb-2">
+                                            <div class="col-md-6 col-12">
                                                 <div class="border rounded p-2">
-                                                    <h4 class="mb-1">Featured Image</h4>
+                                                    <h4 class="mb-1">Image</h4>
                                                     <div class="media flex-column flex-md-row">
                                                         @if ($data->image != null)
                                                             <img src="{{ asset('storage') }}/articles/thumbnail/{{ $data->image }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
@@ -132,25 +130,43 @@
                                                             <img src="{{ asset('assets') }}/images/slider/03.jpg" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
                                                         @endif
                                                         <div class="media-body">
-                                                            <small class="text-muted">Required image resolution 800x400, image size 5mb.</small>
-                                                            <p class="my-50">
-                                                                <a href="javascript:void(0);" id="blog-image-text">{{ $data->image ? 'storage/articles/thumbnail/'.$data->image : 'C:\fakepath\banner.jpg'}}</a>
-                                                            </p>
+                                                            @if (isset($data->image))
+                                                                <p class="my-50">
+                                                                    <a href="javascript:void(0);" id="blog-image-text">{{ $data->image ? 'storage/articles/thumbnail/'.$data->image : 'C:\fakepath\banner.jpg'}}</a>
+                                                                </p>
+                                                            @endif
                                                             <div class="d-inline-block">
                                                                 <div class="form-group mb-0">
-                                                                    <div class="custom-file">
-                                                                        <input type="file" name="image" class="custom-file-input" id="blogCustomFile" accept="image/*" />
+                                                                    {{-- <div class="custom-file">
+                                                                        <input type="file" name="image" class="custom-file-input" id="pic-form" accept="image/*" />
                                                                         <label class="custom-file-label" for="blogCustomFile">Choose file</label>
-                                                                    </div>
+                                                                    </div> --}}
+                                                                    <input class="w-50" type="file" id="pic-form" name="photo" enctype="multipart/form-data">
+                                                                    <input type="hidden" name="16_9_width" id="16_9_width"/>
+                                                                    <input type="hidden" name="16_9_height" id="16_9_height"/>
+                                                                    <input type="hidden" name="16_9_x" id="16_9_x"/>
+                                                                    <input type="hidden" name="16_9_y" id="16_9_y"/>
+
+                                                                    <input type="hidden" name="4_3_width" id="4_3_width"/>
+                                                                    <input type="hidden" name="4_3_height" id="4_3_height"/>
+                                                                    <input type="hidden" name="4_3_x" id="4_3_x"/>
+                                                                    <input type="hidden" name="4_3_y" id="4_3_y"/>
+
+                                                                    <input type="hidden" name="1_1_width" id="1_1_width"/>
+                                                                    <input type="hidden" name="1_1_height" id="1_1_height"/>
+                                                                    <input type="hidden" name="1_1_x" id="1_1_x"/>
+                                                                    <input type="hidden" name="1_1_y" id="1_1_y"/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 mt-50">
+                                            {{-- <div class="col-12 mb-2">
+                                            </div> --}}
+                                            <div class="col-12 mt-5 d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary mr-1">Save Changes</button>
-                                                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                                                <a href="{{ route('articles.index') }}" class="btn btn-outline-secondary">Cancel</a>
                                             </div>
                                         </div>
                                     </form>
@@ -160,6 +176,57 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crop Photo</h5>
+                    <button type="button" class="close" id="closeAtas" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="overflow: hidden;">
+                        <div class="col-md-3" style="width:25%;">
+                            <div class="nav nav-tabs" style="display: inline;" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active text-center" id="16-9-tab" data-toggle="pill" href="#v-16-9" role="tab" aria-controls="v-16-9" aria-selected="true" style="padding:0px;color:#3a3a3a;">
+                                    <div style="background-color: #ecf7bf;">16:9</div>
+                                    <div id="preview-16-9" class="text-center" style="overflow: hidden;"></div>
+                                </a>
+                                <a class="nav-link text-center" id="4-3-tab" data-toggle="pill" href="#v-4-3" role="tab" aria-controls="v-4-3" aria-selected="false" style="padding:0px;color:#3a3a3a;">
+                                    <div style="background-color: #c3ecf8;">4:3</div>
+                                    <div id="preview-4-3" class="text-center" style="overflow: hidden;"></div>
+                                </a>
+                                <a class="nav-link text-center" id="1-1-tab" data-toggle="pill" href="#v-1-1" role="tab" aria-controls="v-1-1" aria-selected="false" style="padding:0px;color:#3a3a3a;">
+                                    <div style="background-color: #f9d2a0;">1:1</div>
+                                    <div id="preview-1-1" style="overflow: hidden;"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active text-center" id="v-16-9" role="tabpanel" aria-labelledby="16-9-tab">
+                                    <div style="background-color: #ecf7bf;">16:9</div>
+                                    <img src="" id="16-9-show">
+                                </div>
+                                <div class="tab-pane fade text-center" id="v-4-3" role="tabpanel" aria-labelledby="4-3-tab">
+                                    <div style="background-color: #c3ecf8;">4:3</div>
+                                    <img src="" id="4-3-show"/>4:3</div>
+                                <div class="tab-pane fade text-center" id="v-1-1" role="tabpanel" aria-labelledby="1-1-tab">
+                                    <div style="background-color: #f9d2a0;">1:1</div>
+                                    <img src="" id="1-1-show"/>1:1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Crop</button>
+                    <button type="button" class="btn btn-secondary" aria-label="Close" id="onClose">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -174,6 +241,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/pickers/flatpickr/flatpickr.min.css">
     @endpush
     @push('page-css')
+    <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-fileinput/css/fileinput.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/plugins/cropperjs/cropper.css')}}">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/form-quill-editor.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/pickers/form-flat-pickr.css">
@@ -191,7 +261,9 @@
     <script src="{{ asset('assets') }}/vendors/js/editors/quill/quill.min.js"></script>
     @endpush
     @push('page-js')
-    <script src="{{ asset('assets') }}/js/scripts/pages/page-blog-edit.js"></script>
+    <script src="{{asset('backend/plugins/bootstrap-fileinput/js/fileinput.js')}}"></script>
+    <script src="{{asset('backend/plugins/bootstrap-fileinput/themes/fa/theme.js')}}"></script>
+    <script src="{{asset('backend/plugins/cropperjs/cropper.js')}}"></script>
     <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
     <script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
     <script type="text/javascript">
@@ -210,6 +282,355 @@
 
     </script>
 
+    <script>
+        $(function(){
+            $("#pic-form").fileinput({
+                showCaption: false,
+                showUpload: false,
+                dropZoneEnabled: false,
+                maxImageWidth: 2000,
+                maxImageHeight: 2000,
+                browseLabel: "Pick Image",
+                mainClass: "input-group",
+                browseIcon: "<i class=\"fa fa-picture-o\"></i> ",
+                allowedFileExtensions: ["jpg", "png", "gif", "jpeg"]
+            }).on('fileloaded', function(event, file, previewId, index, reader){
+                var t_file = file.type;
+                if(t_file){
+                    var img = new Image();
+                    img.src = reader.result;
+                    img.onload = (e) => {
+                        width = e.target.naturalWidth;
+                        height = e.target.naturalHeight;
+
+                        if(width > 1440 || height > 810){
+                            alert('dimension image terlalu besar');
+                            $("#pic-form").fileinput('clear');
+                        }else{
+                            var fileImg = reader.result;
+
+                            $('#16-9-show').attr("src", fileImg);
+                            $('#4-3-show').attr("src", fileImg);
+                            $('#1-1-show').attr("src", fileImg);
+
+                            const image16_9         = document.getElementById('16-9-show');
+                            var previews16_9        = document.getElementById('preview-16-9');
+                            var preview16_9Ready    = false;
+
+                            var cropper16_9       = new Cropper(image16_9, {
+                                ready: function(){
+                                    var clone = this.cloneNode();
+                                    clone.className = '';
+                                    clone.style.cssText = (
+                                        'display: block;' +
+                                        'width: 178px;' +
+                                        'min-width: 0;' +
+                                        'min-height: 0;' +
+                                        'max-width: none;' +
+                                        'max-height: none;'
+                                    );
+                                    previews16_9.appendChild(clone.cloneNode());
+                                    var cropBoxData = cropper16_9.getCropBoxData();
+                                    var imageData   = cropper16_9.getImageData();
+                                    var data        = cropper16_9.getData();
+
+                                    var previewAspectRatio = data.width / data.height;
+                                    var previewImage = previews16_9.getElementsByTagName('img').item(0);
+                                    var previewWidth = 178;
+                                    var previewHeight = previewWidth / previewAspectRatio;
+                                    var imageScaledRatio = data.width / previewWidth;
+
+                                    previews16_9.style.height = previewHeight + 'px';
+                                    previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
+                                    previewImage.style.height = imageData.naturalHeight / imageScaledRatio + 'px';
+                                    previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
+                                    previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
+
+                                    $('#16_9_width').val(data.width);
+                                    $('#16_9_height').val(data.height);
+                                    $('#16_9_x').val(data.x);
+                                    $('#16_9_y').val(data.y);
+
+                                    preview16_9Ready = true;
+                                },
+                                crop: function(event) {
+                                    if (!preview16_9Ready) {
+                                        return;
+                                    }
+                                    var data = event.detail;
+                                    var imageData = cropper16_9.getImageData();
+                                    var previewAspectRatio = data.width / data.height;
+
+                                    var previewImage = previews16_9.getElementsByTagName('img').item(0);
+                                    var previewWidth = previews16_9.offsetWidth;
+                                    var previewHeight = previewWidth / previewAspectRatio;
+                                    var imageScaledRatio = data.width / previewWidth;
+
+                                    previews16_9.style.height = previewHeight + 'px';
+                                    previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
+                                    previewImage.style.height = imageData.naturalHeight / imageScaledRatio + 'px';
+                                    previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
+                                    previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
+
+                                    $('#16_9_width').val(event.detail.width);
+                                    $('#16_9_height').val(event.detail.height);
+                                    $('#16_9_x').val(event.detail.x);
+                                    $('#16_9_y').val(event.detail.y);
+                                },
+                                responsive: true,
+                                rotatable: false,
+                                scalable: false,
+                                zoomable: false,
+                                zoomOnTouch: false,
+                                zoomOnWheel: false,
+                                minContainerWidth: 570,
+                                minContainerHeight: 300,
+                                aspectRatio: 16 / 9,
+                            });
+                            const image4_3 = document.getElementById('4-3-show');
+                            var previews4_3        = document.getElementById('preview-4-3');
+                            var preview4_3Ready    = false;
+                            var cropper4_3 = new Cropper(image4_3, {
+                                ready: function(event){
+                                    var clone = this.cloneNode();
+                                    clone.className = '';
+                                    clone.style.cssText = (
+                                        'display: block;' +
+                                        'width: 178px;' +
+                                        'min-width: 0;' +
+                                        'min-height: 0;' +
+                                        'max-width: none;' +
+                                        'max-height: none;'
+                                    );
+
+                                    previews4_3.appendChild(clone.cloneNode());
+                                    var cropBoxData = cropper4_3.getCropBoxData();
+                                    var imageData   = cropper4_3.getImageData();
+                                    var data        = cropper4_3.getData();
+
+                                    var previewAspectRatio = data.width / data.height;
+                                    var previewImage = previews4_3.getElementsByTagName('img').item(0);
+                                    var previewWidth = 178;
+                                    var previewHeight = previewWidth / previewAspectRatio;
+                                    var imageScaledRatio = data.width / previewWidth;
+
+                                    previews4_3.style.height = previewHeight + 'px';
+                                    previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
+                                    previewImage.style.height = imageData.naturalHeight / imageScaledRatio + 'px';
+                                    previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
+                                    previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
+
+                                    $('#4_3_width').val(data.width);
+                                    $('#4_3_height').val(data.height);
+                                    $('#4_3_x').val(data.x);
+                                    $('#4_3_y').val(data.y);
+
+                                    preview4_3Ready = true;
+                                },
+                                crop: function(event) {
+                                    if (!preview4_3Ready) {
+                                        return;
+                                    }
+                                    var data = event.detail;
+                                    var imageData = cropper4_3.getImageData();
+                                    var previewAspectRatio = data.width / data.height;
+
+                                    var previewImage = previews4_3.getElementsByTagName('img').item(0);
+                                    var previewWidth = previews4_3.offsetWidth;
+                                    var previewHeight = previewWidth / previewAspectRatio;
+                                    var imageScaledRatio = data.width / previewWidth;
+
+                                    previews4_3.style.height = previewHeight + 'px';
+                                    previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
+                                    previewImage.style.height = imageData.naturalHeight / imageScaledRatio + 'px';
+                                    previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
+                                    previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
+
+                                    $('#4_3_width').val(event.detail.width);
+                                    $('#4_3_height').val(event.detail.height);
+                                    $('#4_3_x').val(event.detail.x);
+                                    $('#4_3_y').val(event.detail.y);
+                                },
+                                responsive: true,
+                                rotatable: false,
+                                scalable: false,
+                                zoomable: false,
+                                zoomOnTouch: false,
+                                zoomOnWheel: false,
+                                minContainerWidth: 570,
+                                minContainerHeight: 300,
+                                aspectRatio: 4 / 3,
+                            });
+                            const image1_1 = document.getElementById('1-1-show');
+                            var previews1_1        = document.getElementById('preview-1-1');
+                            var preview1_1Ready    = false;
+                            var cropper1_1 = new Cropper(image1_1, {
+                                ready: function(event){
+                                    var clone = this.cloneNode();
+                                    clone.className = '';
+                                    clone.style.cssText = (
+                                        'display: block;' +
+                                        'width: 178px;' +
+                                        'min-width: 0;' +
+                                        'min-height: 0;' +
+                                        'max-width: none;' +
+                                        'max-height: none;'
+                                    );
+                                    previews1_1.appendChild(clone.cloneNode());
+                                    var cropBoxData = cropper1_1.getCropBoxData();
+                                    var imageData   = cropper1_1.getImageData();
+                                    var data        = cropper1_1.getData();
+
+                                    var previewAspectRatio = data.width / data.height;
+                                    var previewImage = previews1_1.getElementsByTagName('img').item(0);
+                                    var previewWidth = 178;
+                                    var previewHeight = previewWidth / previewAspectRatio;
+                                    var imageScaledRatio = data.width / previewWidth;
+
+                                    previews1_1.style.height = previewHeight + 'px';
+                                    previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
+                                    previewImage.style.height = imageData.naturalHeight / imageScaledRatio + 'px';
+                                    previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
+                                    previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
+
+                                    $('#1_1_width').val(data.width);
+                                    $('#1_1_height').val(data.height);
+                                    $('#1_1_x').val(data.x);
+                                    $('#1_1_y').val(data.y);
+
+                                    preview1_1Ready = true;
+                                },
+                                crop: function(event) {
+                                    if (!preview1_1Ready) {
+                                        return;
+                                    }
+                                    var data = event.detail;
+                                    var imageData = cropper1_1.getImageData();
+                                    var previewAspectRatio = data.width / data.height;
+
+                                    var previewImage = previews1_1.getElementsByTagName('img').item(0);
+                                    var previewWidth = previews1_1.offsetWidth;
+                                    var previewHeight = previewWidth / previewAspectRatio;
+                                    var imageScaledRatio = data.width / previewWidth;
+
+                                    previews1_1.style.height = previewHeight + 'px';
+                                    previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
+                                    previewImage.style.height = imageData.naturalHeight / imageScaledRatio + 'px';
+                                    previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
+                                    previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
+
+                                    $('#1_1_width').val(event.detail.width);
+                                    $('#1_1_height').val(event.detail.height);
+                                    $('#1_1_x').val(event.detail.x);
+                                    $('#1_1_y').val(event.detail.y);
+                                },
+                                responsive: true,
+                                rotatable: false,
+                                scalable: false,
+                                zoomable: false,
+                                zoomOnTouch: false,
+                                zoomOnWheel: false,
+                                minContainerWidth: 570,
+                                minContainerHeight: 300,
+                                aspectRatio: 1 / 1,
+                            });
+                            $('#modal-default').modal({
+                                show: true,
+                                keyboard: false,
+                                backdrop: 'static'
+                            }).on('hidden.bs.modal', function (e) {
+
+                                $('#preview-16-9').html('');
+                                var preview16_9Ready    = false;
+                                $('#16-9-show').attr('src','#');
+                                cropper16_9.destroy();
+
+                                $('#preview-4-3').html('');
+                                var preview4_3Ready    = false;
+                                $('#4-3-show').attr('src','#');
+                                cropper4_3.destroy();
+
+                                $('#preview-1-1').html('');
+                                var preview1_1Ready    = false;
+                                $('#1-1-show').attr('src','#');
+                                cropper1_1.destroy();
+
+                                $('.cropper-container').remove();
+                            });
+                            $('#onClose').on('click', function(){
+                                $('#modal-default').modal('hide');
+
+                                $('#preview-16-9').html('');
+                                var preview16_9Ready    = false;
+                                $('#16_9_width').val('');
+                                $('#16_9_height').val('');
+                                $('#16_9_x').val('');
+                                $('#16_9_y').val('');
+
+                                $('#16-9-show').attr('src','#');
+                                cropper16_9.destroy();
+
+                                $('#preview-4-3').html('');
+                                var preview4_3Ready    = false;
+                                $('#4_3_width').val('');
+                                $('#4_3_height').val('');
+                                $('#4_3_x').val('');
+                                $('#4_3_y').val('');
+                                $('#4-3-show').attr('src','#');
+                                cropper4_3.destroy();
+
+                                $('#preview-1-1').html('');
+                                var preview1_1Ready    = false;
+                                $('#1_1_width').val('');
+                                $('#1_1_height').val('');
+                                $('#1_1_x').val('');
+                                $('#1_1_y').val('');
+                                $('#1-1-show').attr('src','#');
+                                cropper1_1.destroy();
+
+                                $('.cropper-container').remove();
+                                $("#pic-form").fileinput('clear');
+                            });
+                            $('#closeAtas').on('click', function(){
+                                $('#modal-default').modal('hide');
+
+                                $('#preview-16-9').html('');
+                                var preview16_9Ready    = false;
+                                $('#16_9_width').val('');
+                                $('#16_9_height').val('');
+                                $('#16_9_x').val('');
+                                $('#16_9_y').val('');
+
+                                $('#16-9-show').attr('src','#');
+                                cropper16_9.destroy();
+
+                                $('#preview-4-3').html('');
+                                var preview4_3Ready    = false;
+                                $('#4_3_width').val('');
+                                $('#4_3_height').val('');
+                                $('#4_3_x').val('');
+                                $('#4_3_y').val('');
+                                $('#4-3-show').attr('src','#');
+                                cropper4_3.destroy();
+
+                                $('#preview-1-1').html('');
+                                var preview1_1Ready    = false;
+                                $('#1_1_width').val('');
+                                $('#1_1_height').val('');
+                                $('#1_1_x').val('');
+                                $('#1_1_y').val('');
+                                $('#1-1-show').attr('src','#');
+                                cropper1_1.destroy();
+
+                                $('.cropper-container').remove();
+                                $("#pic-form").fileinput('clear');
+                            });
+                        }
+                    };
+                }
+            });
+        })
+    </script>
     @endpush
     </x-master-layouts>
 
