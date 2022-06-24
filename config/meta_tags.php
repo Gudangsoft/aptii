@@ -36,7 +36,7 @@ return [
      * Packages, that should be included everywhere
      */
     'packages' => [
-        // 'jquery', 'bootstrap', ...
+        'jquery',
     ],
 
     'charset' => 'utf-8',

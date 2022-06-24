@@ -8,12 +8,13 @@ use Butschster\Head\MetaTags\Meta;
 use Butschster\Head\Contracts\MetaTags\MetaInterface;
 use Butschster\Head\Contracts\Packages\ManagerInterface;
 use Butschster\Head\Providers\MetaTagsApplicationServiceProvider as ServiceProvider;
+use Butschster\Head\Packages\Package;
 
 class MetaTagsServiceProvider extends ServiceProvider
 {
     protected function packages()
     {
-        // Create your own packages here
+
     }
 
     // if you don't want to change anything in this method just remove it

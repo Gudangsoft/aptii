@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Post\ArticleController;
 use App\Http\Controllers\Admin\Post\CategoryController;
 use App\Http\Controllers\Admin\Post\UploadController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ScreenController;
 use App\Http\Livewire\ArticleCategoriesTable;
 
 /*
@@ -26,7 +27,7 @@ use App\Http\Livewire\ArticleCategoriesTable;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/post/{slug}', [HomeController::class, 'post']);
+Route::get('/post/{slug}', [ScreenController::class, 'post']);
 
 
 

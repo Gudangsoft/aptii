@@ -50,7 +50,6 @@ class HomeController extends Controller
 
     public function index(){
 
-
         // dd(PagesController::sliderArticles(4));
         return view('frontend.home', [
             'recent'    => PagesController::recentArticles(4),
@@ -59,12 +58,5 @@ class HomeController extends Controller
         ]);
     }
 
-    public function post($slug){
 
-        return view('frontend.article.detail', [
-            'data'      => PageController::article($slug),
-            'recent'    => PagesController::recentArticles(4),
-
-        ]);
-    }
 }

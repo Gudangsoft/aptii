@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use RobertSeghedi\News\Models\Article;
 use Illuminate\Support\Facades\Cache;
+use Butschster\Head\Facades\Meta;
 
 class PageController extends Controller
 {
