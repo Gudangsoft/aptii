@@ -11,6 +11,7 @@ use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\Admin\Post\ArticleController;
 use App\Http\Controllers\Admin\Post\CategoryController;
 use App\Http\Controllers\Admin\Post\UploadController;
+use App\Http\Controllers\Admin\Settings\ConfigurationController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ScreenController;
 use App\Http\Livewire\ArticleCategoriesTable;
@@ -32,6 +33,7 @@ Route::get('/post/{slug}', [ScreenController::class, 'post']);
 
 
 Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function () {
+    Route::get('qrcodes', [QrCodeController::class, 'index']);
     Route::resource('friends', FriendsController::class);
     Route::controller(FriendsController::class)->group(function(){
         Route::get('/friends', 'friends')->name('profile.friends');
@@ -42,8 +44,6 @@ Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function
     Route::resource('articles', ArticleController::class);
     Route::resource('categories', CategoryController::class);
 
-    Route::post('upload', [UploadController::class, 'store']);
-
     Route::resource('chats', ChatsController::class);
     Route::resource('userssetting', UserSettingController::class);
     Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');
@@ -51,7 +51,8 @@ Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function
         Route::get('/profile', 'index')->name('profile.index');
     });
 
-    Route::get('qrcodes', [QrCodeController::class, 'index']);
+    Route::resource('configuration', ConfigurationController::class);
+
 });
 
 Route::group(['middleware' => ['role:super admin']], function () {

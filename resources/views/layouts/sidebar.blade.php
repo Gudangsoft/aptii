@@ -51,7 +51,9 @@
             @endrole
 
             @role('super admin')
-            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('users.index') }}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Contact">Users</span></a>
+            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('users.index') }}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>
+            </li>
+            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('configuration.index') }}"><i data-feather="settings"></i><span class="menu-title text-truncate" data-i18n="Configuration">Configuration</span></a>
             </li>
             @endrole
 
