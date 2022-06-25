@@ -125,14 +125,14 @@
                                                     <h4 class="mb-1">Image</h4>
                                                     <div class="media flex-column flex-md-row">
                                                         @if ($data->image != null)
-                                                            <img src="{{ asset('storage') }}/articles/thumbnail/{{ $data->image }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                            <img src="{{ asset(config('app.POST_MID')) }}/{{ $data->image }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
                                                         @else
                                                             <img src="{{ asset('assets') }}/images/slider/03.jpg" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
                                                         @endif
                                                         <div class="media-body">
                                                             @if (isset($data->image))
                                                                 <p class="my-50">
-                                                                    <a href="javascript:void(0);" id="blog-image-text">{{ $data->image ? 'storage/articles/thumbnail/'.$data->image : 'C:\fakepath\banner.jpg'}}</a>
+                                                                    <a href="javascript:void(0);" id="blog-image-text">{{ $data->image ? config('app.POST_MID').'/'.$data->image : 'C:\fakepath\banner.jpg'}}</a>
                                                                 </p>
                                                             @endif
                                                             <div class="d-inline-block">
@@ -141,7 +141,7 @@
                                                                         <input type="file" name="image" class="custom-file-input" id="pic-form" accept="image/*" />
                                                                         <label class="custom-file-label" for="blogCustomFile">Choose file</label>
                                                                     </div> --}}
-                                                                    <input class="w-50" type="file" id="pic-form" name="photo" enctype="multipart/form-data">
+                                                                    <input class="w-50" type="file" id="pic-form" name="image" enctype="multipart/form-data">
                                                                     <input type="hidden" name="16_9_width" id="16_9_width"/>
                                                                     <input type="hidden" name="16_9_height" id="16_9_height"/>
                                                                     <input type="hidden" name="16_9_x" id="16_9_x"/>
@@ -180,8 +180,9 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal-default">
-        <div class="modal-dialog modal-lg">
+
+    <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Crop Photo</h5>
@@ -191,33 +192,33 @@
                 </div>
                 <div class="modal-body">
                     <div class="row" style="overflow: hidden;">
-                        <div class="col-md-3" style="width:25%;">
+                        <div class="col-md-4" style="width:25%;">
                             <div class="nav nav-tabs" style="display: inline;" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <a class="nav-link active text-center" id="16-9-tab" data-toggle="pill" href="#v-16-9" role="tab" aria-controls="v-16-9" aria-selected="true" style="padding:0px;color:#3a3a3a;">
-                                    <div style="background-color: #ecf7bf;">16:9</div>
-                                    <div id="preview-16-9" class="text-center" style="overflow: hidden;"></div>
+                                <a id="16-9-tab" data-toggle="pill" href="#v-16-9" role="tab" aria-controls="v-16-9" aria-selected="true" style="padding:0px;color:#3a3a3a;">
+                                    <button class="btn btn-primary btn-block">16:9</button>
+                                    <div id="preview-16-9" class="text-center" style="visibility: hidden;"></div>
                                 </a>
-                                <a class="nav-link text-center" id="4-3-tab" data-toggle="pill" href="#v-4-3" role="tab" aria-controls="v-4-3" aria-selected="false" style="padding:0px;color:#3a3a3a;">
-                                    <div style="background-color: #c3ecf8;">4:3</div>
-                                    <div id="preview-4-3" class="text-center" style="overflow: hidden;"></div>
+                                <a id="4-3-tab" data-toggle="pill" href="#v-4-3" role="tab" aria-controls="v-4-3" aria-selected="false" style="padding:0px;color:#3a3a3a;">
+                                    <button class="btn btn-primary btn-block">4:3</button>
+                                    <div id="preview-4-3" class="text-center" style="visibility: hidden;"></div>
                                 </a>
-                                <a class="nav-link text-center" id="1-1-tab" data-toggle="pill" href="#v-1-1" role="tab" aria-controls="v-1-1" aria-selected="false" style="padding:0px;color:#3a3a3a;">
-                                    <div style="background-color: #f9d2a0;">1:1</div>
-                                    <div id="preview-1-1" style="overflow: hidden;"></div>
+                                <a id="1-1-tab" data-toggle="pill" href="#v-1-1" role="tab" aria-controls="v-1-1" aria-selected="false" style="padding:0px;color:#3a3a3a;">
+                                    <button class="btn btn-primary btn-block">1:1</button>
+                                    <div id="preview-1-1" style="visibility: hidden;"></div>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <div class="tab-content" id="v-pills-tabContent">
                                 <div class="tab-pane fade show active text-center" id="v-16-9" role="tabpanel" aria-labelledby="16-9-tab">
-                                    <div style="background-color: #ecf7bf;">16:9</div>
+                                    <div class="bg-primary text-white">16:9</div>
                                     <img src="" id="16-9-show">
                                 </div>
                                 <div class="tab-pane fade text-center" id="v-4-3" role="tabpanel" aria-labelledby="4-3-tab">
-                                    <div style="background-color: #c3ecf8;">4:3</div>
+                                    <div class="bg-primary text-white">4:3</div>
                                     <img src="" id="4-3-show"/>4:3</div>
                                 <div class="tab-pane fade text-center" id="v-1-1" role="tabpanel" aria-labelledby="1-1-tab">
-                                    <div style="background-color: #f9d2a0;">1:1</div>
+                                    <div class="bg-primary text-white">1:1</div>
                                     <img src="" id="1-1-show"/>1:1</div>
                             </div>
                         </div>
@@ -242,7 +243,7 @@
     @endpush
     @push('page-css')
     <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-fileinput/css/fileinput.css')}}">
-    <link rel="stylesheet" href="{{asset('backend/plugins/cropperjs/cropper.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets') }}/vendors/cropperjs/cropper.css">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/form-quill-editor.css">
@@ -263,7 +264,7 @@
     @push('page-js')
     <script src="{{asset('backend/plugins/bootstrap-fileinput/js/fileinput.js')}}"></script>
     <script src="{{asset('backend/plugins/bootstrap-fileinput/themes/fa/theme.js')}}"></script>
-    <script src="{{asset('backend/plugins/cropperjs/cropper.js')}}"></script>
+    <script src="{{ asset('assets') }}/vendors/cropperjs/cropper.js"></script>
     <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
     <script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
     <script type="text/javascript">
@@ -288,8 +289,8 @@
                 showCaption: false,
                 showUpload: false,
                 dropZoneEnabled: false,
-                maxImageWidth: 2000,
-                maxImageHeight: 2000,
+                maxImageWidth: 1024,
+                maxImageHeight: 768,
                 browseLabel: "Pick Image",
                 mainClass: "input-group",
                 browseIcon: "<i class=\"fa fa-picture-o\"></i> ",
@@ -318,6 +319,7 @@
                             var preview16_9Ready    = false;
 
                             var cropper16_9       = new Cropper(image16_9, {
+                                viewMode: 2,
                                 ready: function(){
                                     var clone = this.cloneNode();
                                     clone.className = '';

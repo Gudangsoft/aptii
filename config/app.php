@@ -2,6 +2,30 @@
 
 return [
 
+    'img_size' => [
+        'ori_width'=>'1024',
+        'ori_height'=>'800',
+        'mid_width'=>'800',
+        'mid_height'=>'600',
+        'thumb_width'=>'400',
+        'thumb_height'=>'250',
+        'mbl_mid_width'=>'200',
+        'mbl_mid_height'=>'200',
+        'mbl_thumb_width'=>'100',
+        'mbl_thumb_height'=>'100'
+    ],
+
+    'POST_BIG' => '/storage/pictures/post/16_9/mid/',
+    'POST_MID' => '/storage/pictures/post/4_3/mid/',
+    'POST_THUMB' => '/storage/pictures/post/1_1/mid/',
+
+    'STORAGE_POSTS' => '/storage/pictures/post/',
+    'STORAGE_AUTHORS' => '/storage/pictures/authors/',
+    'STORAGE_ARCHIVES' => '/storage/archives/',
+    'STORAGE_GALLERY' => '/storage/pictures/gallery/',
+    'STORAGE_BANNERS' => '/storage/pictures/banners/',
+    'STORAGE_SERVICES' => '/storage/pictures/services/',
+    'STORAGE_USERS' => '/storage/pictures/users/',
     /*
     |--------------------------------------------------------------------------
     | Application Name

@@ -7,7 +7,7 @@
         @forelse ($data as $item)
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="type-post color-6">
-                    <div class="entry-cover"><a href="#"><img src="{{ $item->image ? asset('storage').'/articles/thumbnail/'.$item->image : asset('frontend').'/assets/images/recent-post-1-376x299.jpg'}}" alt="Post" /></a></div>
+                    <div class="entry-cover"><a href="#"><img src="{{ $item->image ? asset(config('app.POST_MID')).'/'.$item->image : asset('frontend').'/assets/images/recent-post-1-376x299.jpg'}}" alt="Post" /></a></div>
                     <div class="entry-content">
                         <div class="post-category"><a href="/category/{{ $item->getCategory->slug }}" title="{{ $item->getCategory->name }}">{{ $item->getCategory->name }}</a></div>
                         <h3 class="entry-title"><a href="/post/{{ $item->slug }}">{{ $item->title }}</a></h3>

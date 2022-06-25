@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin\Post;
 
 use App\Http\Controllers\Controller;
+use App\ImageProses;
 use Exception;
 use Image;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -102,22 +104,86 @@ class ArticleController extends Controller
         // dd($request);
         $currentImage = Article::findOrFail($id)->image;
 
-        if($request->image != null){
-            if (file_exists(public_path('/storage/articles/thumbnail/').$currentImage)){
-                unlink(public_path('/storage/articles/thumbnail/').$currentImage);
-            }
-            $image = $request->file('image');
-            $input['imagename'] = time().'.'.$image->extension();
+        $dataImageSetting = [
+            'ori_width'=>config('app.img_size.ori_width'),
+            'ori_height'=>config('app.img_size.ori_height'),
+            'mid_width'=>config('app.img_size.mid_width'),
+            'mid_height'=>config('app.img_size.mid_height'),
+            'thumb_width'=>config('app.img_size.thumb_width'),
+            'thumb_height'=>config('app.img_size.thumb_height')
+        ];
 
-            $destinationPath = public_path('/storage/articles/thumbnail');
-            $img = Image::make($image->path());
-            $img->resize(400, 400, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$input['imagename']);
+        $validator = Validator::make($request->all(), [
+            // 'publishdate'=>'required',
+            // 'title'=>'required|max:255',
+            // 'kategori'=>'required',
+            // 'permalink'=>'required',
+            // 'preview'=>'required',
+            // 'content'=>'required',
+            // 'caption'=>'required',
+            // 'author'=>'required',
+            'image'=>'image|mimes:jpeg,png,jpg,gif|dimensions:max_width='.$dataImageSetting['ori_width'].',max_height:'.$dataImageSetting['ori_height'].'',
+            // 'tags'=>'required'
+        ]);
 
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $input['imagename']);
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
+        // dd($validator);
+        $namaImage = '';
+        if($request->file('image') != null){
+            $dataImg = array(
+                'skala169' => array(
+                    'width'=>$request->input('16_9_width'),
+                    'height'=>$request->input('16_9_height'),
+                    'x'=>$request->input('16_9_x'),
+                    'y'=>$request->input('16_9_y')
+                ),
+                'skala43' => array(
+                    'width'=>$request->input('4_3_width'),
+                    'height'=>$request->input('4_3_height'),
+                    'x'=>$request->input('4_3_x'),
+                    'y'=>$request->input('4_3_y')
+                ),
+                'skala11' => array(
+                    'width'=>$request->input('1_1_width'),
+                    'height'=>$request->input('1_1_height'),
+                    'x'=>$request->input('1_1_x'),
+                    'y'=>$request->input('1_1_y')
+                )
+            );
+
+            $dataImage = [
+                'file'=>$request->file('image'),
+                'setting'=>$dataImageSetting,
+                'path'=>public_path('storage/pictures/post/'),
+                'modul'=>'post',
+                'dataImg'=>$dataImg
+            ];
+
+            $uploadImg = ImageProses::imageCropDimensi($dataImage);
+            if($uploadImg['status'] == true){
+                $namaImage = $uploadImg['namaImage'];
+            }
+        }
+
+        // if($request->image != null){
+        //     if (file_exists(public_path('/storage/articles/thumbnail/').$currentImage)){
+        //         unlink(public_path('/storage/articles/thumbnail/').$currentImage);
+        //     }
+        //     $image = $request->file('image');
+        //     $input['imagename'] = time().'.'.$image->extension();
+
+        //     $destinationPath = public_path('/storage/articles/thumbnail');
+        //     $img = Image::make($image->path());
+        //     $img->resize(400, 400, function ($constraint) {
+        //         $constraint->aspectRatio();
+        //     })->save($destinationPath.'/'.$input['imagename']);
+
+        //     $destinationPath = public_path('/images');
+        //     $image->move($destinationPath, $input['imagename']);
+        // }
+
         try {
             $article = Article::findOrFail($id);
             $article->title = $request->title;
@@ -134,7 +200,7 @@ class ArticleController extends Controller
             }
 
             if($request->image != null){
-                $article->image = $input['imagename'];
+                $article->image = $namaImage;
             }
 
             $article->save();
