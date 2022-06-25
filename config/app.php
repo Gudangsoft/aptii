@@ -19,7 +19,7 @@ return [
     'POST_MID' => '/storage/pictures/post/4_3/mid/',
     'POST_THUMB' => '/storage/pictures/post/1_1/mid/',
 
-    'STORAGE_POSTS' => '/storage/pictures/post/',
+    'STORAGE_POST' => '/storage/pictures/post/',
     'STORAGE_AUTHORS' => '/storage/pictures/authors/',
     'STORAGE_ARCHIVES' => '/storage/archives/',
     'STORAGE_GALLERY' => '/storage/pictures/gallery/',

@@ -279,35 +279,28 @@ class ImageProses {
   public static function deleteToStorage($modul='',$filename){
       switch($modul){
           case 'post':
-              $path_big_1 = env('STORAGE_POST').'1_1/big/'.$filename;
-              $path_mid_1 = env('STORAGE_POST').'1_1/mid/'.$filename;
-              $path_thumb_1 = env('STORAGE_POST').'1_1/thumb/'.$filename;
-              $path_big_4 = env('STORAGE_POST').'4_3/big/'.$filename;
-              $path_mid_4 = env('STORAGE_POST').'4_3/mid/'.$filename;
-              $path_thumb_4 = env('STORAGE_POST').'4_3/thumb/'.$filename;
-              $path_big_16 = env('STORAGE_POST').'16_9/big/'.$filename;
-              $path_mid_16 = env('STORAGE_POST').'16_9/mid/'.$filename;
-              $path_thumb_16 = env('STORAGE_POST').'16_9/thumb/'.$filename;
+              $path_big_1 = config('app.STORAGE_POST').'1_1/big/'.$filename;
+              $path_mid_1 = config('app.STORAGE_POST').'1_1/mid/'.$filename;
+              $path_thumb_1 = config('app.STORAGE_POST').'1_1/thumb/'.$filename;
+              $path_big_4 = config('app.STORAGE_POST').'4_3/big/'.$filename;
+              $path_mid_4 = config('app.STORAGE_POST').'4_3/mid/'.$filename;
+              $path_thumb_4 = config('app.STORAGE_POST').'4_3/thumb/'.$filename;
+              $path_big_16 = config('app.STORAGE_POST').'16_9/big/'.$filename;
+              $path_mid_16 = config('app.STORAGE_POST').'16_9/mid/'.$filename;
+              $path_thumb_16 = config('app.STORAGE_POST').'16_9/thumb/'.$filename;
+                // dd(public_path($path_big_1));
 
-              $path_big = env('STORAGE_POST').'big/'.$filename;
-              $path_mid = env('STORAGE_POST').'mid/'.$filename;
-              $path_thumb = env('STORAGE_POST').'thumb/'.$filename;
-
-              if(self::diskCheckFile($path_big_1) == true){
-                  File::delete($path_big_1);
-                  File::delete($path_mid_1);
-                  File::delete($path_thumb_1);
-                  File::delete($path_big_4);
-                  File::delete($path_mid_4);
-                  File::delete($path_thumb_4);
-                  File::delete($path_big_16);
-                  File::delete($path_mid_16);
-                  File::delete($path_thumb_16);
-              }else{
-                  File::delete($path_big);
-                  File::delete($path_mid);
-                  File::delete($path_thumb);
-              }
+                if (file_exists(public_path($path_big_1))) {
+                    unlink(public_path($path_big_1));
+                    unlink(public_path($path_mid_1));
+                    unlink(public_path($path_thumb_1));
+                    unlink(public_path($path_big_4));
+                    unlink(public_path($path_mid_4));
+                    unlink(public_path($path_thumb_4));
+                    unlink(public_path($path_big_16));
+                    unlink(public_path($path_mid_16));
+                    unlink(public_path($path_thumb_16));
+                }
           break;
           case 'gallery':
               $path_ftp_big_1 = env('STORAGE_GALLERY').'1_1/big/'.$filename;

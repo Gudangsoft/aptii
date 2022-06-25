@@ -9,6 +9,7 @@ use Image;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use RobertSeghedi\News\Models\Article;
 use RobertSeghedi\News\Models\Category;
@@ -103,7 +104,11 @@ class ArticleController extends Controller
     {
         // dd($request);
         $currentImage = Article::findOrFail($id)->image;
+        if($request->image != null){
+            ImageProses::deleteToStorage('post',$currentImage);
+            
 
+        }
         $dataImageSetting = [
             'ori_width'=>config('app.img_size.ori_width'),
             'ori_height'=>config('app.img_size.ori_height'),
@@ -166,23 +171,6 @@ class ArticleController extends Controller
                 $namaImage = $uploadImg['namaImage'];
             }
         }
-
-        // if($request->image != null){
-        //     if (file_exists(public_path('/storage/articles/thumbnail/').$currentImage)){
-        //         unlink(public_path('/storage/articles/thumbnail/').$currentImage);
-        //     }
-        //     $image = $request->file('image');
-        //     $input['imagename'] = time().'.'.$image->extension();
-
-        //     $destinationPath = public_path('/storage/articles/thumbnail');
-        //     $img = Image::make($image->path());
-        //     $img->resize(400, 400, function ($constraint) {
-        //         $constraint->aspectRatio();
-        //     })->save($destinationPath.'/'.$input['imagename']);
-
-        //     $destinationPath = public_path('/images');
-        //     $image->move($destinationPath, $input['imagename']);
-        // }
 
         try {
             $article = Article::findOrFail($id);
