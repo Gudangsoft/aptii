@@ -35,26 +35,78 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         // dd($request->image);
-        $this->validate($request, [
+        $dataImageSetting = [
+            'ori_width'=>config('app.img_size.ori_width'),
+            'ori_height'=>config('app.img_size.ori_height'),
+            'mid_width'=>config('app.img_size.mid_width'),
+            'mid_height'=>config('app.img_size.mid_height'),
+            'thumb_width'=>config('app.img_size.thumb_width'),
+            'thumb_height'=>config('app.img_size.thumb_height')
+        ];
+
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
             'category' => 'required',
             'slug' => 'required',
             'status' => 'required',
             'content' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'image'=>'required|image|mimes:jpeg,png,jpg|dimensions:max_width='.$dataImageSetting['ori_width'].',max_height:'.$dataImageSetting['ori_height'].'',
+            'tags' => 'required',
         ]);
 
-        $image = $request->file('image');
-        $input['imagename'] = time().'.'.$image->extension();
+        if($validator->fails()) {
+            Alert::toast($validator->errors()->first(), 'error');
+            return redirect()->back();
+        }
 
-        $destinationPath = public_path('/storage/articles/thumbnail');
-        $img = Image::make($image->path());
-        $img->resize(400, 400, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['imagename']);
+        $namaImage = '';
+        if($request->file('image') != null){
+            $dataImg = array(
+                'skala169' => array(
+                    'width'=>$request->input('16_9_width'),
+                    'height'=>$request->input('16_9_height'),
+                    'x'=>$request->input('16_9_x'),
+                    'y'=>$request->input('16_9_y')
+                ),
+                'skala43' => array(
+                    'width'=>$request->input('4_3_width'),
+                    'height'=>$request->input('4_3_height'),
+                    'x'=>$request->input('4_3_x'),
+                    'y'=>$request->input('4_3_y')
+                ),
+                'skala11' => array(
+                    'width'=>$request->input('1_1_width'),
+                    'height'=>$request->input('1_1_height'),
+                    'x'=>$request->input('1_1_x'),
+                    'y'=>$request->input('1_1_y')
+                )
+            );
 
-        $destinationPath = public_path('/images');
-        $image->move($destinationPath, $input['imagename']);
+            $dataImage = [
+                'file'=>$request->file('image'),
+                'setting'=>$dataImageSetting,
+                'path'=>public_path('storage/pictures/post/'),
+                'modul'=>'post',
+                'dataImg'=>$dataImg
+            ];
+
+            $uploadImg = ImageProses::imageCropDimensi($dataImage);
+            if($uploadImg['status'] == true){
+                $namaImage = $uploadImg['namaImage'];
+            }
+        }
+
+        // $image = $request->file('image');
+        // $input['imagename'] = time().'.'.$image->extension();
+
+        // $destinationPath = public_path('/storage/articles/thumbnail');
+        // $img = Image::make($image->path());
+        // $img->resize(400, 400, function ($constraint) {
+        //     $constraint->aspectRatio();
+        // })->save($destinationPath.'/'.$input['imagename']);
+
+        // $destinationPath = public_path('/images');
+        // $image->move($destinationPath, $input['imagename']);
 
         try {
             $article = News::post(
@@ -64,7 +116,7 @@ class ArticleController extends Controller
                 $request->category,
                 $request->status,
                 $request->type,
-                $input['imagename'],
+                $namaImage,
                 $request->tags,
                 $request->date,
             );
@@ -129,10 +181,10 @@ class ArticleController extends Controller
         ]);
 
         if($validator->fails()) {
-            // dd($validator->errors()->first());
             Alert::toast($validator->errors()->first(), 'error');
             return redirect()->back();
         }
+
         // dd($validator);
         $namaImage = '';
         if($request->file('image') != null){

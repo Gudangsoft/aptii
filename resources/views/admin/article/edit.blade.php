@@ -39,11 +39,6 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    @if ($errors->any())
-                                        @foreach ($errors->all() as $error)
-                                            <div>{{$error}}</div>
-                                        @endforeach
-                                    @endif
                                     <div class="media">
                                         <div class="avatar mr-75">
                                             <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
@@ -269,6 +264,7 @@
     @push('page-js')
     <script src="{{asset('backend/plugins/bootstrap-fileinput/js/fileinput.js')}}"></script>
     <script src="{{asset('backend/plugins/bootstrap-fileinput/themes/fa/theme.js')}}"></script>
+    <script src="{{ asset('assets') }}/js/scripts/pages/page-blog-edit.js"></script>
     <script src="{{ asset('assets') }}/vendors/cropperjs/cropper.js"></script>
     <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
     <script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
