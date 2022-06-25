@@ -39,6 +39,11 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+                                    @if ($errors->any())
+                                        @foreach ($errors->all() as $error)
+                                            <div>{{$error}}</div>
+                                        @endforeach
+                                    @endif
                                     <div class="media">
                                         <div class="avatar mr-75">
                                             <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />

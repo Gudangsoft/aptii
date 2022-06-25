@@ -104,9 +104,9 @@ class ArticleController extends Controller
     {
         // dd($request);
         $currentImage = Article::findOrFail($id)->image;
-        if($request->image != null){
+        if($request->image != null &&  $currentImage != null){
             ImageProses::deleteToStorage('post',$currentImage);
-            
+
 
         }
         $dataImageSetting = [
@@ -119,20 +119,19 @@ class ArticleController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            // 'publishdate'=>'required',
-            // 'title'=>'required|max:255',
-            // 'kategori'=>'required',
-            // 'permalink'=>'required',
-            // 'preview'=>'required',
-            // 'content'=>'required',
-            // 'caption'=>'required',
-            // 'author'=>'required',
+            'title' => 'required',
+            'category' => 'required',
+            'slug' => 'required',
+            'status' => 'required',
+            'content' => 'required',
             'image'=>'image|mimes:jpeg,png,jpg,gif|dimensions:max_width='.$dataImageSetting['ori_width'].',max_height:'.$dataImageSetting['ori_height'].'',
-            // 'tags'=>'required'
+            'tags'=>'required'
         ]);
 
         if($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            // dd($validator->errors()->first());
+            Alert::toast($validator->errors()->first(), 'error');
+            return redirect()->back();
         }
         // dd($validator);
         $namaImage = '';
