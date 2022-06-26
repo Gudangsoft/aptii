@@ -13,7 +13,7 @@ class ScreenController extends Controller
 {
     public function post($slug){
         self::meta($slug);
-        return view('frontend.article.detail', [
+        return view('frontend.articles.detail', [
             'data'      => PageController::article($slug),
             'recent'    => PagesController::recentArticles(4),
 
