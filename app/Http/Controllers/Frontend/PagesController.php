@@ -6,11 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use RobertSeghedi\News\Models\Article;
+use Illuminate\Support\Str;
 
 class PagesController extends Controller
 {
-    public static function recentArticles($limit){
+    public static function articles($limit){
         $data = Cache::rememberForever('articles', function () use($limit) {
+            $rows = Article::orderByDesc('created_at')->paginate($limit);
+            return $rows;
+        });
+        return $data;
+    }
+
+    public static function recentArticles($limit){
+        $data = Cache::rememberForever('recent-articles', function () use($limit) {
             $rows = Article::orderByDesc('created_at')->paginate($limit);
             return $rows;
         });

@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    {{-- <img src="{{ $data->image ? asset('storage').'/articles/thumbnail/'.$data->image : asset('assets').'/images/banner/banner-12.jpg'}}" class="img-flui card-img-top" alt="Blog Detail Pic" /> --}}
+                                    {{-- <img src="{{ $data->image ? asset(config('app.POST_BIG')).'/'.$data->image : asset('assets').'/images/banner/banner-12.jpg'}}" class="img-flui card-img-top" alt="Blog Detail Pic" /> --}}
 
                                     <div class="card-body">
                                         <h4 class="card-title">{!! $data->title !!} </h4>
@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="media">
                                             <div class="media-left">
-                                                <img src="{{ $data->image ? asset('storage').'/articles/thumbnail/'.$data->image : asset('assets').'/images/portrait/small/avatar-s-6.jpg'}}" alt="thumbnail" title="thumbnail" height="100" width="100" class="cursor-pointer" />
+                                                <img src="{{ $data->image ? asset(config('app.POST_MID')).'/'.$data->image : asset('assets').'/images/portrait/small/avatar-s-6.jpg'}}" alt="thumbnail" title="thumbnail" height="100" width="100" class="cursor-pointer" />
                                             </div>
                                             <div class="media-body ml-2 text-justify">
                                                 {!! $data->content !!}

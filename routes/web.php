@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Post\UploadController;
 use App\Http\Controllers\Admin\Settings\ConfigurationController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ScreenController;
+use App\Http\Controllers\Frontend\ScreensController;
 use App\Http\Livewire\ArticleCategoriesTable;
 
 /*
@@ -29,6 +30,7 @@ use App\Http\Livewire\ArticleCategoriesTable;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/post/{slug}', [ScreenController::class, 'post']);
+Route::get('/posts', [ScreensController::class, 'posts']);
 
 
 
@@ -40,18 +42,18 @@ Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function
         Route::get('/friends/add/{id}', 'add')->name('addfriends');
         Route::get('/friends/delete/{id}', 'unfriends')->name('profile.friends.delete');
     });
+    Route::prefix('cms')->group(function (){
+        Route::resource('articles', ArticleController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('chats', ChatsController::class);
+        Route::resource('userssetting', UserSettingController::class);
+        Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');
+        Route::controller(ProfileController::class)->group(function(){
+            Route::get('/profile', 'index')->name('profile.index');
+        });
 
-    Route::resource('articles', ArticleController::class);
-    Route::resource('categories', CategoryController::class);
-
-    Route::resource('chats', ChatsController::class);
-    Route::resource('userssetting', UserSettingController::class);
-    Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');
-    Route::controller(ProfileController::class)->group(function(){
-        Route::get('/profile', 'index')->name('profile.index');
+        Route::resource('configuration', ConfigurationController::class);
     });
-
-    Route::resource('configuration', ConfigurationController::class);
 
 });
 
