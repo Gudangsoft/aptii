@@ -12,7 +12,7 @@ class PagesController extends Controller
 {
     public static function articles($limit){
         $data = Cache::rememberForever('articles', function () use($limit) {
-            $rows = Article::orderByDesc('created_at')->paginate($limit);
+            $rows = Article::orderByDesc('created_at')->paginate($limit)->withQueryString();
             return $rows;
         });
         return $data;

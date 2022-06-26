@@ -11,7 +11,7 @@ class ScreensController extends Controller
     public function posts(){
 
         return view('frontend.articles.index', [
-            'data'    => PagesController::articles(4),
+            'data'    => PagesController::articles(12),
             'headline'  => PagesController::headlineArticles(1),
         ]);
     }
