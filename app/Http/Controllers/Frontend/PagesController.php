@@ -18,6 +18,11 @@ class PagesController extends Controller
         return $data;
     }
 
+    public static function popularArticle(){
+        $data = Article::orderByDesc('counter')->paginate(4);
+        return $data;
+    }
+
     public static function recentArticles($limit){
         $data = Cache::rememberForever('recent-articles', function () use($limit) {
             $rows = Article::orderByDesc('created_at')->paginate($limit);

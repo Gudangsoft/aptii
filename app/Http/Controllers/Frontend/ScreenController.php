@@ -17,6 +17,7 @@ class ScreenController extends Controller
         News::counter($slug);
         return view('frontend.articles.detail', [
             'data'      => PageController::article($slug),
+            'popular'    => PagesController::popularArticle(),
             'recent'    => PagesController::recentArticles(4),
 
         ]);

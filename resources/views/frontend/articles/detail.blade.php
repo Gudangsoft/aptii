@@ -50,13 +50,7 @@
                                 <div class="swiper blogdetailSlider">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
-                                            <img src="{{ asset('frontend') }}/assets/images/blog/img-11.jpg" alt="" class="img-fluid rounded-3">
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('frontend') }}/assets/images/blog/img-14.jpg" alt="" class="img-fluid rounded-3">
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('frontend') }}/assets/images/blog/img-15.jpg" alt="" class="img-fluid rounded-3">
+                                            <img src="{{ $data->image ? asset(config('app.POST_BIG')).'/'.$data->image : asset('frontend').'/assets/images/blog/img-04.jpg' }}" alt="" class="img-fluid rounded-3">
                                         </div>
                                     </div>
                                 </div>
@@ -65,10 +59,10 @@
                                     <li class="list-inline-item">
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0">
-                                                <img src="{{ asset('frontend') }}/assets/images/user/img-03.jpg" alt="" class="avatar-sm rounded-circle">
+                                                <img src="{{ $data->getUser->profile_photo_path ? asset('storage/images/users').'/'.$data->getUser->profile_photo_path : asset('assets/images/portrait/small/avatar-s-11.jpg') }}" alt="" class="avatar-sm rounded-circle">
                                             </div>
                                             <div class="ms-3">
-                                                <a href="blog-author.html" class="primary-link"><h6 class="mb-0">{{ $data->getUser->name }}</h6></a>
+                                                <a href="/author/{{ $data->getUser->name }}" class="primary-link"><h6 class="mb-0">{{ $data->getUser->name }}</h6></a>
                                             </div>
                                         </div>
                                     </li>
@@ -79,6 +73,16 @@
                                             </div>
                                             <div class="ms-2">
                                                 <p class="mb-0"> {{ $data->date }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <i class="uil uil-eye"></i>
+                                            </div>
+                                            <div class="ms-2 flex-grow-1">
+                                                <p class="mb-0"> {{ $data->counter }}</p>
                                             </div>
                                         </div>
                                     </li>
@@ -269,7 +273,6 @@
                         </div>
                         <div class="col-lg-4 col-md-5">
                             <div class="sidebar ms-lg-4 ps-lg-4 mt-5 mt-lg-0">
-                                <!-- Search widget-->
                                 <aside class="widget widget_search">
                                     <form class="position-relative">
                                         <input class="form-control" type="text" placeholder="Search...">
@@ -282,31 +285,16 @@
                                         <h6 class="fs-16 mb-3">Polular Post</h6>
                                     </div>
                                     <ul class="widget-popular-post list-unstyled my-4">
-                                        <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
-                                            <img src="{{ asset('frontend') }}/assets/images/blog/img-01.jpg" alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3">
-                                                <a href="blog-details.html" class="text-dark">The evolution of landing page creativity</a>
-                                                <span class="d-block text-muted fs-14">Aug 10, 2021</span>
-                                            </div>
-                                        </li>
-                                        <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
-                                            <img src="{{ asset('frontend') }}/assets/images/blog/img-02.jpg" alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3"><a href="blog-details.html" class="text-dark">Beautiful day with friends in paris</a>
-                                                <span class="d-block text-muted fs-14">Jun 24, 2021</span>
-                                            </div>
-                                        </li>
-                                        <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
-                                            <img src="{{ asset('frontend') }}/assets/images/blog/img-03.jpg" alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3"><a href="blog-details.html" class="text-dark">Project discussion with team</a>
-                                                <span class="d-block text-muted fs-14">July 13, 2021</span>
-                                            </div>
-                                        </li>
-                                        <li class="d-flex mb-3 align-items-center">
-                                            <img src="{{ asset('frontend') }}/assets/images/blog/img-10.jpg" alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3"><a href="blog-details.html" class="text-dark">Smartest Applications for Business</a>
-                                                <span class="d-block text-muted fs-14">Feb 01, 2021</span>
-                                            </div>
-                                        </li>
+                                        @foreach ($popular as $item)
+                                            <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
+                                                <img src="{{ $item->image ? asset(config('app.POST_MID')).'/'.$item->image : asset('frontend').'/assets/images/blog/img-04.jpg' }}" alt="" class="widget-popular-post-img rounded" />
+                                                <div class="flex-grow-1 text-truncate ms-3">
+                                                    <a href="/post/{{ $item->slug }}" class="text-dark">{{ $item->title }}</a>
+                                                    <span class="d-block text-muted fs-14">{{ $item->date }}</span>
+                                                </div>
+                                            </li>
+                                        @endforeach
+
                                     </ul>
                                 </div><!--end Polular Post-->
 
@@ -322,18 +310,6 @@
                                     </p>
                                 </div>
 
-                                <div class="mt-4 pt-2">
-                                    <div class="sd-title">
-                                        <h6 class="fs-16 mb-3">Archives</h6>
-                                    </div>
-                                    <ul class="list-unstyled mb-0 mt-3">
-                                        <li class="py-1"><a class="me-2 text-muted" href="javascript:void(0)"><i class="uil uil-angle-right-b"></i> March 2021</a> (40)</li>
-                                        <li class="py-1"><a class="me-2 text-muted" href="javascript:void(0)"><i class="uil uil-angle-right-b"></i> April 2021</a> (08)</li>
-                                        <li class="py-1"><a class="me-2 text-muted" href="javascript:void(0)"><i class="uil uil-angle-right-b"></i> Nov 2020</a> (32)</li>
-                                        <li class="py-1"><a class="me-2 text-muted" href="javascript:void(0)"><i class="uil uil-angle-right-b"></i> May 2020</a> (11)</li>
-                                        <li class="py-1"><a class="me-2 text-muted" href="javascript:void(0)"><i class="uil uil-angle-right-b"></i>  Jun 2019</a> (21)</li>
-                                    </ul>
-                                </div>
 
                                 <div class="mt-4 pt-2">
                                     <div class="sd-title">
@@ -357,189 +333,15 @@
                                     </div>
                                 </div><!--end Latest Tags-->
 
-                                <div class="mt-4 pt-2">
-                                    <div class="sd-title">
-                                        <h6 class="fs-16 mb-3">Follow & Connect</h6>
-                                    </div>
-                                    <ul class="widget-social-menu list-inline mb-0 mt-3">
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="uil uil-facebook-f"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="uil uil-whatsapp"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="uil uil-twitter-alt"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="uil uil-dribbble"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="uil uil-envelope"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
+
                             </div>
-                            <!--end sidebar-->
-                        </div><!--end col-->
-                    </div><!--end row-->
-                </div><!--end container-->
+                        </div>
+                    </div>
+                </div>
             </section>
 
         </div>
-        <!-- End Page-content -->
 
-        <!-- START SUBSCRIBE -->
-        <section class="bg-subscribe">
-            <div class="container">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-6">
-                        <div class="text-center text-lg-start">
-                            <h4 class="text-white">Get New Jobs Notification!</h4>
-                            <p class="text-white-50 mb-0">Subscribe & get all related jobs notification.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mt-4 mt-lg-0">
-                            <form class="subscribe-form" action="#">
-                                <div class="input-group justify-content-center justify-content-lg-end">
-                                    <input type="text" class="form-control" id="subscribe" placeholder="Enter your email">
-                                    <button class="btn btn-primary" type="button" id="subscribebtn">Subscribe</button>
-                                </div>
-                            </form><!--end form-->
-                        </div>
-                    </div>
-                    <!--end col-->
-                </div>
-                <!--end row-->
-            </div>
-            <!--end container-->
-            <div class="email-img d-none d-lg-block">
-                <img src="{{ asset('frontend') }}/assets/images/subscribe.png" alt="" class="img-fluid">
-            </div>
-        </section>
-        <!-- END SUBSCRIBE -->
-
-        <!-- START FOOTER -->
-        <section class="bg-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="footer-item mt-4 mt-lg-0 me-lg-5">
-                            <h4 class="text-white mb-4">Jobcy</h4>
-                            <p class="text-white-50">It is a long established fact that a reader will be of a page reader
-                                will be of at its layout.</p>
-                            <p class="text-white mt-3">Follow Us on:</p>
-                            <ul class="footer-social-menu list-inline mb-0">
-                                <li class="list-inline-item"><a href="#"><i class="uil uil-facebook-f"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="uil uil-linkedin-alt"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="uil uil-google"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="uil uil-twitter"></i></a></li>
-                            </ul>
-                        </div>
-                    </div><!--end col-->
-                    <div class="col-lg-2 col-6">
-                        <div class="footer-item mt-4 mt-lg-0">
-                            <p class="fs-16 text-white mb-4">Company</p>
-                            <ul class="list-unstyled footer-list mb-0">
-                                <li><a href="about.html"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
-                                <li><a href="contact.html"><i class="mdi mdi-chevron-right"></i> Contact Us</a></li>
-                                <li><a href="services.html"><i class="mdi mdi-chevron-right"></i> Services</a></li>
-                                <li><a href="blog.html"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
-                                <li><a href="team.html"><i class="mdi mdi-chevron-right"></i> Team</a></li>
-                                <li><a href="pricing.html"><i class="mdi mdi-chevron-right"></i> Pricing</a></li>
-                            </ul>
-                        </div>
-                    </div><!--end col-->
-                    <div class="col-lg-2 col-6">
-                        <div class="footer-item mt-4 mt-lg-0">
-                            <p class="fs-16 text-white mb-4">For Jobs</p>
-                            <ul class="list-unstyled footer-list mb-0">
-                                <li><a href="job-categories.html"><i class="mdi mdi-chevron-right"></i> Browser Categories</a></li>
-                                <li><a href="job-list.html"><i class="mdi mdi-chevron-right"></i> Browser Jobs</a></li>
-                                <li><a href="job-details.html"><i class="mdi mdi-chevron-right"></i> Job Details</a></li>
-                                <li><a href="bookmark-jobs.html"><i class="mdi mdi-chevron-right"></i> Bookmark Jobs</a></li>
-                            </ul>
-                        </div>
-                    </div><!--end col-->
-                    <div class="col-lg-2 col-6">
-                        <div class="footer-item mt-4 mt-lg-0">
-                            <p class="text-white fs-16 mb-4">For Candidates</p>
-                            <ul class="list-unstyled footer-list mb-0">
-                                <li><a href="candidate-list.html"><i class="mdi mdi-chevron-right"></i> Candidate List</a></li>
-                                <li><a href="candidate-grid.html"><i class="mdi mdi-chevron-right"></i> Candidate Grid</a></li>
-                                <li><a href="candidate-details.html"><i class="mdi mdi-chevron-right"></i> Candidate Details</a></li>
-                            </ul>
-                        </div>
-                    </div><!--end col-->
-                    <div class="col-lg-2 col-6">
-                        <div class="footer-item mt-4 mt-lg-0">
-                            <p class="fs-16 text-white mb-4">Support</p>
-                            <ul class="list-unstyled footer-list mb-0">
-                                <li><a href="contact.html"><i class="mdi mdi-chevron-right"></i> Help Center</a></li>
-                                <li><a href="faqs.html"><i class="mdi mdi-chevron-right"></i> FAQ'S</a></li>
-                                <li><a href="privacy-policy.html"><i class="mdi mdi-chevron-right"></i> Privacy Policy</a></li>
-                            </ul>
-                        </div>
-                    </div><!--end col-->
-                </div><!--end row-->
-            </div><!--end container-->
-        </section>
-        <!-- END FOOTER -->
-
-        <!-- START FOOTER-ALT -->
-        <div class="footer-alt">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p class="text-white-50 text-center mb-0">
-                            <script>document.write(new Date().getFullYear())</script> &copy; Jobcy - Job Listing Page
-                            Template by <a href="https://themeforest.net/search/themesdesign" target="_blank"
-                                class="text-reset text-decoration-underline">Themesdesign</a>
-                        </p>
-                    </div><!--end col-->
-                </div><!--end row-->
-            </div><!--end container-->
-        </div>
-        <!-- END FOOTER -->
-
-        <!-- Style switcher -->
-        <div id="style-switcher" onclick="toggleSwitcher()" style="left: -165px;">
-            <div>
-                <h6>Select your color</h6>
-                <ul class="pattern list-unstyled mb-0">
-                    <li>
-                        <a class="color-list color1" href="javascript: void(0);" onclick="setColorGreen()"></a>
-                    </li>
-                    <li>
-                        <a class="color-list color2" href="javascript: void(0);" onclick="setColor('blue')"></a>
-                    </li>
-                    <li>
-                        <a class="color-list color3" href="javascript: void(0);" onclick="setColor('green')"></a>
-                    </li>
-                </ul>
-                <div class="mt-3">
-                    <h6>Light/dark Layout</h6>
-                    <div class="text-center mt-3">
-                        <!-- light-dark mode -->
-                        <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-3">
-                            <i class="uil uil-brightness mode-dark mx-auto"></i>
-                            <i class="uil uil-moon mode-light"></i>
-                        </a>
-                        <!-- END light-dark Mode -->
-                    </div>
-                </div>
-            </div>
-            <div class="bottom d-none d-md-block" >
-                <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
-            </div>
-        </div>
-        <!-- end switcher-->
-
-        <!--start back-to-top-->
-        <button onclick="topFunction()" id="back-to-top">
-            <i class="mdi mdi-arrow-up"></i>
-        </button>
-        <!--end back-to-top-->
+        @include('frontend.layouts.footer')
     </div>
 </x-frontend-master>

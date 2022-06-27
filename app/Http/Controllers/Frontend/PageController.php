@@ -13,7 +13,7 @@ class PageController extends Controller
     public static function article($slug){
         $id = Article::where('slug', $slug)->first();
         if($id){
-            $data = Cache::rememberForever('article-'.$id->id, function () use($slug) {
+            $data = Cache::remember('article-'.$id->id, 60 * 60, function () use($slug) {
                 $row = Article::where('slug', $slug)->first();
                 return $row;
             });
