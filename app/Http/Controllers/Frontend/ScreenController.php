@@ -8,11 +8,13 @@ use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Arr;
 use RobertSeghedi\News\Models\Article;
 use Illuminate\Support\Str;
+use RobertSeghedi\News\Models\News;
 
 class ScreenController extends Controller
 {
     public function post($slug){
         self::meta($slug);
+        News::counter($slug);
         return view('frontend.articles.detail', [
             'data'      => PageController::article($slug),
             'recent'    => PagesController::recentArticles(4),

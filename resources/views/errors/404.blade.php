@@ -61,7 +61,7 @@
                                             <h4 class="text-uppercase mt-3">Sorry, page not found</h4>
                                             <p class="text-muted">It will be as simple as Occidental in fact, it will be Occidental</p>
                                             <div class="mt-4">
-                                                <a class="btn btn-primary waves-effect waves-light" href="index.html"><i class="mdi mdi-home"></i> Back to Home</a>
+                                                <a class="btn btn-primary waves-effect waves-light" href="/"><i class="mdi mdi-home"></i> Back to Home</a>
                                             </div>
                                         </div>
                                     </div>
