@@ -61,7 +61,7 @@
                         <article class="post position-relative">
                             <div class="post ms-lg-4">
                                 <p class="text-muted mb-2"><b>{{ $item->getCategory->name }}</b> - {{ $item->date }}</p>
-                                <h5 class="mb-3"><a href="/post/{{ $item->slug }}}" class="primary-link">{{ $item->title }}</a></h5>
+                                <h5 class="mb-3"><a href="/post/{{ $item->slug }}" class="primary-link">{{ $item->title }}</a></h5>
                                 <p class="text-muted">
                                     {!! \Illuminate\Support\Str::words($item->content, 30) !!}
                                 </p>
@@ -108,9 +108,9 @@
                     @empty
                         <h1>Coming Soon...</h1>
                     @endforelse
-                    <div class="col mt-2 d-flex justify-content-center">
-                        {{ $data->links() }}
-                    </div>
+                </div>
+                <div class="mt-2 d-flex justify-content-center">
+                    {{ $data->links() }}
                 </div>
             </div>
         </section>

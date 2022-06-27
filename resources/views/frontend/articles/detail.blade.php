@@ -14,7 +14,7 @@
                                         <ol class="breadcrumb justify-content-center">
                                             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                             <li class="breadcrumb-item"><a href="javascript:void(0)">Blog</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page"> Articles </li>
+                                            <li class="breadcrumb-item active" aria-current="page"> Detail </li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -68,7 +68,7 @@
                                                 <img src="{{ asset('frontend') }}/assets/images/user/img-03.jpg" alt="" class="avatar-sm rounded-circle">
                                             </div>
                                             <div class="ms-3">
-                                                <a href="blog-author.html" class="primary-link"><h6 class="mb-0">By Alice Mellor</h6></a>
+                                                <a href="blog-author.html" class="primary-link"><h6 class="mb-0">{{ $data->getUser->name }}</h6></a>
                                             </div>
                                         </div>
                                     </li>
@@ -78,7 +78,7 @@
                                                 <i class="uil uil-calendar-alt"></i>
                                             </div>
                                             <div class="ms-2">
-                                                <p class="mb-0"> Aug 02, 2021</p>
+                                                <p class="mb-0"> {{ $data->date }}</p>
                                             </div>
                                         </div>
                                     </li>
@@ -88,34 +88,27 @@
                                                 <i class="uil uil-comments-alt"></i>
                                             </div>
                                             <div class="ms-2 flex-grow-1">
-                                                <p class="mb-0"> 2 Comments</p>
+                                                <p class="mb-0"> {{ $data->comment_count }}</p>
                                             </div>
                                         </div>
                                     </li>
                                 </ul>
                                 <div class="mt-4">
-                                    <h5>What makes the best co-working space?</h5>
-                                    <p class="text-muted">Objectively pursue diverse catalysts for change for interoperable meta-services. Distinctively re-engineer revolutionary meta-services and premium architectures. Intrinsically incubate intuitive opportunities and real-time potentialities. Appropriately communicate one-to-one technology.</p>
-                                    <p class="text-muted mb-4">Home renovations, especially those involving plentiful of demolition can be a very dusty affair. The same is true as we experience the emotional sensation of stress from our first instances of social rejection ridicule. We quickly learn to fear and thus automatically avoid potentially stressful situations of all kinds, including the most common of all making mistakes.</p>
-                                    <figure class="blog-blockquote text-center">
-                                        <blockquote class="blockquote">
-                                        <p class="fs-17">"A business consulting agency is involved in the planning, implementation, and education of businesses."</p>
-                                        </blockquote>
-                                        <figcaption class="blockquote-footer fs-15 mb-4">
-                                        Creative Agency<cite title="Source Title" class="text-primary fw-semibold"> Alice Mellor</cite>
-                                        </figcaption>
-                                    </figure>
-                                    <p class="text-muted">Whether article spirits new her covered hastily sitting her. Money witty books nor son add. Chicken age had evening believe but proceed pretend mrs. At missed advice my it no sister. Miss told ham dull knew see she spot near can. Spirit her entire her called.</p>
-                                    <p class="text-muted">The advantage of its Latin origin and the relative meaninglessness of Lorum Ipsum is that the text does not attract attention to itself or distract the viewer's attention from the layout.</p>
+                                    <p>
+                                        {!! $data->content !!}
+                                    </p>
                                     <div class="d-flex align-items-center mb-4">
                                         <div class="flex-shrink-0">
                                             <b>Tags:</b>
                                         </div>
                                         <div class="flex-grow-1 ms-2">
-                                            <a href="javascript:void(0)" class="badge bg-soft-success mt-1 fs-14">Business</a>
-                                            <a href="javascript:void(0)" class="badge bg-soft-success mt-1 fs-14">design</a>
-                                            <a href="javascript:void(0)" class="badge bg-soft-success mt-1 fs-14">Creative</a>
-                                            <a href="javascript:void(0)" class="badge bg-soft-success mt-1 fs-14">Event</a>
+                                            @php
+                                                $tags = explode(',', $data->tags);
+                                                // dd($tags);
+                                            @endphp
+                                            @foreach ($tags as $tag)
+                                                <a href="/tag/{{ $tag }}" class="badge bg-soft-success mt-1 fs-14">{{ $tag }}</a>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <ul class="blog-social-menu list-inline mb-0 text-end">
@@ -273,7 +266,7 @@
                                     </div><!--end blogSlider-->
                                 </div><!--end related post-->
                             </div>
-                        </div><!--end col-->
+                        </div>
                         <div class="col-lg-4 col-md-5">
                             <div class="sidebar ms-lg-4 ps-lg-4 mt-5 mt-lg-0">
                                 <!-- Search widget-->
@@ -283,41 +276,6 @@
                                         <button class="bg-transparent border-0 position-absolute top-50 end-0 translate-middle-y fs-22 me-2" type="submit"><span class="mdi mdi-magnify text-muted"></span></button>
                                     </form>
                                 </aside>
-                                <div class="mt-4 pt-2">
-                                    <div class="sd-title">
-                                        <h6 class="fs-16 mb-3">Categories</h6>
-                                    </div>
-                                    <div class="my-3">
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="education" />
-                                            <label class="form-check-label ms-2" for="education">Education</label>
-                                        </div>
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked />
-                                            <label class="form-check-label ms-2" for="flexCheckChecked1">Business</label>
-                                        </div>
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                                            <label class="form-check-label ms-2" for="flexCheckChecked2">Information</label>
-                                        </div>
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
-                                            <label class="form-check-label ms-2" for="flexCheckChecked3">Interview</label>
-                                        </div>
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                                            <label class="form-check-label ms-2" for="flexCheckChecked4">Travel</label>
-                                        </div>
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5" />
-                                            <label class="form-check-label ms-2" for="flexCheckChecked5">Jobs</label>
-                                        </div>
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked6" />
-                                            <label class="form-check-label ms-2" for="flexCheckChecked6">Fashion</label>
-                                        </div>
-                                    </div>
-                                </div><!--end Categories-->
 
                                 <div class="mt-4 pt-2">
                                     <div class="sd-title">
