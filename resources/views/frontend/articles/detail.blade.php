@@ -3,7 +3,6 @@
 
         <div class="page-content">
 
-            <!-- Start home -->
             <section class="page-title-box">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -15,21 +14,16 @@
                                         <ol class="breadcrumb justify-content-center">
                                             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                             <li class="breadcrumb-item"><a href="javascript:void(0)">Blog</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page"> Blog Details </li>
+                                            <li class="breadcrumb-item active" aria-current="page"> Articles </li>
                                         </ol>
                                     </nav>
                                 </div>
                             </div>
                         </div>
-                        <!--end col-->
                     </div>
-                    <!--end row-->
                 </div>
-                <!--end container-->
             </section>
-            <!-- end home -->
 
-            <!-- START SHAPE -->
             <div class="position-relative" style="z-index: 1">
                 <div class="shape">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
@@ -38,10 +32,8 @@
                     </svg>
                 </div>
             </div>
-            <!-- END SHAPE -->
 
 
-            <!-- START BLOG-DETAILS -->
             <section class="section">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -435,7 +427,6 @@
                     </div><!--end row-->
                 </div><!--end container-->
             </section>
-            <!-- START BLOG-DETAILS -->
 
         </div>
         <!-- End Page-content -->

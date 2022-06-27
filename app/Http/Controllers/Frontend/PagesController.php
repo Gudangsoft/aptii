@@ -10,8 +10,8 @@ use Illuminate\Support\Str;
 
 class PagesController extends Controller
 {
-    public static function articles($limit){
-        $data = Cache::rememberForever('articles', function () use($limit) {
+    public static function articles($limit, $page = null){
+        $data = Cache::remember("articles-$page", 60 * 60 * 12, function () use($limit) {
             $rows = Article::orderByDesc('created_at')->paginate($limit)->withQueryString();
             return $rows;
         });

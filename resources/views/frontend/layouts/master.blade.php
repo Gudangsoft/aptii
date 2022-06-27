@@ -24,8 +24,8 @@
 </head>
 
 <body>
-        <!--start page Loader -->
-        <div id="preloader">
+    <!--start page Loader -->
+    {{-- <div id="preloader">
         <div id="status">
             <ul>
                 <li></li>
@@ -36,11 +36,10 @@
                 <li></li>
                 </ul>
         </div>
-    </div>
+    </div> --}}
     <!--end page Loader -->
 
     <!-- Begin page -->
-    <div>
         @include('frontend.layouts.navbar')
 
         <!-- START TOP-BAR -->

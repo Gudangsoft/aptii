@@ -115,12 +115,15 @@
                                                         <option value="3">Draft</option>
                                                     </select>
                                                 </div>
+
+                                            </div>
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-group mb-2">
                                                     <label for="blog-edit-title">Tags</label>
                                                     <input type="text" name="tags" id="tags" class="form-control" value="{{ $data->tags }}" placeholder="news, top, viral">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            <div class="col-md-12 col-12">
                                                 <div class="border rounded p-2">
                                                     <h4 class="mb-1">Image</h4>
                                                     <div class="media flex-column flex-md-row">
@@ -164,7 +167,7 @@
                                             </div>
                                             {{-- <div class="col-12 mb-2">
                                             </div> --}}
-                                            <div class="col-12 mt-5 d-flex justify-content-end">
+                                            <div class="col-12 mt-5">
                                                 <button type="submit" class="btn btn-primary mr-1">Save Changes</button>
                                                 <a href="{{ route('articles.index') }}" class="btn btn-outline-secondary">Cancel</a>
                                             </div>

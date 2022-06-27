@@ -109,7 +109,7 @@
                         <h1>Coming Soon...</h1>
                     @endforelse
                     <div class="col mt-2 d-flex justify-content-center">
-                        {{-- {{ $data->links() }} --}}
+                        {{ $data->links() }}
                     </div>
                 </div>
             </div>
