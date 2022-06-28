@@ -70,10 +70,11 @@
                     <!--end col-->
                     <div class="col-md-5">
                         <ul class="list-inline mb-0 text-center text-md-end">
-                            <li class="list-inline-item py-2 me-2 align-middle">
-                                <a href="#signupModal" class="text-dark fw-medium fs-13" data-bs-toggle="modal"><i class="uil uil-lock"></i>
-                                    Sign Up</a>
-                            </li>
+                            @if (!Auth::check())
+                                <li class="list-inline-item py-2 me-2 align-middle">
+                                    <a href="/login" class="text-dark fw-medium fs-13"><i class="uil uil-sign-in-alt"></i> Sign In</a>
+                                </li>
+                            @endif
                             <li class="list-inline-item align-middle">
                                 <div class="dropdown d-inline-block language-switch">
                                     <button type="button" class="btn" data-bs-toggle="dropdown" aria-haspopup="true"

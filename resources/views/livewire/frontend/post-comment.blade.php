@@ -5,8 +5,8 @@
         </div>
         @if (!isset(auth()->user()->id))
         <div class="col-6 d-flex justify-content-end">
-            <a href="/login" class="btn btn-primary btn-sm mb-3 me-2"><i class="uil uil-sign-in-alt"></i> Login</a>
-            <a href="/register" class="btn btn-dark btn-sm mb-3"><i class="uil uil-user-plus"></i> Register</a>
+            <a href="/login" class="btn btn-primary btn-sm mb-3 me-2"><i class="uil uil-sign-in-alt"></i> Sign In</a>
+            <a href="/register" class="btn btn-dark btn-sm mb-3"><i class="uil uil-user-plus"></i> Sign Up</a>
         </div>
         @endif
     </div>
@@ -26,8 +26,9 @@
                 </div>
             </div>
         </form>
+    @else
+        <h6 class="alert alert-danger">Please <a href="/login">Sign In</a> to send your comment</h6>
     @endif
-
     @forelse ($comments as $comment)
         <div class="mt-5">
             <div class="d-sm-flex align-items-top">

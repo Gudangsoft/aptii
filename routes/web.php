@@ -34,7 +34,7 @@ Route::get('/posts', [ScreensController::class, 'posts']);
 
 
 
-Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function () {
+Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     Route::get('qrcodes', [QrCodeController::class, 'index']);
     Route::resource('friends', FriendsController::class);
     Route::controller(FriendsController::class)->group(function(){
@@ -60,6 +60,7 @@ Route::group(['middleware' => ['role:super admin|guest|writer|admin']], function
 Route::group(['middleware' => ['role:super admin']], function () {
     Route::resource('users', UserController::class);
     Route::get('/user/trashed', [UserController::class, 'showTrashed'])->name('usershowTrashed');
+    Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::middleware([
@@ -67,7 +68,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::get('phpinfo', fn () => phpinfo());

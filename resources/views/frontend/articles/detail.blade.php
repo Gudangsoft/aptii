@@ -8,16 +8,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <div class="text-center text-white">
-                                <h3 class="mb-4">Blog Details</h3>
-                                <div class="page-next">
-                                    <nav class="d-inline-block" aria-label="breadcrumb text-center">
-                                        <ol class="breadcrumb justify-content-center">
-                                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript:void(0)">Blog</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page"> Detail </li>
-                                        </ol>
-                                    </nav>
-                                </div>
+                                <h3 class="mb-4">{{ $data->title }}</h3>
                             </div>
                         </div>
                     </div>
@@ -36,14 +27,7 @@
 
             <section class="section">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-7">
-                            <div class="text-center mb-5">
-                                <p class="text-danger fw-semibold mb-0">{{ $data->getCategory->name }}</p>
-                                <h3>{{ $data->title }}</h3>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="blog-post">
@@ -95,6 +79,9 @@
                                                 <p class="mb-0"> {{ $data->comment_count }}</p>
                                             </div>
                                         </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="/category/{{ $data->getCategory->slug }}" class="button btn-sm btn-primary"> {{ strtoupper($data->getCategory->name) }}</a>
                                     </li>
                                 </ul>
                                 <div class="mt-4">
