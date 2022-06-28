@@ -1,7 +1,17 @@
 <div>
-    <h5 class="border-bottom pb-3 mt-5">Comments</h5>
-    <form wire:submit.prevent="saveComment" class="contact-form mt-5">
-        <form action="">
+    <div class="row mt-4">
+        <div class="col-6">
+            <h5 class="border-bottom pb-3">Comments</h5>
+        </div>
+        @if (!isset(auth()->user()->id))
+        <div class="col-6 d-flex justify-content-end">
+            <a href="/login" class="btn btn-primary btn-sm mb-3 me-2"><i class="uil uil-sign-in-alt"></i> Login</a>
+            <a href="/register" class="btn btn-dark btn-sm mb-3"><i class="uil uil-user-plus"></i> Register</a>
+        </div>
+        @endif
+    </div>
+    @if (isset(auth()->user()->id))
+        <form wire:submit.prevent="saveComment" class="contact-form mt-2">
             <div class="row mt-4">
                 <div class="col-lg-12">
                     <div class="position-relative mb-3">
@@ -16,13 +26,13 @@
                 </div>
             </div>
         </form>
-    </form>
+    @endif
 
     @forelse ($comments as $comment)
         <div class="mt-5">
             <div class="d-sm-flex align-items-top">
                 <div class="flex-shrink-0">
-                    <img class="rounded-circle avatar-md img-thumbnail" src="{{ asset('frontend') }}/assets/images/user/img-01.jpg" alt="img" />
+                    <img class="rounded-circle avatar-md img-thumbnail" src="{{ $comment->getUser->profile_photo_path ? asset('storage/images/users').'/'.$comment->getUser->profile_photo_path : asset('storage/images/users/default.png') }}" alt="img" />
                 </div>
                 <div class="flex-grow-1 ms-sm-3">
                     <small class="float-end fs-12 text-muted"><i class="uil uil-clock"></i> {{ $comment->created_at->diffForHumans() }}</small>

@@ -33,6 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             'username' => Str::slug($input['name']),
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'profile_photo_path' => 'default.jpg',
         ])->assignRole('guest');
     }
 }
