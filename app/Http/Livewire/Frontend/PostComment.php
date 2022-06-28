@@ -31,6 +31,12 @@ class PostComment extends Component
         $this->validateOnly($propertyName);
     }
 
+    // delete comment
+    public function deleteComment($id){
+        News::delete_comment($id);
+        $this->alert('success', 'Your comment deleted...');
+    }
+
     public function saveComment(){
         $this->validate();
         News::comment($this->article_id, $this->comment);

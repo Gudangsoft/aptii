@@ -32,16 +32,21 @@
         <div class="mt-5">
             <div class="d-sm-flex align-items-top">
                 <div class="flex-shrink-0">
-                    <img class="rounded-circle avatar-md img-thumbnail" src="{{ $comment->getUser->profile_photo_path ? asset('storage/images/users').'/'.$comment->getUser->profile_photo_path : asset('storage/images/users/default.png') }}" alt="img" />
+                    <img class="rounded-circle avatar-md img-thumbnail" src="{{ $comment->created_by != null ? asset('storage/images/users').'/'.$comment->getUser->profile_photo_path : asset('storage/images/users/default.png') }}" alt="img" />
                 </div>
                 <div class="flex-grow-1 ms-sm-3">
                     <small class="float-end fs-12 text-muted"><i class="uil uil-clock"></i> {{ $comment->created_at->diffForHumans() }}</small>
                     <a href="javascript:(0)" class="primary-link"><h6 class="fs-16 mt-sm-0 mt-3 mb-0">{{ $comment->created_by == null ? 'Anonymous' : $comment->getUser->name }}</h6></a>
                     <p class="text-muted fs-14 mb-0">{{ $comment->date }}</p>
-                    {{-- <div class="my-3 badge bg-light">
-                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#reply-modal{{ $comment->id }}"><i
-                                class="mdi mdi-reply"></i> Reply</button>
-                    </div> --}}
+                    <div class="badge bg-light">
+                        @if (isset(auth()->user()->id))
+                            @if ($comment->created_by == auth()->user()->id)
+                                <button wire:click="deleteComment({{ $comment->id }})" class="btn btn-danger btn-sm">delete</button>
+                            @endif
+                        @endif
+                        {{-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#reply-modal{{ $comment->id }}"><i
+                                class="mdi mdi-reply"></i> Reply</button> --}}
+                    </div>
                     <p class="text-muted mb-0">{{ $comment->text }}</p>
                 </div>
             </div>
