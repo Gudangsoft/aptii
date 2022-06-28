@@ -14,8 +14,9 @@ class PostComment extends Component
     use LivewireAlert, WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $article_id;
-    public $comment;
+    public $article_id, $reply_id;
+    public $selected_id;
+    public $comment, $reply;
 
     public function mount(){
 
@@ -34,6 +35,13 @@ class PostComment extends Component
         $this->validate();
         News::comment($this->article_id, $this->comment);
         $this->comment = '';
+    }
+
+
+    public function saveٌReply(){
+        dd($this->reply);
+        News::reply($this->article_id, $this->reply_id, $this->reply);
+        $this->reply = '';
     }
 
     public function render()

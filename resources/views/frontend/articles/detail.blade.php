@@ -258,4 +258,5 @@
 
         @include('frontend.layouts.footer')
     </div>
+
 </x-frontend-master>

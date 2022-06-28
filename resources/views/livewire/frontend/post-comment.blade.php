@@ -25,14 +25,14 @@
                     <img class="rounded-circle avatar-md img-thumbnail" src="{{ asset('frontend') }}/assets/images/user/img-01.jpg" alt="img" />
                 </div>
                 <div class="flex-grow-1 ms-sm-3">
-                    <small class="float-end fs-12 text-muted"><i class="uil uil-clock"></i> 30 min Ago</small>
-                    <a href="javascript:(0)" class="primary-link"><h6 class="fs-16 mt-sm-0 mt-3 mb-0">Rebecca Swartz</h6></a>
-                    <p class="text-muted fs-14 mb-0">Aug 10, 2021</p>
-                    <div class="my-3 badge bg-light">
-                        <a href="javascript: void(0);" class="text-primary"><i
-                                class="mdi mdi-reply"></i> Reply</a>
-                    </div>
-                    <p class="text-muted fst-italic mb-0">{{ $comment->text }}</p>
+                    <small class="float-end fs-12 text-muted"><i class="uil uil-clock"></i> {{ $comment->created_at->diffForHumans() }}</small>
+                    <a href="javascript:(0)" class="primary-link"><h6 class="fs-16 mt-sm-0 mt-3 mb-0">{{ $comment->created_by == null ? 'Anonymous' : $comment->getUser->name }}</h6></a>
+                    <p class="text-muted fs-14 mb-0">{{ $comment->date }}</p>
+                    {{-- <div class="my-3 badge bg-light">
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#reply-modal{{ $comment->id }}"><i
+                                class="mdi mdi-reply"></i> Reply</button>
+                    </div> --}}
+                    <p class="text-muted mb-0">{{ $comment->text }}</p>
                 </div>
             </div>
         </div>
@@ -42,6 +42,5 @@
     <div class="mt-4 d-flex justify-content-center">
         {{ $comments->links() }}
     </div>
-
 
 </div>
