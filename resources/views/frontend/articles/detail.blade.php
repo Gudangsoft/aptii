@@ -142,95 +142,9 @@
                                     </ul>
 
                                 </div>
-                                <!-- comment start -->
-                                <h5 class="border-bottom pb-3 mt-5">Comments</h5>
-                                <div class="mt-5">
-                                    <div class="d-sm-flex align-items-top">
-                                        <div class="flex-shrink-0">
-                                            <img class="rounded-circle avatar-md img-thumbnail" src="{{ asset('frontend') }}/assets/images/user/img-01.jpg" alt="img" />
-                                        </div>
-                                        <div class="flex-grow-1 ms-sm-3">
-                                            <small class="float-end fs-12 text-muted"><i class="uil uil-clock"></i> 30 min Ago</small>
-                                            <a href="javascript:(0)" class="primary-link"><h6 class="fs-16 mt-sm-0 mt-3 mb-0">Rebecca Swartz</h6></a>
-                                            <p class="text-muted fs-14 mb-0">Aug 10, 2021</p>
-                                            <div class="my-3 badge bg-light">
-                                                <a href="javascript: void(0);" class="text-primary"><i
-                                                        class="mdi mdi-reply"></i> Reply</a>
-                                            </div>
-                                            <p class="text-muted fst-italic mb-0">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour "</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-5">
-                                    <div class="d-sm-flex align-items-top">
-                                        <div class="flex-shrink-0">
-                                            <img class="rounded-circle avatar-md img-thumbnail" src="{{ asset('frontend') }}/assets/images/user/img-02.jpg" alt="img" />
-                                        </div>
-                                        <div class="flex-grow-1 ms-sm-3">
-                                            <small class="float-end fs-12 text-muted"><i class="uil uil-clock"></i> 2 hrs Ago</small>
-                                            <a href="javascript:(0)" class="primary-link"><h6 class="fs-16 mt-sm-0 mt-3 mb-0">Adam Gibson</h6></a>
-                                            <p class="text-muted fs-14 mb-0">Aug 10, 2021</p>
-                                            <div class="my-3 badge bg-light">
-                                                <a href="javascript: void(0);" class="text-primary"><i
-                                                        class="mdi mdi-reply"></i> Reply</a>
-                                            </div>
-                                            <p class="text-muted fst-italic mb-0">" The most important aspect of beauty was, therefore, an inherent part of an object, rather than something applied superficially, and was based on universal, recognisable truths. "</p>
 
-                                            <div class="d-sm-flex align-items-top mt-5">
-                                                <div class="flex-shrink-0">
-                                                    <img class="rounded-circle avatar-md img-thumbnail" src="{{ asset('frontend') }}/assets/images/user/img-04.jpg" alt="img" />
-                                                </div>
-                                                <div class="flex-grow-1 ms-sm-3">
-                                                    <small class="float-end fs-12 text-muted"><i class="uil uil-clock"></i> 2 hrs Ago</small>
-                                                    <a href="javascript:(0)" class="primary-link"><h6 class="fs-16 mt-sm-0 mt-3 mb-0">Kiera Finch</h6></a>
-                                                    <p class="text-muted fs-14 mb-0">Aug 10, 2021</p>
-                                                    <div class="my-3 badge bg-light">
-                                                        <a href="javascript: void(0);" class="text-primary"><i
-                                                                class="mdi mdi-reply"></i> Reply</a>
-                                                    </div>
-                                                    <p class="text-muted fst-italic mb-0">" This response is important for our ability to learn from mistakes, but it alsogives rise to self-criticism, because it is part of the threat-protection system.  "</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end comment -->
+                                @livewire('frontend.post-comment', ['article_id' => $data->id])
 
-                                <form action="#" class="contact-form mt-5">
-                                    <h5  class="border-bottom pb-3">Leave a Message</h5  >
-                                    <div class="row mt-4">
-                                        <div class="col-lg-6">
-                                            <div class="position-relative mb-3">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input name="name" id="name" type="text" class="form-control" placeholder="Enter your name*" required="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="position-relative mb-3">
-                                                <label for="email" class="form-label">Email address</label>
-                                                <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email*" required="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="position-relative mb-3">
-                                                <label for="subject" class="form-label">Subject</label>
-                                                <input name="subject" id="subject" type="text" class="form-control" placeholder="Subject">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="position-relative mb-3">
-                                                <label for="comments" class="form-label">Meassage</label>
-                                                <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Enter your message"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 text-end">
-                                            <button name="submit" type="submit" id="submit" class="btn btn-primary btn-hover">Send
-                                                Meassage <i class="uil uil-message ms-1"></i></button>
-                                        </div>
-                                    </div>
-                                </form><!--end form-->
                                 <div class="mt-5">
                                     <h5 class="border-bottom pb-3"> Related Blog Posts</h5>
                                     <div class="swiper blogSlider pb-5 mt-4">

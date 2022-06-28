@@ -13,7 +13,7 @@ class ScreensController extends Controller
 
         return view('frontend.articles.index', [
             'data'    => $page->articles(12, $request->page),
-            'headline'  => $page->headlineArticles(1),
+            'headline'  => $page->headlineArticles(),
         ]);
     }
 }

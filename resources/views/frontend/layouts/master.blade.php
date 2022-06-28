@@ -20,7 +20,7 @@
     <!-- App Css-->
     <link href="{{ asset('frontend') }}/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <!--Custom Css-->
-
+    @livewireStyles
 </head>
 
 <body>
@@ -147,6 +147,9 @@
 
     <!-- App Js -->
     <script src="{{ asset('frontend') }}/assets/js/app.js"></script>
+    @livewireScripts
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
 
 </body>
 </html>

@@ -45,7 +45,7 @@
         <!-- START BLOG-PAGE -->
         <section class="section">
             <div class="container">
-                @forelse ($headline as $item)
+                @if(isset($headline))
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <div class="mb-4">
@@ -54,16 +54,16 @@
                     </div><!--end col-->
                     <div class="col-lg-7">
                         <div class="post-preview overflow-hidden rounded-3 mb-3 mb-lg-0">
-                            <a href="blog-details.html"><img src="{{ $item->image ? asset(config('app.POST_BIG')).'/'.$item->image : asset('frontend').'/assets/images/blog/img-04.jpg' }}" alt="Blog" class="img-fluid blog-img" /></a>
+                            <a href="blog-details.html"><img src="{{ $headline->image ? asset(config('app.POST_BIG')).'/'.$headline->image : asset('frontend').'/assets/images/blog/img-04.jpg' }}" alt="Blog" class="img-fluid blog-img" /></a>
                         </div>
                     </div><!--end col-->
                     <div class="col-lg-5">
                         <article class="post position-relative">
                             <div class="post ms-lg-4">
-                                <p class="text-muted mb-2"><b>{{ $item->getCategory->name }}</b> - {{ $item->date }}</p>
-                                <h5 class="mb-3"><a href="/post/{{ $item->slug }}" class="primary-link">{{ $item->title }}</a></h5>
+                                <p class="text-muted mb-2"><b>{{ $headline->getCategory->name }}</b> - {{ $headline->date }}</p>
+                                <h5 class="mb-3"><a href="/post/{{ $headline->slug }}" class="primary-link">{{ $headline->title }}</a></h5>
                                 <p class="text-muted">
-                                    {!! \Illuminate\Support\Str::words($item->content, 30) !!}
+                                    {!! \Illuminate\Support\Str::words($headline->content, 30) !!}
                                 </p>
                                 <div class="d-flex align-items-center mt-4">
                                     <div class="flex-shrink-0">
@@ -71,16 +71,16 @@
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <p class="text-muted mb-0">Post by</p>
-                                        <a href="blog-author.html" class="primary-link"><h6 class="fs-16 mb-0">{{ $item->getUser->name }} </h6></a>
+                                        <a href="blog-author.html" class="primary-link"><h6 class="fs-16 mb-0">{{ $headline->getUser->name }} </h6></a>
                                     </div>
                                 </div>
                             </div>
                         </article>
                     </div>
                 </div>
-                @empty
+                @else
                     <h1>Comming soon...</h1>
-                @endforelse
+                @endif
                 <div class="row mt-5">
                     <div class="col-lg-12">
                         <div>

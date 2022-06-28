@@ -31,9 +31,9 @@ class PagesController extends Controller
         return $data;
     }
 
-    public static function headlineArticles($limit){
-        $data = Cache::rememberForever('headline', function () use($limit) {
-            $rows = Article::where('type', 1)->orderByDesc('created_at')->paginate($limit);
+    public static function headlineArticles(){
+        $data = Cache::rememberForever('headline', function () {
+            $rows = Article::where('type', 1)->orderByDesc('created_at')->first();
             return $rows;
         });
         return $data;
