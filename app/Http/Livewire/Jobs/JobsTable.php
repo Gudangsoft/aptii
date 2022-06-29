@@ -16,6 +16,13 @@ class JobsTable extends Component
     public $bulkDisabled = true;
     public $statusSelected = false;
 
+    // protected $listeners = ['launchModal'];
+
+    public function createJobsModal()
+    {
+        $this->dispatchBrowserEvent('openFormModal');
+    }
+
     public function render()
     {
         $this->bulkDisabled = count($this->selectJobs) < 1;
