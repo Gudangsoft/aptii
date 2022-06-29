@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Settings\ConfigurationController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ScreenController;
 use App\Http\Controllers\Frontend\ScreensController;
+use App\Http\Controllers\Jobs\JobsController;
 use App\Http\Livewire\ArticleCategoriesTable;
 
 /*
@@ -45,6 +46,11 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     Route::prefix('cms')->group(function (){
         Route::resource('articles', ArticleController::class);
         Route::resource('categories', CategoryController::class);
+
+        Route::prefix('jobs')->group(function (){
+            Route::resource('jobs', JobsController::class);
+        });
+
         Route::resource('chats', ChatsController::class);
         Route::resource('userssetting', UserSettingController::class);
         Route::post('changepassword', [UserSettingController::class, 'changePassword'])->name('changepassword');

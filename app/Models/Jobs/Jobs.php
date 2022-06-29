@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Jobs extends Model
 {
     use HasFactory;
+
+    protected $primarykey = 'id';
+    protected $guarded = [];
+
+
 }
