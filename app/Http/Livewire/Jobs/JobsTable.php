@@ -39,8 +39,8 @@ class JobsTable extends Component
         $this->selectAll = false;
     }
 
-    public function selectAll($value){
-        if($value){
+    public function selectAll(){
+        if($this->selectAll == true){
             $this->selectJobs = Jobs::pluck('id');
             $this->statusSelected = true;
         }else{

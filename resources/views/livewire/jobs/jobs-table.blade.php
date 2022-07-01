@@ -95,7 +95,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" wire:click="selectAll(1)" wire:model="selectAll"></th>
+                                    <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Title</th>
                                     <th>Type</th>
                                     <th>Specialis</th>
@@ -121,7 +121,7 @@
                                         </td>
                                         <td><span class="badge badge-light-primary mr-1">{{ $row->work_location }}</span></td>
                                         <td class="text-right">
-                                            <a href="" class="btn btn-sm btn-primary" title="View"> View</a>
+                                            <a href="" class="btn btn-sm btn-primary" title="View"> Detail</a>
                                             <a href="" class="btn btn-sm btn-success" title="Edit"> Edit</a>
                                             <a href="" class="btn btn-sm btn-danger" title="Delete"> Delete</a>
                                         </td>
