@@ -15,13 +15,10 @@ class JobsTable extends Component
     public $selectAll = false;
     public $bulkDisabled = true;
     public $statusSelected = false;
+    public $jobTitle, $jobRole, $jobType, $jobExperience, $jobLocation, $jobBudgetMin, $jobBudgetMax, $jobDescription;
 
     // protected $listeners = ['launchModal'];
 
-    public function createJobsModal()
-    {
-        $this->dispatchBrowserEvent('openFormModal');
-    }
 
     public function render()
     {
@@ -65,6 +62,15 @@ class JobsTable extends Component
         $this->selectJobs = [];
         $this->selectAll = false;
         $this->statusSelected = false;
+    }
+
+    public function createJobsModal()
+    {
+        $this->dispatchBrowserEvent('openFormModal');
+    }
+
+    public function saveJobs(){
+        dd($this->jobTitle.$this->jobRole.$this->jobType.$this->jobExperience.$this->jobLocation.$this->jobBudgetMin.$this->jobBudgetMax.$this->jobDescription);
     }
 
 }

@@ -16,54 +16,13 @@
                     </div>
                 </div>
                 <div class="col-5 d-flex justify-content-end">
-                    <button class="btn btn-primary" wire:click="createJobsModal()">Created New Job</button>
+                    <a href="{{ route('jobs.create') }}" class="btn btn-primary" >New Job</a>
                 </div>
 
                 <div class="modal fade text-left" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel4">Post New Jobs</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
-                                    <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="John Doe" name="user-fullname" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-icon-default-uname">Username</label>
-                                    <input type="text" id="basic-icon-default-uname" class="form-control dt-uname" placeholder="Web Developer" aria-label="jdoe1" aria-describedby="basic-icon-default-uname2" name="user-name" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-icon-default-email">Email</label>
-                                    <input type="text" id="basic-icon-default-email" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com" aria-describedby="basic-icon-default-email2" name="user-email" />
-                                    <small class="form-text text-muted"> You can use letters, numbers & periods </small>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="user-role">User Role</label>
-                                    <select id="user-role" class="form-control">
-                                        <option value="subscriber">Subscriber</option>
-                                        <option value="editor">Editor</option>
-                                        <option value="maintainer">Maintainer</option>
-                                        <option value="author">Author</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label class="form-label" for="user-plan">Select Plan</label>
-                                    <select id="user-plan" class="form-control">
-                                        <option value="basic">Basic</option>
-                                        <option value="enterprise">Enterprise</option>
-                                        <option value="company">Company</option>
-                                        <option value="team">Team</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
-                                <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -142,7 +101,17 @@
             </div>
         </div>
     </div>
+    @push('vendor-css')
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
+    @endpush
     @push('page-js')
+        <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.ckeditor').ckeditor();
+            });
+        </script>
         <script>
             window.addEventListener('openFormModal', event => {
                 $("#create-modal").modal('show');
