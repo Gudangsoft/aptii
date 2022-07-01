@@ -25,7 +25,7 @@ return new class extends Migration
             $table->bigInteger('budget_min')->nullable();
             $table->bigInteger('budget_max')->nullable();
             $table->longText('description');
-            $table->string('company_id')->nullable();
+            $table->string('company_name')->nullable();
             $table->string('status');
             $table->string('created_by');
             $table->timestamps();

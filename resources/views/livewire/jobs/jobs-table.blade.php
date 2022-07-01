@@ -57,7 +57,8 @@
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Title</th>
                                     <th>Type</th>
-                                    <th>Specialis</th>
+                                    <th>Position</th>
+                                    <th>Offer Salary</th>
                                     <th>Location</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
@@ -76,13 +77,23 @@
                                         </td>
                                         <td>{{ $row->type }}</td>
                                         <td>
-                                            {{ $row->specialisation }}
+                                            <span class="badge badge-light-primary mr-1"> {{ ucwords($row->position) }}</span>
                                         </td>
-                                        <td><span class="badge badge-light-primary mr-1">{{ $row->work_location }}</span></td>
+                                        <td>
+                                            {{ number_format($row->budget_min) }} - {{ number_format($row->budget_max) }}
+                                        </td>
+                                        <td>{{ $row->work_location }}</td>
                                         <td class="text-right">
-                                            <a href="" class="btn btn-sm btn-primary" title="View"> Detail</a>
-                                            <a href="" class="btn btn-sm btn-success" title="Edit"> Edit</a>
-                                            <a href="" class="btn btn-sm btn-danger" title="Delete"> Delete</a>
+                                            <div class="btn-group">
+                                                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Select
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(0)">Detail</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Edit</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelected()">Delete</a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

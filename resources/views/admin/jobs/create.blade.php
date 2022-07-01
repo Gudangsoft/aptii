@@ -41,7 +41,7 @@
                                 <div class="card-body">
                                     <div class="media mb-4">
                                         <div class="avatar mr-75">
-                                            <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
+                                            <img src="{{ asset('storage/images/users').'/'.auth()->user()->profile_photo_path }}" width="38" height="38" alt="Avatar" />
                                         </div>
                                         <div class="media-body">
                                             <h6 class="mb-25">{{ auth()->user()->name }}</h6>
@@ -52,12 +52,12 @@
                                     <form action="{{ route('jobs.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                             <div class="form-group">
-                                                <label class="form-label" for="basic-icon-default-fullname">Title</label>
-                                                <input type="text" class="form-control dt-full-name" name="jobTitle" id="basic-icon-default-fullname" placeholder="Web Developer PT.Citamedia" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+                                                <label class="form-label" for="basic-icon-default-fullname">Job Title</label>
+                                                <input type="text" class="form-control dt-full-name" name="jobTitle" id="basic-icon-default-fullname" placeholder="Web Developer" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label" for="basic-icon-default-fullname">Jobs Role</label>
-                                                <input type="text" class="form-control dt-full-name" name="jobRole" id="basic-icon-default-fullname" placeholder="UI/UX Designer" name="user-fullname"/>
+                                                <label class="form-label" for="basic-icon-default-fullname">Company Name</label>
+                                            <input type="text" class="form-control dt-full-name" name="jobCompany" id="basic-icon-default-fullname" placeholder="PT.Citamedia" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label" for="basic-icon-default-uname">Type of role</label>
@@ -85,20 +85,31 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-label" for="user-role">Position</label>
+                                                <select id="jobsposition" class="select2 form-control" name="jobPosition">
+                                                    <optgroup label="Position">
+                                                        <option value="trial">Trial</option>
+                                                        <option value="junior">Junior</option>
+                                                        <option value="senior">Senior</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="form-label" for="user-role">Experience</label>
-                                                <select id="user-role" class="form-control" name="JobExperience">
-                                                    <option>Min</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                    <option value="10>">More than 10</option>
+                                                <select id="user-role" class="select2 form-control" name="jobExperience">
+                                                    <optgroup label="Minimum">
+                                                        <option value="1">1 Year</option>
+                                                        <option value="2">2 Year</option>
+                                                        <option value="3">3 Year</option>
+                                                        <option value="4">4 Year</option>
+                                                        <option value="5">5 Year</option>
+                                                        <option value="6">6 Year</option>
+                                                        <option value="7">7 Year</option>
+                                                        <option value="8">8 Year</option>
+                                                        <option value="9">9 Year</option>
+                                                        <option value="10">10 Year</option>
+                                                        <option value="10>">More than 10</option>
+                                                    </optgroup>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -136,6 +147,20 @@
                                                 <label class="form-label" for="user-role">Description</label>
                                                 <textarea class="form-control ckeditor" wire:name="jobDescription" id="" cols="30" rows="3" placeholder="Enter description jobs"></textarea>
                                             </div>
+                                            <div class="form-group">
+                                                <div class="border rounded p-2">
+                                                    <h4 class="mb-1">Company Logo</h4>
+                                                    <div class="media flex-column flex-md-row">
+                                                        <div class="media-body">
+                                                            <div class="d-inline-block">
+                                                                <div class="form-group mb-0">
+                                                                    <input class="w-50" type="file" id="pic-form" name="logo" enctype="multipart/form-data">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     </form>
@@ -145,57 +170,6 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Crop Photo</h5>
-                    <button type="button" class="close" id="closeAtas" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row" style="overflow: hidden;">
-                        <div class="col-md-4" style="width:25%;">
-                            <div class="nav nav-tabs" style="display: inline;" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <a id="16-9-tab" data-toggle="pill" href="#v-16-9" role="tab" aria-controls="v-16-9" aria-selected="true" style="padding:0px;color:#3a3a3a;">
-                                    <button class="btn btn-primary btn-block">16:9</button>
-                                    <div id="preview-16-9" class="text-center" style="visibility: hidden;"></div>
-                                </a>
-                                <a id="4-3-tab" data-toggle="pill" href="#v-4-3" role="tab" aria-controls="v-4-3" aria-selected="false" style="padding:0px;color:#3a3a3a;">
-                                    <button class="btn btn-primary btn-block">4:3</button>
-                                    <div id="preview-4-3" class="text-center" style="visibility: hidden;"></div>
-                                </a>
-                                <a id="1-1-tab" data-toggle="pill" href="#v-1-1" role="tab" aria-controls="v-1-1" aria-selected="false" style="padding:0px;color:#3a3a3a;">
-                                    <button class="btn btn-primary btn-block">1:1</button>
-                                    <div id="preview-1-1" style="visibility: hidden;"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="tab-content" id="v-pills-tabContent">
-                                <div class="tab-pane fade show active text-center" id="v-16-9" role="tabpanel" aria-labelledby="16-9-tab">
-                                    <div class="bg-primary text-white">16:9</div>
-                                    <img src="" id="16-9-show">
-                                </div>
-                                <div class="tab-pane fade text-center" id="v-4-3" role="tabpanel" aria-labelledby="4-3-tab">
-                                    <div class="bg-primary text-white">4:3</div>
-                                    <img src="" id="4-3-show"/>4:3</div>
-                                <div class="tab-pane fade text-center" id="v-1-1" role="tabpanel" aria-labelledby="1-1-tab">
-                                    <div class="bg-primary text-white">1:1</div>
-                                    <img src="" id="1-1-show"/>1:1</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Crop</button>
-                    <button type="button" class="btn btn-secondary" aria-label="Close" id="onClose">Close</button>
-                </div>
             </div>
         </div>
     </div>
