@@ -17,17 +17,35 @@ class JobsTable extends Component
     public $bulkDisabled = true;
     public $statusSelected = false;
     public $jobTitle, $jobRole, $jobType, $jobExperience, $jobLocation, $jobBudgetMin, $jobBudgetMax, $jobDescription;
+    public $search, $limitPerPage = 10, $changeLimitPage;
 
+    protected $queryString = ['search' => ['except' => '']];
     protected $listeners = [
-        'deleteConfirmed'
+        'deleteConfirmed',
+        'jobs-table' => 'jobsTable'
     ];
 
+    public function jobsTable(){
+        $this->limitPerPage = $this->limitPerPage + 6;
+    }
 
     public function render()
     {
+        if(!empty($this->changeLimitPage)){
+            $this->limitPerPage = $this->changeLimitPage;
+        }
+
+        $data = Jobs::orderByDesc('created_at')->paginate($this->limitPerPage);
+        if($this->search != null){
+            $data = Jobs::where('title', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate($this->limitPerPage);
+        }
+
+        $this->emit('postStore');
+        $this->dispatchBrowserEvent('iconLoad');
+
         $this->bulkDisabled = count($this->selectJobs) < 1;
         return view('livewire.jobs.jobs-table', [
-            'data' => Jobs::orderByDesc('created_at')->paginate(10),
+            'data' => $data,
         ]);
     }
 

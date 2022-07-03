@@ -33,23 +33,48 @@
         <div class="row" id="basic-table">
             <div class="col-12">
                 <div class="card">
-                    @if (count($selectJobs) > 0)
                     <div class="card-body">
-                        <p class="card-text">
-                            {{ count($selectJobs) }} data selected, <button wire:click="unselectedJobs()" class="btn btn-sm btn-primary">Cancel</button>
-                            <div class="btn-group">
-                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Actions
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(0)">Hidden</a>
-                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Show</a>
-                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelected()">Delete</a>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                @if (count($selectJobs) > 0)
+                                <p class="card-text">
+                                    {{ count($selectJobs) }} data selected, <button wire:click="unselectedJobs()" class="btn btn-sm btn-primary">Cancel</button>
+                                    <div class="btn-group">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Actions
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
+                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(0)">Hidden</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Show</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelected()">Delete</a>
+                                        </div>
+                                    </div>
+                                </p>
+                                @endif
+                            </div>
+                            <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon-search1"><i data-feather="search"></i></span>
+                                    </div>
+                                    <input type="text" wire:model="search" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search1" />
                                 </div>
                             </div>
-                        </p>
+                            <div class="col-lg-2 col-sm-12 d-flex justify-content-end">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon-search1">Page</i></span>
+                                    </div>
+                                    <select class="form-control" wire:model="changeLimitPage" id="">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    @endif
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -72,7 +97,7 @@
                                         <td>
                                             <span class="font-weight-bold">{{ $row->title }}</span>
                                             @if ($row->status < 1)
-                                                <span class="badge badge-light-danger">hidden</span>
+                                                <i class="text-danger" data-feather="eye-off"></i>
                                             @endif
                                         </td>
                                         <td>{{ $row->type }}</td>
@@ -98,7 +123,7 @@
                                     </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="5" class="pt-2 pb-2">Data not found !</td>
+                                    <td colspan="5" class="pt-2 pb-1"><strong>Data not found !</strong></td>
                                 </tr>
                                 @endforelse
 
@@ -130,6 +155,15 @@
 
             window.addEventListener('closeFormModal', event => {
                 $("#create-modal").modal('hide');
+            })
+
+            window.addEventListener('iconLoad', event => {
+                if (feather) {
+                    feather.replace({
+                        width: 14,
+                        height: 14
+                    });
+                }
             })
         </script>
     @endpush
