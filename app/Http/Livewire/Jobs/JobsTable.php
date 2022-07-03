@@ -73,4 +73,8 @@ class JobsTable extends Component
         dd($this->jobTitle.$this->jobRole.$this->jobType.$this->jobExperience.$this->jobLocation.$this->jobBudgetMin.$this->jobBudgetMax.$this->jobDescription);
     }
 
+    public function editJobs($id){
+        dd($id);
+    }
+
 }

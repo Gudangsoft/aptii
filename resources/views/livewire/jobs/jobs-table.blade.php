@@ -90,7 +90,7 @@
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
                                                     <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(0)">Detail</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Edit</a>
+                                                    <a class="dropdown-item" href="{{ route('jobs.edit', $row->id) }}">Edit</a>
                                                     <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelected()">Delete</a>
                                                 </div>
                                             </div>

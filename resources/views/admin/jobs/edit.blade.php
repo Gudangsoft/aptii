@@ -9,14 +9,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Create New Jobs</h2>
+                            <h2 class="content-header-title float-left mb-0">Edit Jobs</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('jobs.index') }}">Jobs</a>
                                     </li>
-                                    <li class="breadcrumb-item active">New
+                                    <li class="breadcrumb-item active">Edit
                                     </li>
                                 </ol>
                             </div>
@@ -25,7 +25,6 @@
                 </div>
             </div>
             <div class="content-body">
-                <!-- Blog Edit -->
                 <div class="blog-edit-wrapper">
                     <div class="row">
                         <div class="col-12">
@@ -41,37 +40,38 @@
                                         </div>
                                     </div>
                                     <!-- Form -->
-                                    <form action="{{ route('jobs.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('jobs.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
+                                        @method('PUT')
                                             <div class="form-group">
                                                 <label class="form-label" for="basic-icon-default-fullname">Job Title</label>
-                                                <input type="text" class="form-control dt-full-name" name="jobTitle" id="basic-icon-default-fullname" placeholder="Web Developer" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+                                                <input type="text" class="form-control dt-full-name" name="jobTitle" value="{{ $data->title }}" id="basic-icon-default-fullname" placeholder="Web Developer" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label" for="basic-icon-default-fullname">Company Name</label>
-                                            <input type="text" class="form-control dt-full-name" name="jobCompany" id="basic-icon-default-fullname" placeholder="PT.Citamedia" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+                                            <input type="text" class="form-control dt-full-name" name="jobCompany" value="{{ $data->company_name }}" id="basic-icon-default-fullname" placeholder="PT.Citamedia" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label" for="basic-icon-default-uname">Type of role</label>
                                                 <div class="demo-inline-spacing">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio1" name="jobType" class="custom-control-input" value="Full-Time" checked />
+                                                        <input type="radio" id="customRadio1" name="jobType" class="custom-control-input" value="Full-Time" {{ $data->type == 'Full-Time' ? 'checked' : '' }} />
                                                         <label class="custom-control-label" for="customRadio1">Full-Time</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio2" name="jobType" class="custom-control-input"value=">Part-Time" />
+                                                        <input type="radio" id="customRadio2" name="jobType" class="custom-control-input"value="Part-Time" {{ $data->type == 'Part-Time' ? 'checked' : '' }}/>
                                                         <label class="custom-control-label" for="customRadio2">Part-Time</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio3" name="jobType" class="custom-control-input"value="Contract" />
+                                                        <input type="radio" id="customRadio3" name="jobType" class="custom-control-input"value="Contract" {{ $data->type == 'Contract' ? 'checked' : '' }} />
                                                         <label class="custom-control-label" for="customRadio3">Contract</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio4" name="jobType" class="custom-control-input"value="Temporary" />
+                                                        <input type="radio" id="customRadio4" name="jobType" class="custom-control-input"value="Temporary" {{ $data->type == 'Temporary' ? 'checked' : '' }} />
                                                         <label class="custom-control-label" for="customRadio4">Temporary</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio5" name="jobType" class="custom-control-input"value="Internship" />
+                                                        <input type="radio" id="customRadio5" name="jobType" class="custom-control-input"value="Internship" {{ $data->type == 'Internship' ? 'checked' : '' }}/>
                                                         <label class="custom-control-label" for="customRadio5">Internship</label>
                                                     </div>
                                                 </div>
@@ -79,6 +79,9 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="user-role">Position</label>
                                                 <select id="jobsposition" class="select2 form-control" name="jobPosition">
+                                                    @if ($data->position > 0)
+                                                        <option value="{{ $data->position }}">{{ ucwords($data->position) }}</option>
+                                                    @endif
                                                     <optgroup label="Position">
                                                         <option value="trial">Trial</option>
                                                         <option value="junior">Junior</option>
@@ -89,6 +92,9 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="user-role">Experience</label>
                                                 <select id="user-role" class="select2 form-control" name="jobExperience">
+                                                    @if ($data->experience > 0)
+                                                        <option value="{{ $data->experience }}">{{ ucwords($data->experience) }} Year</option>
+                                                    @endif
                                                     <optgroup label="Minimum">
                                                         <option value="1">1 Year</option>
                                                         <option value="2">2 Year</option>
@@ -106,7 +112,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label" for="user-role">Work Location</label>
-                                                <textarea class="form-control" name="jobLocation" id="" cols="30" rows="3" placeholder="Jl. Jaya Sirayu, Mruyung, Sudagaran, Kec. Banyumas, Kabupaten Banyumas, Jawa Tengah 53192"></textarea>
+                                                <textarea class="form-control" name="jobLocation" id="" cols="30" rows="3">{{ $data->work_location }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label" for="user-role">Budget</label>
@@ -116,7 +122,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">IDR</span>
                                                             </div>
-                                                            <input type="number" class="form-control" name="jobBudgetMin" placeholder="Minimum" aria-label="Amount (to the nearest dollar)"/>
+                                                            <input type="number" class="form-control" name="jobBudgetMin" value="{{ $data->budget_min }}" placeholder="Minimum" aria-label="Amount (to the nearest dollar)"/>
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">.00</span>
                                                             </div>
@@ -127,7 +133,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">IDR</span>
                                                             </div>
-                                                            <input type="number" class="form-control" name="jobBudgetMax" placeholder="Maximum" aria-label="Amount (to the nearest dollar)"/>
+                                                            <input type="number" class="form-control" name="jobBudgetMax"  value="{{ $data->budget_max }}" placeholder="Maximum" aria-label="Amount (to the nearest dollar)"/>
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">.00</span>
                                                             </div>
@@ -137,12 +143,17 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label" for="user-role">Description</label>
-                                                <textarea class="form-control ckeditor" wire:name="jobDescription" id="" cols="30" rows="3" placeholder="Enter description jobs"></textarea>
+                                                <textarea class="form-control ckeditor" wire:name="jobDescription" id="" cols="30" rows="3">{{ $data->description }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <div class="border rounded p-2">
                                                     <h4 class="mb-1">Company Logo</h4>
                                                     <div class="media flex-column flex-md-row">
+                                                        @if ($data->image != null)
+                                                            <img src="{{ asset('storage') }}/jobs/images/{{ $data->image }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                        @else
+                                                            <img src="{{ asset('assets') }}/images/slider/03.jpg" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                                                        @endif
                                                         <div class="media-body">
                                                             <div class="d-inline-block">
                                                                 <div class="form-group mb-0">
@@ -161,7 +172,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

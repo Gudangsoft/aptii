@@ -16,22 +16,11 @@ class JobsController extends Controller
         return view('admin.jobs.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.jobs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // dd($request);
@@ -82,27 +71,60 @@ class JobsController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        return view('admin.jobs.edit', [
+            'data' => Jobs::findOrFail($id),
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $jobs = Jobs::findOrFail($id);
+
+        if($request->logo != null){
+            if (public_path('/storage/jobs/images/'.$jobs->image)) {
+                unlink(public_path('/storage/jobs/images/'.$jobs->image));
+            }
+            $image = $request->file('logo');
+            $input['imagename'] = time().'.'.$image->extension();
+
+            $destinationPath = public_path('/storage/jobs/images/');
+            $img = Image::make($image->path());
+            $img->resize(200, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
+
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['imagename']);
+        }
+
+        try {
+            // $jobs = Jobs::findOrFail($id);
+            $jobs->title = $request->jobTitle;
+            $jobs->type = $request->jobType;
+            if($request->logo != null){
+                $jobs->image = $input['imagename'];
+            }
+            $jobs->position = $request->jobPosition; // senior or junior
+            $jobs->experience = $request->jobExperience;
+            $jobs->work_location = $request->jobLocation;
+            $jobs->budget_min = $request->jobBudgetMin;
+            $jobs->budget_max = $request->jobBudgetMax;
+            $jobs->status = 1;
+            $jobs->company_name = $request->jobCompany;
+            $jobs->created_by = auth()->user()->id;
+
+            $jobs->save();
+
+            Alert::success('Success', 'Jobs updated successfully');
+            return redirect()->route('jobs.index');
+        } catch (Exception $error) {
+            Alert::error('Error', $error->getMessage());
+            return back();
+        }
     }
 
     /**
