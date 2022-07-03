@@ -5,10 +5,11 @@ namespace App\Http\Livewire\Jobs;
 use App\Models\Jobs\Jobs;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class JobsTable extends Component
 {
-    use WithPagination;
+    use WithPagination, LivewireAlert;
     protected $paginationTheme = 'bootstrap';
 
     public $selectJobs = [];
@@ -17,7 +18,9 @@ class JobsTable extends Component
     public $statusSelected = false;
     public $jobTitle, $jobRole, $jobType, $jobExperience, $jobLocation, $jobBudgetMin, $jobBudgetMax, $jobDescription;
 
-    // protected $listeners = ['launchModal'];
+    protected $listeners = [
+        'deleteConfirmed'
+    ];
 
 
     public function render()
@@ -73,8 +76,23 @@ class JobsTable extends Component
         dd($this->jobTitle.$this->jobRole.$this->jobType.$this->jobExperience.$this->jobLocation.$this->jobBudgetMin.$this->jobBudgetMax.$this->jobDescription);
     }
 
-    public function editJobs($id){
-        dd($id);
+    public function deleteSingleSelected($id){
+        $this->selected_id = $id;
+
+        $this->alert('question', 'Yakin data akan dihapus?', [
+            'showConfirmButton' => true,
+            'showCancelButton' => true,
+            'confirmButtonText' => 'Hapus',
+            'onConfirmed' => 'deleteConfirmed',
+            'position' => 'center',
+            'timer' => null,
+        ]);
     }
 
+    public function deleteConfirmed(){
+        Jobs::findOrFail($this->selected_id)->delete();
+        $this->alert('success', 'Data berhasil dihapus', [
+            'position' => 'center',
+        ]);
+    }
 }

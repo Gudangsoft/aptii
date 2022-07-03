@@ -52,7 +52,7 @@ class JobsController extends Controller
 
             $jobs->save();
 
-            Alert::success('Success', 'Jobs created successfully');
+            Alert::toast('Jobs created successfully', 'success');
             return redirect()->route('jobs.index');
         } catch (Exception $error) {
             Alert::error('Error', $error->getMessage());
@@ -119,7 +119,7 @@ class JobsController extends Controller
 
             $jobs->save();
 
-            Alert::success('Success', 'Jobs updated successfully');
+            Alert::toast('Jobs updated successfully', 'success');
             return redirect()->route('jobs.index');
         } catch (Exception $error) {
             Alert::error('Error', $error->getMessage());
