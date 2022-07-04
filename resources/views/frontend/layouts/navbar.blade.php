@@ -31,47 +31,9 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
-                    <a class="nav-link" href="javascript:void(0)" id="pagesdoropdown" role="button" data-bs-toggle="dropdown">
-                        Pages
-                        <div class="arrow-down"></div>
+                    <a class="nav-link" href="/jobs">
+                        Jobs
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-center" aria-labelledby="pagesdoropdown">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <span class="dropdown-header">Jobs</span>
-                                <div>
-                                    <a class="dropdown-item" href="job-list.html">Job List</a>
-                                    <a class="dropdown-item" href="job-list-2.html">Job List-2</a>
-                                    <a class="dropdown-item" href="job-grid.html">Job Grid</a>
-                                    <a class="dropdown-item" href="job-grid-2.html">Job Grid-2</a>
-                                    <a class="dropdown-item" href="job-details.html">Job Details</a>
-                                    <a class="dropdown-item" href="job-categories.html">Jobs Categories</a>
-                                </div>
-                            </div><!--end col-->
-                            <div class="col-lg-4">
-                                <span class="dropdown-header">Candidates / Companys</span>
-                                <div>
-                                    <a class="dropdown-item" href="candidate-list.html">Candidate List</a>
-                                    <a class="dropdown-item" href="candidate-grid.html">Candidate Grid</a>
-                                    <a class="dropdown-item" href="candidate-details.html">Candidate Details</a>
-                                    <a class="dropdown-item" href="company-list.html">Company List</a>
-                                    <a class="dropdown-item" href="company-details.html">Company Details</a>
-                                </div>
-                            </div><!--end col-->
-                            <div class="col-lg-4">
-                                <span class="dropdown-header">Extra Pages</span>
-                                <div>
-                                    <a class="dropdown-item" href="sign-up.html">Sign Up</a>
-                                    <a class="dropdown-item" href="sign-in.html">Sign In</a>
-                                    <a class="dropdown-item" href="sign-out.html">Sign Out</a>
-                                    <a class="dropdown-item" href="reset-password.html">Reset Password</a>
-                                    <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
-                                    <a class="dropdown-item" href="404-error.html">404 Error</a>
-                                    <a class="dropdown-item" href="components.html">Components</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/posts">

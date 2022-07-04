@@ -114,7 +114,7 @@
                                                     Select
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(0)">Detail</a>
+                                                    <a class="dropdown-item" href="{{ config('app.url') }}/jobs/">View</a>
                                                     <a class="dropdown-item" href="{{ route('jobs.edit', $row->id) }}">Edit</a>
                                                     <a class="dropdown-item" wire:click="deleteSingleSelected({{ $row->id }})">Delete</a>
                                                 </div>

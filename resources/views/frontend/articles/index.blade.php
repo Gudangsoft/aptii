@@ -98,11 +98,6 @@
                                 <p class="text-muted">
                                     {!! \Illuminate\Support\Str::words($post->content, 20) !!}
                                 </p>
-                                <div class="d-flex align-items-center mt-4">
-                                    <div class="flex-shrink-0">
-                                        <img src="{{ asset('frontend') }}/assets/images/user/img-02.jpg" alt="" class="avatar-sm rounded-circle">
-                                    </div>
-                                </div>
                             </article>
                         </div>
                     @empty

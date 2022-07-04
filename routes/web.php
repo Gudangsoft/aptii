@@ -16,6 +16,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ScreenController;
 use App\Http\Controllers\Frontend\ScreensController;
 use App\Http\Controllers\Admin\Jobs\JobsController;
+use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Livewire\ArticleCategoriesTable;
 
 /*
@@ -32,6 +33,7 @@ use App\Http\Livewire\ArticleCategoriesTable;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/post/{slug}', [ScreenController::class, 'post']);
 Route::get('/posts', [ScreensController::class, 'posts']);
+Route::get('/jobs', [FrontendJobsController::class, 'index'])->name('jobs-list');
 
 
 

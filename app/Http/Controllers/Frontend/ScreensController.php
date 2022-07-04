@@ -16,4 +16,5 @@ class ScreensController extends Controller
             'headline'  => $page->headlineArticles(),
         ]);
     }
+
 }
