@@ -340,12 +340,12 @@
                                         <div class="row align-items-center">
                                             <div class="col-md-2">
                                                 <div class="text-center mb-4 mb-lg-0">
-                                                    <a href="company-details.html"><img src="{{ asset('frontend') }}/assets/images/featured-job/img-01.png" alt="" class="img-fluid rounded-3"></a>
+                                                    <a href="{{ route('jobs-detail', $item->slug) }}"><img src="{{ asset('frontend') }}/assets/images/featured-job/img-01.png" alt="" class="img-fluid rounded-3"></a>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="mb-2 mb-md-0">
-                                                    <h5 class="fs-18 mb-0"><a href="job-details.html" class="text-dark">{{ $item->title }}</a></h5>
+                                                    <h5 class="fs-18 mb-0"><a href="{{ route('jobs-detail', $item->slug) }}" class="text-dark">{{ $item->title }}</a></h5>
                                                     <p class="text-muted fs-14 mb-0">Creative Agency</p>
                                                 </div>
                                             </div>
@@ -390,13 +390,13 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-lg-12 mt-4 pt-2 d-flex justify-content-center">
                                 {{ $data->links() }}
-                            </div><!--end col-->
-                        </div>
+                            </div>
+                        </div> --}}
                     </div>
-                </div><!--end col-->
+                </div>
 
                 <!-- START SIDE-BAR -->
                 <div class="col-lg-3">

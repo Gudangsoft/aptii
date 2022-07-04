@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Jobs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Jobs\Jobs;
 use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -39,6 +40,7 @@ class JobsController extends Controller
         try {
             $jobs = new Jobs();
             $jobs->title = $request->jobTitle;
+            $jobs->slug = Str::slug($request->jobTitle);
             $jobs->type = $request->jobType;
             $jobs->image = $input['imagename'];
             $jobs->position = $request->jobPosition; // senior or junior
@@ -104,6 +106,7 @@ class JobsController extends Controller
         try {
             // $jobs = Jobs::findOrFail($id);
             $jobs->title = $request->jobTitle;
+            $jobs->slug = Str::slug($request->jobTitle);
             $jobs->type = $request->jobType;
             if($request->logo != null){
                 $jobs->image = $input['imagename'];
