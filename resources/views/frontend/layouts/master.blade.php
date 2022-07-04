@@ -128,6 +128,8 @@
     <!-- END layout-wrapper -->
 
     <!-- JAVASCRIPT -->
+    @livewireScripts
+
     <script src="{{ asset('frontend') }}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
 
@@ -148,7 +150,6 @@
 
     <!-- App Js -->
     <script src="{{ asset('frontend') }}/assets/js/app.js"></script>
-    @livewireScripts
     @stack('scripts')
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

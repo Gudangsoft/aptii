@@ -34,6 +34,8 @@
         </div>
     </div>
     @push('scripts')
+
+    <script src="{{ asset('frontend') }}/assets/js/pages/area-filter-range.init.js"></script>
     <script>
         window.onscroll = function(ev){
             if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {

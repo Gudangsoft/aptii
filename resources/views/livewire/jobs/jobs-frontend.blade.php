@@ -332,62 +332,86 @@
 
                         <div>
                             @foreach ($data as $item)
-                                <div class="job-box card mt-5">
-                                    <div class="bookmark-label text-center">
-                                        <a href="javascript:void(0)" class="align-middle text-white"><i class="mdi mdi-star"></i></a>
+                            <div class="job-box card mt-4">
+                                <div class="p-4">
+                                    <div class="row">
+                                        <div class="col-lg-10">
+                                            <div class="mt-3 mt-lg-0">
+                                                <h5 class="fs-17 mb-1"><a href="{{ route('jobs-detail', $item->slug) }}" class="text-dark">{{ $item->title }}</a> <small class="text-muted fw-normal">{{ $item->experience ? $item->experience.' year experience' : []}}</small></h5>
+                                                <ul class="list-inline mb-0">
+                                                    <li class="list-inline-item">
+                                                        <p class="text-muted fs-14 mb-0">{{ ucfirst($item->position) }}</p>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> {{ $item->work_location }}</p>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> {{ number_format($item->budget_min) }} - {{ number_format($item->budget_max) }} / Bulan</p>
+                                                    </li>
+                                                </ul>
+                                                <div class="mt-2">
+                                                    <span class="badge bg-soft-success mt-1">{{ $item->type }}</span>
+                                                    <span class="badge bg-soft-primary mt-1">{{ $item->experience ? $item->experience.' tahun pengalaman' : []}}</span>
+                                                </div>
+                                            </div>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                    <div class="favorite-icon">
+                                        <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a>
                                     </div>
-                                    <div class="p-4">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-2">
-                                                <div class="text-center mb-4 mb-lg-0">
-                                                    <a href="{{ route('jobs-detail', $item->slug) }}"><img src="{{ asset('frontend') }}/assets/images/featured-job/img-01.png" alt="" class="img-fluid rounded-3"></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="mb-2 mb-md-0">
-                                                    <h5 class="fs-18 mb-0"><a href="{{ route('jobs-detail', $item->slug) }}" class="text-dark">{{ $item->title }}</a></h5>
-                                                    <p class="text-muted fs-14 mb-0">Creative Agency</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="d-flex mb-2">
-                                                    <div class="flex-shrink-0">
-                                                        <i class="mdi mdi-map-marker text-primary me-1"></i>
-                                                    </div>
-                                                    <p class="text-muted"> {{  $item->work_location }}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="d-flex mb-0">
-                                                    <div class="flex-shrink-0">
-                                                        <i class="uil uil-clock-three text-primary me-1"></i>
-                                                    </div>
-                                                    <p class="text-muted mb-0"> {{ $item->created_at->diffForHumans() }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div>
-                                                    <span class="badge bg-soft-success fs-13 mt-1">{{ $item->type }}</span>
-                                                </div>
+                                </div>
+                                <div class="p-3 bg-light">
+                                    <div class="row justify-content-between">
+                                        <div class="col-md-8">
+                                            <div>
+                                                <ul class="list-inline mb-0">
+                                                    <li class="list-inline-item"><i class="uil uil-tag"></i> Perusahaan :</li>
+                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">{{ $item->company_name }}</a></li>
+                                                </ul>
                                             </div>
                                         </div>
+                                        <!--end col-->
+                                        <div class="col-md-3">
+                                            <div class="text-md-end">
+                                                <a href="#applyNow{{ $item->id }}" data-bs-toggle="modal" class="primary-link">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
                                     </div>
-                                    <div class="p-3 bg-light">
-                                        <div class="row justify-content-between">
-                                            <div class="col-md-4">
-                                                <div>
-                                                    <p class="text-muted mb-0"><span class="text-dark">Experience :</span> {{ $item->experience }} years</p>
-                                                </div>
+                                    <!--end row-->
+                                </div>
+                            </div>
+                            <div class="modal fade" id="applyNow{{ $item->id }}" tabindex="-1" aria-labelledby="applyNow" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body p-5">
+                                            <div class="text-center mb-4">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Apply For This Job</h5>
                                             </div>
-                                            <div class="col-lg-2 col-md-3">
-                                                <div class="text-start text-md-end">
-                                                    <a href="#applyNow" data-bs-toggle="modal" class="primary-link">Apply Now <i
-                                                            class="mdi mdi-chevron-double-right"></i></a>
-                                                </div>
+                                            <div class="position-absolute end-0 top-0 p-3">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
+                                            <div class="mb-3">
+                                                <label for="nameControlInput" class="form-label">Name</label>
+                                                <input type="text" class="form-control" id="nameControlInput" placeholder="Enter your name">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="emailControlInput2" class="form-label">Email Address</label>
+                                                <input type="email" class="form-control" id="emailControlInput2" placeholder="Enter your email">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="messageControlTextarea" class="form-label">Message</label>
+                                                <textarea class="form-control" id="messageControlTextarea" rows="4" placeholder="Enter your message"></textarea>
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="form-label" for="inputGroupFile01">Resume Upload</label>
+                                                <input type="file" class="form-control" id="inputGroupFile01">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary w-100">Send Application</button>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                         {{-- <div class="row">
