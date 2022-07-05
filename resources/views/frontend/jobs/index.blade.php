@@ -1,4 +1,6 @@
 <x-frontend-master>
+@include('sweetalert::alert')
+
     <div class="main-content">
         <div class="page-content">
             <section class="page-title-box">
@@ -34,7 +36,7 @@
         </div>
     </div>
     @push('scripts')
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/pages/area-filter-range.init.js"></script>
     <script>
         window.onscroll = function(ev){
@@ -42,6 +44,26 @@
                 window.livewire.emit('load-more');
             }
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+            Livewire.hook('message.processed', (message, component) => {
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
+            })
+        });
+
+        window.addEventListener('openModalApply', event => {
+            $("#applyNow").modal('show');
+        });
+
+        window.addEventListener('closeModalApply', event => {
+            $("#applyNow").modal('hide');
+        });
     </script>
     @endpush
 </x-frontend-master>

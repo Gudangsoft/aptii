@@ -370,45 +370,48 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <!--end col-->
+
                                         <div class="col-md-3">
                                             <div class="text-md-end">
                                                 <a href="#applyNow{{ $item->id }}" data-bs-toggle="modal" class="primary-link">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
                                             </div>
                                         </div>
-                                        <!--end col-->
                                     </div>
-                                    <!--end row-->
                                 </div>
                             </div>
                             <div class="modal fade" id="applyNow{{ $item->id }}" tabindex="-1" aria-labelledby="applyNow" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
-                                        <div class="modal-body p-5">
-                                            <div class="text-center mb-4">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Apply For This Job</h5>
+                                        <form action="apply" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="modal-body p-5">
+                                                <div class="text-center mb-4">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Apply For This Job</h5>
+                                                </div>
+                                                <div class="position-absolute end-0 top-0 p-3">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="nameControlInput" class="form-label">Name</label>
+                                                    <input type="hidden" class="form-control" name="jobsId" value="{{ $item->id }}">
+                                                    <input type="text" class="form-control" name="username" id="nameControlInput" placeholder="Enter your name">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="emailControlInput2" class="form-label">Email Address</label>
+                                                    <input type="email" class="form-control"name="email" id="emailControlInput2" placeholder="Enter your email">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="messageControlTextarea" class="form-label">Message</label>
+                                                    <textarea class="form-control" name="message" id="messageControlTextarea" rows="4" placeholder="Enter your message"></textarea>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <label class="form-label" for="inputGroupFile01">Resume Upload</label>
+                                                    <input type="file" class="form-control" name="resume" id="inputGroupFile01">
+                                                    @error('resume') <span class="error">{{ $message }}</span> @enderror
+                                                </div>
+                                                <button type="submit" class="btn btn-primary w-100">Send</button>
                                             </div>
-                                            <div class="position-absolute end-0 top-0 p-3">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="nameControlInput" class="form-label">Name</label>
-                                                <input type="text" class="form-control" id="nameControlInput" placeholder="Enter your name">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="emailControlInput2" class="form-label">Email Address</label>
-                                                <input type="email" class="form-control" id="emailControlInput2" placeholder="Enter your email">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="messageControlTextarea" class="form-label">Message</label>
-                                                <textarea class="form-control" id="messageControlTextarea" rows="4" placeholder="Enter your message"></textarea>
-                                            </div>
-                                            <div class="mb-4">
-                                                <label class="form-label" for="inputGroupFile01">Resume Upload</label>
-                                                <input type="file" class="form-control" id="inputGroupFile01">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary w-100">Send Application</button>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

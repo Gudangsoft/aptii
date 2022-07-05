@@ -36,6 +36,7 @@ Route::get('/post/{slug}', [ScreenController::class, 'post']);
 Route::get('/posts', [ScreensController::class, 'posts']);
 Route::get('/jobs/{slug}', [FrontendJobsController::class, 'show'])->name('jobs-detail');
 Route::get('/jobs', [FrontendJobsController::class, 'index'])->name('jobs-list');
+Route::post('apply', [FrontendJobsController::class, 'store'])->name('jobs-apply');
 
 
 

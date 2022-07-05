@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('jobs_id');
             $table->string('username')->nullable();
             $table->string('email')->nullable();
-            $table->text('address')->nullable();
+            $table->text('message')->nullable();
             $table->text('resume')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
