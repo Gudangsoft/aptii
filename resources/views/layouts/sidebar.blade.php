@@ -56,7 +56,7 @@
                 <ul class="menu-content">
                     <li><a class="d-flex align-items-center" href="{{ route('jobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Jobs List</span></a>
                     </li>
-                    {{-- <li><a class="d-flex align-items-center" href="{{ route('categories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Categories</span></a> --}}
+                    <li><a class="d-flex align-items-center" href="{{ route('appliedjobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Jobs Applied</span></a>
                     </li>
                     {{-- <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Setting</span></a> --}}
                     </li>
