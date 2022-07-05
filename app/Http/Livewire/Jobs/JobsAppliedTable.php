@@ -3,6 +3,10 @@
 namespace App\Http\Livewire\Jobs;
 
 use Livewire\Component;
+use App\Models\Jobs\JobsApplied;
+use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 
 class JobsAppliedTable extends Component
 {
@@ -32,9 +36,9 @@ class JobsAppliedTable extends Component
             $this->limitPerPage = $this->changeLimitPage;
         }
 
-        $data = Jobs::orderByDesc('created_at')->paginate($this->limitPerPage);
+        $data = JobsApplied::orderByDesc('created_at')->paginate($this->limitPerPage);
         if($this->search != null){
-            $data = Jobs::where('title', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate($this->limitPerPage);
+            $data = JobsApplied::where('username', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate($this->limitPerPage);
         }
 
         $this->emit('postStore');
@@ -47,7 +51,7 @@ class JobsAppliedTable extends Component
     }
 
     public function deleteSelected(){
-        Jobs::query()
+        JobsApplied::query()
             ->whereIn('id', $this->selectJobs)
             ->delete();
         $this->selectJobs = [];
@@ -56,7 +60,7 @@ class JobsAppliedTable extends Component
 
     public function selectAll(){
         if($this->selectAll == true){
-            $this->selectJobs = Jobs::pluck('id');
+            $this->selectJobs = JobsApplied::pluck('id');
             $this->statusSelected = true;
         }else{
             $this->selectJobs = [];
@@ -71,7 +75,7 @@ class JobsAppliedTable extends Component
     }
 
     public function updateStatus($value){
-        Jobs::query()
+        JobsApplied::query()
             ->whereIn('id', $this->selectJobs)
             ->update([
                 'status' => $value
@@ -105,7 +109,7 @@ class JobsAppliedTable extends Component
     }
 
     public function deleteConfirmed(){
-        Jobs::findOrFail($this->selected_id)->delete();
+        JobsApplied::findOrFail($this->selected_id)->delete();
         $this->alert('success', 'Data berhasil dihapus', [
             'position' => 'center',
         ]);

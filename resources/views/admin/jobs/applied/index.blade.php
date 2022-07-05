@@ -4,7 +4,7 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
-            @livewire('jobs.jobs-table')
+            @livewire('jobs.jobs-applied-table')
         </div>
     </div>
 </x-master-layouts>
