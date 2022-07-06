@@ -43,7 +43,7 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
                                             <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(0)">Hidden</a>
                                             <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Show</a>
-                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelected()">Delete</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelectedConfirm()">Delete</a>
                                         </div>
                                     </div>
                                 </p>
@@ -80,7 +80,7 @@
                                     <th>Title</th>
                                     <th>Status</th>
                                     <th>Created By</th>
-                                    <th class="text-center">Actions</th>
+                                    <th class="text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -109,7 +109,7 @@
                                                     Select
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                                    <a class="dropdown-item" href="editCategory({{ $row->id }})">Edit</a>
+                                                    <a class="dropdown-item" href="#" wire:click="editJobsCategory({{ $row->id }})">Edit</a>
                                                     <a class="dropdown-item" wire:click="deleteSingleSelected({{ $row->id }})">Delete</a>
                                                 </div>
                                             </div>
@@ -131,6 +131,25 @@
             </div>
         </div>
     </div>
+    <div class="modal fade text-left modal-primary" id="category-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel160">Edit Jobs Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" wire:model.defer="title">
+                </div>
+                <div class="modal-footer">
+                    <button wire:click.prevent="updateJobsCategory()" type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @push('vendor-css')
         <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
     @endpush
@@ -143,12 +162,12 @@
             });
         </script>
         <script>
-            window.addEventListener('openFormModal', event => {
-                $("#create-modal").modal('show');
+            window.addEventListener('openCategoryModal', event => {
+                $("#category-modal").modal('show');
             })
 
-            window.addEventListener('closeFormModal', event => {
-                $("#create-modal").modal('hide');
+            window.addEventListener('closeCategoryModal', event => {
+                $("#category-modal").modal('hide');
             })
 
             window.addEventListener('iconLoad', event => {

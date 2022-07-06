@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Jobs;
 use App\Models\Jobs\JobsCategory;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class JobsCategoryTable extends Component
@@ -22,6 +23,7 @@ class JobsCategoryTable extends Component
     protected $queryString = ['search' => ['except' => '']];
     protected $listeners = [
         'deleteConfirmed',
+        'deleteSelected',
         'jobs-table' => 'jobsCategoryTable'
     ];
 
@@ -49,6 +51,18 @@ class JobsCategoryTable extends Component
         ]);
     }
 
+    public function deleteSelectedConfirm(){
+        $this->alert('question', 'Yakin data akan dihapus?', [
+            'showConfirmButton' => true,
+            'showCancelButton' => true,
+            'confirmButtonText' => 'Hapus',
+            'onConfirmed' => 'deleteSelected',
+            'position' => 'center',
+            'timer' => null,
+        ]);
+
+    }
+
     public function deleteSelected(){
         JobsCategory::query()
             ->whereIn('id', $this->selectJobs)
@@ -61,7 +75,21 @@ class JobsCategoryTable extends Component
         $data = JobsCategory::findOrFail($id);
         $this->categoryId = $id;
         $this->title = $data->title;
-        $this->dispatchBrowserEvent('iconLoad');
+
+        $this->dispatchBrowserEvent('openCategoryModal');
+    }
+
+    public function updateJobsCategory(){
+        $save = JobsCategory::findOrFail($this->categoryId);
+        $save->title = $this->title;
+        $save->slug = Str::slug($this->title);
+        $save->save();
+
+        $this->alert('success', 'Category update successfully...', [
+            'position' => 'center',
+        ]);
+
+        $this->dispatchBrowserEvent('closeCategoryModal');
     }
 
     public function selectAll(){
@@ -90,15 +118,6 @@ class JobsCategoryTable extends Component
         $this->selectJobs = [];
         $this->selectAll = false;
         $this->statusSelected = false;
-    }
-
-    public function createJobsModal()
-    {
-        $this->dispatchBrowserEvent('openFormModal');
-    }
-
-    public function saveJobs(){
-        // dd($this->jobTitle.$this->jobRole.$this->jobType.$this->jobExperience.$this->jobLocation.$this->jobBudgetMin.$this->jobBudgetMax.$this->jobDescription);
     }
 
     public function deleteSingleSelected($id){
