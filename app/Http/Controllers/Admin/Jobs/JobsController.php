@@ -49,6 +49,7 @@ class JobsController extends Controller
             $jobs->budget_min = $request->jobBudgetMin;
             $jobs->budget_max = $request->jobBudgetMax;
             $jobs->status = 1;
+            $jobs->tags = $request->jobTags;
             $jobs->company_name = $request->jobCompany;
             $jobs->created_by = auth()->user()->id;
 
@@ -117,6 +118,7 @@ class JobsController extends Controller
             $jobs->budget_min = $request->jobBudgetMin;
             $jobs->budget_max = $request->jobBudgetMax;
             $jobs->status = 1;
+            $jobs->tags = $request->jobTags;
             $jobs->company_name = $request->jobCompany;
             $jobs->created_by = auth()->user()->id;
 

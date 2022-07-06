@@ -145,6 +145,11 @@
                                                 <label class="form-label" for="user-role">Description</label>
                                                 <textarea class="form-control ckeditor" wire:name="jobDescription" id="" cols="30" rows="3">{{ $data->description }}</textarea>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label class="form-label" for="basic-icon-default-fullname">Tags</label>
+                                                <input type="text" class="form-control dt-full-name" name="jobTags" value="{{ $data->tags }}" id="basic-icon-default-fullname" placeholder="web, teacher, writer" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+                                            </div>
                                             <div class="form-group">
                                                 <div class="border rounded p-2">
                                                     <h4 class="mb-1">Company Logo</h4>

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            $table->string('category_id')->nullable();
             $table->text('title');
             $table->text('slug');
             $table->longText('image');
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('company_name')->nullable();
             $table->string('status');
+            $table->text('tags');
             $table->string('created_by');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

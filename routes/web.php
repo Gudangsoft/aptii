@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ChatsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Jobs\JobsAppliedController;
+use App\Http\Controllers\Admin\Jobs\JobsCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\QrCodeController;
@@ -55,6 +56,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
         Route::prefix('jobs')->group(function (){
             Route::resource('jobs', JobsController::class);
             Route::resource('appliedjobs', JobsAppliedController::class);
+            Route::resource('jobscategories', JobsCategoryController::class);
         });
 
         Route::resource('chats', ChatsController::class);

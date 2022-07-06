@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jobs_applieds', function (Blueprint $table) {
+        Schema::create('jobs_categories', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('jobs_id');
-            $table->string('username')->nullable();
-            $table->string('email')->nullable();
-            $table->text('message')->nullable();
-            $table->text('resume')->nullable();
-            $table->string('status')->nullable();
+            $table->string('title');
+            $table->string('slug');
+            $table->string('status');
+            $table->string('created_by');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs_applieds');
+        Schema::dropIfExists('jobs_categories');
     }
 };
