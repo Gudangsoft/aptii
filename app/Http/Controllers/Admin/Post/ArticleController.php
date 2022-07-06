@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use RobertSeghedi\News\Models\Article;
 use RobertSeghedi\News\Models\Category;
+use RobertSeghedi\News\Models\Comment;
 use RobertSeghedi\News\Models\News;
 
 class ArticleController extends Controller
@@ -136,7 +137,10 @@ class ArticleController extends Controller
 
     public function show($id)
     {
-        return view('admin.article.detail', ['data' => Article::findOrFail($id)]);
+        return view('admin.article.detail', [
+            'data' => Article::findOrFail($id),
+            'comments' => Comment::where('article_id', $id)->orderByDesc('created_at')->paginate(10),
+        ]);
     }
 
 

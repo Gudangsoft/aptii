@@ -100,29 +100,40 @@
                             <!-- Blog Comment -->
                             <div class="col-12 mt-1" id="blogComment">
                                 <h6 class="section-label mt-25">Comment</h6>
+                                @forelse ($comments as $comment)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="media">
+                                                <div class="avatar mr-75">
+                                                    <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="font-weight-bolder mb-25">{{ $comment->created_by !== null ? $comment->getUser->name : 'Anonymous' }}</h6>
+                                                    <p class="card-text">{{ $comment->created_at->diffForHumans() }}</p>
+                                                    <p class="card-text">
+                                                        {{ $comment->text }}
+                                                    </p>
+                                                    <a href="javascript:void(0);">
+                                                        <div class="d-inline-flex align-items-center">
+                                                            <i data-feather="corner-up-left" class="font-medium-3 mr-50"></i>
+                                                            <span>Reply</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @empty
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="media">
-                                            <div class="avatar mr-75">
-                                                <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
-                                            </div>
                                             <div class="media-body">
-                                                <h6 class="font-weight-bolder mb-25">Chad Alexander</h6>
-                                                <p class="card-text">May 24, 2020</p>
-                                                <p class="card-text">
-                                                    A variation on the question technique above, the multiple-choice question great way to engage your
-                                                    reader.
-                                                </p>
-                                                <a href="javascript:void(0);">
-                                                    <div class="d-inline-flex align-items-center">
-                                                        <i data-feather="corner-up-left" class="font-medium-3 mr-50"></i>
-                                                        <span>Reply</span>
-                                                    </div>
-                                                </a>
+                                                <h5>No Comment</h5>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endforelse
                             </div>
                             <!--/ Blog Comment -->
                         </div>
