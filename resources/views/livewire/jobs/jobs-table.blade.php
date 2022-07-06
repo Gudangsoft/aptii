@@ -81,6 +81,7 @@
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Title</th>
+                                    <th>Category</th>
                                     <th>Type</th>
                                     <th>Position</th>
                                     <th>Offer Salary</th>
@@ -99,6 +100,9 @@
                                             @if ($row->status < 1)
                                                 <i class="text-danger" data-feather="eye-off"></i>
                                             @endif
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-light-secondary mr-1"> {{ $row->getCategory->title }}</span>
                                         </td>
                                         <td>{{ $row->type }}</td>
                                         <td>

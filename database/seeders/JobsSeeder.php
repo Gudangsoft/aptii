@@ -23,17 +23,18 @@ class JobsSeeder extends Seeder
 
     	      // insert data ke table pegawai menggunakan Faker
     		DB::table('jobs')->insert([
+    			'category_id' => 44,
     			'title' => $faker->text(40),
     			'image' => $faker->imageUrl($width = 640, $height = 480),
-    			'type' => $faker->text(10),
+    			'type' => "Full-Time",
     			'position' => $faker->jobTitle,
-    			'experience' => 5,
+    			'experience' => 2,
     			'specialisation' => $faker->text(10),
     			'work_location' => $faker->city,
     			'budget_min' => 1000000,
     			'budget_max' => 8000000,
     			'description' => $faker->paragraph(10, true),
-    			'company_id' => 1,
+    			'company_name' => $faker->company,
     			'status' => 1,
     			'created_by' => 15,
                 'created_at' => Carbon::now(),

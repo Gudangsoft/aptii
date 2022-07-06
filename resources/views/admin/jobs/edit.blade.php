@@ -48,6 +48,19 @@
                                                 <input type="text" class="form-control dt-full-name" name="jobTitle" value="{{ $data->title }}" id="basic-icon-default-fullname" placeholder="Web Developer" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-label" for="user-role">Category</label>
+                                                <select id="category" class="select2 form-control" name="jobCategory">
+                                                    @if ($data->category_id > 0)
+                                                        <option value="{{ $data->category_id }}">{{ ucwords($data->getCategory->title) }}</option>
+                                                    @endif
+                                                    <optgroup label="Minimum">
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="form-label" for="basic-icon-default-fullname">Company Name</label>
                                             <input type="text" class="form-control dt-full-name" name="jobCompany" value="{{ $data->company_name }}" id="basic-icon-default-fullname" placeholder="PT.Citamedia" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                                             </div>
@@ -89,6 +102,7 @@
                                                     </optgroup>
                                                 </select>
                                             </div>
+
                                             <div class="form-group">
                                                 <label class="form-label" for="user-role">Experience</label>
                                                 <select id="user-role" class="select2 form-control" name="jobExperience">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Jobs\Jobs;
+use App\Models\Jobs\JobsCategory;
 use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 use Image;
@@ -19,7 +20,9 @@ class JobsController extends Controller
 
     public function create()
     {
-        return view('admin.jobs.create');
+        return view('admin.jobs.create', [
+            'categories' => JobsCategory::all()
+        ]);
     }
 
     public function store(Request $request)
@@ -39,6 +42,7 @@ class JobsController extends Controller
 
         try {
             $jobs = new Jobs();
+            $jobs->category_id = $request->jobCategory;
             $jobs->title = $request->jobTitle;
             $jobs->slug = Str::slug($request->jobTitle);
             $jobs->type = $request->jobType;
@@ -79,6 +83,7 @@ class JobsController extends Controller
     {
         return view('admin.jobs.edit', [
             'data' => Jobs::findOrFail($id),
+            'categories' => JobsCategory::all(),
         ]);
     }
 
@@ -106,6 +111,7 @@ class JobsController extends Controller
 
         try {
             // $jobs = Jobs::findOrFail($id);
+            $jobs->category_id = $request->jobCategory;
             $jobs->title = $request->jobTitle;
             $jobs->slug = Str::slug($request->jobTitle);
             $jobs->type = $request->jobType;
