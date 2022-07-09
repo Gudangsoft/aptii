@@ -54,7 +54,7 @@
                     </div><!--end col-->
                     <div class="col-lg-7">
                         <div class="post-preview overflow-hidden rounded-3 mb-3 mb-lg-0">
-                            <a href="blog-details.html"><img src="{{ $headline->image ? asset(config('app.POST_BIG')).'/'.$headline->image : asset('frontend').'/assets/images/blog/img-04.jpg' }}" alt="Blog" class="img-fluid blog-img" /></a>
+                            <a href="/post/{{ $headline->slug }}"><img src="{{ $headline->image ? asset(config('app.POST_BIG')).'/'.$headline->image : asset('frontend').'/assets/images/blog/img-04.jpg' }}" alt="Blog" class="img-fluid blog-img" /></a>
                         </div>
                     </div><!--end col-->
                     <div class="col-lg-5">
@@ -91,7 +91,7 @@
                         <div class="col-lg-4">
                             <article class="post position-relative mt-4">
                                 <div class="post-preview overflow-hidden mb-3 rounded-3">
-                                    <a href="blog-details.html"><img src="{{ $post->image ? asset(config('app.POST_MID')).'/'.$post->image : asset('frontend').'/assets/images/blog/img-06.jpg'}}" alt="" class="img-fluid blog-img"></a>
+                                    <a href="/post/{{ $headline->slug }}"><img src="{{ $post->image ? asset(config('app.POST_MID')).'/'.$post->image : asset('frontend').'/assets/images/blog/img-06.jpg'}}" alt="" class="img-fluid blog-img"></a>
                                 </div>
                                 <p class="text-muted mb-2"><b>{{ $post->getCategory->name }}</b> - {{ $post->date }}</p>
                                 <h5 class="mb-3"><a href="/post/{{ $post->slug }}" class="primary-link">{{ $post->title }}</a></h5>

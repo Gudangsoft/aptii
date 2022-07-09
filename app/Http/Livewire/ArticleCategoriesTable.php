@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
+
 class ArticleCategoriesTable extends DataTableComponent
 {
     protected $model = Category::class;

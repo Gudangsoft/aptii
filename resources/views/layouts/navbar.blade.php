@@ -117,7 +117,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="mr-50" data-feather="user"></i> Profile</a>
-                    <a class="dropdown-item" href="{{ route('chats.index') }}"><i class="mr-50" data-feather="message-square"></i> Chats</a>
+                    {{-- <a class="dropdown-item" href="{{ route('chats.index') }}"><i class="mr-50" data-feather="message-square"></i> Chats</a> --}}
                     <div class="dropdown-divider"></div>
                     {{-- <a class="dropdown-item" href="{{ route('userssetting.index') }}"><i class="mr-50" data-feather="settings"></i> Settings</a> --}}
 
