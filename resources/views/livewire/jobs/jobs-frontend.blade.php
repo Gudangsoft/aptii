@@ -337,7 +337,7 @@
                                     <div class="row">
                                         <div class="col-lg-10">
                                             <div class="mt-3 mt-lg-0">
-                                                <h5 class="fs-17 mb-1"><a href="{{ route('jobs-detail', $item->slug) }}" class="text-dark">{{ $item->title }}</a> <small class="text-muted fw-normal">{{ $item->experience ? $item->experience.' year experience' : []}}</small></h5>
+                                                <h5 class="fs-17 mb-1"><a href="{{ url('jobs/'.$item->slug) }}" class="text-dark">{{ $item->title }}</a> <small class="text-muted fw-normal">{{ $item->experience ? $item->experience.' year experience' : []}}</small></h5>
                                                 <ul class="list-inline mb-0">
                                                     <li class="list-inline-item">
                                                         <p class="text-muted fs-14 mb-0">{{ ucfirst($item->position) }}</p>
