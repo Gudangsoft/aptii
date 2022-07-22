@@ -116,9 +116,27 @@
                                                     <a href="javascript:void(0);">
                                                         <div class="d-inline-flex align-items-center">
                                                             <i data-feather="corner-up-left" class="font-medium-3 mr-50"></i>
-                                                            <span>Reply</span>
+                                                            <a href="#" data-toggle="modal" data-target="#defaultSize"><span>Reply</span></a>
                                                         </div>
+                                                        @livewire('article.replay-comment-article', ['articleId' => $data->id, 'commentId' => $comment->id] )
+
                                                     </a>
+                                                    @foreach (\RobertSeghedi\News\Models\Comment::where('reply_id', $comment->id)->get() as $reply)
+                                                        <div class="alert alert-success p-2 mt-2">
+                                                            <div class="avatar mr-75">
+                                                                <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h6 class="alert-heading">{{ $reply->created_by !== null ? $reply->getUser->name : 'Anonymous' }}</h6>
+                                                                <div class="alert-body">
+                                                                    <i class="card-text">{{ $reply->created_at->diffForHumans() }}</i>
+                                                                    <p class="card-text">
+                                                                        {{ $reply->text }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>

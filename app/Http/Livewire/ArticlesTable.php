@@ -78,7 +78,7 @@ class ArticlesTable extends DataTableComponent
                     ->location(fn($row) => route('articles.show', $row->id))
                     ->attributes(function($row) {
                         return [
-                            'class' => 'btn btn-icon btn-primary',
+                            'class' => 'btn btn-sm btn-icon btn-primary',
                         ];
                     }),
                 LinkColumn::make('Edit')
@@ -87,7 +87,7 @@ class ArticlesTable extends DataTableComponent
                     ->attributes(function($row) {
 
                         return [
-                            'class' => 'btn btn-icon btn-success',
+                            'class' => 'btn btn-sm btn-icon btn-success',
                         ];
                     }),
                 LinkColumn::make('Delete')
@@ -95,7 +95,7 @@ class ArticlesTable extends DataTableComponent
                     ->location(fn($row) => '#')
                     ->attributes(function($row) {
                         return [
-                            'class' => 'btn btn-icon btn-danger',
+                            'class' => 'btn btn-sm btn-icon btn-danger',
                             'wire:click' => "deleteModal($row->id)",
                         ];
                     }),
