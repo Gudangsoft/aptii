@@ -45,7 +45,7 @@ class PostComment extends Component
 
 
     public function saveٌReply(){
-        dd($this->reply);
+        // dd($this->reply);
         News::reply($this->article_id, $this->reply_id, $this->reply);
         $this->reply = '';
     }
@@ -53,7 +53,7 @@ class PostComment extends Component
     public function render()
     {
         return view('livewire.frontend.post-comment', [
-            'comments' => Comment::where('article_id', $this->article_id)->orderByDesc('created_at')->paginate(10),
+            'comments' => Comment::where('article_id', $this->article_id)->where('reply_id', null)->orderByDesc('created_at')->paginate(10),
         ]);
     }
 }

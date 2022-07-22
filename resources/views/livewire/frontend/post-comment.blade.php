@@ -49,6 +49,19 @@
                                 class="mdi mdi-reply"></i> Reply</button> --}}
                     </div>
                     <p class="text-muted mb-0">{{ $comment->text }}</p>
+                    @foreach (\RobertSeghedi\News\Models\Comment::where('reply_id', $comment->id)->get() as $reply)
+                        <div class="d-sm-flex align-items-top mt-5">
+                            <div class="flex-shrink-0">
+                                <img class="rounded-circle avatar-md img-thumbnail" src="{{ asset('storage/images/users').'/'.$reply->getUser->profile_photo_path }}" alt="img" />
+                            </div>
+                            <div class="flex-grow-1 ms-sm-3">
+                                <small class="float-end fs-12 text-muted"><i class="uil uil-clock"></i> 2 hrs Ago</small>
+                                <a href="javascript:(0)" class="primary-link"><h6 class="fs-16 mt-sm-0 mt-3 mb-0">{{ $reply->created_by !== null ? $reply->getUser->name : 'Anonymous' }}</h6></a>
+                                {{-- <p class="text-muted fs-14 mb-0">{{ $reply->created_at->diffForHumans() }}</p> --}}
+                                <p class="text-muted mb-0">{{ $reply->text }}</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

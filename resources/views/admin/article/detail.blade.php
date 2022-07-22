@@ -105,7 +105,7 @@
                                         <div class="card-body">
                                             <div class="media">
                                                 <div class="avatar mr-75">
-                                                    <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
+                                                    <img src="{{ asset('storage/images/users').'/'.$comment->getUser->profile_photo_path }}" width="38" height="38" alt="Avatar" />
                                                 </div>
                                                 <div class="media-body">
                                                     <h6 class="font-weight-bolder mb-25">{{ $comment->created_by !== null ? $comment->getUser->name : 'Anonymous' }}</h6>
@@ -122,17 +122,19 @@
 
                                                     </a>
                                                     @foreach (\RobertSeghedi\News\Models\Comment::where('reply_id', $comment->id)->get() as $reply)
-                                                        <div class="alert alert-success p-2 mt-2">
-                                                            <div class="avatar mr-75">
-                                                                <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <h6 class="alert-heading">{{ $reply->created_by !== null ? $reply->getUser->name : 'Anonymous' }}</h6>
-                                                                <div class="alert-body">
-                                                                    <i class="card-text">{{ $reply->created_at->diffForHumans() }}</i>
-                                                                    <p class="card-text">
-                                                                        {{ $reply->text }}
-                                                                    </p>
+                                                        <div class="card mt-1">
+                                                            <div class="card-body bg-light-primary rounded">
+                                                                <div class="media">
+                                                                    <div class="avatar mr-75">
+                                                                        <img src="{{ asset('storage/images/users').'/'.$reply->getUser->profile_photo_path }}" width="38" height="38" alt="Avatar" />
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h6 class="font-weight-bolder mb-25">{{ $reply->created_by !== null ? $reply->getUser->name : 'Anonymous' }}</h6>
+                                                                        {{-- <p class="card-text">{{ $reply->created_at->diffForHumans() }}</p> --}}
+                                                                        <p class="card-text">
+                                                                            {{ $reply->text }}
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
