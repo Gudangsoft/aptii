@@ -6,6 +6,7 @@ use Exception;
 use Livewire\Component;
 use RobertSeghedi\News\Models\News;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use RobertSeghedi\News\Models\Comment;
 
 class ReplayCommentArticle extends Component
 {
@@ -15,12 +16,14 @@ class ReplayCommentArticle extends Component
 
     public function render()
     {
-        return view('livewire.article.replay-comment-article');
+        return view('livewire.article.replay-comment-article', [
+            'comments' => Comment::where('article_id', $this->articleId)->where('reply_id', null)->orderByDesc('created_at')->get(),
+        ]);
     }
 
-    public function saveReplay(){
+    public function saveReplay($id){
         try {
-            News::reply($this->articleId, $this->commentId, $this->replyContent);
+            News::reply($this->articleId, $id, $this->replyContent);
             $this->alert('success', 'success replay comment');
         } catch (Exception $error) {
             $this->alert('error', $error->getMessage(), [

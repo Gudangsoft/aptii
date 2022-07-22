@@ -139,7 +139,7 @@ class ArticleController extends Controller
     {
         return view('admin.article.detail', [
             'data' => Article::findOrFail($id),
-            'comments' => Comment::where('article_id', $id)->where('reply_id', null)->orderByDesc('created_at')->paginate(10),
+            // 'comments' => Comment::where('article_id', $id)->where('reply_id', null)->orderByDesc('created_at')->paginate(10),
         ]);
     }
 

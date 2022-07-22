@@ -100,60 +100,10 @@
                             <!-- Blog Comment -->
                             <div class="col-12 mt-1" id="blogComment">
                                 <h6 class="section-label mt-25">Comment</h6>
-                                @forelse ($comments as $comment)
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="avatar mr-75">
-                                                    <img src="{{ asset('storage/images/users').'/'.$comment->getUser->profile_photo_path }}" width="38" height="38" alt="Avatar" />
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="font-weight-bolder mb-25">{{ $comment->created_by !== null ? $comment->getUser->name : 'Anonymous' }}</h6>
-                                                    <p class="card-text">{{ $comment->created_at->diffForHumans() }}</p>
-                                                    <p class="card-text">
-                                                        {{ $comment->text }}
-                                                    </p>
-                                                    <a href="javascript:void(0);">
-                                                        <div class="d-inline-flex align-items-center">
-                                                            <i data-feather="corner-up-left" class="font-medium-3 mr-50"></i>
-                                                            <a href="#" data-toggle="modal" data-target="#defaultSize"><span>Reply</span></a>
-                                                        </div>
-                                                        @livewire('article.replay-comment-article', ['articleId' => $data->id, 'commentId' => $comment->id] )
+                                @livewire('article.replay-comment-article', [
+                                    'articleId' => $data->id,
+                                ])
 
-                                                    </a>
-                                                    @foreach (\RobertSeghedi\News\Models\Comment::where('reply_id', $comment->id)->get() as $reply)
-                                                        <div class="card mt-1">
-                                                            <div class="card-body bg-light-primary rounded">
-                                                                <div class="media">
-                                                                    <div class="avatar mr-75">
-                                                                        <img src="{{ asset('storage/images/users').'/'.$reply->getUser->profile_photo_path }}" width="38" height="38" alt="Avatar" />
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <h6 class="font-weight-bolder mb-25">{{ $reply->created_by !== null ? $reply->getUser->name : 'Anonymous' }}</h6>
-                                                                        {{-- <p class="card-text">{{ $reply->created_at->diffForHumans() }}</p> --}}
-                                                                        <p class="card-text">
-                                                                            {{ $reply->text }}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @empty
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h5>No Comment</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforelse
                             </div>
                             <!--/ Blog Comment -->
                         </div>
