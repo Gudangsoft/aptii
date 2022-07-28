@@ -14,6 +14,7 @@ class CreateAddColoumDeletedAtInTableUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('status')->nullable()->after('password');
             $table->timestamp('deleted_at')->nullable()->after('updated_at');
         });
     }

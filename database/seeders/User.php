@@ -46,6 +46,7 @@ class User extends Seeder
             'email' => 'test@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password
+            'status' => 1,
             'remember_token' => Str::random(10),
         ]);
         $user->assignRole($role1);
@@ -55,6 +56,7 @@ class User extends Seeder
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password
+            'status' => 1,
             'remember_token' => Str::random(10),
         ]);
         $user->assignRole($role2);
@@ -64,6 +66,7 @@ class User extends Seeder
             'email' => 'superadmin@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password
+            'status' => 1,
             'remember_token' => Str::random(10),
         ]);
         $user->assignRole($role3);
