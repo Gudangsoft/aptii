@@ -37,7 +37,7 @@ class User extends Seeder
         $role2->givePermissionTo('publish articles');
         $role2->givePermissionTo('unpublish articles');
 
-        $role3 = Role::create(['name' => 'Super-Admin']);
+        $role3 = Role::create(['name' => 'super admin']);
         // gets all permissions via Gate::before rule; see AuthServiceProvider
 
         // create demo users
