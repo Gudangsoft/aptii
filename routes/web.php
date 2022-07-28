@@ -71,7 +71,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
 
 });
 
-Route::group(['middleware' => ['role:super admin']], function () {
+Route::group(['middleware' => ['role:super admin|admin']], function () {
     Route::resource('users', UserController::class);
     Route::get('/user/trashed', [UserController::class, 'showTrashed'])->name('usershowTrashed');
     Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');

@@ -35,7 +35,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-start align-items-center mb-1">
                             <div class="profile-user-info">
-                                <h3 class="mb-0">{{ $post->title }}</h3>
+                                <h3 class="mb-0">{{ \Illuminate\Support\Str::title($post->title) }}</h3>
                                 <small class="text-muted">{{ $post->date }}</small>
                             </div>
                         </div>
