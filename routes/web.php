@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ScreenController;
 use App\Http\Controllers\Frontend\ScreensController;
 use App\Http\Controllers\Admin\Jobs\JobsController;
+use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Livewire\ArticleCategoriesTable;
 
@@ -52,6 +53,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     Route::prefix('cms')->group(function (){
         Route::resource('articles', ArticleController::class);
         Route::resource('categories', CategoryController::class);
+        Route::resource('tags', TagController::class);
 
         Route::prefix('jobs')->group(function (){
             Route::resource('jobs', JobsController::class);
