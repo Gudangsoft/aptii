@@ -92,7 +92,7 @@
                                             <input type="checkbox" value="{{ $row->id }}" wire:model="selectTags" id="a">
                                         </td>
                                         <td>
-                                            <span class="font-weight-bold">{{ $row->title }}</span>
+                                            <span class="font-weight-bold">{{ strtoupper($row->title) }}</span>
                                             @if ($row->status < 1)
                                                 <i class="text-danger" data-feather="eye-off"></i>
                                             @endif

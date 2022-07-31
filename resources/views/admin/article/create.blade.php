@@ -55,7 +55,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
                                                 <label for="blog-edit-title">Title</label>
-                                                <input type="text" name="title" id="title" class="form-control" onInput="edValueKeyPress()">
+                                                <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control" onInput="edValueKeyPress()">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="col-12 mb-2">
                                             <label for="blog-edit-title">Content</label>
-                                            <textarea name="content" class="ckeditor" id="" cols="30" rows="10"></textarea>
+                                            <textarea name="content" class="ckeditor" id="" cols="30" rows="10">{{ old('content') }}</textarea>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
@@ -110,8 +110,15 @@
                                                 </select>
                                             </div>
                                             <div class="form-group mb-2">
-                                                <label for="blog-edit-title">Tags</label>
-                                                <input type="text" name="tags" id="tags" class="form-control" placeholder="news, top, viral">
+                                                {{-- <label for="blog-edit-title">Tags</label> --}}
+                                                <label>Tags</label>
+                                                <select class="select2 form-control" name="tags[]" multiple>
+                                                    <optgroup label="Tags">
+                                                        @foreach ($tags as $tag)
+                                                            <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
@@ -245,6 +252,7 @@
 <script src="{{ asset('assets') }}/js/scripts/pages/page-blog-edit.js"></script>
 <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
 <script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
+<script src="{{ asset('assets') }}/js/scripts/forms/form-select2.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.ckeditor').ckeditor();

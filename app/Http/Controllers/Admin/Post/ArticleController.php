@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Post;
 
 use App\Http\Controllers\Controller;
 use App\ImageProses;
+use App\Models\Tag;
 use Exception;
 use Image;
 use Illuminate\Support\Facades\Validator;
@@ -29,6 +30,7 @@ class ArticleController extends Controller
     {
         return view('admin.article.create', [
             'categories' => Category::all(),
+            'tags'       => Tag::where('status', true)->get(),
         ]);
     }
 
@@ -118,7 +120,7 @@ class ArticleController extends Controller
                 $request->status,
                 $request->type,
                 $namaImage,
-                $request->tags,
+                implode(',', $request->tags),
                 $request->date,
             );
 
@@ -147,11 +149,14 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $data = Article::findOrFail($id);
+        $articleTags = explode(',', $data->tags);
+
         return view('admin.article.edit', [
+            'tags'              => Tag::whereNotIn('id', $articleTags)->where('status', true)->get(),
+            'tagsCurrent'       => Tag::whereIn('id', $articleTags)->where('status', true)->get(),
             'categories'        => Category::all(),
-            'currentCategory'    => Category::findOrFail($data->category),
-            'data' => $data
-            // 'current_categories' => Category::all(),
+            'currentCategory'   => Category::findOrFail($data->category),
+            'data'              => $data
         ]);
     }
 
@@ -236,7 +241,7 @@ class ArticleController extends Controller
             $article->author = auth()->user()->id;
             $article->status = $request->status;
             $article->type = $request->type;
-            $article->tags = $request->tags;
+            $article->tags = implode(',', $request->tags);
 
             if ($request->date != null) {
                 $article->updated_at = $request->date;

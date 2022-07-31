@@ -119,8 +119,17 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group mb-2">
-                                                    <label for="blog-edit-title">Tags</label>
-                                                    <input type="text" name="tags" id="tags" class="form-control" value="{{ $data->tags }}" placeholder="news, top, viral">
+                                                    <label>Tags</label>
+                                                    <select class="select2 form-control" name="tags[]" multiple>
+                                                        <optgroup label="Tags">
+                                                            @foreach ($tagsCurrent as $tagc)
+                                                                <option value="{{ $tagc->id }}" selected>{{ $tagc->title }}</option>
+                                                            @endforeach
+                                                            @foreach ($tags as $tag)
+                                                                <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                                            @endforeach
+                                                        </optgroup>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-12">
@@ -260,6 +269,7 @@
     <script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/legacy.js"></script>
     <script src="{{ asset('assets') }}/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <script src="{{ asset('assets') }}/vendors/js/forms/select/select2.full.min.js"></script>
+    <script src="{{ asset('assets') }}/js/scripts/forms/form-select2.js"></script>
     <script src="{{ asset('assets') }}/vendors/js/editors/quill/katex.min.js"></script>
     <script src="{{ asset('assets') }}/vendors/js/editors/quill/highlight.min.js"></script>
     <script src="{{ asset('assets') }}/vendors/js/editors/quill/quill.min.js"></script>
@@ -271,6 +281,7 @@
     <script src="{{ asset('assets') }}/vendors/cropperjs/cropper.js"></script>
     <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
     <script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('.ckeditor').ckeditor();
