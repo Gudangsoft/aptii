@@ -1,4 +1,7 @@
 <x-frontend-master>
+    @section('title')
+        Loker
+    @endsection
 @include('sweetalert::alert')
 
     <div class="main-content">
@@ -46,17 +49,6 @@
         }
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-            Livewire.hook('message.processed', (message, component) => {
-                $(function () {
-                    $('[data-toggle="tooltip"]').tooltip()
-                })
-            })
-        });
-
         window.addEventListener('openModalApply', event => {
             $("#applyNow").modal('show');
         });

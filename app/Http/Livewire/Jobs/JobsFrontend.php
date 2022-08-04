@@ -14,6 +14,7 @@ class JobsFrontend extends Component
     public $limitPerPage = 10;
     public $readyToLoad = false;
     public $username, $email, $message, $resume, $jobsId;
+    public $filterLocation= [], $location;
 
 
     protected $paginationTheme = 'bootstrap';
@@ -26,13 +27,29 @@ class JobsFrontend extends Component
         // $this->readyToLoad = true;
     }
 
+    public function mount(){
+        $this->location    = Jobs::where('status', true)
+                            ->selectRaw('count(id), work_location')
+                            ->groupBy('work_location')
+                            ->get();
+    }
+
     public function render()
     {
-        $data = Jobs::where('status', true)->orderByDesc('created_at')->paginate($this->limitPerPage);
+        if($this->filterLocation != null){
+            // dd($this->filterLocation['value']);
+            $data           = Jobs::where('status', true)
+                                ->where('work_location', 'like', '%' .$this->filterLocation['value']. '%')
+                                ->orderByDesc('created_at')
+                                ->paginate($this->limitPerPage);
+        }else{
+            $data           = Jobs::where('status', true)->orderByDesc('created_at')->paginate($this->limitPerPage);
+        }
+
         $this->emit('userStore');
 
         return view('livewire.jobs.jobs-frontend', [
-            'data'    => $data,
+            'data'      => $data,
         ]);
     }
 

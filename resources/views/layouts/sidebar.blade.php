@@ -67,13 +67,31 @@
                     </li>
                 </ul>
             </li>
+
+            {{-- Academy --}}
+            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="trello"></i><span class="menu-title text-truncate" data-i18n="Pages">Akademis</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center" href="{{ route('jobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Siswa</span></a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="{{ route('jobscategories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Guru</span></a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="{{ route('appliedjobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Ujian</span></a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="{{ route('appliedjobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Sekolah</span></a>
+                    </li>
+                </ul>
+            </li>
             @endrole
             @role('super admin')
             <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Admin</span><i data-feather="more-horizontal"></i>
             </li>
             <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('users.index') }}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>
             </li>
-            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('configuration.index') }}"><i data-feather="settings"></i><span class="menu-title text-truncate" data-i18n="Configuration">Configuration</span></a>
+            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('configuration.index') }}"><i data-feather="globe"></i><span class="menu-title text-truncate" data-i18n="Configuration">Web Setting</span></a>
             </li>
             @endrole
 
