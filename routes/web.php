@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\Prosiding\PembayaranController;
 use App\Http\Controllers\Admin\Prosiding\PesertaController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Livewire\ArticleCategoriesTable;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,9 +58,14 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     Route::prefix('cms')->group(function (){
         // data prosiding
         Route::prefix('prosiding')->group(function (){
-            Route::get('peserta', [PesertaController::class, 'index'])->name('prosiding.peserta');
-            Route::get('naskah', [NaskahController::class, 'index'])->name('prosiding.naskah');
-            Route::get('pembayaran', [PembayaranController::class, 'index'])->name('prosiding.pembayaran');
+            Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('prosiding.upload-naskah');
+
+            // admin access
+            Route::group(['middleware' => ['role:admin|super admin|writer']], function () {
+                Route::get('peserta', [PesertaController::class, 'index'])->name('prosiding.peserta');
+                Route::get('naskah', [NaskahController::class, 'index'])->name('prosiding.naskah');
+                Route::get('pembayaran', [PembayaranController::class, 'index'])->name('prosiding.pembayaran');
+            });
         });
 
 
