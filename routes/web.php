@@ -19,6 +19,9 @@ use App\Http\Controllers\Frontend\ScreenController;
 use App\Http\Controllers\Frontend\ScreensController;
 use App\Http\Controllers\Admin\Jobs\JobsController;
 use App\Http\Controllers\Admin\Post\TagController;
+use App\Http\Controllers\Admin\Prosiding\NaskahController;
+use App\Http\Controllers\Admin\Prosiding\PembayaranController;
+use App\Http\Controllers\Admin\Prosiding\PesertaController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Livewire\ArticleCategoriesTable;
 
@@ -52,15 +55,17 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     });
 
     Route::prefix('cms')->group(function (){
+        // data prosiding
+        Route::prefix('prosiding')->group(function (){
+            Route::get('peserta', [PesertaController::class, 'index'])->name('prosiding.peserta');
+            Route::get('naskah', [NaskahController::class, 'index'])->name('prosiding.naskah');
+            Route::get('pembayaran', [PembayaranController::class, 'index'])->name('prosiding.pembayaran');
+        });
+
+
         Route::resource('articles', ArticleController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('tags', TagController::class);
-
-        Route::prefix('jobs')->group(function (){
-            Route::resource('jobs', JobsController::class);
-            Route::resource('appliedjobs', JobsAppliedController::class);
-            Route::resource('jobscategories', JobsCategoryController::class);
-        });
 
         Route::resource('chats', ChatsController::class);
         Route::resource('userssetting', UserSettingController::class);

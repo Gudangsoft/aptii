@@ -17,20 +17,18 @@
             @role('admin|super admin|writer')
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Data Peserta</span></a>
                 <ul class="menu-content">
-                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('articles.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Konfirmasi Bayar</span></a>
+                    <li class="{{ request()->routeIs('prosiding.pembayaran') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.pembayaran') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Konfirmasi Bayar</span></a>
                     </li>
-                    <li class="{{ request()->routeIs('categories.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('categories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Naskah Peserta</span></a>
+                    <li class="{{ request()->routeIs('prosiding.naskah') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.naskah') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Naskah Peserta</span></a>
                     </li>
-                    <li class="{{ request()->routeIs('tags.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('tags.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Peserta</span></a>
+                    <li class="{{ request()->routeIs('prosiding.peserta') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.peserta') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Peserta</span></a>
                     </li>
-                    {{-- <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Setting</span></a>
-                    </li> --}}
                 </ul>
             </li>
 
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Pages">Artikel</span></a>
                 <ul class="menu-content">
-                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('articles.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Bertia</span></a>
+                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('articles.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Berita</span></a>
                     </li>
                     <li class="{{ request()->routeIs('categories.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('categories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Kategori Berita</span></a>
                     </li>
@@ -39,40 +37,6 @@
                 </ul>
             </li>
 
-            {{-- jobs ads --}}
-            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="briefcase"></i><span class="menu-title text-truncate" data-i18n="Pages">Jobs Ads</span></a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="d-flex align-items-center" href="{{ route('jobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Jobs List</span></a>
-                    </li>
-                    <li>
-                        <a class="d-flex align-items-center" href="{{ route('jobscategories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Category</span></a>
-                    </li>
-                    <li>
-                        <a class="d-flex align-items-center" href="{{ route('appliedjobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Jobs Applied</span></a>
-                    </li>
-                    {{-- <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Setting</span></a> --}}
-                    </li>
-                </ul>
-            </li>
-
-            {{-- Academy --}}
-            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="trello"></i><span class="menu-title text-truncate" data-i18n="Pages">Akademis</span></a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="d-flex align-items-center" href="{{ route('jobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Siswa</span></a>
-                    </li>
-                    <li>
-                        <a class="d-flex align-items-center" href="{{ route('jobscategories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Guru</span></a>
-                    </li>
-                    <li>
-                        <a class="d-flex align-items-center" href="{{ route('appliedjobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Ujian</span></a>
-                    </li>
-                    <li>
-                        <a class="d-flex align-items-center" href="{{ route('appliedjobs.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Sekolah</span></a>
-                    </li>
-                </ul>
-            </li>
             @endrole
 
             @role('super admin')
