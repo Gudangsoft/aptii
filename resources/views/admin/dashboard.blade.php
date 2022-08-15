@@ -1,3 +1,6 @@
+@section('title')
+    PROSIDING -
+@endsection
 <x-master-layouts>
 @include('sweetalert::alert')
 

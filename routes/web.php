@@ -41,7 +41,7 @@ Route::get('/jobs', [FrontendJobsController::class, 'index'])->name('jobs-list')
 Route::post('apply', [FrontendJobsController::class, 'store'])->name('jobs-apply');
 
 
-
+// BACKEND DASHBOARD
 Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     Route::get('qrcodes', [QrCodeController::class, 'index']);
     Route::resource('friends', FriendsController::class);
@@ -50,6 +50,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
         Route::get('/friends/add/{id}', 'add')->name('addfriends');
         Route::get('/friends/delete/{id}', 'unfriends')->name('profile.friends.delete');
     });
+
     Route::prefix('cms')->group(function (){
         Route::resource('articles', ArticleController::class);
         Route::resource('categories', CategoryController::class);
