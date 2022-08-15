@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <a href="#" class="btn-icon btn btn-primary btn-round" wire:click='add()'><i data-feather="plus-circle"></i> Tambah Naskah</a>
-                        <div  wire:ignore.self class="modal fade text-left" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+                        <div wire:ignore.self class="modal fade text-left" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -42,13 +42,15 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form wire:submit.prevent='upload'>
+                                    <form wire:submit.prevent='upload' enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label><h5>Bidang Ilmu</h5></label>
-                                                <select class="select2 form-control form-control-lg" wire:model.defer='bidang_ilmu'>
-                                                    <option value="Akutansi">Akutansi</option>
-                                                    <option value="Matematika">Matematika</option>
+                                                <select class="form-control form-control-lg" wire:model='bidang_ilmu'>
+                                                    <option selected>--- Pilih ---</option>
+                                                    @foreach ($bidang_ilmu_data as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->judul }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -57,10 +59,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label><h5>Naskah Peserta (Tipe File doc/docx)</h5></label>
-                                                <div class="custom-file">
-                                                    <input type="file" wire:model='file_naskah' class="custom-file-input" id="customFile">
-                                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                                </div>
+                                                <input type="file" wire:model='file_naskah' accept=".doc,.docx,.pdf" class="form-control">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -113,7 +112,7 @@
                                         <td>{{ $row->getUser->name }}</td>
                                         <td>{{ $row->getUser->company }}</td>
                                         <td>{{ $row->judul }}</td>
-                                        <td>{{ $row->bidang_ilmu }}</td>
+                                        <td>{{ $row->getBidangIlmu->judul }}</td>
                                         <td>
                                             @if ($row->status == 1)
                                                 <span class="badge badge-glow badge-success">DITERIMA</span>
@@ -156,7 +155,7 @@
                 $("#create-modal").modal('show');
             })
 
-            window.addEventListener('closeFormModal', event => {
+            window.addEventListener('closeModal', event => {
                 $("#create-modal").modal('hide');
             })
 

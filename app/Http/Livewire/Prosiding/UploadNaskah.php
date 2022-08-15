@@ -4,10 +4,12 @@ namespace App\Http\Livewire\Prosiding;
 
 use Livewire\Component;
 use App\Models\Jobs\Jobs;
+use App\Models\Prosiding\BidangIlmu;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Prosiding\ProsidingNaskah;
 use App\Models\User;
+use Exception;
 use Livewire\WithFileUploads;
 
 class UploadNaskah extends Component
@@ -15,7 +17,7 @@ class UploadNaskah extends Component
     use WithPagination, LivewireAlert, WithFileUploads;
     protected $paginationTheme = 'bootstrap';
 
-    public $bidang_ilmu, $judul, $file_naskah;
+    public $bidang_ilmu = '', $bidang_ilmu_data, $judul, $file_naskah;
     public $selectData = [];
     public $selectAll = false;
     public $bulkDisabled = true;
@@ -29,7 +31,7 @@ class UploadNaskah extends Component
     ];
 
     public function mount(){
-        $this->bidang_ilmu;
+        $this->bidang_ilmu_data = BidangIlmu::orderByDesc('created_at')->get();
     }
 
     public function jobsTable(){
@@ -106,11 +108,38 @@ class UploadNaskah extends Component
     }
 
     public function upload(){
-        $this->validate([
-            'file_naskah' => 'file', // 1MB Max
-        ]);
-        // $this->storeAs('naskah', $this->file_naskah->getClientOriginalName());
-        dd($this->bidang_ilmu);
+        try {
+            $this->validate([
+                'bidang_ilmu' => 'required',
+                'file_naskah' => 'required|mimes:pdf,doc,docx|max:10240',
+            ]);
+            // dd($this->bidang_ilmu);
+            // dd($ this->file_naskah->getClientOriginalExtension());
+            $this->file_naskah->storeAs('public/files/naskah/', $this->file_naskah->getClientOriginalName());
+            $upload = new ProsidingNaskah();
+            $upload->user_id = auth()->user()->id;
+            $upload->bidang_ilmu_id = $this->bidang_ilmu;
+            $upload->judul = $this->judul;
+            $upload->file_naskah = $this->file_naskah->getClientOriginalName();
+            $upload->status = 1;
+            $upload->save();
 
+            $this->alert('success', 'Naskah berhasil diupload !');
+            $this->dispatchBrowserEvent('closeModal');
+            $this->cleanForm();
+
+
+        } catch (Exception $error) {
+            $this->alert('error', $error->getMessage(), [
+                'timer' => 100000
+            ]);
+        }
+
+    }
+
+    public function cleanForm(){
+        $this->judul = null;
+        $this->bidang_ilmu = null;
+        $this->file_naskah = null;
     }
 }
