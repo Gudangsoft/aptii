@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('prosiding_pembayarans', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
             $table->string('naskah_id');
             $table->string('no_transaksi');
             $table->timestamp('tanggal_bayar');
