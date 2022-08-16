@@ -6,21 +6,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
-                                @if (count($selectData) > 0)
-                                <p class="card-text">
-                                    {{ count($selectData) }} data selected, <button wire:click="unselectedJobs()" class="btn btn-sm btn-primary">Cancel</button>
-                                    <div class="btn-group">
-                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Actions
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Diterima</a>
-                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(2)">Ditolak</a>
-                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelected()">Hapus</a>
-                                        </div>
-                                    </div>
-                                </p>
-                                @endif
+
                             </div>
                             <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
                                 <div class="input-group">
@@ -48,6 +34,27 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
+                                @if (count($selectData) > 0)
+                                <tr>
+                                    <th colspan="7">
+                                        <p class="card-text">
+                                            {{ count($selectData) }} data selected, <button wire:click="unselectedJobs()" class="btn btn-sm btn-primary">Cancel</button>
+                                            <div class="btn-group">
+                                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Diterima</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(2)">Naskah tidak ada</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(3)">Naskah tidak sesuai, perbaiki</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(4)">Naskah tidak sesuai, ditolak</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelected()">Hapus</a>
+                                                </div>
+                                            </div>
+                                        </p>
+                                    </th>
+                                </tr>
+                                @endif
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Nama</th>
@@ -67,17 +74,33 @@
                                         <td>{{ $row->getUser->name }}</td>
                                         <td>{{ $row->getUser->company }}</td>
                                         <td>{{ $row->judul }}</td>
-                                        <td>{{ $row->bidang_ilmu }}</td>
+                                        <td>{{ $row->getBidangIlmu->judul}}</td>
                                         <td>
                                             @if ($row->status == 1)
-                                                <span class="badge badge-glow badge-success">DITERIMA</span>
+                                                <span class="badge badge-glow badge-success">Diterima</span>
+                                            @elseif ($row->status == 2)
+                                                <span class="badge badge-glow badge-warning">Tidak ada naskah</span>
+                                            @elseif ($row->status == 3)
+                                                <span class="badge badge-glow badge-dark">Tidak sesuai</span>
+                                            @elseif ($row->status == 4)
+                                                <span class="badge badge-glow badge-danger">Ditolak</span>
                                             @elseif ($row->status == 0)
-                                                <span class="badge badge-glow badge-secondary">MENUNGGU</span>
-                                            @else
-                                                <span class="badge badge-glow badge-danger">DITOLAK</span>
+                                                <span class="badge badge-glow badge-secondary">Menunggu</span>
                                             @endif
                                         </td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">DETAIL</a></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Edit
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(1, {{ $row->id }})'>Diterima</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(2, {{ $row->id }})'>Naskah tidak ada</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(3, {{ $row->id }})'>Tidak sesuai, silakan perbaiki</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(4, {{ $row->id }})'>Tidak sesuai, ditolak</a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @empty
                                 <tr>

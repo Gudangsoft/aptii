@@ -91,6 +91,18 @@ class DataNaskah extends Component
         $this->statusSelected = false;
     }
 
+    public function updateStatusSingle($value, $id){
+        ProsidingNaskah::query()
+            ->where('id', $id)
+            ->update([
+                'status' => $value
+            ]);
+
+        $this->selectData = [];
+        $this->selectAll = false;
+        $this->statusSelected = false;
+    }
+
 
     public function deleteConfirmed(){
         ProsidingNaskah::findOrFail($this->selected_id)->delete();

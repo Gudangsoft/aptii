@@ -16,13 +16,12 @@ return new class extends Migration
         Schema::create('prosiding_pesertas', function (Blueprint $table) {
             $table->id();
             $table->string('sebutan')->nullable();
+            $table->string('user_id');
             $table->string('nama_lengkap');
             $table->string('asal_institusi');
             $table->text('judul_artikel');
             $table->string('bidang_ilmu');
             $table->string('whatsapp')->nullable();
-            $table->string('email');
-            $table->string('password')->nullable();
             $table->string('status');
             $table->timestamps();
         });
