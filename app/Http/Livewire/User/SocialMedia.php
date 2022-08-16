@@ -26,12 +26,21 @@ class SocialMedia extends Component
     }
 
     public function mount($user){
-        $this->twitter      = $user->getSocialMedia->twitter;
-        $this->facebook     = $user->getSocialMedia->facebook;
-        $this->instagram    = $user->getSocialMedia->instagram;
-        $this->youtube      = $user->getSocialMedia->youtube;
-        $this->linkedin     = $user->getSocialMedia->linkedin;
-        $this->tiktok       = $user->getSocialMedia->tiktok;
+        if(isset($user->getSocialMedia)){
+            $this->twitter      = $user->getSocialMedia->twitter;
+            $this->facebook     = $user->getSocialMedia->facebook;
+            $this->instagram    = $user->getSocialMedia->instagram;
+            $this->youtube      = $user->getSocialMedia->youtube;
+            $this->linkedin     = $user->getSocialMedia->linkedin;
+            $this->tiktok       = $user->getSocialMedia->tiktok;
+        }else{
+            $this->twitter      = null;
+            $this->facebook     = null;
+            $this->instagram    = null;
+            $this->youtube      = null;
+            $this->linkedin     = null;
+            $this->tiktok       = null;
+        }
     }
 
     public function submit(){

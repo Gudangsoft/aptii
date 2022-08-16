@@ -83,12 +83,12 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
         Route::resource('configuration', ConfigurationController::class);
     });
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware();
 });
 
 Route::group(['middleware' => ['role:super admin|admin']], function () {
     Route::resource('users', UserController::class);
     Route::get('/user/trashed', [UserController::class, 'showTrashed'])->name('usershowTrashed');
-    Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::middleware([
