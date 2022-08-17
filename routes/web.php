@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\Prosiding\PesertaController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Livewire\ArticleCategoriesTable;
 use Laravel\Jetstream\Rules\Role;
+use App\Http\Controllers\Admin\Settings\RolePermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +90,10 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
 Route::group(['middleware' => ['role:super admin|admin']], function () {
     Route::resource('users', UserController::class);
     Route::get('/user/trashed', [UserController::class, 'showTrashed'])->name('usershowTrashed');
+
+    // role permission
+    Route::resource('role-permission', RolePermissionController::class);
+    Route::get('/permission', [RolePermissionController::class, 'createPermission'])->name('permission');
 });
 
 Route::middleware([
