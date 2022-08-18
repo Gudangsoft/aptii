@@ -51,6 +51,11 @@
                                     <span id="menu-btn"></span>
                                 </div>
                             </form>
+
+                            <div class="menu_side_area">
+                                <a href="{{ route('dashboard') }}" class="btn-main"><span>DASHBOARD</span></a>
+                                <span id="menu-btn"></span>
+                            </div>
                         @else
                             <div class="menu_side_area">
                                 <a href="{{ route('login') }}" class="btn-main"><span>LOGIN</span></a>
