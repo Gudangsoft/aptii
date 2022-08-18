@@ -55,6 +55,17 @@ class DataNaskah extends Component
         ]);
     }
 
+    public function deleteSelectedConfirm(){
+        $this->alert('question', 'Yakin data akan dihapus?', [
+            'showConfirmButton' => true,
+            'showCancelButton' => true,
+            'confirmButtonText' => 'Hapus',
+            'onConfirmed' => 'deleteSelected',
+            'position' => 'center',
+            'timer' => null,
+        ]);
+
+    }
     public function deleteSelected(){
         ProsidingNaskah::query()
             ->whereIn('id', $this->selectData)

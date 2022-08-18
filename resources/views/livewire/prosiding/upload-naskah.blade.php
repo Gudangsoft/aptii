@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <a href="#" class="btn-icon btn btn-primary btn-round" wire:click='add()'><i data-feather="plus-circle"></i> Tambah Naskah</a>
+                        <a href="{{ route('upload-naskah.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="plus-circle"></i> Tambah Naskah</a>
                         <div wire:ignore.self class="modal fade text-left" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
@@ -76,7 +76,7 @@
                             <thead>
                                 <tr>
                                     @if (count($selectData) > 0)
-                                    <th colspan="7">
+                                    <th colspan="6">
                                         <p class="card-text">
                                             {{ count($selectData) }} data selected, <button wire:click="unselectedJobs()" class="btn btn-sm btn-primary">Cancel</button>
                                             <div class="btn-group">
@@ -84,8 +84,6 @@
                                                     Actions
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Diterima</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(2)">Ditolak</a>
                                                     <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelected()">Hapus</a>
                                                 </div>
                                             </div>
@@ -95,12 +93,13 @@
                                 </tr>
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
-                                    <th>Nama</th>
-                                    <th>Institusi</th>
+                                    {{-- <th>Nama</th> --}}
+                                    {{-- <th>Institusi</th> --}}
                                     <th>Judul</th>
                                     <th>Bidang Ilmu</th>
+                                    <th>Tanggal Submit</th>
+                                    <th>Dokumen</th>
                                     <th>Status</th>
-                                    <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -109,10 +108,12 @@
                                         <td>
                                             <input type="checkbox" value="{{ $row->id }}" wire:model="selectData" id="a">
                                         </td>
-                                        <td>{{ $row->getUser->name }}</td>
-                                        <td>{{ $row->getUser->company }}</td>
+                                        {{-- <td>{{ $row->getUser->name }}</td> --}}
+                                        {{-- <td>{{ $row->getUser->company }}</td> --}}
                                         <td>{{ $row->judul }}</td>
                                         <td>{{ $row->getBidangIlmu->judul }}</td>
+                                        <td>{{ $row->tanggalSubmit }}</td>
+                                        <td><a href="{{ $row->document }}" class="badge badge-glow badge-primary"> FILE NASKAH</a></td>
                                         <td>
                                             @if ($row->status == 1)
                                                 <span class="badge badge-glow badge-success">DITERIMA</span>
@@ -122,7 +123,6 @@
                                                 <span class="badge badge-glow badge-danger">DITOLAK</span>
                                             @endif
                                         </td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">DETAIL</a></td>
                                     </tr>
                                 @empty
                                 <tr>

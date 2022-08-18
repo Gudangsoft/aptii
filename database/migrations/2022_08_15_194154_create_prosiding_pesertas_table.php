@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nama_lengkap');
             $table->string('asal_institusi');
             $table->text('judul_artikel');
+            $table->text('abstrak');
             $table->string('bidang_ilmu');
             $table->string('whatsapp')->nullable();
             $table->string('status');

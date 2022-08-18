@@ -47,7 +47,7 @@ Route::post('apply', [FrontendJobsController::class, 'store'])->name('jobs-apply
 
 
 // BACKEND DASHBOARD
-Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
+Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], function () {
     Route::get('qrcodes', [QrCodeController::class, 'index']);
     Route::resource('friends', FriendsController::class);
     Route::controller(FriendsController::class)->group(function(){
@@ -59,12 +59,13 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     Route::prefix('cms')->group(function (){
         // data prosiding
         Route::prefix('prosiding')->group(function (){
+            Route::resource('upload-naskah', NaskahController::class);
             Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('prosiding.upload-naskah');
 
             // admin access
             Route::group(['middleware' => ['role:admin|super admin|writer']], function () {
                 Route::get('peserta', [PesertaController::class, 'index'])->name('prosiding.peserta');
-                Route::get('naskah', [NaskahController::class, 'index'])->name('prosiding.naskah');
+                Route::get('naskah', [NaskahController::class, 'naskah'])->name('prosiding.naskah');
                 Route::get('pembayaran', [PembayaranController::class, 'index'])->name('prosiding.pembayaran');
             });
         });
@@ -84,7 +85,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
         Route::resource('configuration', ConfigurationController::class);
     });
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware();
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::group(['middleware' => ['role:super admin|admin']], function () {
