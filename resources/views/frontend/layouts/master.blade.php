@@ -1,159 +1,155 @@
+<!DOCTYPE html>
+<html lang="zxx">
 
-<!doctype html>
-<html lang="en">
 <head>
-    {!! Meta::toHtml() !!}
-
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('frontend') }}/assets/images/favicon.ico">
-
-    <!-- Choise Css -->
-    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/libs/choices.js/public/assets/styles/choices.min.css">
-
-    <!-- Swiper Css -->
-    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/libs/swiper/swiper-bundle.min.css">
-
-    <!-- Bootstrap Css -->
-    <link href="{{ asset('frontend') }}/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="{{ asset('frontend') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="{{ asset('frontend') }}/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-    <!--Custom Css-->
-    @livewireStyles
+    <title>PROSIDING APP</title>
+    <link rel="icon" href="{{ asset('frontend') }}/images/icon.png" type="image/gif" sizes="16x16">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="CoSpace - Coworking Space Website Template" name="description" />
+    <meta content="" name="keywords" />
+    <meta content="" name="author" />
+    <!-- CSS Files
+    ================================================== -->
+    <link id="bootstrap" href="{{ asset('frontend') }}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link id="bootstrap-grid" href="{{ asset('frontend') }}/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css" />
+    <link id="bootstrap-reboot" href="{{ asset('frontend') }}/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend') }}/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend') }}/css/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend') }}/css/owl.theme.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend') }}/css/owl.transitions.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend') }}/css/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend') }}/css/jquery.countdown.css" rel="stylesheet" type="text/css" />
+    <link id="mdb" href="{{ asset('frontend') }}/css/mdb.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend') }}/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- color scheme -->
+    <link id="colors" href="{{ asset('frontend') }}/css/colors/scheme-01.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend') }}/css/coloring.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <!--start page Loader -->
-    {{-- <div id="preloader">
-        <div id="status">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                </ul>
+    <div id="wrapper">
+        <div id="preloader">
+            <div class="preloader1"></div>
         </div>
-    </div> --}}
-    <!--end page Loader -->
+        @include('frontend.layouts.header')
 
-    <!-- Begin page -->
-        @include('frontend.layouts.navbar')
+        <!-- content begin -->
+        <div class="no-bottom no-top" id="content">
+            <div id="top"></div>
+            {{ $slot }}
+        </div>
 
-        <!-- START TOP-BAR -->
-        <div class="top-bar">
-            <div class="container-fluid custom-container">
-                <div class="row g-0 align-items-center">
-                    <div class="col-md-7">
-                        <ul class="list-inline mb-0 text-center text-md-start">
-                            <li class="list-inline-item">
-                                <p class="fs-13 mb-0"> <i class="mdi mdi-map-marker"></i> Your Location: <a href="javascript:void(0)" class="text-dark">New Caledonia</a></p>
-                            </li>
-                            <li class="list-inline-item">
-                                <ul class="topbar-social-menu list-inline mb-0">
-                                    <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                class="uil uil-whatsapp"></i></a></li>
-                                    <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                class="uil uil-facebook-messenger-alt"></i></a></li>
-                                    <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                class="uil uil-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                class="uil uil-envelope"></i></a></li>
-                                    <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                class="uil uil-twitter-alt"></i></a></li>
-                                </ul>
-                            </li>
-                        </ul>
+        <!-- content close -->
+        <a href="#" id="back-to-top"></a>
+
+        <!-- footer begin -->
+        <footer class="footer-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-1">
+                        <div class="widget">
+                            <h5>Plans</h5>
+                            <ul>
+                                <li><a href="#">Private Office</a></li>
+                                <li><a href="#">Coworking Space</a></li>
+                                <li><a href="#">Virtual Office</a></li>
+                                <li><a href="#">Meeting Room</a></li>
+                                <li><a href="#">Dedicated Desk</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <!--end col-->
-                    <div class="col-md-5">
-                        <ul class="list-inline mb-0 text-center text-md-end">
-                            @if (!Auth::check())
-                                <li class="list-inline-item py-2 me-2 align-middle">
-                                    <a href="/login" class="text-dark fw-medium fs-13"><i class="uil uil-sign-in-alt"></i> Sign In</a>
-                                </li>
-                            @endif
-                            <li class="list-inline-item align-middle">
-                                <div class="dropdown d-inline-block language-switch">
-                                    <button type="button" class="btn" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <img id="header-lang-img" src="{{ asset('frontend') }}/assets/images/flags/us.jpg" alt="Header Language" height="16" />
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="eng">
-                                            <img src="{{ asset('frontend') }}/assets/images/flags/us.jpg" alt="user-image" class="me-1" height="12" />
-                                            <span class="align-middle">English</span>
-                                        </a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
-                                            <img src="{{ asset('frontend') }}/assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12" />
-                                            <span class="align-middle">Spanish</span>
-                                        </a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
-                                            <img src="{{ asset('frontend') }}/assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12" />
-                                            <span class="align-middle">German</span>
-                                        </a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
-                                            <img src="{{ asset('frontend') }}/assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12" />
-                                            <span class="align-middle">Italian</span>
-                                        </a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
-                                            <img src="{{ asset('frontend') }}/assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12" />
-                                            <span class="align-middle">Russian</span>
-                                        </a>
+                    <div class="col-md-3 col-sm-6 col-xs-1">
+                        <div class="widget">
+                            <h5>Company</h5>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Jobs</a></li>
+                                <li><a href="#">Franchise</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-1">
+                        <div class="widget">
+                            <h5>Events</h5>
+                            <ul>
+                                <li><a href="#">Jump Start Your Bussines</a></li>
+                                <li><a href="#">Web Development Meet Up</a></li>
+                                <li><a href="#">Envato Summer Meet Up</a></li>
+                                <li><a href="#">Dribbble Meet Up Sydney</a></li>
+                                <li><a href="#">International Education Expo</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-1">
+                        <div class="widget">
+                            <h5>Newsletter</h5>
+                            <p>Signup for our newsletter to get the latest news in your inbox.</p>
+                            <form action="blank.php" class="row form-dark" id="form_subscribe" method="post" name="form_subscribe">
+                                <div class="col text-center">
+                                    <input class="form-control" id="txt_subscribe" name="txt_subscribe" placeholder="enter your email" type="text" /> <a href="#" id="btn-subscribe"><i class="arrow_right bg-color-secondary"></i></a>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
+                            <div class="spacer-10"></div>
+                            <small>Your email is safe with us. We don't spam.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="subfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="de-flex">
+                                <div class="de-flex-col">
+                                    <a href="index.html">
+                                        <img alt="" class="f-logo" src="{{ asset('frontend') }}/images/logo.png" /><span class="copy">&copy; Copyright 2021 - CoSpace by Designesia</span>
+                                    </a>
+                                </div>
+                                <div class="de-flex-col">
+                                    <div class="social-icons">
+                                        <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+                                        <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin fa-lg"></i></a>
+                                        <a href="#"><i class="fa fa-pinterest fa-lg"></i></a>
+                                        <a href="#"><i class="fa fa-rss fa-lg"></i></a>
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
-                    <!--end col-->
                 </div>
-                <!--end row-->
             </div>
-            <!--end container-->
-        </div>
-        <!-- END TOP-BAR -->
-
-        {{ $slot }}
-
-        <!-- end main content-->
+        </footer>
+        <!-- footer close -->
 
     </div>
-    <!-- END layout-wrapper -->
-
-    <!-- JAVASCRIPT -->
-    @livewireScripts
-
-    <script src="{{ asset('frontend') }}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
 
 
-    <!-- Choice Js -->
-    <script src="{{ asset('frontend') }}/assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+    <!-- Javascript Files
+    ================================================== -->
+    <script src="{{ asset('frontend') }}/js/jquery.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/wow.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.isotope.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/easing.js"></script>
+    <script src="{{ asset('frontend') }}/js/owl.carousel.js"></script>
+    <script src="{{ asset('frontend') }}/js/validation.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.magnific-popup.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/enquire.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.plugin.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.countTo.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.countdown.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.lazy.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.lazy.plugins.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/mdb.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/designesia.js"></script>
 
-    <!-- Swiper Js -->
-    <script src="{{ asset('frontend') }}/assets/libs/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Index Js -->
-    <script src="{{ asset('frontend') }}/assets/js/pages/job-list.init.js"></script>
-
-    <!-- Switcher Js -->
-    <script src="{{ asset('frontend') }}/assets/js/pages/switcher.init.js"></script>
-
-    <script src="{{ asset('frontend') }}/assets/js/pages/index.init.js"></script>
-
-    <!-- App Js -->
-    <script src="{{ asset('frontend') }}/assets/js/app.js"></script>
-    @stack('scripts')
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <x-livewire-alert::scripts />
 
 </body>
+
 </html>

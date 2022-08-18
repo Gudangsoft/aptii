@@ -1,196 +1,360 @@
 <x-frontend-master>
+    <!-- Carousel wrapper -->
+    <section id="de-carousel" class="no-top no-bottom carousel slide carousel-fade shadow-2-strong" data-mdb-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-mdb-target="#de-carousel" data-mdb-slide-to="0" class="active"></li>
+          <li data-mdb-target="#de-carousel" data-mdb-slide-to="1"></li>
+          <li data-mdb-target="#de-carousel" data-mdb-slide-to="2"></li>
+        </ol>
 
-<div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body p-5">
-                <div class="position-absolute end-0 top-0 p-3">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Inner -->
+        <div class="carousel-inner">
+          <!-- Single item -->
+          <div class="carousel-item active" data-bgimage="url({{ asset('frontend') }}/images/slider/1.jpg)">
+            <div class="mask">
+              <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="container text-white text-center">
+                  <div class="row">
+                      <div class="col-md-6 offset-md-3">
+                          <h1 class="mb-3 wow fadeInUp">Together we can <br class="sm-hide">create better work</h1>
+                          <p class="lead wow fadeInUp" data-wow-delay=".3s">We provide the best workspace for your company. Over 150 locations around the world. Find your best place to work in CoSpace.</p>
+                          <div class="spacer-10"></div>
+                          <a href="explore.html" class="btn-main wow fadeInUp" data-wow-delay=".6s">Explore</a>
+                      </div>
+                  </div>
                 </div>
-                <div class="auth-content">
-                    <div class="w-100">
-                        <div class="text-center mb-4">
-                            <h5>Sign Up</h5>
-                            <p class="text-muted">Sign Up and get access to all the features of Jobcy</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item" data-bgimage="url({{ asset('frontend') }}/images/slider/2.jpg)">
+            <div class="mask">
+              <div class="d-flex justify-content-center align-items-center h-100 wow f">
+                <div class="container text-white text-center">
+                  <div class="row">
+                      <div class="col-md-6 offset-md-3">
+                          <h1 class="mb-3 wow fadeInUp">Modern &amp; comfortable space to work</h1>
+                          <p class="lead wow fadeInUp" data-wow-delay=".3s">We provide the best workspace for your company. Over 150 locations around the world. Find your best place to work in CoSpace.</p>
+                          <div class="spacer-10"></div>
+                          <a href="explore.html" class="btn-main wow fadeInUp" data-wow-delay=".6s">Explore</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Single item -->
+          <div class="carousel-item" data-bgimage="url({{ asset('frontend') }}/images/slider/3.jpg)">
+            <div class="mask">
+              <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="container text-white text-center">
+                  <div class="row">
+                      <div class="col-md-6 offset-md-3">
+                          <h1 class="mb-3 wow fadeInUp">The workspace for <br class="sm-hide"> every need</h1>
+                          <p class="lead wow fadeInUp" data-wow-delay=".3s">We provide the best workspace for your company. Over 150 locations around the world. Find your best place to work in CoSpace.</p>
+                          <div class="spacer-10"></div>
+                          <a href="explore.html" class="btn-main wow fadeInUp" data-wow-delay=".6s">Explore</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+        <!-- Inner -->
+
+        <!-- Controls -->
+        <a class="carousel-control-prev" href="#de-carousel" role="button" data-mdb-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#de-carousel" role="button" data-mdb-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+    </section>
+
+    <!-- Carousel wrapper -->
+    <section class="pt30 pb30 bg-color-secondary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div id="item_category" class="dropdown style-2">
+                        <h4>Locations</h4>
+                        <a href="#" class="btn-selector">Australia</a>
+                        <ul class="d-col-3">
+                            <li><span>Australia</span></li>
+                            <li><span>Austria</span></li>
+                            <li><span>Belgium</span></li>
+                            <li><span>Brazil</span></li>
+                            <li><span>Canada</span></li>
+                            <li><span>Chile</span></li>
+                            <li><span>China</span></li>
+                            <li><span>Colombia</span></li>
+                            <li><span>Croatia</span></li>
+                            <li><span>Czech Republic</span></li>
+                            <li><span>Denmark</span></li>
+                            <li><span>Estonia</span></li>
+                            <li><span>Finland</span></li>
+                            <li><span>France</span></li>
+                            <li><span>Germany</span></li>
+                            <li><span>Greece</span></li>
+                            <li><span>Hungary</span></li>
+                            <li><span>India</span></li>
+                            <li><span>Indonesia</span></li>
+                            <li><span>Ireland</span></li>
+                            <li><span>Japan</span></li>
+                            <li><span>Malaysia</span></li>
+                            <li><span>Mexico</span></li>
+                            <li><span>New Zealand</span></li>
+                            <li><span>Peru</span></li>
+                            <li><span>Philippines</span></li>
+                            <li><span>South Africa</span></li>
+                            <li><span>Ukraine</span></li>
+                            <li><span>United Kingdom</span></li>
+                            <li><span>Uruguay</span></li>
+                            <li><span>USA</span></li>
+                            <li><span>Thailand</span></li>
+                            <li><span>Venezuela</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div id="buy_category" class="dropdown style-2">
+                        <h4>Plans</h4>
+                        <a href="#" class="btn-selector">All Plans</a>
+                        <ul>
+                            <li class="active"><span>All Plans</span></li>
+                            <li><span>Daily Pass</span></li>
+                            <li><span>Flexi Desk</span></li>
+                            <li><span>Team Desk</span></li>
+                            <li><span>Dedicated Desk</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div id="items_type" class="dropdown style-2">
+                        <h4>Number of People</h4>
+                        <a href="#" class="btn-selector">1 Person</a>
+                        <ul>
+                            <li class="active"><span>1 Person</span></li>
+                            <li><span>2 - 5 Persons</span></li>
+                            <li><span>6 - 10 Persons</span></li>
+                            <li><span>11 - 20 Persons</span></li>
+                            <li><span>More than 20</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="search-result.html" class="btn-search-big">Submit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="section-studio-type">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h2>Space Type</h2>
+                        <div class="small-border bg-color-2"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="de-image-text">
+                        <a href="#" class="d-text">
+                            <h3><span class="id-color">01</span> Podcast</h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+                        </a>
+                        <img src="{{ asset('frontend') }}/images/misc/space-type-podcast.jpg" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="de-image-text">
+                        <a href="#" class="d-text">
+                            <h3><span class="id-color">02</span> Live Streaming</h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+                        </a>
+                        <img src="{{ asset('frontend') }}/images/misc/space-type-streaming.jpg" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="de-image-text">
+                        <a href="#" class="d-text">
+                            <h3><span class="id-color">03</span> Photo &amp; Video Shoot</h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+                        </a>
+                        <img src="{{ asset('frontend') }}/images/misc/space-type-photo.jpg" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="section-why-choose-us" class="no-top no-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h2>Why Choose Us?</h2>
+                        <div class="small-border bg-color"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('frontend') }}/images/misc/images-set-2.png" class="lazy img-fluid" alt="">
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-lg-6 mb20">
+                            <h4>Modern &amp; Comfortable</h4>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
                         </div>
-                        <form action="#" class="auth-form">
-                            <div class="mb-3">
-                                <label for="usernameInput" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="usernameInput" placeholder="Enter your username">
-                            </div>
-                            <div class="mb-3">
-                                <label for="passwordInput" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="emailInput" placeholder="Enter your email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="emailInput" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="passwordInput" placeholder="Password">
-                            </div>
-                            <div class="mb-4">
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">I agree to the <a href="javascript:void(0)" class="text-primary form-text text-decoration-underline">Terms and conditions</a></label>
+                        <div class="col-lg-6 mb20">
+                            <h4>24/7 Secure Access</h4>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+                        </div>
+                        <div class="col-lg-6 mb20">
+                            <h4>Free Drinks &amp; Snacks</h4>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+                        </div>
+                        <div class="col-lg-6 mb20">
+                            <h4>Printing &amp; Scanning</h4>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="section-pricing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="text-center">
+                        <h2>Select Your Plan</h2>
+                        <div class="spacer-20"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <div class="switch-set">
+                        <div>Daily</div>
+                        <div><input id="sw-1" class="switch" type="checkbox" /></div>
+                        <div>Monthly</div>
+                        <div class="spacer-20"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item pricing">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="pricing-s1 mb30">
+                                <div class="top">
+                                    <h2>Private Office</h2>
+                                    <p class="plan-tagline">Best for personal</p>
+                                </div>
+                                <div class="mid bg-color-secondary text-light">
+                                    <p class="price">
+                                        <span class="currency">$</span>
+                                        <span class="m opt-1">39</span>
+                                        <span class="y opt-2">19</span>
+                                        <span class="month">p/day</span>
+                                    </p>
+                                </div>
+
+                                <div class="bottom">
+                                    <ul>
+                                        <li><i class="fa fa-check"></i>24/7 Access</li>
+                                        <li><i class="fa fa-check"></i>Website Design</li>
+                                        <li><i class="fa fa-check"></i>Customer Polls</li>
+                                        <li><i class="fa fa-check"></i>Question &amp; Comment</li>
+                                        <li><i class="fa fa-check"></i>Backlink Checker</li>
+                                        <li><i class="fa fa-check"></i>Key Words Analyser</li>
+                                    </ul>
+                                </div>
+
+                                <div class="action">
+                                    <a href="" class="btn-main">Sign Up Now</a>
                                 </div>
                             </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="pricing-s1 mb30">
+                                <div class="top">
+                                    <h2>Hot Desk</h2>
+                                    <p class="plan-tagline">Best for small group</p>
+                                </div>
+
+                                <div class="mid bg-color-secondary text-light">
+                                    <p class="price">
+                                        <span class="currency">$</span>
+                                        <span class="m opt-1">169</span>
+                                        <span class="y opt-2">89</span>
+                                        <span class="month">p/day</span>
+                                    </p>
+                                </div>
+                                <div class="bottom">
+                                    <ul>
+                                        <li><i class="fa fa-check"></i>24/7 Access</li>
+                                        <li><i class="fa fa-check"></i>Website Design</li>
+                                        <li><i class="fa fa-check"></i>Customer Polls</li>
+                                        <li><i class="fa fa-check"></i>Question &amp; Comment</li>
+                                        <li><i class="fa fa-check"></i>Backlink Checker</li>
+                                        <li><i class="fa fa-check"></i>Key Words Analyser</li>
+                                    </ul>
+                                </div>
+
+                                <div class="action">
+                                    <a href="" class="btn-main">Sign Up Now</a>
+                                </div>
                             </div>
-                        </form>
-                        <div class="mt-3 text-center">
-                            <p class="mb-0">Already a member ? <a href="sign-in.html" class="form-text text-primary text-decoration-underline"> Sign-in </a></p>
                         </div>
-                    </div>
-                </div>
-            </div><!--end modal-body-->
-        </div><!--end modal-content-->
-    </div><!--end modal-dialog-->
-</div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="pricing-s1 mb30">
+                                <div class="top">
+                                    <h2>Dedicated Desk</h2>
+                                    <p class="plan-tagline">Best for organization</p>
+                                </div>
+                                <div class="mid bg-color-secondary text-light">
+                                    <p class="price">
+                                        <span class="currency">$</span>
+                                        <span class="m opt-1">329</span>
+                                        <span class="y opt-2">164</span>
+                                        <span class="month">p/day</span>
+                                    </p>
+                                </div>
+                                <div class="bottom">
+                                    <ul>
+                                        <li><i class="fa fa-check"></i>24/7 Access</li>
+                                        <li><i class="fa fa-check"></i>Website Design</li>
+                                        <li><i class="fa fa-check"></i>Customer Polls</li>
+                                        <li><i class="fa fa-check"></i>Question &amp; Comment</li>
+                                        <li><i class="fa fa-check"></i>Backlink Checker</li>
+                                        <li><i class="fa fa-check"></i>Key Words Analyser</li>
+                                    </ul>
+                                </div>
 
-<div class="main-content">
-
-    <div class="page-content">
-
-        @include('frontend.layouts.header')
-
-        <div class="position-relative">
-            <div class="shape">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1440" height="150" preserveAspectRatio="none" viewBox="0 0 1440 220">
-                    <g mask="url(&quot;#SvgjsMask1004&quot;)" fill="none">
-                        <path d="M 0,213 C 288,186.4 1152,106.6 1440,80L1440 250L0 250z" fill="rgba(255, 255, 255, 1)"></path>
-                    </g>
-                    <defs>
-                        <mask id="SvgjsMask1004">
-                            <rect width="1440" height="250" fill="#ffffff"></rect>
-                        </mask>
-                    </defs>
-                </svg>
-            </div>
-        </div>
-
-        @include('frontend.sections.categoryJobs')
-
-        @include('frontend.sections.jobList')
-
-
-        <!-- START PROCESS -->
-        @include('frontend.sections.howToWork')
-        @include('frontend.sections.jobCount')
-
-        <!-- START TESTIMONIAL -->
-        {{-- <section class="section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="section-title text-center mb-4 pb-2">
-                            <h3 class="title mb-3">Happy Candidates</h3>
-                            <p class="text-muted">Post a job to tell us about your project. We'll quickly match you with the
-                                right freelancers.</p>
-                        </div>
-                    </div>
-                    <!--end col-->
-                </div>
-                <!--end row-->
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="swiper testimonialSlider pb-5">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="card testi-box">
-                                        <div class="card-body">
-                                            <div class="mb-4">
-                                                <img src="{{ asset('frontend') }}/assets/images/logo/mailchimp.svg" height="50" alt="" />
-                                            </div>
-                                            <p class="testi-content lead text-muted mb-4">" Very well thought out and articulate communication.
-                                                Clear milestones, deadlines and fast work. Patience. Infinite patience. No
-                                                shortcuts. Even if the client is being careless. "</p>
-                                            <h5 class="mb-0">Jeffrey Montgomery</h5>
-                                            <p class="text-muted mb-0">Product Manager</p>
-                                        </div>
-                                    </div>
-                                </div><!--end swiper-slide-->
-                                <div class="swiper-slide">
-                                    <div class="card testi-box">
-                                        <div class="card-body">
-                                            <div class="mb-4">
-                                                <img src="{{ asset('frontend') }}/assets/images/logo/wordpress.svg" height="50" alt="" />
-                                            </div>
-                                            <p class="testi-content lead text-muted mb-4">" Very well thought out and articulate communication.
-                                                Clear milestones, deadlines and fast work. Patience. Infinite patience. No
-                                                shortcuts. Even if the client is being careless. "</p>
-                                            <h5 class="mb-0">Rebecca Swartz</h5>
-                                            <p class="text-muted mb-0">Creative Designer</p>
-                                        </div>
-                                    </div>
-                                </div><!--end swiper-slide-->
-                                <div class="swiper-slide">
-                                    <div class="card testi-box">
-                                        <div class="card-body">
-                                            <div class="mb-4">
-                                                <img src="{{ asset('frontend') }}/assets/images/logo/instagram.svg" height="50" alt="" />
-                                            </div>
-                                            <p class="testi-content lead text-muted mb-4">" Very well thought out and articulate communication.
-                                                Clear milestones, deadlines and fast work. Patience. Infinite patience. No
-                                                shortcuts. Even if the client is being careless. "</p>
-                                            <h5 class="mb-0">Charles Dickens</h5>
-                                            <p class="text-muted mb-0">Store Assistant</p>
-                                        </div>
-                                    </div>
-                                </div><!--end swiper-slide-->
+                                <div class="action">
+                                    <a href="" class="btn-main">Sign Up Now</a>
+                                </div>
                             </div>
-                            <!--end swiper-wrapper-->
-                            <div class="swiper-pagination"></div>
                         </div>
-                        <!--end swiper-container  -->
-                    </div>
-                    <!--end col-->
-                </div>
-                <!--end row-->
-            </div>
-        </section> --}}
-        <!-- END TESTIMONIAL -->
-
-        @include('frontend.sections.blog')
-
-        <!-- START CLIENT -->
-        @include('frontend.sections.client')
-        <!-- END CLIENT -->
-
-        <!-- START APPLY MODAL -->
-        <div class="modal fade" id="applyNow" tabindex="-1" aria-labelledby="applyNow" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body p-5">
-                        <div class="text-center mb-4">
-                            <h5 class="modal-title" id="staticBackdropLabel">Apply For This Job</h5>
-                        </div>
-                        <div class="position-absolute end-0 top-0 p-3">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nameControlInput" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="nameControlInput" placeholder="Enter your name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="emailControlInput2" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="emailControlInput2" placeholder="Enter your email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="messageControlTextarea" class="form-label">Message</label>
-                            <textarea class="form-control" id="messageControlTextarea" rows="4" placeholder="Enter your message"></textarea>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label" for="inputGroupFile01">Resume Upload</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Send Application</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- END APPLY MODAL -->
-
-    </div>
-    <!-- End Page-content -->
-
-    @include('frontend.layouts.footer')
-</div>
+    </section>
 </x-frontend-master>

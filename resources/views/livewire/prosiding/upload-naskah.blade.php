@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#linkformatnaskah" class="btn-icon btn btn-secondary btn-round"><i data-feather="book"></i> Format Naskah</a>
+                        <a href="https://regprosiding.stekom.ac.id/images/template.doc" class="btn-icon btn btn-secondary btn-round"><i data-feather="book"></i> Format Naskah</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
