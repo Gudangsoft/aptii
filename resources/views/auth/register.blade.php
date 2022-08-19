@@ -9,7 +9,7 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div>
+            <div class="mt-4">
                 <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
@@ -27,6 +27,15 @@
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Asal Institusi') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="text" name="company" :value="old('company')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="gender" value="{{ __('Jenis Kelamin') }}" />
+                <select name="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>-- Pilih --</option>
+                    <option value="l">Laki-laki</option>
+                    <option value="p">Perempuan</option>
+                  </select>
             </div>
 
             <div class="mt-4">
