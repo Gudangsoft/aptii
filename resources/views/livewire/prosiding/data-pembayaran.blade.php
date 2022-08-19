@@ -88,7 +88,7 @@
                                                 <span class="badge badge-glow badge-danger">MENUNGGU</span>
                                             @endif
                                         </td>
-                                        <td><a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit{{ $row->id }}">EDIT</a></td>
+                                        <td><a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit{{ $row->id }}">KONFIRMASI</a></td>
                                         <div wire:ignore.self class="modal fade text-left" id="modal-edit{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                                 <div class="modal-content">
@@ -216,6 +216,11 @@
 
             window.addEventListener('closeFormModal', event => {
                 $("#create-modal").modal('hide');
+            })
+
+            window.addEventListener('closeEditModal', event => {
+                let id = event.detail.id;
+                $("#modal-edit"+id).modal('hide');
             })
 
             window.addEventListener('iconLoad', event => {

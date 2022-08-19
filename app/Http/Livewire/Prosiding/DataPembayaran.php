@@ -91,6 +91,18 @@ class DataPembayaran extends Component
         $this->statusSelected = false;
     }
 
+    public function updateStatusPembayaran($value, $id){
+        ProsidingPembayaran::query()
+            ->where('id', $id)
+            ->update([
+                'status' => $value
+            ]);
+
+        $this->selectData = [];
+        $this->selectAll = false;
+        $this->statusSelected = false;
+        $this->dispatchBrowserEvent('closeEditModal', ['id' => $id]);
+    }
 
     public function deleteConfirmed(){
         ProsidingPembayaran::findOrFail($this->selected_id)->delete();

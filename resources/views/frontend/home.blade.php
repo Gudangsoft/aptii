@@ -77,8 +77,7 @@
         </a>
     </section>
 
-    <!-- Carousel wrapper -->
-    <section class="pt30 pb30 bg-color-secondary">
+    {{-- <section class="pt30 pb30 bg-color-secondary">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -156,13 +155,14 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+
     <section id="section-studio-type">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <h2>Space Type</h2>
+                        <h2>Seminar</h2>
                         <div class="small-border bg-color-2"></div>
                     </div>
                 </div>
@@ -206,7 +206,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <h2>Why Choose Us?</h2>
+                        <h2>Artikel Informasi</h2>
                         <div class="small-border bg-color"></div>
                     </div>
                 </div>
@@ -230,127 +230,6 @@
                         <div class="col-lg-6 mb20">
                             <h4>Printing &amp; Scanning</h4>
                             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="section-pricing">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="text-center">
-                        <h2>Select Your Plan</h2>
-                        <div class="spacer-20"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col text-center">
-                    <div class="switch-set">
-                        <div>Daily</div>
-                        <div><input id="sw-1" class="switch" type="checkbox" /></div>
-                        <div>Monthly</div>
-                        <div class="spacer-20"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="item pricing">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="pricing-s1 mb30">
-                                <div class="top">
-                                    <h2>Private Office</h2>
-                                    <p class="plan-tagline">Best for personal</p>
-                                </div>
-                                <div class="mid bg-color-secondary text-light">
-                                    <p class="price">
-                                        <span class="currency">$</span>
-                                        <span class="m opt-1">39</span>
-                                        <span class="y opt-2">19</span>
-                                        <span class="month">p/day</span>
-                                    </p>
-                                </div>
-
-                                <div class="bottom">
-                                    <ul>
-                                        <li><i class="fa fa-check"></i>24/7 Access</li>
-                                        <li><i class="fa fa-check"></i>Website Design</li>
-                                        <li><i class="fa fa-check"></i>Customer Polls</li>
-                                        <li><i class="fa fa-check"></i>Question &amp; Comment</li>
-                                        <li><i class="fa fa-check"></i>Backlink Checker</li>
-                                        <li><i class="fa fa-check"></i>Key Words Analyser</li>
-                                    </ul>
-                                </div>
-
-                                <div class="action">
-                                    <a href="" class="btn-main">Sign Up Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="pricing-s1 mb30">
-                                <div class="top">
-                                    <h2>Hot Desk</h2>
-                                    <p class="plan-tagline">Best for small group</p>
-                                </div>
-
-                                <div class="mid bg-color-secondary text-light">
-                                    <p class="price">
-                                        <span class="currency">$</span>
-                                        <span class="m opt-1">169</span>
-                                        <span class="y opt-2">89</span>
-                                        <span class="month">p/day</span>
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <ul>
-                                        <li><i class="fa fa-check"></i>24/7 Access</li>
-                                        <li><i class="fa fa-check"></i>Website Design</li>
-                                        <li><i class="fa fa-check"></i>Customer Polls</li>
-                                        <li><i class="fa fa-check"></i>Question &amp; Comment</li>
-                                        <li><i class="fa fa-check"></i>Backlink Checker</li>
-                                        <li><i class="fa fa-check"></i>Key Words Analyser</li>
-                                    </ul>
-                                </div>
-
-                                <div class="action">
-                                    <a href="" class="btn-main">Sign Up Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="pricing-s1 mb30">
-                                <div class="top">
-                                    <h2>Dedicated Desk</h2>
-                                    <p class="plan-tagline">Best for organization</p>
-                                </div>
-                                <div class="mid bg-color-secondary text-light">
-                                    <p class="price">
-                                        <span class="currency">$</span>
-                                        <span class="m opt-1">329</span>
-                                        <span class="y opt-2">164</span>
-                                        <span class="month">p/day</span>
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <ul>
-                                        <li><i class="fa fa-check"></i>24/7 Access</li>
-                                        <li><i class="fa fa-check"></i>Website Design</li>
-                                        <li><i class="fa fa-check"></i>Customer Polls</li>
-                                        <li><i class="fa fa-check"></i>Question &amp; Comment</li>
-                                        <li><i class="fa fa-check"></i>Backlink Checker</li>
-                                        <li><i class="fa fa-check"></i>Key Words Analyser</li>
-                                    </ul>
-                                </div>
-
-                                <div class="action">
-                                    <a href="" class="btn-main">Sign Up Now</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
