@@ -1,5 +1,5 @@
 @section('title')
-    Pembayaran Prosiding -
+    Data Pembayaran Prosiding -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">

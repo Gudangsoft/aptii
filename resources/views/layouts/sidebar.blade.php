@@ -16,32 +16,35 @@
             @role('peserta|admin|super admin|writer')
             <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Layanan</span><i data-feather="more-horizontal"></i>
             </li>
-            <li class="{{ request()->routeIs('prosiding.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.upload-naskah') }}"><i data-feather="radio"></i><span class="menu-title text-truncate" data-i18n="User">Info Prosiding</span></a>
+            <li class="{{ request()->routeIs('prosiding.info') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.info') }}"><i data-feather="radio"></i><span class="menu-title text-truncate" data-i18n="User">Info Prosiding</span></a>
             </li>
             <li class="{{ request()->routeIs('prosiding.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.upload-naskah') }}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="User">Naskah</span></a>
             </li>
             <li class="{{ request()->routeIs('prosiding.bukti-pembayaran') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.bukti-pembayaran') }}"><i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="User">Bukti Pembayaran</span></a>
             </li>
-            <li class="{{ request()->routeIs('prosiding.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.upload-naskah') }}"><i data-feather="book-open"></i><span class="menu-title text-truncate" data-i18n="User">Materi Seminar</span></a>
+            <li class="{{ request()->routeIs('prosiding.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.seminar') }}"><i data-feather="book-open"></i><span class="menu-title text-truncate" data-i18n="User">Materi Seminar</span></a>
             </li>
-            <li class="{{ request()->routeIs('prosiding.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.upload-naskah') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
+            <li class="{{ request()->routeIs('prosiding.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
             </li>
             @endrole
 
             @role('admin|super admin|writer')
             <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Data</span><i data-feather="more-horizontal"></i>
             </li>
-            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Data Peserta</span></a>
+            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Data Prosiding</span></a>
                 <ul class="menu-content">
-                    <li class="{{ request()->routeIs('prosiding.pembayaran') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.pembayaran') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Konfirmasi Bayar</span></a>
+                    <li class="{{ request()->routeIs('prosiding.naskah') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.naskah') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Naskah</span></a>
                     </li>
-                    <li class="{{ request()->routeIs('prosiding.naskah') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.naskah') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Naskah Peserta</span></a>
+                    <li class="{{ request()->routeIs('prosiding.pembayaran') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.pembayaran') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Pembayaran</span></a>
                     </li>
-                    {{-- <li class="{{ request()->routeIs('prosiding.peserta') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.peserta') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Peserta</span></a> --}}
+                    <li class="{{ request()->routeIs('bidang-ilmu.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('bidang-ilmu.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Bidang Ilmu</span></a>
                     </li>
+                    {{-- <li class="{{ request()->routeIs('prosiding.peserta') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.peserta') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Peserta</span></a>
+                    </li> --}}
                 </ul>
             </li>
 
+            @can('edit articles')
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Pages">Artikel</span></a>
                 <ul class="menu-content">
                     <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('articles.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Berita</span></a>
@@ -52,6 +55,7 @@
                     </li>
                 </ul>
             </li>
+            @endcan
 
             @endrole
 

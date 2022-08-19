@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Prosiding\NaskahController;
 use App\Http\Controllers\Admin\Prosiding\PembayaranController;
 use App\Http\Controllers\Admin\Prosiding\PesertaController;
+use App\Http\Controllers\Admin\Prosiding\ProsidingController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Livewire\ArticleCategoriesTable;
 use Laravel\Jetstream\Rules\Role;
@@ -62,6 +63,10 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
             // menu peserta
             Route::resource('upload-naskah', NaskahController::class);
             Route::resource('upload-pembayaran', PembayaranController::class);
+
+            Route::get('info', [ProsidingController::class, 'info'])->name('prosiding.info');
+            Route::get('seminar', [ProsidingController::class, 'seminar'])->name('prosiding.seminar');
+            Route::get('sertifikat', [ProsidingController::class, 'sertifikat'])->name('prosiding.sertifikat');
             Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('prosiding.upload-naskah');
             Route::get('bukti-pembayaran', [PembayaranController::class, 'uploadPembayaran'])->name('prosiding.bukti-pembayaran');
 
@@ -70,6 +75,8 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
                 Route::get('peserta', [PesertaController::class, 'index'])->name('prosiding.peserta');
                 Route::get('naskah', [NaskahController::class, 'naskah'])->name('prosiding.naskah');
                 Route::get('pembayaran', [PembayaranController::class, 'index'])->name('prosiding.pembayaran');
+
+                Route::resource('bidang-ilmu', BidangIlmuController::class);
             });
         });
 

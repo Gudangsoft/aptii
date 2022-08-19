@@ -20,16 +20,14 @@ class DashboardController extends Controller
             'home' => [
                 'date' => Carbon::now()->Format('D, d M Y'),
                 'time' => Carbon::now()->Format('g:i A'),
-                'currentUserInfo' => Location::get($ip),
+                // 'currentUserInfo' => Location::get($ip),
+                'currentUserInfo' => 0,
             ]
         );
 
-        $quotes = Http::get('https://api.quotable.io/random')->json();
-        // dd($quotes['content']);
         // dd($data);
         return view('admin.dashboard', [
             'data' => $data,
-            'quotes' => $quotes['content'],
             'friendListAdd' => User::where('status', 1)->whereNotIn('id', $friendListId)->limit(7)->get()
         ]);
     }

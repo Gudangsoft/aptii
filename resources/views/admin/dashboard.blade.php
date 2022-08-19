@@ -24,10 +24,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <h1 class="mb-1 text-white">Selamat datang {{ ucwords(auth()->user()->name) }},</h1>
-                                    <p class="card-text m-auto w-75">
-                                        {!! $quotes !!}
-                                    </p>
+                                    <h1 class="mb-1 text-white">Selamat datang {{ ucwords(auth()->user()->name) }}</h1>
                                 </div>
                             </div>
                         </div>
