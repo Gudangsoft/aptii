@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Friends;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 use Stevebauman\Location\Facades\Location;
 
 class DashboardController extends Controller
@@ -22,9 +23,13 @@ class DashboardController extends Controller
                 'currentUserInfo' => Location::get($ip),
             ]
         );
+
+        $quotes = Http::get('https://api.quotable.io/random')->json();
+        // dd($quotes['content']);
         // dd($data);
         return view('admin.dashboard', [
             'data' => $data,
+            'quotes' => $quotes['content'],
             'friendListAdd' => User::where('status', 1)->whereNotIn('id', $friendListId)->limit(7)->get()
         ]);
     }

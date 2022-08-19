@@ -37,24 +37,6 @@
                 @endif
             </div>
         </div>
-        <div class="avatar-group">
-            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Billy Hopkins" class="avatar pull-up">
-                <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-9.jpg" alt="Avatar" width="33" height="33" />
-            </div>
-            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Amy Carson" class="avatar pull-up">
-                <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-6.jpg" alt="Avatar" width="33" height="33" />
-            </div>
-            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Brandon Miles" class="avatar pull-up">
-                <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-8.jpg" alt="Avatar" width="33" height="33" />
-            </div>
-            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Daisy Weber" class="avatar pull-up">
-                <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-20.jpg" alt="Avatar" width="33" height="33" />
-            </div>
-            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Jenny Looper" class="avatar pull-up">
-                <img src="{{ asset('assets') }}/images/portrait/small/avatar-s-20.jpg" alt="Avatar" width="33" height="33" />
-            </div>
-            <h6 class="align-self-center cursor-pointer ml-50 mb-0">+42</h6>
-        </div>
     </div>
 </div>
 

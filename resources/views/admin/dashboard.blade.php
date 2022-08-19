@@ -13,7 +13,25 @@
         <div class="content-body">
             <section class="app-user-list">
                 <div class="row match-height">
-
+                    <div class="col-12">
+                        <div class="card card-congratulations">
+                            <div class="card-body text-center">
+                                <img src="{{ asset('assets') }}/images/elements/decore-left.png" class="congratulations-img-left" alt="card-img-left" />
+                                <img src="{{ asset('assets') }}/images/elements/decore-right.png" class="congratulations-img-right" alt="card-img-right" />
+                                <div class="avatar avatar-xl bg-primary shadow">
+                                    <div class="avatar-content">
+                                        <img class="round" src="{{ asset('storage/images/users').'/'.auth()->user()->profile_photo_path }}" alt="avatar" height="60" width="60">
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <h1 class="mb-1 text-white">Selamat datang {{ ucwords(auth()->user()->name) }},</h1>
+                                    <p class="card-text m-auto w-75">
+                                        {!! $quotes !!}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Developer Meetup Card -->
                     <div class="col-lg-8 col-md-6 col-12">
                         @include('admin.widget.home', ['data' => $data['home']])

@@ -28,9 +28,9 @@
             </li>
             @endrole
 
+            @role('admin|super admin|writer')
             <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Data</span><i data-feather="more-horizontal"></i>
             </li>
-            @role('admin|super admin|writer')
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Data Peserta</span></a>
                 <ul class="menu-content">
                     <li class="{{ request()->routeIs('prosiding.pembayaran') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.pembayaran') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Konfirmasi Bayar</span></a>
