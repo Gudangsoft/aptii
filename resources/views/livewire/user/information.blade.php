@@ -9,10 +9,10 @@
             </div>
             <div class="col-12 col-sm-6">
                 <div class="form-group">
-                    <label for="accountSelect">Gender</label>
+                    <label for="accountSelect">Jenis Kelamin</label>
                     <select class="form-control" id="accountSelect" wire:model.defer="gender">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="l" {{ $gender == 'l' ? 'selected' : '' }}>Laki-Laki</option>
+                        <option value="p" {{ $gender == 'p' ? 'selected' : '' }}>Perempuan</option>
                     </select>
                 </div>
             </div>
