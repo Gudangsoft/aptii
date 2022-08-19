@@ -59,8 +59,11 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
     Route::prefix('cms')->group(function (){
         // data prosiding
         Route::prefix('prosiding')->group(function (){
+            // menu peserta
             Route::resource('upload-naskah', NaskahController::class);
+            Route::resource('upload-pembayaran', PembayaranController::class);
             Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('prosiding.upload-naskah');
+            Route::get('bukti-pembayaran', [PembayaranController::class, 'uploadPembayaran'])->name('prosiding.bukti-pembayaran');
 
             // admin access
             Route::group(['middleware' => ['role:admin|super admin|writer']], function () {

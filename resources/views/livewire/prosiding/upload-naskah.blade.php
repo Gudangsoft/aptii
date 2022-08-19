@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <a href="{{ route('upload-naskah.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="plus-circle"></i> Tambah Naskah</a>
-                        <div wire:ignore.self class="modal fade text-left" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+                        {{-- <div wire:ignore.self class="modal fade text-left" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -68,7 +68,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <a href="https://regprosiding.stekom.ac.id/images/template.doc" class="btn-icon btn btn-secondary btn-round"><i data-feather="book"></i> Format Naskah</a>
                     </div>
                     <div class="table-responsive">

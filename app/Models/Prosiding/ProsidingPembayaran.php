@@ -5,6 +5,7 @@ namespace App\Models\Prosiding;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Prosiding\Rekening;
 
 class ProsidingPembayaran extends Model
 {
@@ -19,5 +20,9 @@ class ProsidingPembayaran extends Model
 
     public function getNaskah(){
         return $this->belongsTo(ProsidingNaskah::class, 'naskah_id');
+    }
+
+    public function getRekeningTujuan(){
+        return $this->belongsTo(Rekening::class, 'rekening_tujuan');
     }
 }

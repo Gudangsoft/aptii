@@ -180,7 +180,12 @@
                                                             </div>
                                                             <div class="col-4">
                                                                 <div class="card">
-                                                                    <img src="https://staim-bandung.ac.id/wp-content/uploads/2019/01/bukti-pembayaran-STAIM0002.jpg" class alt="bukti pembayaran">
+                                                                    <img src="{{ config('app.url').$row->photo }}" alt="bukti pembayaran" onclick="detailImage()">
+                                                                    <script>
+                                                                        function detailImage(){
+                                                                            window.location.href = "{{ config('app.url').$row->photo }}";
+                                                                        }
+                                                                    </script>
                                                                 </div>
                                                             </div>
                                                         </div>
