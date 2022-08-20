@@ -30,14 +30,15 @@ class NaskahController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        $fileName = auth()->user()->id.$request->document->getClientOriginalName();
         try {
-            $request->document->storeAs('public/files/naskah/', uniqid(time()).$request->document->getClientOriginalName());
+            $request->document->storeAs('public/files/naskah/', $fileName);
             $upload = new ProsidingNaskah();
             $upload->user_id = auth()->user()->id;
             $upload->bidang_ilmu_id = $request->bidang_ilmu;
             $upload->judul = $request->judul;
             $upload->abstrak = $request->judul;
-            $upload->file_naskah = $request->document->getClientOriginalName();
+            $upload->file_naskah = $fileName;
             $upload->status = 1;
             $upload->save();
 

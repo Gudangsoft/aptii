@@ -4,38 +4,48 @@ namespace App\Http\Controllers\Admin\Event;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Prosiding\Event;
+use Exception;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('admin.event.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.event.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $fileName = auth()->user()->id.$request->photo->getClientOriginalName();
+        try {
+            $request->photo->storeAs('public/pictures/events/', $fileName);
+
+            $save = new Event();
+            $save->judul = $request->judul;
+            $save->keterangan = $request->keterangan;
+            $save->link = $request->link;
+            $save->date_start = $request->mulai;
+            $save->date_end = $request->selesai;
+            $save->created_by = auth()->user()->id;
+            $save->status = 1;
+            $save->image = $fileName;
+            $save->save();
+
+            Alert::success('Success', 'Naskah berhasil diupload !');
+            return redirect()->route('event.index');
+
+        } catch (Exception $error) {
+            dd($error->getMessage());
+            Alert::error('Error', $error->getMessage());
+            return back();
+        }
     }
 
     /**
