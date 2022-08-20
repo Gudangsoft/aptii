@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\Prosiding\NaskahController;
 use App\Http\Controllers\Admin\Prosiding\PembayaranController;
 use App\Http\Controllers\Admin\Prosiding\PesertaController;
 use App\Http\Controllers\Admin\Prosiding\ProsidingController;
+use App\Http\Controllers\Admin\Prosiding\BidangIlmuController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Livewire\ArticleCategoriesTable;
 use Laravel\Jetstream\Rules\Role;
