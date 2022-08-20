@@ -30,7 +30,7 @@
                 <div class="row" id="basic-table">
                     <div class="col-12">
                         <div class="card p-1">
-                            @livewire('prosiding.bukti-pembayaran')
+                            @livewire('event.event-table')
                         </div>
                     </div>
                 </div>
