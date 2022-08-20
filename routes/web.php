@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ChatsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Event\EventController;
 use App\Http\Controllers\Admin\Jobs\JobsAppliedController;
 use App\Http\Controllers\Admin\Jobs\JobsCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -25,8 +26,6 @@ use App\Http\Controllers\Admin\Prosiding\PesertaController;
 use App\Http\Controllers\Admin\Prosiding\ProsidingController;
 use App\Http\Controllers\Admin\Prosiding\BidangIlmuController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
-use App\Http\Livewire\ArticleCategoriesTable;
-use Laravel\Jetstream\Rules\Role;
 use App\Http\Controllers\Admin\Settings\RolePermissionController;
 
 /*
@@ -77,6 +76,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
                 Route::get('naskah', [NaskahController::class, 'naskah'])->name('prosiding.naskah');
                 Route::get('pembayaran', [PembayaranController::class, 'index'])->name('prosiding.pembayaran');
 
+                Route::resource('event', EventController::class);
                 Route::resource('bidang-ilmu', BidangIlmuController::class);
             });
         });

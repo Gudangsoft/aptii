@@ -47,7 +47,7 @@
                                                 <div class="modal-body">
                                                     <div class="form-group">
                                                         <label><h5>Judul</h5></label>
-                                                        <input type="text" wire:model.defer='title' class="form-control" placeholder="Judul Naskah" required>
+                                                        <input type="text" wire:model.defer='title' class="form-control" placeholder="Judul" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label><h5>Keterangan</h5></label>
@@ -113,7 +113,7 @@
                                     <th>Title</th>
                                     <th>Status</th>
                                     <th>Created By</th>
-                                    <th class="text-right">Actions</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -136,7 +136,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $row->getUser->name }}</td>
-                                        <td class="text-right">
+                                        <td>
                                             <div class="btn-group">
                                                 <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Select

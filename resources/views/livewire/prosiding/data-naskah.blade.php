@@ -5,18 +5,18 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-6 col-sm-12">
-
+                            <div class="col-lg-6 col-sm-12 mt-1">
+                                <span class="badge badge-light-dark">Total Naskah : {{ $totalNaskah }}</span>
                             </div>
-                            <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
+                            <div class="col-lg-4 col-sm-12 d-flex justify-content-end mt-1">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon-search1"><i data-feather="search"></i></span>
                                     </div>
-                                    <input type="text" wire:model="search" class="form-control" placeholder="Cari nama" aria-label="Search..." aria-describedby="basic-addon-search1" />
+                                    <input type="text" wire:model="search" class="form-control" placeholder="Cari Judul Naskah" aria-label="Search..." aria-describedby="basic-addon-search1" />
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-sm-12 d-flex justify-content-end">
+                            <div class="col-lg-2 col-sm-12 d-flex justify-content-end mt-1">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon-search1">Page</i></span>
@@ -91,9 +91,11 @@
                                         <td>
                                             <div class="btn-group">
                                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Edit
+                                                    Pilih
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="{{ $row->document }}">Detail File</a>
+                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(1, {{ $row->id }})'>Diterima</a>
                                                     <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(2, {{ $row->id }})'>Naskah tidak ada</a>
                                                     <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(3, {{ $row->id }})'>Tidak sesuai, silakan perbaiki</a>

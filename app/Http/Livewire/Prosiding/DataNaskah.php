@@ -19,6 +19,7 @@ class DataNaskah extends Component
     public $bulkDisabled = true;
     public $statusSelected = false;
     public $search, $limitPerPage = 10, $changeLimitPage;
+    public $totalNaskah;
 
     protected $queryString = ['search' => ['except' => '']];
     protected $listeners = [
@@ -37,13 +38,10 @@ class DataNaskah extends Component
         }
 
         $data = ProsidingNaskah::orderByDesc('created_at')->paginate($this->limitPerPage);
+        $this->totalNaskah = ProsidingNaskah::orderByDesc('created_at')->count();
         if($this->search != null){
-            $user = User::where('name', 'like', '%'.$this->search.'%')->pluck('id');
-            if($user == null){
-                $data = $data;
-            }else{
-                $data = ProsidingNaskah::whereIn('user_id', $user)->orderByDesc('created_at')->paginate($this->limitPerPage);
-            }
+            $data = ProsidingNaskah::where('judul', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate($this->limitPerPage);
+            $this->totalNaskah = $data->count();
         }
 
         $this->emit('postStore');
