@@ -76,8 +76,10 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
                 Route::get('naskah', [NaskahController::class, 'naskah'])->name('prosiding.naskah');
                 Route::get('pembayaran', [PembayaranController::class, 'index'])->name('prosiding.pembayaran');
 
+                Route::get('info-prosiding', [ArticleController::class, 'infoProsiding'])->name('prosiding.table-info-prosiding');
                 Route::resource('event', EventController::class);
                 Route::resource('bidang-ilmu', BidangIlmuController::class);
+
             });
         });
 

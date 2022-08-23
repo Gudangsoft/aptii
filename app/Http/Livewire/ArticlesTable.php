@@ -19,7 +19,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
 class ArticlesTable extends DataTableComponent
 {
-    // protected $model = Article::class;
+    protected $model = Article::class;
     public $selected_id;
     public $title, $slug, $category, $status, $content, $date, $tags, $image;
 

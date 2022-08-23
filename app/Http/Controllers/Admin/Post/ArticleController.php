@@ -276,4 +276,8 @@ class ArticleController extends Controller
         Alert::success('Deleted', 'Article delete successuflly');
         return back();
     }
+
+    public function infoProsiding(){
+        return view('admin.prosiding.info-prosiding');
+    }
 }
