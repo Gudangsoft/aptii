@@ -18,6 +18,8 @@
             </li>
             <li class="{{ request()->routeIs('prosiding.info') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.info') }}"><i data-feather="radio"></i><span class="menu-title text-truncate" data-i18n="User">Info Prosiding</span></a>
             </li>
+            <li class="nav-item"><a class="d-flex align-items-center" href="https://badanpenerbit.org/index.php/barapenda" target="_blank"><i data-feather="external-link"></i><span class="menu-title text-truncate" data-i18n="User">Prosiding Nasional</span></a>
+            </li>
             <li class="{{ request()->routeIs('prosiding.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.upload-naskah') }}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="User">Naskah</span></a>
             </li>
             <li class="{{ request()->routeIs('prosiding.bukti-pembayaran') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.bukti-pembayaran') }}"><i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="User">Bukti Pembayaran</span></a>
