@@ -65,6 +65,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
             Route::resource('upload-pembayaran', PembayaranController::class);
 
             Route::get('info', [ProsidingController::class, 'info'])->name('prosiding.info');
+            Route::get('info-detail', [ProsidingController::class, 'infoDetail'])->name('prosiding.info-detail');
             Route::get('seminar', [ProsidingController::class, 'seminar'])->name('prosiding.seminar');
             Route::get('sertifikat', [ProsidingController::class, 'sertifikat'])->name('prosiding.sertifikat');
             Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('prosiding.upload-naskah');

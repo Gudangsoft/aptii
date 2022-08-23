@@ -13,6 +13,11 @@ class ProsidingController extends Controller
         return view('admin.prosiding.info.index');
     }
 
+    public function infoDetail()
+    {
+        return view('admin.prosiding.info.detail');
+    }
+
     public function seminar()
     {
         return view('admin.prosiding.seminar.index');
