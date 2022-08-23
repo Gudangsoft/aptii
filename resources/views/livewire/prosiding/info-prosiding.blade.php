@@ -3,12 +3,12 @@
         @foreach ($data as $item)
             <div class="col-md-4 col-12">
                 <div class="card">
-                    <a href="{{ route('prosiding.info-detail') }}">
+                    <a href="{{ route('prosiding.info-detail', $item->slug) }}">
                         <img class="card-img-top img-fluid" src="{{ $item->image ? asset(config('app.POST_BIG')).'/'.$item->image : asset('assets').'/images/slider/03.jpg' }}" alt="Blog Post pic" />
                     </a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="{{ route('prosiding.info-detail') }}" class="blog-title-truncate text-body-heading">{{ $item->title }}</a>
+                            <a href="{{ route('prosiding.info-detail', $item->slug) }}" class="blog-title-truncate text-body-heading">{{ $item->title }}</a>
                         </h4>
                         <div class="media">
                             <div class="avatar mr-50">
@@ -24,11 +24,12 @@
                         <div class="my-1 py-25">
                             @php
                                 $tags = explode(',', $item->tags);
+                                $row = \App\Models\Tag::whereIn('id', $tags)->get();
                                 // dd($tags);
                             @endphp
-                            @foreach ($tags as $tag)
-                                <a href="#">
-                                    <div class="badge badge-pill badge-light-info mr-50">{{ $tag }}</div>
+                            @foreach ($row as $tag)
+                                <a href="/tag/{{ $tag->slug }}">
+                                    <div class="badge badge-pill badge-light-primary mr-50">{{ $tag->title }}</div>
                                 </a>
                             @endforeach
                         </div>
@@ -43,7 +44,7 @@
                                     <span class="text-body font-weight-bold">76 Comments</span>
                                 </div>
                             </a> --}}
-                            <a href="{{ route('prosiding.info-detail') }}" class="font-weight-bold">Read More</a>
+                            <a href="{{ route('prosiding.info-detail', $item->slug) }}" class="font-weight-bold">Read More</a>
                         </div>
                     </div>
                 </div>

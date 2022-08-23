@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Prosiding;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use RobertSeghedi\News\Models\Article;
 
 class ProsidingController extends Controller
 {
@@ -13,9 +15,11 @@ class ProsidingController extends Controller
         return view('admin.prosiding.info.index');
     }
 
-    public function infoDetail()
+    public function infoDetail($slug)
     {
-        return view('admin.prosiding.info.detail');
+        return view('admin.prosiding.info.detail', [
+            'data' => Article::where('slug', $slug)->first()
+        ]);
     }
 
     public function seminar()
