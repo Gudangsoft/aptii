@@ -7,12 +7,12 @@
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 mt-1">
                                 <a href="{{ route('customer-care.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="plus-circle"></i> Tambah Kontak</a>
-                                <button class="btn-icon btn btn-primary btn-round"  data-toggle="modal" data-target="#create-modal-cs"><i data-feather="link-2"></i> Tambah Group Link</button>
+                                <button class="btn-icon btn btn-dark btn-round"  data-toggle="modal" data-target="#create-modal-cs"><i data-feather="link-2"></i> Group Link</button>
                                 <div wire:ignore.self class="modal fade text-left" id="create-modal-cs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel16">Tambah Group</h4>
+                                                <h4 class="modal-title" id="myModalLabel16">Edit Link Group</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -73,6 +73,22 @@
                                     </th>
                                 </tr>
                                 @endif
+                                <tr>
+                                    <th colspan="2">Link Group</th>
+                                    <td colspan="3" class="bg-primary text-white">
+                                        @php
+                                            $json = file_get_contents('JSON/group-cs.json');
+                                            $group = json_decode($json, true);
+                                        @endphp
+                                        @if ($group != null)
+                                            <a href="{{ $group['data']['group'][0]['url'] }}" class="badge badge-dark">
+                                                <b>
+                                                    {{ $group['data']['group'][0]['url'] }}
+                                                </b>
+                                            </a>
+                                        @endif
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Nama</th>
@@ -168,7 +184,7 @@
             })
 
             window.addEventListener('closeModalBidangIlmu', event => {
-                $("#create-modal-bidangilmu").modal('hide');
+                $("#create-modal-cs").modal('hide');
             })
 
             window.addEventListener('iconLoad', event => {

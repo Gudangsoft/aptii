@@ -8,6 +8,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 use App\Models\Prosiding\CustomerCare as CS;
+use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class CustomerCare extends Component
@@ -144,8 +145,21 @@ class CustomerCare extends Component
 
     public function createGroupLink(){
         try{
-            dd($this->url);
-            $this->alert('success', 'Bidang Ilmu berhasil ditambahkan !', [
+            // dd($this->url);
+            $data['group'] = array([
+                'url' => $this->url,
+                'created_by' => auth()->user()->name,
+                'created_at' => Carbon::now()->format('D, d M Y - H:i:s')
+            ]);
+            $json = json_encode(array('data' => $data));
+            //write json to file
+            if (file_put_contents("JSON/group-cs.json", $json)){
+                $msg = 'Group berhasil ditambahkan';
+            }else{
+                $msg = 'Error saat menambahkan group';
+            }
+
+            $this->alert('success', $msg, [
                 'position' => 'center',
             ]);
 

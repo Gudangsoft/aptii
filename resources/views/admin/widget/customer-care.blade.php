@@ -20,6 +20,20 @@
             @endif
         @endforeach
     </div>
+    @php
+        $json = file_get_contents('JSON/group-cs.json');
+        $group = json_decode($json, true);
+    @endphp
+    @if ($group != null)
+    <div class="card-body">
+        <h4 class="text-primary">
+            Link Group :
+            <a href="{{ $group['data']['group'][0]['url'] }}" class="badge badge-primary">
+                Gabung Sekarang
+            </a>
+        </h4>
+    </div>
+    @endif
     @if ($config->address != null)
         <div class="card-body">
             <h4 class="text-primary">Kantor</h4>
