@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Configuration;
 use Illuminate\Http\Request;
 use App\Models\Friends;
 use App\Models\Prosiding\CustomerCare;
@@ -29,6 +30,7 @@ class DashboardController extends Controller
         // dd($data);
         return view('admin.dashboard', [
             'data' => $data,
+            'config' => Configuration::where('status', 1)->first(),
             'friendListAdd' => User::where('status', 1)->whereNotIn('id', $friendListId)->limit(7)->get(),
             'customerCare' => CustomerCare::where('status', true)->get()
         ]);

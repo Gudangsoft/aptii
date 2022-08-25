@@ -1,8 +1,6 @@
 
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-<!-- BEGIN: Head-->
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,10 +19,8 @@
 
     @include('layouts.styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css" integrity="sha512-H/zVLBHVS8ZRNSR8wrNZrGFpuHDyN6+p6uaADRefLS4yZYRxfF4049g1GhT+gDExFRB5Kf9jeGr8vueDsyBhhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/style.css"> --}}
     @livewireStyles
 
-    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
 </head>
 
@@ -33,7 +29,6 @@
     @include('layouts.navbar')
     @include('layouts.sidebar')
 
-    {{-- @yield('content') --}}
     {{ $slot }}
 
     <div class="sidenav-overlay"></div>

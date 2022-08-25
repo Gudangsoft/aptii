@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customer_cares', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('user_id');
             $table->string('status');
             $table->timestamps();

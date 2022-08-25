@@ -27,7 +27,7 @@ use App\Http\Controllers\Admin\Prosiding\ProsidingController;
 use App\Http\Controllers\Admin\Prosiding\BidangIlmuController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Controllers\Admin\Settings\RolePermissionController;
-use App\Http\Controllers\Prosiding\CustomerCareController;
+use App\Http\Controllers\Admin\Prosiding\CustomerCareController;
 
 /*
 |--------------------------------------------------------------------------

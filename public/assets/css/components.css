@@ -1242,14 +1242,14 @@ footer.footer-border {
 
 .navigation {
   font-size : 1.1rem;
-  font-family : 'DM Sans', Helvetica, Arial, serif;
+  font-family : 'Montserrat', Helvetica, Arial, serif;
   font-weight : 400;
   overflow-y : hidden;
   padding-bottom : 20px;
 }
 
 .navigation .navigation-header {
-  font-family : 'DM Sans', Helvetica, Arial, serif;
+  font-family : 'Montserrat', Helvetica, Arial, serif;
   font-weight : 500;
   line-height : 1.2;
   padding : 12px 22px;
