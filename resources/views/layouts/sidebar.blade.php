@@ -43,6 +43,8 @@
                     </li>
                     {{-- <li class="{{ request()->routeIs('prosiding.peserta') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.peserta') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Peserta</span></a>
                     </li> --}}
+                    <li class="{{ request()->routeIs('customer-care.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('customer-care.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Kontak Narahubung</span></a>
+                    </li>
                 </ul>
             </li>
             <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="Pages">Event Seminar</span></a>

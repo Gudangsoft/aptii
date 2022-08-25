@@ -29,9 +29,9 @@
 
 <body>
     <div id="wrapper">
-        <div id="preloader">
+        {{-- <div id="preloader">
             <div class="preloader1"></div>
-        </div>
+        </div> --}}
         @include('frontend.layouts.header')
 
         <!-- content begin -->

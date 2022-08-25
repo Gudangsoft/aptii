@@ -37,7 +37,9 @@
 
                     <!-- Browser States Card -->
                     <div class="col-lg-4 col-md-6 col-12">
-                        @include('admin.widget.add_friends', ['users' => $friendListAdd])
+                        {{-- @role('peserta') --}}
+                        @include('admin.widget.customer-care', ['data' => $customerCare])
+                        {{-- @include('admin.widget.add_friends', ['users' => $friendListAdd]) --}}
                     </div>
                     <!--/ Browser States Card -->
 

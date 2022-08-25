@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Friends;
+use App\Models\Prosiding\CustomerCare;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
@@ -28,7 +29,8 @@ class DashboardController extends Controller
         // dd($data);
         return view('admin.dashboard', [
             'data' => $data,
-            'friendListAdd' => User::where('status', 1)->whereNotIn('id', $friendListId)->limit(7)->get()
+            'friendListAdd' => User::where('status', 1)->whereNotIn('id', $friendListId)->limit(7)->get(),
+            'customerCare' => CustomerCare::where('status', true)->get()
         ]);
     }
 }
