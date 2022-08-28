@@ -25,6 +25,7 @@
     <!-- color scheme -->
     <link id="colors" href="{{ asset('frontend') }}/css/colors/scheme-01.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend') }}/css/coloring.css" rel="stylesheet" type="text/css" />
+    @livewireStyles
 </head>
 
 <body>
@@ -51,6 +52,8 @@
 
     <!-- Javascript Files
     ================================================== -->
+    @livewireScripts
+
     <script src="{{ asset('frontend') }}/js/jquery.min.js"></script>
     <script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ asset('frontend') }}/js/bootstrap.bundle.min.js"></script>
@@ -69,7 +72,8 @@
     <script src="{{ asset('frontend') }}/js/mdb.min.js"></script>
     <script src="{{ asset('frontend') }}/js/designesia.js"></script>
 
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
 </body>
 
 </html>
