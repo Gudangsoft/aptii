@@ -33,15 +33,15 @@ class PagesController extends Controller
 
     public static function headlineArticles(){
         $data = Cache::rememberForever('headline', function () {
-            $rows = Article::where('type', 1)->orderByDesc('created_at')->first();
+            $rows = Article::where('type', 1)->where('status', true)->orderByDesc('created_at')->get();
             return $rows;
         });
         return $data;
     }
 
-    public static function sliderArticles($limit){
-        $data = Cache::rememberForever('slider', function () use($limit) {
-            $rows = Article::where('type', 2)->orderByDesc('created_at')->paginate($limit);
+    public static function sliderArticles(){
+        $data = Cache::rememberForever('slider', function () {
+            $rows = Article::where('type', 2)->orderByDesc('created_at')->get();
             return $rows;
         });
         return $data;

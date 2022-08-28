@@ -50,11 +50,9 @@ class HomeController extends Controller
 
     public function index(){
 
-        // dd(PagesController::sliderArticles(4));
         return view('frontend.home', [
             'recent'    => PagesController::recentArticles(4),
-            'slider'    => PagesController::sliderArticles(4),
-            'headline'  => PagesController::headlineArticles(2),
+            'headline'  => PagesController::headlineArticles(),
         ]);
     }
 

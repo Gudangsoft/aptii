@@ -53,7 +53,7 @@ class ArticleController extends Controller
             'slug' => 'required',
             'status' => 'required',
             'content' => 'required',
-            'image'=>'required|image|mimes:jpeg,png,jpg|dimensions:max_width='.$dataImageSetting['ori_width'].',max_height:'.$dataImageSetting['ori_height'].'',
+            'image'=>'required|image|mimes:jpeg,png,jpg',
             'tags' => 'required',
         ]);
 
@@ -185,7 +185,7 @@ class ArticleController extends Controller
             'slug' => 'required',
             'status' => 'required',
             'content' => 'required',
-            'image'=>'image|mimes:jpeg,png,jpg,gif|dimensions:max_width='.$dataImageSetting['ori_width'].',max_height:'.$dataImageSetting['ori_height'].'',
+            'image'=>'image|mimes:jpeg,png,jpg,gif',
             'tags'=>'required'
         ]);
 

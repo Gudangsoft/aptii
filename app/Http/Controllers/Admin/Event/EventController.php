@@ -38,7 +38,7 @@ class EventController extends Controller
             $save->image = $fileName;
             $save->save();
 
-            Alert::success('Success', 'Naskah berhasil diupload !');
+            Alert::success('Success', 'Data berhasil ditambahkan');
             return redirect()->route('event.index');
 
         } catch (Exception $error) {
@@ -59,27 +59,44 @@ class EventController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        return view('admin.event.edit', [
+            'data' => Event::findOrFail($id)
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function update(Request $request, $id)
     {
-        //
+        try {
+            if($request->photo != null){
+                $fileName = auth()->user()->id.$request->photo->getClientOriginalName();
+                $request->photo->storeAs('public/pictures/events/', $fileName);
+            }
+
+            $save = Event::findOrFail($id);
+            $save->judul = $request->judul;
+            $save->keterangan = $request->keterangan;
+            $save->link = $request->link;
+            $save->date_start = $request->mulai;
+            $save->date_end = $request->selesai;
+            $save->created_by = auth()->user()->id;
+            $save->status = 1;
+            if($request->photo != null){
+                $save->image = $fileName;
+            }
+            $save->save();
+
+            Alert::success('Success', 'Data berhasil diupdate !');
+            return redirect()->route('event.index');
+
+        } catch (Exception $error) {
+            dd($error->getMessage());
+            Alert::error('Error', $error->getMessage());
+            return back();
+        }
     }
 
     /**

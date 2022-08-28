@@ -84,8 +84,8 @@
                                                     Pilih
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="javascript:void(0);"wire:click=''>Detail</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"wire:click=''>Edit</a>
+                                                    {{-- <a class="dropdown-item" href="javascript:void(0);"wire:click=''>Detail</a> --}}
+                                                    <a class="dropdown-item" href="{{ route('event.edit', $row->id) }}">Edit</a>
                                                     <a class="dropdown-item" href="javascript:void(0);"wire:click=''>Delete</a>
                                                 </div>
                                             </div>
