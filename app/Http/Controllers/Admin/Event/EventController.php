@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin\Event;
 
 use App\Http\Controllers\Controller;
+use App\ImageProses;
 use Illuminate\Http\Request;
 use App\Models\Prosiding\Event;
 use Exception;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EventController extends Controller
@@ -23,9 +26,10 @@ class EventController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $fileName = auth()->user()->id.$request->photo->getClientOriginalName();
+        $fileName = auth()->user()->id.$request->image->getClientOriginalName();
+
         try {
-            $request->photo->storeAs('public/pictures/events/', $fileName);
+            $request->image->storeAs('public/pictures/events/', $fileName);
 
             $save = new Event();
             $save->judul = $request->judul;
@@ -37,6 +41,8 @@ class EventController extends Controller
             $save->status = 1;
             $save->image = $fileName;
             $save->save();
+
+            Cache::flush();
 
             Alert::success('Success', 'Data berhasil ditambahkan');
             return redirect()->route('event.index');
@@ -70,10 +76,71 @@ class EventController extends Controller
 
     public function update(Request $request, $id)
     {
+        $currentImage = Event::findOrFail($id)->image;
+        if($request->image != null &&  $currentImage != null){
+            ImageProses::deleteToStorage('post',$currentImage);
+        }
+
+        $dataImageSetting = [
+            'ori_width'=>config('app.img_size.ori_width'),
+            'ori_height'=>config('app.img_size.ori_height'),
+            'mid_width'=>config('app.img_size.mid_width'),
+            'mid_height'=>config('app.img_size.mid_height'),
+            'thumb_width'=>config('app.img_size.thumb_width'),
+            'thumb_height'=>config('app.img_size.thumb_height')
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'image'=>'image|mimes:jpeg,png,jpg,gif',
+        ]);
+
+        if($validator->fails()) {
+            Alert::toast($validator->errors()->first(), 'error');
+            return redirect()->back();
+        }
+
+        // dd($validator);
+        $namaImage = '';
+        if($request->file('image') != null){
+            $dataImg = array(
+                'skala169' => array(
+                    'width'=>$request->input('16_9_width'),
+                    'height'=>$request->input('16_9_height'),
+                    'x'=>$request->input('16_9_x'),
+                    'y'=>$request->input('16_9_y')
+                ),
+                'skala43' => array(
+                    'width'=>$request->input('4_3_width'),
+                    'height'=>$request->input('4_3_height'),
+                    'x'=>$request->input('4_3_x'),
+                    'y'=>$request->input('4_3_y')
+                ),
+                'skala11' => array(
+                    'width'=>$request->input('1_1_width'),
+                    'height'=>$request->input('1_1_height'),
+                    'x'=>$request->input('1_1_x'),
+                    'y'=>$request->input('1_1_y')
+                )
+            );
+
+            $dataImage = [
+                'file'=>$request->file('image'),
+                'setting'=>$dataImageSetting,
+                'path'=>public_path('storage/pictures/event/'),
+                'modul'=>'event',
+                'dataImg'=>$dataImg
+            ];
+
+            $uploadImg = ImageProses::imageCropDimensi($dataImage);
+            if($uploadImg['status'] == true){
+                $imageName = $uploadImg['namaImage'];
+            }
+        }
+
         try {
-            if($request->photo != null){
-                $fileName = auth()->user()->id.$request->photo->getClientOriginalName();
-                $request->photo->storeAs('public/pictures/events/', $fileName);
+            if($request->image != null){
+                $fileName = auth()->user()->id.$request->image->getClientOriginalName();
+                $request->image->storeAs('public/pictures/events/', $fileName);
             }
 
             $save = Event::findOrFail($id);
@@ -84,10 +151,12 @@ class EventController extends Controller
             $save->date_end = $request->selesai;
             $save->created_by = auth()->user()->id;
             $save->status = 1;
-            if($request->photo != null){
-                $save->image = $fileName;
+            if($request->image != null){
+                $save->image = $imageName;
             }
             $save->save();
+
+            Cache::flush();
 
             Alert::success('Success', 'Data berhasil diupdate !');
             return redirect()->route('event.index');

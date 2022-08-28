@@ -53,6 +53,7 @@ class HomeController extends Controller
         return view('frontend.home', [
             'recent'    => PagesController::recentArticles(4),
             'headline'  => PagesController::headlineArticles(),
+            'events'    => PagesController::events(),
         ]);
     }
 

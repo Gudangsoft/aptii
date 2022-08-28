@@ -41,7 +41,7 @@ class ArticlesTable extends DataTableComponent
             Column::make('Title')
             ->searchable()
             ->format(function($value){
-                return '<strong>'.$value.'</strong>';
+                return '<strong>'.Str::words($value, 5).'</strong>';
             })
             ->html(),
             Column::make('Category')

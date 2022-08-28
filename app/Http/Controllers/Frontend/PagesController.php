@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Prosiding\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use RobertSeghedi\News\Models\Article;
@@ -42,6 +43,14 @@ class PagesController extends Controller
     public static function sliderArticles(){
         $data = Cache::rememberForever('slider', function () {
             $rows = Article::where('type', 2)->orderByDesc('created_at')->get();
+            return $rows;
+        });
+        return $data;
+    }
+
+    public static function events(){
+        $data = Cache::rememberForever('events', function () {
+            $rows = Event::where('status', 1)->orderByDesc('created_at')->get();
             return $rows;
         });
         return $data;

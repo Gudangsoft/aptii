@@ -18,7 +18,7 @@ $(function(){
                 width = e.target.naturalWidth;
                 height = e.target.naturalHeight;
 
-                if(width > 1440 || height > 810){
+                if(width > 5440 || height > 3810){
                     alert('dimension image terlalu besar');
                     $("#pic-form").fileinput('clear');
                 }else{

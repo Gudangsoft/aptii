@@ -53,11 +53,12 @@
                                             tags :
                                             @php
                                                 $explode = explode(',', $data->tags);
+                                                $tags = \App\Models\Tag::whereIn('id', $explode)->get();
                                             @endphp
-                                                @foreach ( $explode as $item)
-                                                    <a href="/tags/{{ $item }}">
+                                                @foreach ( $tags as $item)
+                                                    <a href="/tags/{{ $item->title }}">
                                                         <div class="badge badge-pill badge-light-danger mr-50">
-                                                            #{{ $item }}
+                                                            #{{ $item->title }}
                                                         </div>
                                                     </a>
                                                 @endforeach
@@ -73,7 +74,7 @@
                                         </div>
                                         <hr class="my-2" />
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
+                                            {{-- <div class="d-flex align-items-center">
                                                 <div class="d-flex align-items-center mr-1">
                                                     <a href="javascript:void(0);" class="mr-50">
                                                         <i data-feather="message-square" class="font-medium-5 text-body align-middle"></i>
@@ -90,7 +91,7 @@
                                                         <div class="text-body align-middle">139</div>
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

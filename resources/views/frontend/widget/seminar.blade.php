@@ -3,41 +3,24 @@
         <div class="row align-items-center">
             <div class="col-lg-12">
                 <div class="text-center">
-                    <h2>Seminar</h2>
+                    <h2>{{ $title }}</h2>
                     <div class="small-border bg-color-2"></div>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="de-image-text">
-                    <a href="#" class="d-text">
-                        <h3><span class="id-color">01</span> Podcast</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
-                    </a>
-                    <img src="{{ asset('frontend') }}/images/misc/space-type-podcast.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="de-image-text">
-                    <a href="#" class="d-text">
-                        <h3><span class="id-color">02</span> Live Streaming</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
-                    </a>
-                    <img src="{{ asset('frontend') }}/images/misc/space-type-streaming.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="de-image-text">
-                    <a href="#" class="d-text">
-                        <h3><span class="id-color">03</span> Photo &amp; Video Shoot</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
-                    </a>
-                    <img src="{{ asset('frontend') }}/images/misc/space-type-photo.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
+            @foreach ($data as $event)
+                @if ($loop->index < $limit)
+                    <div class="col-md-4">
+                        <div class="de-image-text">
+                            <a href="#" class="d-text">
+                                <h3><span class="id-color">0{{ $loop->index + 1 }}</span> {{ $event->judul }}</h3>
+                                <p>{!! Illuminate\Support\Str::words($event->keterangan, 7) !!}</p>
+                            </a>
+                            <img src="{{ asset('storage/pictures').'/event/4_3/mid/'.$event->image }}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                @endif
+            @endforeach
 
         </div>
     </div>
