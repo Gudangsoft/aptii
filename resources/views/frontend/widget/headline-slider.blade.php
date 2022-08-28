@@ -10,22 +10,24 @@
     <div class="carousel-inner">
         {{-- {{ dd($data) }} --}}
         @foreach ($data as $item)
-            <div class="carousel-item {{ $loop->index == 0 ? 'active' : ''}}" data-bgimage="url('{{  asset(config('app.POST_MID'))  }}/{{ $item->image }}')">
-                <div class="mask">
-                    <div class="d-flex justify-content-center align-items-center h-100">
-                        <div class="container text-white text-center">
-                            <div class="row">
-                                <div class="col-md-6 offset-md-3">
-                                    <h2 class="mb-3 wow fadeInUp">{{ $item->title }}</h2>
-                                    <p class="lead wow fadeInUp" data-wow-delay=".3s">{!! Illuminate\Support\Str::words($item->content, 30) !!}</p></p>
-                                    <div class="spacer-10"></div>
-                                    <a href="explore.html" class="btn-main wow fadeInUp" data-wow-delay=".6s">Baca Detail</a>
+            @if ($loop->index < $limit)
+                <div class="carousel-item {{ $loop->index == 0 ? 'active' : ''}}" data-bgimage="url('{{  asset(config('app.POST_MID'))  }}/{{ $item->image }}')">
+                    <div class="mask">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="container text-white text-center">
+                                <div class="row">
+                                    <div class="col-md-6 offset-md-3">
+                                        <h2 class="mb-3 wow fadeInUp">{{ $item->title }}</h2>
+                                        <p class="lead wow fadeInUp" data-wow-delay=".3s">{!! Illuminate\Support\Str::words($item->content, 30) !!}</p></p>
+                                        <div class="spacer-10"></div>
+                                        <a href="explore.html" class="btn-main wow fadeInUp" data-wow-delay=".6s">Baca Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
         @endforeach
     </div>
     <!-- Inner -->
