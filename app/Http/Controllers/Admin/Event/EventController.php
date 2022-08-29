@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -33,6 +34,7 @@ class EventController extends Controller
 
             $save = new Event();
             $save->judul = $request->judul;
+            $save->slug = Str::slug($request->slug);
             $save->keterangan = $request->keterangan;
             $save->link = $request->link;
             $save->date_start = $request->mulai;
@@ -145,6 +147,7 @@ class EventController extends Controller
 
             $save = Event::findOrFail($id);
             $save->judul = $request->judul;
+            $save->slug = Str::slug($request->slug);
             $save->keterangan = $request->keterangan;
             $save->link = $request->link;
             $save->date_start = $request->mulai;
