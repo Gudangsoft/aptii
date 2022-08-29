@@ -68,8 +68,11 @@
                                         <td>
                                             <input type="checkbox" value="{{ $row->id }}" wire:model="selectData" id="a">
                                         </td>
-                                        <td>{{ $row->judul }}</td>
-                                        <td><span class="badge badge-light-primary">{{ $row->date_start }}</span> - <span class="badge badge-light-dark">{{ $row->date_end }}</span></td>
+                                        <td>{{ \Illuminate\Support\Str::words($row->judul, 5) }}</td>
+                                        <td>
+                                            <span class="badge badge-light-primary">{{ \Carbon\Carbon::parse($row->date_start)->isoFormat('dddd, d MMMM Y') }}</span> - <span class="badge badge-light-dark">{{ \Carbon\Carbon::parse($row->date_end)->isoFormat('dddd, d MMMM Y') }} </span><br>
+                                            <span class="badge badge-light-warning">Pukul</span>&nbsp;&nbsp;<span class="badge badge-light-success">{{ \Carbon\Carbon::parse($row->date_start)->format('h:i') }} - {{ \Carbon\Carbon::parse($row->date_end)->format('h:i') }} </span>
+                                        </td>
                                         <td>{{ $row->getUser->name }}</td>
                                         <td class="text-center">
                                             @if ($row->status == 1)

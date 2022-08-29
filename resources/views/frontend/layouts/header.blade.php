@@ -40,6 +40,13 @@
                                     <li><a href="/seminar-internasional">Seminar Internasional</a></li>
                                 </ul>
                             </li>
+                            <li>
+                                @php
+                                    $json = file_get_contents('JSON/link-prosiding.json');
+                                    $linkprosiding = json_decode($json, true);
+                                @endphp
+                                <a href="{{ $linkprosiding['data']['group'][0]['url'] }}">Prosiding Nasional<span></span></a>
+                            </li>
                         </ul>
                     </div>
                     <div class="de-flex-col">

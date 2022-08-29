@@ -32,7 +32,7 @@ class DashboardController extends Controller
             'data' => $data,
             'config' => Configuration::where('status', 1)->first(),
             'friendListAdd' => User::where('status', 1)->whereNotIn('id', $friendListId)->limit(7)->get(),
-            'customerCare' => CustomerCare::where('status', true)->get()
+            'customerCare' => CustomerCare::where('status', true)->get(),
         ]);
     }
 }

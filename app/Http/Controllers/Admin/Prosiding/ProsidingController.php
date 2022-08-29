@@ -32,4 +32,7 @@ class ProsidingController extends Controller
         return view('admin.prosiding.sertifikat.index');
     }
 
+    public function prosidingNasional(){
+        return view('admin.prosiding.link.index');
+    }
 }
