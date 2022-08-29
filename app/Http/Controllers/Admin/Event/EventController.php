@@ -27,10 +27,63 @@ class EventController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $fileName = auth()->user()->id.$request->image->getClientOriginalName();
 
+        $dataImageSetting = [
+            'ori_width'=>config('app.img_size.ori_width'),
+            'ori_height'=>config('app.img_size.ori_height'),
+            'mid_width'=>config('app.img_size.mid_width'),
+            'mid_height'=>config('app.img_size.mid_height'),
+            'thumb_width'=>config('app.img_size.thumb_width'),
+            'thumb_height'=>config('app.img_size.thumb_height')
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'image'=>'image|mimes:jpeg,png,jpg,gif',
+        ]);
+
+        if($validator->fails()) {
+            Alert::toast($validator->errors()->first(), 'error');
+            return redirect()->back();
+        }
+
+        // dd($validator);
+        $imageName = '';
+        if($request->file('image') != null){
+            $dataImg = array(
+                'skala169' => array(
+                    'width'=>$request->input('16_9_width'),
+                    'height'=>$request->input('16_9_height'),
+                    'x'=>$request->input('16_9_x'),
+                    'y'=>$request->input('16_9_y')
+                ),
+                'skala43' => array(
+                    'width'=>$request->input('4_3_width'),
+                    'height'=>$request->input('4_3_height'),
+                    'x'=>$request->input('4_3_x'),
+                    'y'=>$request->input('4_3_y')
+                ),
+                'skala11' => array(
+                    'width'=>$request->input('1_1_width'),
+                    'height'=>$request->input('1_1_height'),
+                    'x'=>$request->input('1_1_x'),
+                    'y'=>$request->input('1_1_y')
+                )
+            );
+
+            $dataImage = [
+                'file'=>$request->file('image'),
+                'setting'=>$dataImageSetting,
+                'path'=>public_path('storage/pictures/event/'),
+                'modul'=>'event',
+                'dataImg'=>$dataImg
+            ];
+
+            $uploadImg = ImageProses::imageCropDimensi($dataImage);
+            if($uploadImg['status'] == true){
+                $imageName = $uploadImg['namaImage'];
+            }
+        }
         try {
-            $request->image->storeAs('public/pictures/events/', $fileName);
 
             $save = new Event();
             $save->judul = $request->judul;
@@ -41,7 +94,7 @@ class EventController extends Controller
             $save->date_end = $request->selesai;
             $save->created_by = auth()->user()->id;
             $save->status = 1;
-            $save->image = $fileName;
+            $save->image = $imageName;
             $save->save();
 
             Cache::flush();
@@ -101,8 +154,7 @@ class EventController extends Controller
             return redirect()->back();
         }
 
-        // dd($validator);
-        $namaImage = '';
+        $imageName = '';
         if($request->file('image') != null){
             $dataImg = array(
                 'skala169' => array(
