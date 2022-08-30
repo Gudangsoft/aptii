@@ -69,6 +69,9 @@
             </li>
             @endcan
 
+            <li class="{{ request()->routeIs('agenda.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('agenda.index') }}"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Pages">Agenda</span></a>
+            </li>
+
             @endrole
 
             @role('super admin')

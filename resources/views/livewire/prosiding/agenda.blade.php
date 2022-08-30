@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
-                                <a href="{{ route('event.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="plus-circle"></i> Tambah Event</a>
+                                <a href="{{ route('agenda.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="plus-circle"></i> Agenda Baru</a>
                             </div>
                             <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
                                 <div class="input-group">
@@ -56,7 +56,7 @@
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Judul</th>
-                                    <th>Waktu <span class="badge badge-light-primary">mulai</span> - <span class="badge badge-light-dark">selesai</span></th>
+                                    <th>Jadwal</th>
                                     <th>Created By</th>
                                     <th>Status</th>
                                     <th>Opsi</th>
@@ -68,10 +68,9 @@
                                         <td>
                                             <input type="checkbox" value="{{ $row->id }}" wire:model="selectData" id="a">
                                         </td>
-                                        <td>{{ \Illuminate\Support\Str::words($row->judul, 5) }}</td>
+                                        <td>{{ \Illuminate\Support\Str::words($row->title, 5) }}</td>
                                         <td>
-                                            <span class="badge badge-light-primary">{{ \Carbon\Carbon::parse($row->date_start)->isoFormat('dddd, D MMMM Y') }}</span> - <span class="badge badge-light-dark">{{ \Carbon\Carbon::parse($row->date_end)->isoFormat('dddd, D MMMM Y') }} </span><br>
-                                            <span class="badge badge-light-warning">Pukul</span>&nbsp;&nbsp;<span class="badge badge-light-success">{{ \Carbon\Carbon::parse($row->date_start)->format('h:i') }} - {{ \Carbon\Carbon::parse($row->date_end)->format('h:i') }} </span>
+                                            <span class="badge badge-light-primary">{{ \Carbon\Carbon::parse($row->date)->isoFormat('dddd, D MMMM Y') }}</span> - </span>&nbsp;&nbsp;<span class="badge badge-light-success">{{ \Carbon\Carbon::parse($row->date)->format('h:i') }}</span>
                                         </td>
                                         <td>{{ $row->getUser->name }}</td>
                                         <td class="text-center">
@@ -88,8 +87,8 @@
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     {{-- <a class="dropdown-item" href="javascript:void(0);"wire:click=''>Detail</a> --}}
-                                                    <a class="dropdown-item" href="{{ route('event.edit', $row->id) }}">Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"wire:click=''>Delete</a>
+                                                    <a class="dropdown-item" href="{{ route('agenda.edit', $row->id) }}">Edit</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click='deleteSingleSelected({{ $row->id }})'>Delete</a>
                                                 </div>
                                             </div>
                                         </td>

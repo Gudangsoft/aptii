@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\ScreenController;
 use App\Http\Controllers\Frontend\ScreensController;
 use App\Http\Controllers\Admin\Jobs\JobsController;
 use App\Http\Controllers\Admin\Post\TagController;
+use App\Http\Controllers\Admin\Prosiding\AgendaController;
 use App\Http\Controllers\Admin\Prosiding\NaskahController;
 use App\Http\Controllers\Admin\Prosiding\PembayaranController;
 use App\Http\Controllers\Admin\Prosiding\PesertaController;
@@ -83,6 +84,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
                 Route::resource('event', EventController::class);
                 Route::resource('bidang-ilmu', BidangIlmuController::class);
                 Route::resource('customer-care', CustomerCareController::class);
+                Route::resource('agenda', AgendaController::class);
 
             });
         });
