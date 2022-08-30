@@ -33,7 +33,7 @@
                                 <div class="row" id="basic-table">
                                     <div class="col-12">
                                         <div class="card">
-                                            <form action="{{ route('agenda.update') }}" method="POST" enctype="multipart/form-data">
+                                            <form action="{{ route('agenda.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="card-body">

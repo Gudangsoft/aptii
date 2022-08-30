@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Prosiding\Agenda;
 use App\Models\Prosiding\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -54,5 +55,14 @@ class PagesController extends Controller
             return $rows;
         });
         return $data;
+    }
+
+    public static function prosidingInfo(){
+        $rows = Article::orderByDesc('created_at')->where('status', true)->where('category', 8)->get();
+        return $rows;
+    }
+
+    public static function agenda(){
+        return Agenda::orderByDesc('created_at')->where('status', true)->get();;
     }
 }

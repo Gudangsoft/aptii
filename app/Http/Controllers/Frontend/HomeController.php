@@ -51,9 +51,11 @@ class HomeController extends Controller
     public function index(){
 
         return view('frontend.home', [
-            'recent'    => PagesController::recentArticles(4),
-            'headline'  => PagesController::headlineArticles(),
-            'events'    => PagesController::events(),
+            'recent'        => PagesController::recentArticles(4),
+            'headline'      => PagesController::headlineArticles(),
+            'events'        => PagesController::events(),
+            'agenda'        => PagesController::agenda(),
+            'prosidingInfo' => PagesController::prosidingInfo(),
         ]);
     }
 

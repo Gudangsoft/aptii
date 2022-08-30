@@ -1,35 +1,27 @@
-<section id="section-why-choose-us" class="no-top no-bottom">
+<section id="section-intro">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row">
             <div class="col-lg-12">
                 <div class="text-center">
-                    <h2>Artikel Informasi</h2>
-                    <div class="small-border bg-color"></div>
+                    <h2>{{ $title }}</h2>
+                    <div class="small-border bg-color-2"></div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <img src="{{ asset('frontend') }}/images/misc/images-set-2.png" class="lazy img-fluid" alt="">
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-lg-6 mb20">
-                        <h4>Modern &amp; Comfortable</h4>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
-                    </div>
-                    <div class="col-lg-6 mb20">
-                        <h4>24/7 Secure Access</h4>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
-                    </div>
-                    <div class="col-lg-6 mb20">
-                        <h4>Free Drinks &amp; Snacks</h4>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
-                    </div>
-                    <div class="col-lg-6 mb20">
-                        <h4>Printing &amp; Scanning</h4>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
-                    </div>
+            @foreach ($data as $row)
+                @if ($loop->index <= $limit)
+                <div class="col-lg-4 col-md-6 mb-sm-30">
+                    <a href="/post/{{ $row->slug }}" class="de-card">
+                        <div class="de-image">
+                            <img src="{{ asset('storage/pictures').'/post/4_3/mid/'.$row->image }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="text">
+                            <h4>{{ $row->title }}</h4>
+                            {{-- <p>{!! \Illuminate\Support\Str::words($row->content, 10) !!}</p> --}}
+                        </div>
+                    </a>
                 </div>
-            </div>
+                @endif
+            @endforeach
         </div>
     </div>
 </section>

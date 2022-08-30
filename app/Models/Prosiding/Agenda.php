@@ -20,7 +20,7 @@ class Agenda extends Model
     }
 
     public function getDateFormatAttribute(){
-        $date = Carbon::parse($this->created_at)->isoFormat('dddd, D MMMM Y');
+        $date = Carbon::parse($this->date)->isoFormat('dddd, D MMMM Y').' | '.Carbon::parse($this->date)->format('h:i');
         return $date;
     }
 }

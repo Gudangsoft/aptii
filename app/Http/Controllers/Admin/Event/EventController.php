@@ -103,7 +103,6 @@ class EventController extends Controller
             return redirect()->route('event.index');
 
         } catch (Exception $error) {
-            dd($error->getMessage());
             Alert::error('Error', $error->getMessage());
             return back();
         }

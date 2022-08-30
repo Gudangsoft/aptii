@@ -7,6 +7,7 @@ use App\Http\Livewire\Prosiding\Agenda;
 use App\Models\Prosiding\Agenda as ProsidingAgenda;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -53,6 +54,7 @@ class AgendaController extends Controller
             $save->status = 1;
             $save->date = $request->date;
             $save->save();
+            Cache::flush();
 
             Alert::success('Success', 'Data berhasil ditambahkan');
             return redirect()->route('agenda.index');
@@ -102,6 +104,7 @@ class AgendaController extends Controller
             $save->created_by = auth()->user()->id;
             $save->date = $request->date;
             $save->save();
+            Cache::flush();
 
             Alert::success('Success', 'Data berhasil ditambahkan');
             return redirect()->route('agenda.index');
