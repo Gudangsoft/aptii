@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Prosiding\ProsidingNaskah;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Butschster\Head\Facades\Meta;
 use Butschster\Head\Packages\Entities\OpenGraphPackage;
+use RobertSeghedi\News\Models\Article;
 
 class HomeController extends Controller
 {
@@ -49,13 +52,19 @@ class HomeController extends Controller
     }
 
     public function index(){
-
+        $statistics = [
+            'posts' => Article::where('status', true)->get()->count(),
+            'users' => User::where('status', true)->get()->count(),
+            'naskah' => ProsidingNaskah::where('status', true)->get()->count(),
+        ];
+        // dd($statistics);
         return view('frontend.home', [
             'recent'        => PagesController::recentArticles(4),
             'headline'      => PagesController::headlineArticles(),
             'events'        => PagesController::events(),
             'agenda'        => PagesController::agenda(),
             'prosidingInfo' => PagesController::prosidingInfo(),
+            'statistics'    => $statistics
         ]);
     }
 
