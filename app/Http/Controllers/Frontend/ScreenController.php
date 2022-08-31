@@ -16,10 +16,11 @@ class ScreenController extends Controller
         self::meta($slug);
         News::counter($slug);
         return view('frontend.articles.detail', [
-            'data'      => PageController::article($slug),
-            'popular'    => PagesController::popularArticle(),
-            'recent'    => PagesController::recentArticles(4),
-
+            'data'          => PageController::article($slug),
+            'popular'       => PagesController::popularArticle(),
+            'recent'        => PagesController::recentArticles(4),
+            'agendas'       => PagesController::agenda(),
+            'tags'          => PagesController::tags(),
         ]);
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Prosiding\Agenda;
 use App\Models\Prosiding\Event;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use RobertSeghedi\News\Models\Article;
@@ -18,6 +19,12 @@ class PagesController extends Controller
             return $rows;
         });
         return $data;
+    }
+
+    public static function articlesTag($limit, $slug){
+        $tag  = Tag::where('slug', $slug)->first()->id;
+        $rows = Article::where('tags', 'like', '%' . $tag . '%')->orderByDesc('created_at')->paginate($limit);
+        return $rows;
     }
 
     public static function popularArticle(){
@@ -64,5 +71,9 @@ class PagesController extends Controller
 
     public static function agenda(){
         return Agenda::orderByDesc('created_at')->where('status', true)->get();;
+    }
+
+    public static function tags(){
+        return Tag::orderByDesc('created_at')->where('status', true)->get();;
     }
 }

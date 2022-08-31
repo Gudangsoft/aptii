@@ -17,4 +17,12 @@ class ScreensController extends Controller
         ]);
     }
 
+    public function tags(PagesController $page, $slug){
+        // dd($page->articlesTag(12, $slug));
+        return view('frontend.tags.index', [
+            'slug'      => $slug,
+            'headline'  => $page->headlineArticles(),
+        ]);
+    }
+
 }

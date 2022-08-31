@@ -10,7 +10,7 @@
                         <div class="post-text">
                             <span class="p-tagline">{{ $row->getCategory->name }}</span>
                             <span class="p-date">{{ \Carbon\Carbon::parse($row->created_at)->isoFormat('dddd, d MMMM Y') }}</span>
-                            <h4><a href="news-single.html">{{ $row->title }}<span></span></a></h4>
+                            <h4><a href="/post/{{ $row->slug }}">{{ $row->title }}<span></span></a></h4>
                             <p>{!! Illuminate\Support\Str::words($row->content, 20) !!}</p>
                             <a class="btn-main" href="/post/{{ $row->slug }}">Baca Detail</a>
                         </div>
