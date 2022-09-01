@@ -44,12 +44,18 @@ class DataNaskah extends Component
             $this->totalNaskah = $data->count();
         }
 
+        $peserta = ProsidingNaskah::where('status', true)
+                    ->selectRaw('count(id) as total_user, user_id')
+                    ->groupBy('user_id')
+                    ->get();
+
         $this->emit('postStore');
         $this->dispatchBrowserEvent('iconLoad');
 
         $this->bulkDisabled = count($this->selectData) < 1;
         return view('livewire.prosiding.data-naskah', [
-            'data' => $data,
+            'data'      => $data,
+            'pesertas'  => $peserta
         ]);
     }
 

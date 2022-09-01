@@ -6,7 +6,40 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 mt-1">
-                                <span class="badge badge-light-dark">Total Naskah : {{ $totalNaskah }}</span>
+                                <div id="dialog-content" style="display:none;max-width:2500px;" class="rounded">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama</th>
+                                                    <th>Email</th>
+                                                    <th>Institusi</th>
+                                                    <th>HP</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($pesertas as $peserta)
+                                                    <tr>
+                                                        <td>{{ $peserta->getUser->name }}</td>
+                                                        <td>{{ $peserta->getUser->email }}</td>
+                                                        <td>{{ $peserta->getUser->company }}</td>
+                                                        <td>{{ $peserta->getUser->phone }}</td>
+                                                    </tr>
+                                                @empty
+                                                <tr>
+                                                    <td colspan="9" class="pt-2 pb-1 text-center"><h4>Data tidak ditemukan !</h5></td>
+                                                </tr>
+                                                @endforelse
+
+                                            </tbody>
+                                        </table>
+                                        {{-- <div class="d-flex justify-content-center mt-2">
+                                            {{ $data->links() }}
+                                        </div> --}}
+                                    </div>
+                                </div>
+                                <button data-fancybox="dialog" data-src="#dialog-content" class="btn btn-sm btn-primary">Peserta = {{ $pesertas->count() }}</button>
+                                <button class="btn btn-sm btn-dark">Naskah = {{ $totalNaskah }}</button>
                             </div>
                             <div class="col-lg-4 col-sm-12 d-flex justify-content-end mt-1">
                                 <div class="input-group">
@@ -121,7 +154,8 @@
         </div>
     </div>
     @push('vendor-css')
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
     @endpush
     @push('page-js')
         <script>
@@ -142,6 +176,7 @@
                 }
             })
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     @endpush
 
 </div>
