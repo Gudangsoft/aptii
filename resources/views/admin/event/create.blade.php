@@ -56,6 +56,23 @@
                                                         <label><h5>Link</h5></label>
                                                         <input type="text" name="link" class="form-control" placeholder="Judul Naskah" required>
                                                     </div>
+                                                    <div class="form-group mb-2">
+                                                        <label for="blog-edit-title">Type</label>
+                                                        <div class="demo-inline-spacing">
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="customRadio1" name="type" value="1" class="custom-control-input"/>
+                                                                <label class="custom-control-label" for="customRadio1">Nasional</label>
+                                                            </div>
+                                                            <div class="custom-control custom-control-warning custom-radio">
+                                                                <input type="radio" id="customRadio2" name="type" value="2" class="custom-control-input" />
+                                                                <label class="custom-control-label" for="customRadio2">Internasional</label>
+                                                            </div>
+                                                            <div class="custom-control custom-control-success custom-radio">
+                                                                <input type="radio" id="customRadio3" name="type" value="3" class="custom-control-input" checked/>
+                                                                <label class="custom-control-label" for="customRadio3">Lainnya</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label><h5>Image</h5></label>
                                                         <div class="media flex-column flex-md-row">

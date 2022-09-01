@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('keterangan')->nullable();
             $table->string('status', 2);
+            $table->integer('type', 2)->nullable();
             $table->string('link')->nullable();
             $table->text('image');
             $table->string('created_by');

@@ -56,6 +56,7 @@
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Judul</th>
+                                    <th>Kategori</th>
                                     <th>Waktu <span class="badge badge-light-primary">mulai</span> - <span class="badge badge-light-dark">selesai</span></th>
                                     <th>Created By</th>
                                     <th>Status</th>
@@ -69,6 +70,15 @@
                                             <input type="checkbox" value="{{ $row->id }}" wire:model="selectData" id="a">
                                         </td>
                                         <td>{{ \Illuminate\Support\Str::words($row->judul, 5) }}</td>
+                                        <td>
+                                            @if ($row->type == 1)
+                                                <span class="badge badge-light-success">nasional</span>
+                                            @elseif($row->type == 2)
+                                                <span class="badge badge-light-danger">internasional</span>
+                                            @else
+                                                <span class="badge badge-light-dark">lainnya</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <span class="badge badge-light-primary">{{ \Carbon\Carbon::parse($row->date_start)->isoFormat('dddd, D MMMM Y') }}</span> - <span class="badge badge-light-dark">{{ \Carbon\Carbon::parse($row->date_end)->isoFormat('dddd, D MMMM Y') }} </span><br>
                                             <span class="badge badge-light-warning">Pukul</span>&nbsp;&nbsp;<span class="badge badge-light-success">{{ \Carbon\Carbon::parse($row->date_start)->format('h:i') }} - {{ \Carbon\Carbon::parse($row->date_end)->format('h:i') }} </span>

@@ -57,18 +57,35 @@
                                                         <label><h5>Link</h5></label>
                                                         <input type="text" name="link" class="form-control" placeholder="Judul Naskah"  value="{{ $data->link }}" required>
                                                     </div>
+                                                    <div class="form-group mb-2">
+                                                        <label for="blog-edit-title">Type</label>
+                                                        <div class="demo-inline-spacing">
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="customRadio1" name="type" value="1" class="custom-control-input" {{ $data->type == 1 ? 'checked' : '' }}/>
+                                                                <label class="custom-control-label" for="customRadio1">Nasional</label>
+                                                            </div>
+                                                            <div class="custom-control custom-control-warning custom-radio">
+                                                                <input type="radio" id="customRadio2" name="type" value="2" class="custom-control-input" {{ $data->type == 2 ? 'checked' : '' }}/>
+                                                                <label class="custom-control-label" for="customRadio2">Internasional</label>
+                                                            </div>
+                                                            <div class="custom-control custom-control-success custom-radio">
+                                                                <input type="radio" id="customRadio3" name="type" value="3" class="custom-control-input" {{ $data->type == 3 ? 'checked' : '' }}/>
+                                                                <label class="custom-control-label" for="customRadio3">Lainnya</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label><h5>Image</h5></label>
                                                         <div class="media flex-column flex-md-row">
                                                             @if ($data->image != null)
-                                                                <img src="{{ asset('storage/pictures').'/events/'.$data->image }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Event" />
+                                                                <img src="{{ asset('storage/pictures').'/event/4_3/mid/'.$data->image }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Event" />
                                                             @else
                                                                 <img src="{{ asset('assets') }}/images/slider/03.jpg" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
                                                             @endif
                                                             <div class="media-body">
                                                                 @if (isset($data->image))
                                                                     <p class="my-50">
-                                                                        <a href="javascript:void(0);" id="blog-image-text">{{ $data->image ? config('app.POST_MID').'/'.$data->image : 'C:\fakepath\banner.jpg'}}</a>
+                                                                        <a href="javascript:void(0);" id="blog-image-text">{{ $data->image ? $data->image : 'C:\fakepath\image.jpg'}}</a>
                                                                     </p>
                                                                 @endif
                                                                 <div class="d-inline-block">

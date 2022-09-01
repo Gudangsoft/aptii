@@ -90,6 +90,7 @@ class EventController extends Controller
             $save->slug = Str::slug($request->slug);
             $save->keterangan = $request->keterangan;
             $save->link = $request->link;
+            $save->type = $request->type;
             $save->date_start = $request->mulai;
             $save->date_end = $request->selesai;
             $save->created_by = auth()->user()->id;
@@ -201,6 +202,7 @@ class EventController extends Controller
             $save->slug = Str::slug($request->slug);
             $save->keterangan = $request->keterangan;
             $save->link = $request->link;
+            $save->type = $request->type;
             $save->date_start = $request->mulai;
             $save->date_end = $request->selesai;
             $save->created_by = auth()->user()->id;
