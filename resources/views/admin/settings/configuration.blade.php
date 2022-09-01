@@ -113,12 +113,12 @@
                                                 <div class="media flex-column flex-md-row">
                                                     <div class="media-body">
                                                         @if (isset($data->logo))
-                                                            <img src="{{ asset('storage/assets').'/'.$data->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" alt="Blog Featured Image" />
+                                                            <img src="{{ asset('storage/images/logo').'/'.$data->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" alt="Blog Featured Image" />
                                                         @endif
                                                         <p class="my-50">
                                                             <small class="text-muted">Required 228px x 36px Image max size 2MB.</small>
                                                             <br>
-                                                            <a href="javascript:void(0);" id="blog-image-text">{{ $data->logo ? asset('storage/assets').'/'.$data->logo : 'C:\fakepath\Logo.jpg' }}</a>
+                                                            <a href="javascript:void(0);" id="blog-image-text">{{ $data->logo ? asset('storage/images/logo').'/'.$data->logo : 'C:\fakepath\Logo.jpg' }}</a>
                                                         </p>
                                                         <div class="d-inline-block">
                                                             <div class="form-group mb-0">

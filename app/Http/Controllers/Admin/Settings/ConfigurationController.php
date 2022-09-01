@@ -97,16 +97,10 @@ class ConfigurationController extends Controller
             }
 
             $image = $request->file('logo');
+            $filePath = 'public/images/logo';
             $imageName = time().'.'.$image->extension();
-
-            $destinationPath = public_path('/storage/assets');
-            $img = Image::make($image->path());
-            $img->resize(228, 36, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$imageName);
-
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $imageName);
+            $image->storeAs($filePath, $imageName);
+            chmod($image, 0755);
         }
 
         try {

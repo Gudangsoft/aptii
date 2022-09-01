@@ -8,9 +8,13 @@
                         <div class="de-flex-col">
                             <!-- logo begin -->
                             <div id="logo">
-                                <a href="index.html">
-                                    <img alt="" class="logo" src="{{ asset('frontend') }}/images/logo-light.png" />
-                                    <img alt="" class="logo-2" src="{{ asset('frontend') }}/images/logo.png" />
+                                @php
+                                    $config = \App\Models\Admin\Configuration::orderBy('created_at')->first();
+                                    $logo = asset('storage/images/logo').'/'.$config->logo;
+                                @endphp
+                                <a href="/">
+                                    <img alt="" class="logo" src="{{ $logo }}" />
+                                    <img alt="" class="logo-2" src="{{ $logo }}" />
                                 </a>
                             </div>
                             <!-- logo close -->

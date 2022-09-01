@@ -20,7 +20,7 @@
                                         <h2 class="mb-3 wow fadeInUp">{{ $item->title }}</h2>
                                         <p class="lead wow fadeInUp" data-wow-delay=".3s">{!! Illuminate\Support\Str::words($item->content, 30) !!}</p></p>
                                         <div class="spacer-10"></div>
-                                        <a href="explore.html" class="btn-main wow fadeInUp" data-wow-delay=".6s">Baca Detail</a>
+                                        <a href="/post/{{ $item->slug }}" class="btn-main wow fadeInUp" data-wow-delay=".6s">Baca Detail</a>
                                     </div>
                                 </div>
                             </div>
