@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Prosiding\CustomerCare;
 use App\Models\Prosiding\ProsidingNaskah;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -64,7 +65,8 @@ class HomeController extends Controller
             'events'        => PagesController::events(),
             'agenda'        => PagesController::agenda(),
             'prosidingInfo' => PagesController::prosidingInfo(),
-            'statistics'    => $statistics
+            'statistics'    => $statistics,
+            'customerCare'  => CustomerCare::where('status', true)->get(),
         ]);
     }
 

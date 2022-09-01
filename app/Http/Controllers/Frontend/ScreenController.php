@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Configuration;
+use App\Models\Prosiding\CustomerCare;
 use Illuminate\Http\Request;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Arr;
@@ -63,5 +65,16 @@ class ScreenController extends Controller
 
         $card->toHtml();
         Meta::registerPackage($card);
+    }
+
+    public function contact(){
+        return view('frontend.sections.contact', [
+            'popular'       => PagesController::popularArticle(),
+            'recent'        => PagesController::recentArticles(4),
+            'agendas'       => PagesController::agenda(),
+            'tags'          => PagesController::tags(),
+            'customerCare'  => CustomerCare::where('status', true)->get(),
+            'configuration' => Configuration::orderBy('created_at')->first()
+        ]);
     }
 }

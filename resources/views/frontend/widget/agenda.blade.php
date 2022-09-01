@@ -23,32 +23,11 @@
 
             <div class="col-md-6 col-lg-6 col-sm-12">
                 <h2>
-                    Statistik
+                    Kontak
                 </h2>
                 <div class="small-border sm-left"></div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 wow fadeInRight mb30" data-wow-delay="0s">
-                        <div class="de_count">
-                            <h3><span class="timer" data-to="{{ $statistics['posts'] }}" data-speed="3000">0</span></h3>
-                            <h5 class="id-color">Artikel</h5>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-4 col-md-6 wow fadeInRight mb30" data-wow-delay=".25s">
-                        <div class="de_count">
-                            <h3><span class="timer" data-to="{{ $statistics['naskah'] }}" data-speed="3000">0</span></h3>
-                            <h5 class="id-color">Naskah</h5>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 wow fadeInRight mb30" data-wow-delay=".4s">
-                        <div class="de_count">
-                            <h3><span class="timer" data-to="{{ $statistics['users'] }}" data-speed="3000">0</span></h3>
-                            <h5 class="id-color">Users</h5>
-                        </div>
-                    </div>
-
-                </div>
+                @include('frontend.widget.contact', ['title' => 'Kontak', 'limit' => 3])
             </div>
         </div>
     </div>

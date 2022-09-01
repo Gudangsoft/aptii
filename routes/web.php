@@ -43,11 +43,12 @@ use App\Http\Controllers\Admin\Prosiding\CustomerCareController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/post/{slug}', [ScreenController::class, 'post']);
-Route::get('/posts', [ScreensController::class, 'posts']);
-Route::get('/jobs/{slug}', [FrontendJobsController::class, 'show'])->name('jobs-detail');
-Route::get('/jobs', [FrontendJobsController::class, 'index'])->name('jobs-list');
 Route::post('apply', [FrontendJobsController::class, 'store'])->name('jobs-apply');
 Route::get('/tag/{slug}', [ScreensController::class, 'tags']);
+
+// menu
+Route::get('/posts', [ScreensController::class, 'posts']);
+Route::get('/contact', [ScreenController::class, 'contact']);
 
 // BACKEND DASHBOARD
 Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], function () {

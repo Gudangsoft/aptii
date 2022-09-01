@@ -35,7 +35,7 @@
                                 <a href="/posts">Template<span></span></a>
                             </li>
                             <li>
-                                <a href="/posts">Kontak<span></span></a>
+                                <a href="/contact">Kontak<span></span></a>
                             </li>
                             <li>
                                 <a href="#">Seminar<span></span></a>

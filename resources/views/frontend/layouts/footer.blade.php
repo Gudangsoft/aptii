@@ -1,6 +1,6 @@
 <!-- footer begin -->
 <footer class="footer-light">
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-1">
                 <div class="widget">
@@ -53,15 +53,19 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="subfooter">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="de-flex">
                         <div class="de-flex-col">
-                            <a href="index.html">
-                                <img alt="" class="f-logo" src="{{ asset('frontend') }}/images/logo.png" /><span class="copy">&copy; Copyright 2022 - {{ config('app.name') }}</span>
+                            @php
+                                $config = \App\Models\Admin\Configuration::orderBy('created_at')->first();
+                                $logo = asset('storage/images/logo').'/'.$config->logo;
+                            @endphp
+                            <a href="/">
+                                <img alt="" class="f-logo" src="{{ $logo }}" /><span class="copy">&copy; Copyright 2022 - {{ config('app.name') }}</span>
                             </a>
                         </div>
                         <div class="de-flex-col">
