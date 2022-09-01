@@ -28,7 +28,7 @@
             </li>
             <li class="{{ request()->routeIs('prosiding.bukti-pembayaran') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.bukti-pembayaran') }}"><i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="User">Bukti Pembayaran</span></a>
             </li>
-            <li class="{{ request()->routeIs('prosiding.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.seminar') }}"><i data-feather="book-open"></i><span class="menu-title text-truncate" data-i18n="User">Seminar</span></a>
+            <li class="{{ request()->routeIs('prosiding.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.seminar') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="User">Seminar</span></a>
             </li>
             {{-- <li class="{{ request()->routeIs('prosiding.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a> --}}
             </li>

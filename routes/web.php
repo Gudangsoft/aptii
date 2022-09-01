@@ -70,6 +70,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
             Route::get('info', [ProsidingController::class, 'info'])->name('prosiding.info');
             Route::get('info/{slug}', [ProsidingController::class, 'infoDetail'])->name('prosiding.info-detail');
             Route::get('seminar', [ProsidingController::class, 'seminar'])->name('prosiding.seminar');
+            Route::get('seminar/{slug}', [ProsidingController::class, 'seminarDetail'])->name('prosiding.seminar-detail');
             Route::get('sertifikat', [ProsidingController::class, 'sertifikat'])->name('prosiding.sertifikat');
             Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('prosiding.upload-naskah');
             Route::get('bukti-pembayaran', [PembayaranController::class, 'uploadPembayaran'])->name('prosiding.bukti-pembayaran');
