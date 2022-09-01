@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Configuration;
 use Illuminate\Http\Request;
 use App\Models\Friends;
+use App\Models\Prosiding\Agenda;
 use App\Models\Prosiding\CustomerCare;
 use App\Models\User;
 use Carbon\Carbon;
@@ -22,7 +23,7 @@ class DashboardController extends Controller
             'home' => [
                 'date' => Carbon::now()->Format('D, d M Y'),
                 'time' => Carbon::now()->Format('g:i A'),
-                // 'currentUserInfo' => Location::get($ip),
+                'currentUserInfo' => Location::get($ip),
                 'currentUserInfo' => 0,
             ]
         );
@@ -33,6 +34,7 @@ class DashboardController extends Controller
             'config' => Configuration::where('status', 1)->first(),
             'friendListAdd' => User::where('status', 1)->whereNotIn('id', $friendListId)->limit(7)->get(),
             'customerCare' => CustomerCare::where('status', true)->get(),
+            'agendas' => Agenda::orderByDesc('created_at')->where('status', true)->where('date', '>=', Carbon::now())->get(),
         ]);
     }
 }

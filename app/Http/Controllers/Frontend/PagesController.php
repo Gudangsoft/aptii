@@ -70,10 +70,10 @@ class PagesController extends Controller
     }
 
     public static function agenda(){
-        return Agenda::orderByDesc('created_at')->where('status', true)->get();;
+        return Agenda::orderByDesc('created_at')->where('status', true)->get();
     }
 
     public static function tags(){
-        return Tag::orderByDesc('created_at')->where('status', true)->get();;
+        return Tag::orderByDesc('created_at')->where('status', true)->get();
     }
 }

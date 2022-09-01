@@ -10,11 +10,10 @@
                     <div class="sm-icon mb30">
                         <i class="bg-color fa fa-calendar-check-o"></i>
                         <div class="si-inner">
-                            <h5>
-                                <a href="#" class=" text-dark">
-                                    {{ \Illuminate\Support\Str::words($row->title, 15) }}</h5>
-                                </a>
-                                <span class="p-title invert">{{ $row->dateFormat }}</span>
+                            <a href="#" class=" text-dark">
+                                <h5>{{ \Illuminate\Support\Str::words($row->title, 15) }}</h5>
+                            </a>
+                            <span class="p-title invert">{{ $row->dateFormat }}</span>
                             {{-- {!! \Illuminate\Support\Str::words($row->description, ) !!} --}}
                         </div>
                     </div>
