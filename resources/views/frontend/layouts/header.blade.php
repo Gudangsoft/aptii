@@ -29,7 +29,7 @@
                                 <a href="/">Home<span></span></a>
                             </li>
                             <li>
-                                <a href="/posts">Artikel<span></span></a>
+                                <a href="/posts">Berita<span></span></a>
                             </li>
                             <li>
                                 <a href="/posts">Template<span></span></a>

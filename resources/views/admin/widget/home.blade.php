@@ -15,17 +15,6 @@
                         <h6 class="mb-0">{{ $data['date'] }}</h6>
                         <small>{{ $data['time'] }}</small>
                     </div>
-                    <div class="avatar bg-light-primary rounded mr-1">
-                        <div class="avatar-content">
-                            <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
-                        </div>
-                    </div>
-                    <div class="media-body">
-                        @if ($data['currentUserInfo'] != false)
-                            <h6 class="mb-0">{{ $data['currentUserInfo']->cityName }}</h6>
-                            <small>{{ $data['currentUserInfo']->regionName }}, {{ $data['currentUserInfo']->countryName }}</small>
-                        @endif
-                    </div>
                 </div>
             </div>
         </div>
