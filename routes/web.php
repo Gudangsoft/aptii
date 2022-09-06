@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\Prosiding\PembayaranController;
 use App\Http\Controllers\Admin\Prosiding\PesertaController;
 use App\Http\Controllers\Admin\Prosiding\ProsidingController;
 use App\Http\Controllers\Admin\Prosiding\BidangIlmuController;
+use App\Http\Controllers\Admin\Prosiding\Certificate;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Controllers\Admin\Settings\RolePermissionController;
 use App\Http\Controllers\Admin\Prosiding\CustomerCareController;
@@ -87,6 +88,7 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
                 Route::resource('bidang-ilmu', BidangIlmuController::class);
                 Route::resource('customer-care', CustomerCareController::class);
                 Route::resource('agenda', AgendaController::class);
+                Route::resource('certificate', Certificate::class);
 
             });
         });

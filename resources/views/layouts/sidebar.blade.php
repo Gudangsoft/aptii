@@ -51,6 +51,8 @@
                     </li>
                     <li class="{{ request()->routeIs('prosiding.nasional') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('prosiding.nasional') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Link Prosiding Nasional</span></a>
                     </li>
+                    <li class="{{ request()->routeIs('certificate.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('certificate.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Sertifikat</span></a>
+                    </li>
                 </ul>
             </li>
             <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="Pages">Event Seminar</span></a>
