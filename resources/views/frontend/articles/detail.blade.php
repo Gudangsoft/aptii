@@ -19,7 +19,7 @@
             <div class="col-md-8">
                 <div class="blog-read">
 
-                    <img alt="" src="{{ asset('storage/pictures').'/post/4_3/mid/'.$data->image }}" class="img-fullwidth rounded">
+                    <img alt="" src="{{ $data->imageFull }}" class="img-fullwidth rounded">
 
                     <div class="post-text">
                         <span class="post-date">{{ $data->dateFormat }}</span>

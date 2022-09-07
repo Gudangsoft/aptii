@@ -58,23 +58,20 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <div class="menu_side_area">
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();" class="btn-main"><span>LOGOUT</span></a>
-                                    <span id="menu-btn"></span>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();" class="btn-main"><i class="fa fa-sign-out"></i><span>LOGOUT</span></a>
                                 </div>
                             </form>
 
                             <div class="menu_side_area">
-                                <a href="{{ route('dashboard') }}" class="btn-main"><span>DASHBOARD</span></a>
-                                <span id="menu-btn"></span>
+                                <a href="{{ route('dashboard') }}" class="btn-main"><i class="fa fa-cog"></i><span>DASHBOARD</span></a>
                             </div>
                         @else
                             <div class="menu_side_area">
-                                <a href="{{ route('login') }}" class="btn-main"><span>LOGIN</span></a>
+                                <a href="{{ route('login') }}" class="btn-main"><i class="fa fa-sign-in"></i><span>LOGIN</span></a>
                                 <span id="menu-btn"></span>
                             </div>
                             <div class="menu_side_area">
-                                <a href="{{ route('register') }}" class="btn-main"><span>REGISTRASI</span></a>
-                                <span id="menu-btn"></span>
+                                <a href="{{ route('register') }}" class="btn-main"><i class="fa fa-user-plus"><span>REGISTRASI</span></a>
                             </div>
                         @endif
                     </div>
