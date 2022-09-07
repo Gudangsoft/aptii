@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('prosiding_certificates', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->nullable();
             $table->integer('user_id')->nullable();
-            $table->integer('naskah_id')->nullable();
+            $table->string('model')->nullable();
+            $table->integer('creator_id')->nullable();
             $table->string('file');
             $table->integer('status')->nullable();
             $table->integer('created_by')->nullable();

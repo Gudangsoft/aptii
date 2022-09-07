@@ -13,7 +13,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon-search1"><i data-feather="search"></i></span>
                                     </div>
-                                    <input type="text" wire:model="search" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search1" />
+                                    <input type="text" wire:model="search" class="form-control" placeholder="Cari nama" aria-label="Search..." aria-describedby="basic-addon-search1" />
                                 </div>
                             </div>
                             <div class="col-lg-2 col-sm-12 d-flex justify-content-end">
@@ -69,10 +69,15 @@
                                         <td>
                                             <input type="checkbox" value="{{ $row->id }}" wire:model="selectData" id="a">
                                         </td>
-                                        <td>{{ \Illuminate\Support\Str::words($row->title, 5) }}</td>
-                                        <td>{{ $row->code }}</td>
-                                        <td>{{ $row->getNaskah->judul ?? $row->getEvent->judul }} </td>
                                         <td>{{ $row->getUser->name }}</td>
+                                        <td>{{ $row->code }}</td>
+                                        <td>
+                                            @if ($row->model == 'naskah')
+                                                <span class="badge badge-light-primary">{{ $row->getNaskah->judul }}</span>
+                                            @else
+                                                <span class="badge badge-light-danger">{{ $row->getEvent->judul }}</span>
+                                            @endif
+                                        <td>{{ $row->getAuthor->name }}</td>
                                         <td class="text-center">
                                             @if ($row->status == 1)
                                                 <span class="badge badge-glow badge-success">active</span>
@@ -86,8 +91,8 @@
                                                     Pilih
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    {{-- <a class="dropdown-item" href="javascript:void(0);"wire:click=''>Detail</a> --}}
-                                                    <a class="dropdown-item" href="{{ route('agenda.edit', $row->id) }}">Edit</a>
+                                                    <a class="dropdown-item" href="/storage/files/certificate/{{ $row->file }}">Detail</a>
+                                                    <a class="dropdown-item" href="{{ route('certificate.edit', $row->id) }}">Edit</a>
                                                     <a class="dropdown-item" href="javascript:void(0);" wire:click='deleteSingleSelected({{ $row->id }})'>Delete</a>
                                                 </div>
                                             </div>

@@ -11,7 +11,7 @@
         {{-- {{ dd($data) }} --}}
         @foreach ($data as $item)
             @if ($loop->index < $limit)
-                <div class="carousel-item {{ $loop->index == 0 ? 'active' : ''}}" data-bgimage="url('{{  asset(config('app.POST_MID'))  }}/{{ $item->image }}')">
+                <div class="carousel-item {{ $loop->index == 0 ? 'active' : ''}}" data-bgimage="url('{{ $item->imageFull }}')">
                     <div class="mask">
                         <div class="d-flex justify-content-center align-items-center h-100">
                             <div class="container text-white text-center">

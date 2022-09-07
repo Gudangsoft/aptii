@@ -36,9 +36,13 @@ class Certificate extends Component
         }
 
         $data = CertificateModel::orderByDesc('created_at')->paginate($this->limitPerPage);
-
         if($this->search != null){
-            $data = CertificateModel::where('code', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate($this->limitPerPage);
+            $user = User::where('name', 'like', '%'.$this->search.'%')->pluck('id');
+            if($user == null){
+                $data = $data;
+            }else{
+                $data = CertificateModel::whereIn('user_id', $user)->orderByDesc('created_at')->paginate($this->limitPerPage);
+            }
         }
 
         $this->emit('postStore');
