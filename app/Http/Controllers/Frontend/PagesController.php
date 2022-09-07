@@ -76,4 +76,20 @@ class PagesController extends Controller
     public static function tags(){
         return Tag::orderByDesc('created_at')->where('status', true)->get();
     }
+
+    public static function seminarNasional($limit, $page = null){
+        $data = Cache::remember("seminarnasional-$page", 60 * 60 * 12, function () use($limit) {
+            $rows = Event::where('type', 1)->orderByDesc('created_at')->paginate($limit)->withQueryString();
+            return $rows;
+        });
+        return $data;
+    }
+
+    public static function seminarInternasional($limit, $page = null){
+        $data = Cache::remember("seminarnasional-$page", 60 * 60 * 12, function () use($limit) {
+            $rows = Event::where('type', 2)->orderByDesc('created_at')->paginate($limit)->withQueryString();
+            return $rows;
+        });
+        return $data;
+    }
 }

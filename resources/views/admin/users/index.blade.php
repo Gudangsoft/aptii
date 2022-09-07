@@ -22,7 +22,7 @@
             </div>
             <div class="content-header-right text-md-right col-md-5 col-12">
                 <div class="form-group">
-                    <a href="{{ route('users.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="plus-circle"></i> Create New User</a>
+                <a href="{{ route('users.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="plus-circle"></i> Create New User</a>
                     <a href="{{ route('usershowTrashed') }}" class="btn-icon btn btn-dark btn-round"><i data-feather="trash"></i> Recycle</a>
                 </div>
             </div>

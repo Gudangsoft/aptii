@@ -44,10 +44,13 @@ use App\Http\Controllers\Admin\Prosiding\CustomerCareController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/post/{slug}', [ScreenController::class, 'post']);
+Route::get('/seminar/{slug}', [ScreenController::class, 'seminar']);
 Route::post('apply', [FrontendJobsController::class, 'store'])->name('jobs-apply');
 Route::get('/tag/{slug}', [ScreensController::class, 'tags']);
 
 // menu
+Route::get('/seminar-nasional', [ScreensController::class, 'seminarNasional']);
+Route::get('/seminar-internasional', [ScreensController::class, 'seminarInternasional']);
 Route::get('/posts', [ScreensController::class, 'posts']);
 Route::get('/contact', [ScreenController::class, 'contact']);
 

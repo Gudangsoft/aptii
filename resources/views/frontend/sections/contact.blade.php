@@ -14,46 +14,23 @@
     </section>
     <section aria-label="section">
         <div class="container">
-                <div class="row">
+            <div class="row">
 
-                    <div class="col-lg-8 mb-sm-30">
-                    <h3>Apakah anda memiliki pertanyaan ?</h3>
-
-                    <form name="contactForm" id="contact_form" class="form-border" method="post" action="#">
-                        <div class="field-set">
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Nama" />
-                        </div>
-
-                        <div class="field-set">
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Email" />
-                        </div>
-
-                        <div class="field-set">
-                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Nomor Telpon" />
-                        </div>
-
-                        <div class="field-set">
-                            <textarea name="message" id="message" class="form-control" placeholder="Pertanyaan anda"></textarea>
-                        </div>
-
-                        <div class="spacer-half"></div>
-
-                        <div id="submit">
-                            <input type="submit" id="send_message" value="KIRIM" class="btn btn-main" />
-                        </div>
-                        {{-- <div id="mail_success" class="success">Your message has been sent successfully.</div>
-                        <div id="mail_fail" class="error">Sorry, error occured this time sending your message.</div> --}}
-                    </form>
+                <div class="col-lg-8 mb-sm-30">
+                    <h3>Location on Maps</h3>
+                    <div class="de-map-wrapper">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7356410651896!2d110.18192551413703!3d-6.922172794998487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e705cf3eaaaaaab%3A0xe0f09d03c189b72e!2sUniversitas%20STEKOM%20Komputer%20Desain%20Grafis%20Bisnis%20Akuntansi%20P2K%20Kendal%20Kuliah%20Online!5e0!3m2!1sid!2sid!4v1662576343668!5m2!1sid!2sid"  allowfullscreen="" loading="lazy"></iframe>
+                    </div>
                 </div>
 
                 <div class="col-lg-4">
-
+                    <h3>Narahubung</h3>
                     @include('frontend.widget.contact', ['title' => 'Kontak', 'limit' => 3])
 
                 </div>
 
-                </div>
             </div>
+        </div>
 
     </section>
 </x-frontend-master>

@@ -25,4 +25,12 @@ class ScreensController extends Controller
         ]);
     }
 
+    public function seminarNasional(Request $request, PagesController $page){
+        return view('frontend.events.nasional');
+    }
+
+    public function seminarInternasional(Request $request, PagesController $page){
+        return view('frontend.events.internasional');
+    }
+
 }

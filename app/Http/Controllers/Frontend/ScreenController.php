@@ -26,6 +26,16 @@ class ScreenController extends Controller
         ]);
     }
 
+    public function seminar($slug){
+        return view('frontend.events.detail', [
+            'data'          => PageController::seminar($slug),
+            'popular'       => PagesController::popularArticle(),
+            'recent'        => PagesController::recentArticles(4),
+            'agendas'       => PagesController::agenda(),
+            'tags'          => PagesController::tags(),
+        ]);
+    }
+
     public static function meta($slug){
 
         $data = PageController::article($slug);
