@@ -38,7 +38,7 @@ class ProsidingController extends Controller
 
     public function sertifikat()
     {
-        return view('admin.prosiding.sertifikat.index');
+        return view('admin.prosiding.certificate.public-certificate');
     }
 
     public function prosidingNasional(){

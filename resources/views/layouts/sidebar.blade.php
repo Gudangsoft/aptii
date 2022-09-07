@@ -30,7 +30,7 @@
             </li>
             <li class="{{ request()->routeIs('prosiding.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.seminar') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="User">Seminar</span></a>
             </li>
-            {{-- <li class="{{ request()->routeIs('prosiding.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a> --}}
+            <li class="{{ request()->routeIs('prosiding.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('prosiding.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
             </li>
             @endrole
 
