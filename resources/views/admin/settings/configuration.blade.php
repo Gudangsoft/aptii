@@ -188,6 +188,15 @@
                                 </div>
                                 <div id="address-step-vertical-modern" class="content">
                                     <div class="content-header">
+                                        <h5 class="mb-0">Address Google Maps</h5>
+                                        <small>Copy embed url google maps.</small>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <textarea name="address_map" id="" cols="30" rows="1" class="form-control">{!! $data->address_map ?? 'https://www.google.com/maps/embed?pb=...' !!}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="content-header">
                                         <h5 class="mb-0">Address</h5>
                                         <small>Enter Your Address.</small>
                                     </div>

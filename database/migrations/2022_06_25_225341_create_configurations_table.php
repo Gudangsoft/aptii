@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText('logo');
             $table->string('owner_id');
             $table->string('created_by');
+            $table->longText('address_map');
             $table->longText('address');
             $table->string('phone');
             $table->string('whatsapp');

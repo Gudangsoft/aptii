@@ -13,11 +13,7 @@ use Image;
 
 class ConfigurationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('admin.settings.configuration', [
@@ -115,6 +111,7 @@ class ConfigurationController extends Controller
 
             $config->owner_id = $request->owner_id;
             $config->created_by = auth()->user()->id;
+            $config->address_map = $request->address_map;
             $config->address = $request->address;
             $config->email = $request->email;
             $config->whatsapp = $request->whatsapp;

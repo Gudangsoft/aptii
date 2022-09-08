@@ -74,6 +74,9 @@
                                 <a href="{{ route('register') }}" class="btn-main"><i class="fa fa-user-plus"></i><span>REGISTRASI</span></a>
                             </div>
                         @endif
+                        <div class="menu_side_area">
+                            <span id="menu-btn"></span>
+                        </div>
                     </div>
                 </div>
             </div>
