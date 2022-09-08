@@ -2,13 +2,8 @@
 <html lang="zxx">
 
 <head>
-    <title>PROSIDING APP</title>
     <link rel="icon" href="{{ asset('frontend') }}/images/icon.png" type="image/gif" sizes="16x16">
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="CoSpace - Coworking Space Website Template" name="description" />
-    <meta content="" name="keywords" />
-    <meta content="" name="author" />
+    {!! Meta::toHtml() !!}
     <!-- CSS Files
     ================================================== -->
     <link id="bootstrap" href="{{ asset('frontend') }}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

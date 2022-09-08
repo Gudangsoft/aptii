@@ -12,7 +12,7 @@
                 @if ($loop->index < $limit)
                     <div class="col-md-4">
                         <div class="de-image-text">
-                            <a href="#" class="d-text">
+                            <a href="/seminar/{{ $event->slug }}" class="d-text">
                                 <h3><span class="id-color">0{{ $loop->index + 1 }}</span> {{ $event->judul }}</h3>
                                 <p>{!! Illuminate\Support\Str::words($event->keterangan, 7) !!}</p>
                             </a>

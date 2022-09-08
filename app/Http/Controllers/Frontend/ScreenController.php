@@ -27,6 +27,7 @@ class ScreenController extends Controller
     }
 
     public function seminar($slug){
+        HomeController::meta('Seminar');
         return view('frontend.events.detail', [
             'data'          => PageController::seminar($slug),
             'popular'       => PagesController::popularArticle(),
@@ -38,7 +39,8 @@ class ScreenController extends Controller
 
     public static function meta($slug){
 
-        $data = PageController::article($slug);
+        $web    = Configuration::where('status', 1)->first();
+        $data   = PageController::article($slug);
 
         Meta::prependTitle($data->title)
                 ->setContentType('text/html')
@@ -53,7 +55,7 @@ class ScreenController extends Controller
         $og = new \Butschster\Head\Packages\Entities\OpenGraphPackage('og_meta');
 
         $og->setType('website')
-            ->setSiteName('Jarwonoztech')
+            ->setSiteName(config('app.name'))
             ->setTitle($data->title)
             ->setDescription(Str::words(html_entity_decode($data->content), 15))
             ->setUrl(config('app.url').'/post/'.$data->slug)
@@ -66,10 +68,10 @@ class ScreenController extends Controller
         $card = new \Butschster\Head\Packages\Entities\TwitterCardPackage('twitter_meta');
 
         $card->setType('summary')
-        ->setSite('@jarwonoztech')
+        ->setSite('@prosiding_app')
         ->setTitle($data->title)
         ->setDescription(Str::words(html_entity_decode($data->content), 15))
-        ->setCreator('@jarwonoztech')
+        ->setCreator('@prosiding_app')
         ->setImage(asset('frontend').'/articles/thumbnail/'.$data->image)
         ->addMeta('image:alt', $data->title);
 
@@ -78,6 +80,8 @@ class ScreenController extends Controller
     }
 
     public function contact(){
+        HomeController::meta('Kontak Kami');
+
         return view('frontend.sections.contact', [
             'popular'       => PagesController::popularArticle(),
             'recent'        => PagesController::recentArticles(4),

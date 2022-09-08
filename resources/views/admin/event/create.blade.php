@@ -54,7 +54,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label><h5>Link</h5></label>
-                                                        <input type="text" name="link" class="form-control" placeholder="Judul Naskah" required>
+                                                        <input type="text" name="link" class="form-control" placeholder="https://contoh.com" required>
                                                     </div>
                                                     <div class="form-group mb-2">
                                                         <label for="blog-edit-title">Type</label>

@@ -16,7 +16,7 @@
                         </div>
                         <div class="text">
                             <h4>{{ $row->title }}</h4>
-                            {{-- <p>{!! \Illuminate\Support\Str::words($row->content, 10) !!}</p> --}}
+                            <p>{!! \Illuminate\Support\Str::words($row->content, 10) !!}</p>
                         </div>
                     </a>
                 </div>

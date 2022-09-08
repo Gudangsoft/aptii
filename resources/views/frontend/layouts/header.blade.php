@@ -32,7 +32,7 @@
                                 <a href="/posts">Berita<span></span></a>
                             </li>
                             <li>
-                                <a href="/posts">Template<span></span></a>
+                                <a href="https://regprosiding.stekom.ac.id/images/template.doc">Template<span></span></a>
                             </li>
                             <li>
                                 <a href="/contact">Kontak<span></span></a>
