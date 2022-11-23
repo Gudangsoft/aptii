@@ -19,7 +19,7 @@ class PembayaranController extends Controller
     public function create()
     {
         return view('admin.prosiding.bukti-pembayaran.create', [
-            'dataNaskah' => ProsidingNaskah::where('user_id', auth()->user()->id)->where('status', 0)->get(),
+            'dataNaskah' => ProsidingNaskah::where('user_id', auth()->user()->id)->where('status', 5)->get(),
             'dataRekening' => Rekening::where('status', true)->get()
         ]);
     }
@@ -27,7 +27,6 @@ class PembayaranController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $validated = $request->validate([
             'photo' => 'required|mimes:jpg,png,jpeg',
         ]);
@@ -37,7 +36,13 @@ class PembayaranController extends Controller
 
             $save                   = new ProsidingPembayaran();
             $save->user_id          = auth()->user()->id;
-            $save->naskah_id        = $request->naskah;
+
+            if($request->category == 2){
+                $save->naskah_id        = $request->naskah;
+            }else{
+                $save->naskah_id        = null;
+            }
+
             $save->no_transaksi     = $request->no_transaksi;
             $save->tanggal_bayar    = $request->tanggal_bayar;
             $save->jumlah           = $request->jumlah_bayar;

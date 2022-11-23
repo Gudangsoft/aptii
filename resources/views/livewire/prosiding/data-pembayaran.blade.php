@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
-
+                                <a href="{{ route('rekening.index') }}" class="btn btn-primary">Setting Rekening</a>
                             </div>
                             <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
                                 <div class="input-group">
@@ -74,7 +74,7 @@
                                         </td>
                                         <td>{{ $row->getUser->name }}</td>
                                         <td>{{ $row->getUser->company }}</td>
-                                        <td>{{ $row->getNaskah->judul }}</td>
+                                        <td>{!! $row->naskah_id != null ? $row->getNaskah->judul : "<span class='badge badge-danger'>NON PEMAKALAH</span>" !!}</td>
                                         <td>{{ $row->tanggal_bayar }}</td>
                                         <td>Rp {{ number_format($row->jumlah) }}</td>
                                         <td>{{ $row->bank_pengirim }}</td>
@@ -114,7 +114,7 @@
                                                                     </div>
                                                                     <div class="col-1">:</div>
                                                                     <div class="col-5 d-flex justify-content-right">
-                                                                        {{ $row->getNaskah->judul }}
+                                                                        {!! $row->naskah_id != null ? $row->getNaskah->judul : "<span class='badge badge-danger'>NON PEMAKALAH</span>" !!}
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <b>Nomor Transaksi</b>

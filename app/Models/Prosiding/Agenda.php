@@ -16,7 +16,7 @@ class Agenda extends Model
     protected $appends      =  ['dateFormat'];
 
     public function getUser(){
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(User::class, 'created_by')->withTrashed();
     }
 
     public function getDateFormatAttribute(){

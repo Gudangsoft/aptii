@@ -52,7 +52,7 @@
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Nama</th>
-                                    <th>Judul</th>
+                                    <th>Makalah</th>
                                     <th>Tanggal</th>
                                     <th>Bank</th>
                                     <th>Total</th>
@@ -68,7 +68,7 @@
                                             <input type="checkbox" value="{{ $row->id }}" wire:model="selectData" id="a">
                                         </td>
                                         <td>{{ $row->getUser->name }}</td>
-                                        <td>{{ $row->getNaskah->judul }}</td>
+                                        <td>{!! $row->naskah_id != null ? $row->getNaskah->judul : "<span class='badge badge-danger'>NON PEMAKALAH</span>" !!}</td>
                                         <td>{{ $row->tanggal_bayar }}</td>
                                         <td>{{ $row->bank_pengirim }}</td>
                                         <td>Rp {{ number_format($row->jumlah) }}</td>

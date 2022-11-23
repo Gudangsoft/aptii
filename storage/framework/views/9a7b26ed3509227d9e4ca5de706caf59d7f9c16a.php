@@ -1,0 +1,1 @@
+<a href="<?php echo e($path); ?>" <?php echo count($attributes) ? $column->arrayToAttributes($attributes) : ''; ?>><?php echo e($title); ?></a><?php /**PATH /home/proh9171/public_html/prosiding.stpkat.ac.id/resources/views/vendor/livewire-tables/includes/columns/link.blade.php ENDPATH**/ ?>

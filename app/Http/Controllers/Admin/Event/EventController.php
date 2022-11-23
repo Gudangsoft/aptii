@@ -87,7 +87,7 @@ class EventController extends Controller
 
             $save = new Event();
             $save->judul = $request->judul;
-            $save->slug = Str::slug($request->slug);
+            $save->slug = Str::slug($request->judul);
             $save->keterangan = $request->keterangan;
             $save->link = $request->link;
             $save->type = $request->type;
@@ -199,7 +199,7 @@ class EventController extends Controller
 
             $save = Event::findOrFail($id);
             $save->judul = $request->judul;
-            $save->slug = Str::slug($request->slug);
+            $save->slug = Str::slug($request->judul);
             $save->keterangan = $request->keterangan;
             $save->link = $request->link;
             $save->type = $request->type;

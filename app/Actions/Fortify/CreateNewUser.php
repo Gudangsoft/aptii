@@ -37,6 +37,8 @@ class CreateNewUser implements CreatesNewUsers
             'gender' => $input['gender'],
             'password' => Hash::make($input['password']),
             'profile_photo_path' => 'default.jpg',
+            'status' => 1,
+
         ])->assignRole('peserta');
     }
 }

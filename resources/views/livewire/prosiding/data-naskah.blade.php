@@ -117,6 +117,8 @@
                                                 <span class="badge badge-glow badge-dark">Tidak sesuai</span>
                                             @elseif ($row->status == 4)
                                                 <span class="badge badge-glow badge-danger">Ditolak</span>
+                                            @elseif ($row->status == 5)
+                                                <span class="badge badge-glow badge-primary">Menunggu Pembayaran</span>
                                             @elseif ($row->status == 0)
                                                 <span class="badge badge-glow badge-secondary">Menunggu</span>
                                             @endif
@@ -129,6 +131,7 @@
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item" href="{{ $row->document }}">Detail File</a>
                                                     <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(5, {{ $row->id }})'>Menunggu Pembayaran</a>
                                                     <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(1, {{ $row->id }})'>Diterima</a>
                                                     <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(2, {{ $row->id }})'>Naskah tidak ada</a>
                                                     <a class="dropdown-item" href="javascript:void(0);"wire:click='updateStatusSingle(3, {{ $row->id }})'>Tidak sesuai, silakan perbaiki</a>

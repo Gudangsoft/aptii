@@ -1,9 +1,6 @@
 <?php
 
 use Butschster\Head\MetaTags\Viewport;
-use App\Models\Admin\Configuration;
-
-$web = Configuration::where('status', 1)->first();
 
 return [
     /*

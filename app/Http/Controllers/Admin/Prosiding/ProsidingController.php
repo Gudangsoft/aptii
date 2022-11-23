@@ -44,4 +44,8 @@ class ProsidingController extends Controller
     public function prosidingNasional(){
         return view('admin.prosiding.link.index');
     }
+
+    public function template(){
+        return view('admin.prosiding.template');
+    }
 }

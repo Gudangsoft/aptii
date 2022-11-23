@@ -39,9 +39,17 @@
                                                 @csrf
                                                 <div class="card-body">
                                                     <div class="form-group">
-                                                        <label><h5>Naskah</h5></label>
+                                                        <label><h5>Kategori Pembayaran</h5></label>
+                                                        <select class="select2 form-control form-control-lg select2-hidden-accessible" id="category" name="category">
+                                                            <option value="" disabled selected>--- Pilih ---</option>
+                                                            <option value="1">Non Pemakalah</option>
+                                                            <option value="2">Pemakalah</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" id="naskah">
+                                                        <label><h5>Naskah</h5> Berikut adalah data naskah dengan status <b>Menunggu Pembayaran</b></label>
                                                         <select class="select2 form-control form-control-lg select2-hidden-accessible" name="naskah">
-                                                            <option selected>--- Pilih ---</option>
+                                                            <option value="" disabled selected>--- Pilih ---</option>
                                                             @foreach ($dataNaskah as $item)
                                                                 <option value="{{ $item->id }}">{{ $item->judul }}</option>
                                                             @endforeach
@@ -70,15 +78,15 @@
                                                     <div class="form-group">
                                                         <label><h5>Rekening Tujuan</h5></label>
                                                         <select class="select2 form-control form-control-lg select2-hidden-accessible" name="rekening_tujuan">
-                                                            <option selected>--- Pilih ---</option>
+                                                            <option value="" disabled selected>--- Pilih ---</option>
                                                             @foreach ($dataRekening as $rekening)
                                                                 <option value="{{ $rekening->id }}">{{ $rekening->bank }} - {{ $rekening->rekening }} a/n {{ $rekening->nama }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label><h5>Keterangan (Opsional)</h5></label>
-                                                        <textarea class="form-control" name="keterangan" placeholder="Cth: Biaya pendaftaran prosiding dengan judul ..." rows=3" required></textarea>
+                                                        <label><h5>Keterangan</h5></label>
+                                                        <textarea class="form-control" name="keterangan" placeholder="Cth: Biaya pendaftaran ..." rows=3" required></textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <label><h5>Bukti Bayar</h5></label>
@@ -121,6 +129,16 @@
                                             });
                                         }
                                     })
+                                </script>
+                                <script>
+                                    $('#naskah').hide();
+                                    $('#category').on('change', function () {
+                                        if (this.value == 2) {
+                                            $('#naskah').show();
+                                        }else{
+                                            $('#naskah').hide();
+                                        }
+                                    });
                                 </script>
                             @endpush
                         </div>

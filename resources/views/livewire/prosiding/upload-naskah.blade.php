@@ -116,11 +116,17 @@
                                         <td><a href="{{ $row->document }}" class="badge badge-glow badge-primary"> FILE NASKAH</a></td>
                                         <td>
                                             @if ($row->status == 1)
-                                                <span class="badge badge-glow badge-success">DITERIMA</span>
+                                                <span class="badge badge-glow badge-success">Diterima</span>
+                                            @elseif ($row->status == 2)
+                                                <span class="badge badge-glow badge-warning">Tidak ada naskah</span>
+                                            @elseif ($row->status == 3)
+                                                <span class="badge badge-glow badge-dark">Tidak sesuai</span>
+                                            @elseif ($row->status == 4)
+                                                <span class="badge badge-glow badge-danger">Ditolak</span>
+                                            @elseif ($row->status == 5)
+                                                <span class="badge badge-glow badge-primary">Menunggu Pembayaran</span>
                                             @elseif ($row->status == 0)
-                                                <span class="badge badge-glow badge-secondary">MENUNGGU</span>
-                                            @else
-                                                <span class="badge badge-glow badge-danger">DITOLAK</span>
+                                                <span class="badge badge-glow badge-secondary">Menunggu</span>
                                             @endif
                                         </td>
                                     </tr>

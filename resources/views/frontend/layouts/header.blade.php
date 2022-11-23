@@ -32,7 +32,11 @@
                                 <a href="/posts">Berita<span></span></a>
                             </li>
                             <li>
-                                <a href="https://regprosiding.stekom.ac.id/images/template.doc">Template<span></span></a>
+                                @php
+                                    $document       = file_get_contents('JSON/template.json');
+                                    $documentArray  = json_decode($document, true);
+                                @endphp
+                                <a href="/storage/files/template/{{ $documentArray['data']['data'][0]['name'] }}">Template<span></span></a>
                             </li>
                             <li>
                                 <a href="/contact">Kontak<span></span></a>
@@ -68,7 +72,6 @@
                         @else
                             <div class="menu_side_area">
                                 <a href="{{ route('login') }}" class="btn-main"><i class="fa fa-sign-in"></i><span>LOGIN</span></a>
-                                <span id="menu-btn"></span>
                             </div>
                             <div class="menu_side_area">
                                 <a href="{{ route('register') }}" class="btn-main"><i class="fa fa-user-plus"></i><span>REGISTRASI</span></a>

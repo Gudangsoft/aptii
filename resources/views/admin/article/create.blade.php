@@ -61,7 +61,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
                                                 <label for="fp-date-time">Date & Time</label>
-                                                <input type="text" id="fp-date-time" class="form-control flatpickr-date-time" placeholder="YYYY-MM-DD HH:MM" />
+                                                <input type="text" name="date" id="fp-date-time" class="form-control flatpickr-date-time" placeholder="YYYY-MM-DD HH:MM" />
                                             </div>
                                         </div>
 
@@ -89,10 +89,6 @@
                                                 <div class="custom-control custom-control-warning custom-radio">
                                                     <input type="radio" id="customRadio2" name="type" value="1" class="custom-control-input" />
                                                     <label class="custom-control-label" for="customRadio2">Headline</label>
-                                                </div>
-                                                <div class="custom-control custom-control-success custom-radio">
-                                                    <input type="radio" id="customRadio3" name="type" value="2" class="custom-control-input" />
-                                                    <label class="custom-control-label" for="customRadio3">Latest Slider</label>
                                                 </div>
                                             </div>
                                         </div>

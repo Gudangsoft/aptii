@@ -1,0 +1,1 @@
+<?php /**PATH /home/proh9171/public_html/prosiding.stpkat.ac.id/resources/views/vendor/livewire-tables/stubs/custom.blade.php ENDPATH**/ ?>

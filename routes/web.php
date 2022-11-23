@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\Prosiding\Certificate;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Controllers\Admin\Settings\RolePermissionController;
 use App\Http\Controllers\Admin\Prosiding\CustomerCareController;
+use App\Http\Controllers\Admin\Prosiding\RekeningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,11 +88,13 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
                 Route::get('link-prosiding', [ProsidingController::class, 'prosidingNasional'])->name('prosiding.nasional');
 
                 Route::get('info-prosiding', [ArticleController::class, 'infoProsiding'])->name('prosiding.table-info-prosiding');
+                Route::get('template', [ProsidingController::class, 'template'])->name('prosiding.template');
                 Route::resource('event', EventController::class);
                 Route::resource('bidang-ilmu', BidangIlmuController::class);
                 Route::resource('customer-care', CustomerCareController::class);
                 Route::resource('agenda', AgendaController::class);
                 Route::resource('certificate', Certificate::class);
+                Route::resource('rekening', RekeningController::class);
 
             });
         });
