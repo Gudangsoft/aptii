@@ -63,12 +63,12 @@ class HomeController extends Controller
         $card = new \Butschster\Head\Packages\Entities\TwitterCardPackage('twitter_meta');
 
         $card->setType('summary')
-        ->setSite('@jarwonoztech')
-        ->setTitle($web->name)
-        ->setDescription($web->description)
-        ->setCreator('@jarwonoztech')
-        ->setImage(asset('storage/images/logo').'/'.$web->logo)
-        ->addMeta('image:alt', $web->name);
+            ->setSite('@jarwonoztech')
+            ->setTitle($web->name)
+            ->setDescription($web->description)
+            ->setCreator('@jarwonoztech')
+            ->setImage(asset('storage/images/logo').'/'.$web->logo)
+            ->addMeta('image:alt', $web->name);
 
         $card->toHtml();
         Meta::registerPackage($card);

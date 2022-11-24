@@ -20,11 +20,11 @@ use App\Http\Controllers\Frontend\ScreenController;
 use App\Http\Controllers\Frontend\ScreensController;
 use App\Http\Controllers\Admin\Jobs\JobsController;
 use App\Http\Controllers\Admin\Post\TagController;
+use App\Http\Controllers\Admin\Asosiasi\AsosiasiController;
 use App\Http\Controllers\Admin\Prosiding\AgendaController;
 use App\Http\Controllers\Admin\Prosiding\NaskahController;
 use App\Http\Controllers\Admin\Prosiding\PembayaranController;
 use App\Http\Controllers\Admin\Prosiding\PesertaController;
-use App\Http\Controllers\Admin\Prosiding\ProsidingController;
 use App\Http\Controllers\Admin\Prosiding\BidangIlmuController;
 use App\Http\Controllers\Admin\Prosiding\Certificate;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
@@ -67,28 +67,28 @@ Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], functi
 
     Route::prefix('cms')->group(function (){
         // data prosiding
-        Route::prefix('prosiding')->group(function (){
+        Route::prefix('aptii')->group(function (){
             // menu peserta
             Route::resource('upload-naskah', NaskahController::class);
             Route::resource('upload-pembayaran', PembayaranController::class);
 
-            Route::get('info', [ProsidingController::class, 'info'])->name('prosiding.info');
-            Route::get('info/{slug}', [ProsidingController::class, 'infoDetail'])->name('prosiding.info-detail');
-            Route::get('seminar', [ProsidingController::class, 'seminar'])->name('prosiding.seminar');
-            Route::get('seminar/{slug}', [ProsidingController::class, 'seminarDetail'])->name('prosiding.seminar-detail');
-            Route::get('sertifikat', [ProsidingController::class, 'sertifikat'])->name('prosiding.sertifikat');
-            Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('prosiding.upload-naskah');
-            Route::get('bukti-pembayaran', [PembayaranController::class, 'uploadPembayaran'])->name('prosiding.bukti-pembayaran');
+            Route::get('info', [AsosiasiController::class, 'info'])->name('asosiasi.info');
+            Route::get('info/{slug}', [AsosiasiController::class, 'infoDetail'])->name('asosiasi.info-detail');
+            Route::get('seminar', [AsosiasiController::class, 'seminar'])->name('asosiasi.seminar');
+            Route::get('seminar/{slug}', [AsosiasiController::class, 'seminarDetail'])->name('asosiasi.seminar-detail');
+            Route::get('sertifikat', [AsosiasiController::class, 'sertifikat'])->name('asosiasi.sertifikat');
+            Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('asosiasi.upload-naskah');
+            Route::get('bukti-pembayaran', [PembayaranController::class, 'uploadPembayaran'])->name('asosiasi.bukti-pembayaran');
 
             // admin access
             Route::group(['middleware' => ['role:admin|super admin|writer']], function () {
-                Route::get('peserta', [PesertaController::class, 'index'])->name('prosiding.peserta');
-                Route::get('naskah', [NaskahController::class, 'naskah'])->name('prosiding.naskah');
-                Route::get('pembayaran', [PembayaranController::class, 'index'])->name('prosiding.pembayaran');
-                Route::get('link-prosiding', [ProsidingController::class, 'prosidingNasional'])->name('prosiding.nasional');
+                Route::get('peserta', [PesertaController::class, 'index'])->name('asosiasi.peserta');
+                Route::get('naskah', [NaskahController::class, 'naskah'])->name('asosiasi.naskah');
+                Route::get('pembayaran', [PembayaranController::class, 'index'])->name('asosiasi.pembayaran');
+                Route::get('link-prosiding', [AsosiasiController::class, 'prosidingNasional'])->name('asosiasi.nasional');
 
-                Route::get('info-prosiding', [ArticleController::class, 'infoProsiding'])->name('prosiding.table-info-prosiding');
-                Route::get('template', [ProsidingController::class, 'template'])->name('prosiding.template');
+                Route::get('info-prosiding', [ArticleController::class, 'infoProsiding'])->name('asosiasi.table-info-prosiding');
+                Route::get('template', [AsosiasiController::class, 'template'])->name('asosiasi.template');
                 Route::resource('event', EventController::class);
                 Route::resource('bidang-ilmu', BidangIlmuController::class);
                 Route::resource('customer-care', CustomerCareController::class);
