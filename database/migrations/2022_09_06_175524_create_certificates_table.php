@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->integer('creator_id')->nullable();
             $table->string('file');
+            $table->text('kta_url')->nullable();
+            $table->text('sk_url')->nullable();
             $table->integer('status')->nullable();
             $table->integer('created_by')->nullable();
             $table->timestamps();

@@ -23,7 +23,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Prosiding
+                                    <li class="breadcrumb-item active">Asosiasi
                                     </li>
                                     <li class="breadcrumb-item active"><a href="<?php echo e(route('certificate.index')); ?>">Sertifikat</a>
                                     </li>
@@ -85,6 +85,20 @@
                                                     <div class="form-group">
                                                         <label><h5>Sertifikat Peserta (Tipe File PDF)</h5></label>
                                                         <input type="file" name="document" accept=".pdf" class="form-control">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label><h5>Link KTA Anggota</h5></label>
+                                                                <input type="url" name="kta_anggota" placeholder="https://" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label><h5>Link SK Anggota</h5></label>
+                                                                <input type="url" name="sk_anggota" placeholder="https://" class="form-control">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary mt-2"><i data-feather="save"></i> SIMPAN</button>
                                                 </div>

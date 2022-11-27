@@ -34,8 +34,10 @@ class Certificate extends Controller
             $upload->code = auth()->user()->id.time();
             $upload->user_id = $request->user_id;
             $upload->model = $request->model;
-            $upload->creation_id = $request->naskah ?? $request->seminar;
+            $upload->creator_id = $request->naskah ?? $request->seminar;
             $upload->file = $fileName;
+            $upload->kta_url = $request->kta_anggota;
+            $upload->sk_url = $request->sk_anggota;
             $upload->status = 1;
             $upload->created_by = auth()->user()->id;
             $upload->save();
@@ -79,15 +81,17 @@ class Certificate extends Controller
             $upload->model = $request->model;
 
             if($request->naskah == "0" ){
-                $upload->creation_id = $request->seminar;
+                $upload->creator_id = $request->seminar;
             }elseif($request->seminar == "0" ){
-                $upload->creation_id = $request->naskah;
+                $upload->creator_id = $request->naskah;
             }
 
             if($request->document != null){
                 $upload->file = $fileName;
             }
 
+            $upload->kta_url = $request->kta_anggota;
+            $upload->sk_url = $request->sk_anggota;
             $upload->status = 1;
             $upload->created_by = auth()->user()->id;
             $upload->save();

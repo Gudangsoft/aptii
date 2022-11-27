@@ -25,11 +25,11 @@ class Certificate extends Model
     }
 
     public function getNaskah(){
-        return $this->belongsTo(ProsidingNaskah::class, 'creation_id');
+        return $this->belongsTo(ProsidingNaskah::class, 'creator_id');
     }
 
     public function getEvent(){
-        return $this->belongsTo(Event::class, 'creation_id');
+        return $this->belongsTo(Event::class, 'creator_id');
     }
 
 
