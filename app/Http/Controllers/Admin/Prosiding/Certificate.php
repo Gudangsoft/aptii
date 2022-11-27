@@ -14,12 +14,12 @@ class Certificate extends Controller
 
     public function index()
     {
-        return view('admin.prosiding.certificate.index');
+        return view('admin.asosiasi.certificate.index');
     }
 
     public function create()
     {
-        return view('admin.prosiding.certificate.create', [
+        return view('admin.asosiasi.certificate.create', [
             'users' => User::where('status', true)->get()
         ]);
     }
@@ -58,7 +58,7 @@ class Certificate extends Controller
 
     public function edit($id)
     {
-        return view('admin.prosiding.certificate.edit', [
+        return view('admin.asosiasi.certificate.edit', [
             'users' => User::where('status', true)->get(),
             'data' => ProsidingCertificate::findOrFail($id)
         ]);

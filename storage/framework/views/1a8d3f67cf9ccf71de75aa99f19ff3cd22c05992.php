@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Naskah Prosiding -
+    Naskah -
 <?php $__env->stopSection(); ?>
 <?php if (isset($component)) { $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\MasterLayouts::class, [] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
@@ -43,15 +43,15 @@
                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('prosiding.data-naskah')->html();
-} elseif ($_instance->childHasBeenRendered('pYtZ8aY')) {
-    $componentId = $_instance->getRenderedChildComponentId('pYtZ8aY');
-    $componentTag = $_instance->getRenderedChildComponentTagName('pYtZ8aY');
+} elseif ($_instance->childHasBeenRendered('JnzyS7N')) {
+    $componentId = $_instance->getRenderedChildComponentId('JnzyS7N');
+    $componentTag = $_instance->getRenderedChildComponentTagName('JnzyS7N');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('pYtZ8aY');
+    $_instance->preserveRenderedChild('JnzyS7N');
 } else {
     $response = \Livewire\Livewire::mount('prosiding.data-naskah');
     $html = $response->html();
-    $_instance->logRenderedChild('pYtZ8aY', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('JnzyS7N', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

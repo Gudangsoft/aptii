@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Template Jurnal Asosiasi -
+    Link Prosiding -
 <?php $__env->stopSection(); ?>
 <?php if (isset($component)) { $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\MasterLayouts::class, [] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
@@ -16,16 +16,16 @@
         <div class="content-wrapper">
             <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('prosiding.template-prosiding')->html();
-} elseif ($_instance->childHasBeenRendered('9MdCKxY')) {
-    $componentId = $_instance->getRenderedChildComponentId('9MdCKxY');
-    $componentTag = $_instance->getRenderedChildComponentTagName('9MdCKxY');
+    $html = \Livewire\Livewire::mount('prosiding.link')->html();
+} elseif ($_instance->childHasBeenRendered('TEG385Q')) {
+    $componentId = $_instance->getRenderedChildComponentId('TEG385Q');
+    $componentTag = $_instance->getRenderedChildComponentTagName('TEG385Q');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('9MdCKxY');
+    $_instance->preserveRenderedChild('TEG385Q');
 } else {
-    $response = \Livewire\Livewire::mount('prosiding.template-prosiding');
+    $response = \Livewire\Livewire::mount('prosiding.link');
     $html = $response->html();
-    $_instance->logRenderedChild('9MdCKxY', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('TEG385Q', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -37,4 +37,4 @@ echo $html;
 <?php $component = $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e; ?>
 <?php unset($__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e); ?>
 <?php endif; ?>
-<?php /**PATH /home/jarwonozt/Desktop/WEB/aptii/data/resources/views/admin/asosiasi/template.blade.php ENDPATH**/ ?>
+<?php /**PATH /home/jarwonozt/Desktop/WEB/aptii/data/resources/views/admin/asosiasi/link/index.blade.php ENDPATH**/ ?>

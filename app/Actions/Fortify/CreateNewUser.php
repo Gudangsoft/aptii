@@ -39,6 +39,6 @@ class CreateNewUser implements CreatesNewUsers
             'profile_photo_path' => 'default.jpg',
             'status' => 1,
 
-        ])->assignRole('peserta');
+        ])->assignRole('anggota');
     }
 }

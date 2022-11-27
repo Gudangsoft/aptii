@@ -13,24 +13,31 @@
             <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('dashboard') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span></a>
             </li>
 
-            @role('peserta|admin|super admin|writer')
-            <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Layanan</span><i data-feather="more-horizontal"></i>
-            </li>
-            <li class="{{ request()->routeIs('asosiasi.info') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.info') }}"><i data-feather="radio"></i><span class="menu-title text-truncate" data-i18n="User">Info Asosiasi</span></a>
-            </li>
-            @php
-                $json = file_get_contents('JSON/link-prosiding.json');
-                $linkasosiasi = json_decode($json, true);
-            @endphp
-            <li class="nav-item"><a class="d-flex align-items-center" href="{{ $linkasosiasi['data']['group'][0]['url'] }}" target="_blank"><i data-feather="external-link"></i><span class="menu-title text-truncate" data-i18n="User">Jurnal Asosiasi</span></a>
-            </li>
-            <li class="{{ request()->routeIs('asosiasi.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.upload-naskah') }}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="User">Naskah</span></a>
-            </li>
-            <li class="{{ request()->routeIs('asosiasi.bukti-pembayaran') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.bukti-pembayaran') }}"><i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="User">Bukti Pembayaran</span></a>
-            </li>
-            <li class="{{ request()->routeIs('asosiasi.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.seminar') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama</span></a>
-            </li>
-            <li class="{{ request()->routeIs('asosiasi.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
+            @role('anggota|admin|super admin')
+                @php
+                    $paymentCheck = \App\Models\Prosiding\ProsidingPembayaran::where('user_id', auth()->user()->id)->latest()->first();
+                @endphp
+                @isset($paymentCheck)
+                    @if ($paymentCheck->status == 1)
+                        <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Layanan</span><i data-feather="more-horizontal"></i>
+                        </li>
+                        <li class="{{ request()->routeIs('asosiasi.info') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.info') }}"><i data-feather="radio"></i><span class="menu-title text-truncate" data-i18n="User">Info Asosiasi</span></a>
+                        </li>
+                        @php
+                            $json = file_get_contents('JSON/link-prosiding.json');
+                            $linkasosiasi = json_decode($json, true);
+                        @endphp
+                        <li class="nav-item"><a class="d-flex align-items-center" href="{{ $linkasosiasi['data']['group'][0]['url'] }}" target="_blank"><i data-feather="external-link"></i><span class="menu-title text-truncate" data-i18n="User">Jurnal Asosiasi</span></a>
+                        </li>
+                        <li class="{{ request()->routeIs('asosiasi.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.upload-naskah') }}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="User">Naskah</span></a>
+                        </li>
+                        <li class="{{ request()->routeIs('asosiasi.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.seminar') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama</span></a>
+                        </li>
+                        <li class="{{ request()->routeIs('asosiasi.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
+                        </li>
+                    @endif
+                @endisset
+            <li class="{{ request()->routeIs('asosiasi.bukti-pembayaran') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.bukti-pembayaran') }}"><i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="User">Data Pembayaran</span></a>
             </li>
             @endrole
 
@@ -55,7 +62,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="Pages">Event Seminar</span></a>
+            <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="Pages">Kerjasama Lembaga</span></a>
             </li>
 
             @can('edit articles')

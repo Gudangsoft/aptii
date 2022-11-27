@@ -20,7 +20,7 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        return view('admin.prosiding.agenda.index');
+        return view('admin.asosiasi.agenda.index');
     }
 
     /**
@@ -30,7 +30,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        return view('admin.prosiding.agenda.create');
+        return view('admin.asosiasi.agenda.create');
     }
 
     public function store(Request $request)
@@ -73,7 +73,7 @@ class AgendaController extends Controller
 
     public function edit($id)
     {
-        return view('admin.prosiding.agenda.edit', [
+        return view('admin.asosiasi.agenda.edit', [
             'data' => ProsidingAgenda::findOrFail($id),
         ]);
     }

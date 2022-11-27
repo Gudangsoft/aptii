@@ -1,5 +1,5 @@
 @section('title')
-    Template Prosiding -
+    Template Jurnal Asosiasi -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">

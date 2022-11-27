@@ -1,5 +1,5 @@
 @section('title')
-    Seminar -
+    Kerjasama Lembaga Jurnal dengan Asosiasi -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">

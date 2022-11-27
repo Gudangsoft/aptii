@@ -56,7 +56,7 @@ Route::get('/posts', [ScreensController::class, 'posts']);
 Route::get('/contact', [ScreenController::class, 'contact']);
 
 // BACKEND DASHBOARD
-Route::group(['middleware' => ['role:super admin|writer|admin|peserta']], function () {
+Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']], function () {
     Route::get('qrcodes', [QrCodeController::class, 'index']);
     Route::resource('friends', FriendsController::class);
     Route::controller(FriendsController::class)->group(function(){

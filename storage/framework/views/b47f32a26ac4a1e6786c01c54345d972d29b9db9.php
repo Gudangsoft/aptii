@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Seminar -
+    Kerjasama Lembaga Jurnal dengan Asosiasi -
 <?php $__env->stopSection(); ?>
 <?php if (isset($component)) { $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\MasterLayouts::class, [] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
@@ -39,15 +39,15 @@
                     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('prosiding.seminar')->html();
-} elseif ($_instance->childHasBeenRendered('EwGhQlR')) {
-    $componentId = $_instance->getRenderedChildComponentId('EwGhQlR');
-    $componentTag = $_instance->getRenderedChildComponentTagName('EwGhQlR');
+} elseif ($_instance->childHasBeenRendered('rFckwgo')) {
+    $componentId = $_instance->getRenderedChildComponentId('rFckwgo');
+    $componentTag = $_instance->getRenderedChildComponentTagName('rFckwgo');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('EwGhQlR');
+    $_instance->preserveRenderedChild('rFckwgo');
 } else {
     $response = \Livewire\Livewire::mount('prosiding.seminar');
     $html = $response->html();
-    $_instance->logRenderedChild('EwGhQlR', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('rFckwgo', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

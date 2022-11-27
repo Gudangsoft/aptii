@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Data Pembayaran -
+    Event Acara -
 <?php $__env->stopSection(); ?>
 <?php if (isset($component)) { $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\MasterLayouts::class, [] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
@@ -18,12 +18,12 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Data Pembayaran</h2>
+                            <h2 class="content-header-title float-left mb-0">Event</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                     </li>
-                                    <li class="breadcrumb-item active"><a href="<?php echo e(route('asosiasi.bukti-pembayaran')); ?>">Bukti Pembayaran</a>
+                                    <li class="breadcrumb-item active">Event
                                     </li>
                                 </ol>
                             </div>
@@ -40,16 +40,16 @@
                         <div class="card p-1">
                             <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('prosiding.bukti-pembayaran')->html();
-} elseif ($_instance->childHasBeenRendered('af97BfO')) {
-    $componentId = $_instance->getRenderedChildComponentId('af97BfO');
-    $componentTag = $_instance->getRenderedChildComponentTagName('af97BfO');
+    $html = \Livewire\Livewire::mount('event.event-table')->html();
+} elseif ($_instance->childHasBeenRendered('tn2B1Yq')) {
+    $componentId = $_instance->getRenderedChildComponentId('tn2B1Yq');
+    $componentTag = $_instance->getRenderedChildComponentTagName('tn2B1Yq');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('af97BfO');
+    $_instance->preserveRenderedChild('tn2B1Yq');
 } else {
-    $response = \Livewire\Livewire::mount('prosiding.bukti-pembayaran');
+    $response = \Livewire\Livewire::mount('event.event-table');
     $html = $response->html();
-    $_instance->logRenderedChild('af97BfO', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('tn2B1Yq', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -66,4 +66,4 @@ echo $html;
 <?php $component = $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e; ?>
 <?php unset($__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e); ?>
 <?php endif; ?>
-<?php /**PATH /home/jarwonozt/Desktop/WEB/aptii/data/resources/views/admin/asosiasi/bukti-pembayaran/index.blade.php ENDPATH**/ ?>
+<?php /**PATH /home/jarwonozt/Desktop/WEB/aptii/data/resources/views/admin/event/index.blade.php ENDPATH**/ ?>

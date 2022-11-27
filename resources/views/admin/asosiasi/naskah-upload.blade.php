@@ -1,5 +1,5 @@
 @section('title')
-    Naskah Prosiding -
+    Upload Naskah -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">

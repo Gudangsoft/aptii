@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Data Pembayaran -
+    Kontak Narahubung -
 <?php $__env->stopSection(); ?>
 <?php if (isset($component)) { $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\MasterLayouts::class, [] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
@@ -18,12 +18,14 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Data Pembayaran</h2>
+                            <h2 class="content-header-title float-left mb-0">Kontak Narahubung</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                     </li>
-                                    <li class="breadcrumb-item active"><a href="<?php echo e(route('asosiasi.bukti-pembayaran')); ?>">Bukti Pembayaran</a>
+                                    <li class="breadcrumb-item active">Prosiding
+                                    </li>
+                                    <li class="breadcrumb-item active"><a href="<?php echo e(route('customer-care.index')); ?>">Kontak Narahubung</a>
                                     </li>
                                 </ol>
                             </div>
@@ -35,28 +37,23 @@
                 </div>
             </div>
             <div class="content-body">
-                <div class="row" id="basic-table">
-                    <div class="col-12">
-                        <div class="card p-1">
-                            <?php
+                <div class="blog-list-wrapper">
+                        <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('prosiding.bukti-pembayaran')->html();
-} elseif ($_instance->childHasBeenRendered('af97BfO')) {
-    $componentId = $_instance->getRenderedChildComponentId('af97BfO');
-    $componentTag = $_instance->getRenderedChildComponentTagName('af97BfO');
+    $html = \Livewire\Livewire::mount('prosiding.customer-care')->html();
+} elseif ($_instance->childHasBeenRendered('rXXxG18')) {
+    $componentId = $_instance->getRenderedChildComponentId('rXXxG18');
+    $componentTag = $_instance->getRenderedChildComponentTagName('rXXxG18');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('af97BfO');
+    $_instance->preserveRenderedChild('rXXxG18');
 } else {
-    $response = \Livewire\Livewire::mount('prosiding.bukti-pembayaran');
+    $response = \Livewire\Livewire::mount('prosiding.customer-care');
     $html = $response->html();
-    $_instance->logRenderedChild('af97BfO', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('rXXxG18', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
-                        </div>
-                    </div>
                 </div>
-                <?php echo $__env->make('admin.modals.alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
         </div>
     </div>
@@ -66,4 +63,4 @@ echo $html;
 <?php $component = $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e; ?>
 <?php unset($__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e); ?>
 <?php endif; ?>
-<?php /**PATH /home/jarwonozt/Desktop/WEB/aptii/data/resources/views/admin/asosiasi/bukti-pembayaran/index.blade.php ENDPATH**/ ?>
+<?php /**PATH /home/jarwonozt/Desktop/WEB/aptii/data/resources/views/admin/asosiasi/cs/index.blade.php ENDPATH**/ ?>

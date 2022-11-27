@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Naskah Prosiding -
+    Upload Naskah -
 <?php $__env->stopSection(); ?>
 <?php if (isset($component)) { $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\MasterLayouts::class, [] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
@@ -43,15 +43,15 @@
                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('prosiding.upload-naskah')->html();
-} elseif ($_instance->childHasBeenRendered('bfooLOY')) {
-    $componentId = $_instance->getRenderedChildComponentId('bfooLOY');
-    $componentTag = $_instance->getRenderedChildComponentTagName('bfooLOY');
+} elseif ($_instance->childHasBeenRendered('o1hYo7p')) {
+    $componentId = $_instance->getRenderedChildComponentId('o1hYo7p');
+    $componentTag = $_instance->getRenderedChildComponentTagName('o1hYo7p');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('bfooLOY');
+    $_instance->preserveRenderedChild('o1hYo7p');
 } else {
     $response = \Livewire\Livewire::mount('prosiding.upload-naskah');
     $html = $response->html();
-    $_instance->logRenderedChild('bfooLOY', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('o1hYo7p', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

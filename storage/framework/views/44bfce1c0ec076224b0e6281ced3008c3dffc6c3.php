@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Info Prosiding -
+    Info Asosiasi -
 <?php $__env->stopSection(); ?>
 <?php if (isset($component)) { $__componentOriginal6d37cff2410bd73b1917b54c645d2cccbed85e3e = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\MasterLayouts::class, [] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
@@ -43,15 +43,15 @@
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('prosiding.info-prosiding')->html();
-} elseif ($_instance->childHasBeenRendered('SGa6wKY')) {
-    $componentId = $_instance->getRenderedChildComponentId('SGa6wKY');
-    $componentTag = $_instance->getRenderedChildComponentTagName('SGa6wKY');
+} elseif ($_instance->childHasBeenRendered('2lccWiY')) {
+    $componentId = $_instance->getRenderedChildComponentId('2lccWiY');
+    $componentTag = $_instance->getRenderedChildComponentTagName('2lccWiY');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('SGa6wKY');
+    $_instance->preserveRenderedChild('2lccWiY');
 } else {
     $response = \Livewire\Livewire::mount('prosiding.info-prosiding');
     $html = $response->html();
-    $_instance->logRenderedChild('SGa6wKY', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('2lccWiY', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

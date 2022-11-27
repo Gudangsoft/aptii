@@ -15,7 +15,7 @@
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
             <div class="content-header row">
-                <div class="content-header-left col-md-7 col-12 mb-2">
+                <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
                             <h2 class="content-header-title float-left mb-0">Pembayaran Prosiding</h2>
@@ -43,15 +43,15 @@
                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('prosiding.data-pembayaran')->html();
-} elseif ($_instance->childHasBeenRendered('LD8ET36')) {
-    $componentId = $_instance->getRenderedChildComponentId('LD8ET36');
-    $componentTag = $_instance->getRenderedChildComponentTagName('LD8ET36');
+} elseif ($_instance->childHasBeenRendered('QOQS2w3')) {
+    $componentId = $_instance->getRenderedChildComponentId('QOQS2w3');
+    $componentTag = $_instance->getRenderedChildComponentTagName('QOQS2w3');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('LD8ET36');
+    $_instance->preserveRenderedChild('QOQS2w3');
 } else {
     $response = \Livewire\Livewire::mount('prosiding.data-pembayaran');
     $html = $response->html();
-    $_instance->logRenderedChild('LD8ET36', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('QOQS2w3', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

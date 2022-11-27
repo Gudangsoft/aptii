@@ -13,14 +13,14 @@ class CustomerCareController extends Controller
 {
     public function index()
     {
-        return view('admin.prosiding.cs.index');
+        return view('admin.asosiasi.cs.index');
     }
 
     public function create()
     {
         $cs     = CustomerCare::pluck('user_id');
         $users  = User::where('status', true)->whereNotIn('id', $cs)->get();
-        return view('admin.prosiding.cs.create', [
+        return view('admin.asosiasi.cs.create', [
             'users' => $users
         ]);
     }

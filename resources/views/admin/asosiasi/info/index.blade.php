@@ -1,5 +1,5 @@
 @section('title')
-    Info Prosiding -
+    Info Asosiasi -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">
