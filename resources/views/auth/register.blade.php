@@ -8,7 +8,6 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
             <div class="mt-4">
                 <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
@@ -27,6 +26,26 @@
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Asal Institusi') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="text" name="company" :value="old('company')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="email" value="{{ __('NIK (opsional)') }}" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="nik" :value="old('nik')" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="email" value="{{ __('ID Sinta') }}" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="sinta_id" :value="old('sinta_id')" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="email" value="{{ __('ID GS') }}" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="gs_id" :value="old('gs_id')" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="email" value="{{ __('ID Scopus') }}" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="scopus_id" :value="old('scopus_id')" />
             </div>
 
             <div class="mt-4">

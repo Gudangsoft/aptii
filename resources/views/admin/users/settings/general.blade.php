@@ -34,19 +34,43 @@
             </div>
             <div class="col-12 col-sm-6">
                 <div class="form-group">
-                    <label for="account-company">Company</label>
-                    <input type="text" class="form-control" id="account-company" name="company" placeholder="Company name" value="JCMS Technologies" />
+                    <label for="account-company">Afiliasi</label>
+                    <input type="text" class="form-control" id="account-company" name="company" placeholder="Company name" value="{{ auth()->user()->company }}" />
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="account-company">NIK</label>
+                    <input type="text" class="form-control" id="account-company" name="nik" placeholder="NIK" value="{{ auth()->user()->nik }}" />
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="account-company">ID Sinta</label>
+                    <input type="text" class="form-control" id="account-company" name="sinta_id" placeholder="ID Sinta" value="{{ auth()->user()->sinta_id }}" />
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="account-company">ID GS</label>
+                    <input type="text" class="form-control" id="account-company" name="gs_id" placeholder="ID GS" value="{{ auth()->user()->gs_id }}" />
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="account-company">ID Scopus</label>
+                    <input type="text" class="form-control" id="account-company" name="scopus_id" placeholder="ID Scopus" value="{{ auth()->user()->scopus_id }}" />
                 </div>
             </div>
             <div class="col-12 mt-75">
-                <div class="alert alert-warning mb-50" role="alert">
+                {{-- <div class="alert alert-warning mb-50" role="alert">
                     @if (auth()->user()->hasVerifiedEmail() == false)
                         <h4 class="alert-heading">Your email is not confirmed. Please check your inbox.</h4>
                         <div class="alert-body">
                             <a href="javascript: void(0);" class="alert-link">Resend confirmation</a>
                         </div>
                     @endif
-                </div>
+                </div> --}}
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
