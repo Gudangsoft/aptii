@@ -89,11 +89,11 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                @if (count($selectJobs) > 0)
+                                <?php if(count($selectJobs) > 0): ?>
                                 <tr>
                                     <th colspan="5">
                                         <p class="card-text">
-                                            {{ count($selectJobs) }} data selected, <button wire:click="unselectedJobs()" class="btn btn-sm btn-primary">Cancel</button>
+                                            <?php echo e(count($selectJobs)); ?> data selected, <button wire:click="unselectedJobs()" class="btn btn-sm btn-primary">Cancel</button>
                                             <div class="btn-group">
                                                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Actions
@@ -107,7 +107,7 @@
                                         </p>
                                     </th>
                                 </tr>
-                                @endif
+                                <?php endif; ?>
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Title</th>
@@ -117,47 +117,48 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($data as $row)
+                                <?php $__empty_1 = true; $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" value="{{ $row->id }}" wire:model="selectJobs" id="a">
+                                            <input type="checkbox" value="<?php echo e($row->id); ?>" wire:model="selectJobs" id="a">
                                         </td>
                                         <td>
-                                            <span class="font-weight-bold">{{ $row->judul }}</span>
-                                            @if ($row->status < 1)
+                                            <span class="font-weight-bold"><?php echo e($row->judul); ?></span>
+                                            <?php if($row->status < 1): ?>
                                                 <i class="text-danger" data-feather="eye-off"></i>
-                                            @endif
+                                            <?php endif; ?>
                                         </td>
                                         <td>
-                                            @if ($row->status == true)
+                                            <?php if($row->status == true): ?>
                                                 <span class="badge badge-light-success mr-1"> active</span>
-                                            @else
+                                            <?php else: ?>
                                                 <span class="badge badge-light-danger mr-1"> hidden</span>
-                                            @endif
+                                            <?php endif; ?>
                                         </td>
-                                        <td>{{ $row->getUser->name }}</td>
+                                        <td><?php echo e($row->getUser->name); ?></td>
                                         <td>
                                             <div class="btn-group">
                                                 <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Select
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                                    <a class="dropdown-item" href="#" wire:click="editJobsCategory({{ $row->id }})">Edit</a>
-                                                    <a class="dropdown-item" wire:click="deleteSingleSelected({{ $row->id }})">Delete</a>
+                                                    <a class="dropdown-item" href="#" wire:click="editJobsCategory(<?php echo e($row->id); ?>)">Edit</a>
+                                                    <a class="dropdown-item" wire:click="deleteSingleSelected(<?php echo e($row->id); ?>)">Delete</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                @empty
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 <tr>
                                     <td colspan="5" class="pt-2 pb-1"><strong>Data not found !</strong></td>
                                 </tr>
-                                @endforelse
+                                <?php endif; ?>
 
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-center mt-2">
-                            {{ $data->links() }}
+                            <?php echo e($data->links()); ?>
+
                         </div>
                     </div>
                 </div>
@@ -183,11 +184,11 @@
             </div>
         </div>
     </div>
-    @push('vendor-css')
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
-    @endpush
-    @push('page-js')
-        <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
+    <?php $__env->startPush('vendor-css'); ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets')); ?>/vendors/css/vendors.min.css">
+    <?php $__env->stopPush(); ?>
+    <?php $__env->startPush('page-js'); ?>
+        <script src="<?php echo e(asset('assets')); ?>/ckeditorx/ckeditor.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -216,6 +217,7 @@
                 }
             })
         </script>
-    @endpush
+    <?php $__env->stopPush(); ?>
 
 </div>
+<?php /**PATH /home/jarwonozt/Desktop/WEB/aptii/data/resources/views/livewire/prosiding/bidang-ilmu.blade.php ENDPATH**/ ?>

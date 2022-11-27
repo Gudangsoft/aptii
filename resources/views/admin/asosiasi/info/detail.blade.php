@@ -17,7 +17,7 @@
                                     </li>
                                     <li class="breadcrumb-item active">Prosiding
                                     </li>
-                                    <li class="breadcrumb-item active"><a href="{{ route('prosiding.info') }}">Info</a>
+                                    <li class="breadcrumb-item active"><a href="{{ route('asosiasi.info') }}">Info</a>
                                     </li>
                                     <li class="breadcrumb-item active">Detail
                                     </li>

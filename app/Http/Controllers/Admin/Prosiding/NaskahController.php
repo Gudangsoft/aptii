@@ -21,7 +21,7 @@ class NaskahController extends Controller
 
     public function create()
     {
-        return view('admin.prosiding.upload-naskah.index', [
+        return view('admin.asosiasi.upload-naskah.index', [
             'bidangIlmu' => BidangIlmu::all(),
         ]);
     }
@@ -43,7 +43,7 @@ class NaskahController extends Controller
             $upload->save();
 
             Alert::success('Success', 'Naskah berhasil diupload !');
-            return redirect()->route('prosiding.upload-naskah');
+            return redirect()->route('asosiasi.upload-naskah');
 
         } catch (Exception $error) {
             dd($error->getMessage());
@@ -82,10 +82,10 @@ class NaskahController extends Controller
     }
 
     public function naskah(){
-        return view('admin.prosiding.naskah');
+        return view('admin.asosiasi.naskah');
     }
 
     public function upload(){
-        return view('admin.prosiding.naskah-upload');
+        return view('admin.asosiasi.naskah-upload');
     }
 }

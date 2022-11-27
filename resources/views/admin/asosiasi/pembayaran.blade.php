@@ -1,5 +1,5 @@
 @section('title')
-    Naskah Prosiding -
+    Data Pembayaran Prosiding -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">
@@ -10,14 +10,14 @@
                 <div class="content-header-left col-md-7 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Naskah Prosiding</h2>
+                            <h2 class="content-header-title float-left mb-0">Pembayaran Prosiding</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                     </li>
                                     <li class="breadcrumb-item active">Prosiding
                                     </li>
-                                    <li class="breadcrumb-item active"><a href="{{ route('prosiding.upload-naskah') }}">Naskah</a>
+                                    <li class="breadcrumb-item active"><a href="{{ route('asosiasi.pembayaran') }}">Pembayaran</a>
                                     </li>
                                 </ol>
                             </div>
@@ -32,7 +32,7 @@
                 <div class="row" id="basic-table">
                     <div class="col-12">
                         <div class="card p-1">
-                            @livewire('prosiding.upload-naskah')
+                            @livewire('prosiding.data-pembayaran')
                         </div>
                     </div>
                 </div>

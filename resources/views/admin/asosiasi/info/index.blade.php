@@ -1,5 +1,5 @@
 @section('title')
-    Naskah Prosiding -
+    Info Prosiding -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">
@@ -7,17 +7,17 @@
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
             <div class="content-header row">
-                <div class="content-header-left col-md-7 col-12 mb-2">
+                <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Naskah Prosiding</h2>
+                            <h2 class="content-header-title float-left mb-0">Info Asosiasi</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Prosiding
+                                    <li class="breadcrumb-item active">Asosiasi
                                     </li>
-                                    <li class="breadcrumb-item active"><a href="{{ route('prosiding.naskah') }}">Naskah</a>
+                                    <li class="breadcrumb-item active"><a href="{{ route('asosiasi.info') }}">Info</a>
                                     </li>
                                 </ol>
                             </div>
@@ -29,14 +29,15 @@
                 </div>
             </div>
             <div class="content-body">
-                <div class="row" id="basic-table">
-                    <div class="col-12">
-                        <div class="card p-1">
-                            @livewire('prosiding.data-naskah')
-                        </div>
-                    </div>
+                <!-- Blog List -->
+                <div class="blog-list-wrapper">
+                    <!-- Blog List Items -->
+                        @livewire('prosiding.info-prosiding')
+                    <!--/ Blog List Items -->
+
                 </div>
-                @include('admin.modals.alert')
+                <!--/ Blog List -->
+
             </div>
         </div>
     </div>

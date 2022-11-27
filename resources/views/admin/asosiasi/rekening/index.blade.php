@@ -15,9 +15,9 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                     </li>
-                                    <li class="breadcrumb-item">Prosiding
+                                    <li class="breadcrumb-item">Asosiasi
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('prosiding.pembayaran') }}">Pembayaran</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('asosiasi.pembayaran') }}">Pembayaran</a>
                                     </li>
                                     <li class="breadcrumb-item active">Rekening
                                     </li>

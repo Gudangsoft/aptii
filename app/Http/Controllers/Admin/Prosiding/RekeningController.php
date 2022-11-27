@@ -14,7 +14,7 @@ class RekeningController extends Controller
      */
     public function index()
     {
-        return view('admin.prosiding.rekening.index');
+        return view('admin.asosiasi.rekening.index');
     }
 
     /**

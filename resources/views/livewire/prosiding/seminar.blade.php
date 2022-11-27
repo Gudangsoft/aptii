@@ -3,12 +3,12 @@
         @foreach ($data as $item)
             <div class="col-md-4 col-12">
                 <div class="card">
-                    <a href="{{ route('prosiding.seminar-detail', $item->slug) }}">
+                    <a href="{{ route('asosiasi.seminar-detail', $item->slug) }}">
                         <img class="card-img-top img-fluid" src="{{ $item->image ? asset('storage/pictures').'/event/4_3/mid/'.$item->image : asset('assets').'/images/slider/03.jpg' }}" alt="Blog Post pic" />
                     </a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="{{ route('prosiding.seminar-detail', $item->slug) }}" class="blog-title-truncate text-body-heading">{{ $item->judul }}</a>
+                            <a href="{{ route('asosiasi.seminar-detail', $item->slug) }}" class="blog-title-truncate text-body-heading">{{ $item->judul }}</a>
                         </h4>
                         <div class="media">
                             <div class="avatar mr-50">
@@ -37,7 +37,7 @@
                         </p>
                         <hr />
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="{{ route('prosiding.seminar-detail', $item->slug) }}" class="font-weight-bold">Baca Detail</a>
+                            <a href="{{ route('asosiasi.seminar-detail', $item->slug) }}" class="font-weight-bold">Baca Detail</a>
                         </div>
                     </div>
                 </div>

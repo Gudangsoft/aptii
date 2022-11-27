@@ -70,19 +70,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($data as $row)
+                                <?php $__empty_1 = true; $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <tr>
                                         <td>
-                                            <span class="font-weight-bold">{{ $row['name'] }}</span>
+                                            <span class="font-weight-bold"><?php echo e($row['name']); ?></span>
                                         </td>
-                                        <td><a href="/storage/files/template/{{ $row['name']}}" class="btn btn-sm btn-primary">OPEN</a></td>
-                                        <td>{{ $row['created_by']}}</td>
+                                        <td><a href="/storage/files/template/<?php echo e($row['name']); ?>" class="btn btn-sm btn-primary">OPEN</a></td>
+                                        <td><?php echo e($row['created_by']); ?></td>
                                     </tr>
-                                @empty
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 <tr>
                                     <td colspan="5" class="pt-2 pb-1"><strong>Data not found !</strong></td>
                                 </tr>
-                                @endforelse
+                                <?php endif; ?>
 
                             </tbody>
                         </table>
@@ -92,11 +92,11 @@
         </div>
     </div>
 
-    @push('vendor-css')
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
-    @endpush
-    @push('page-js')
-        <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
+    <?php $__env->startPush('vendor-css'); ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets')); ?>/vendors/css/vendors.min.css">
+    <?php $__env->stopPush(); ?>
+    <?php $__env->startPush('page-js'); ?>
+        <script src="<?php echo e(asset('assets')); ?>/ckeditorx/ckeditor.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -121,6 +121,7 @@
                 }
             })
         </script>
-    @endpush
+    <?php $__env->stopPush(); ?>
 
 </div>
+<?php /**PATH /home/jarwonozt/Desktop/WEB/aptii/data/resources/views/livewire/prosiding/template-prosiding.blade.php ENDPATH**/ ?>

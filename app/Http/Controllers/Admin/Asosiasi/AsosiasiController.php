@@ -11,19 +11,19 @@ class AsosiasiController extends Controller
 {
     public function info()
     {
-        return view('admin.prosiding.info.index');
+        return view('admin.asosiasi.info.index');
     }
 
     public function infoDetail($slug)
     {
-        return view('admin.prosiding.info.detail', [
+        return view('admin.asosiasi.info.detail', [
             'data' => Article::where('slug', $slug)->first()
         ]);
     }
 
     public function seminar()
     {
-        return view('admin.prosiding.seminar.index');
+        return view('admin.asosiasi.seminar.index');
     }
 
     public function seminarDetail($slug)
@@ -35,14 +35,14 @@ class AsosiasiController extends Controller
 
     public function sertifikat()
     {
-        return view('admin.prosiding.certificate.public-certificate');
+        return view('admin.asosiasi.certificate.public-certificate');
     }
 
     public function prosidingNasional(){
-        return view('admin.prosiding.link.index');
+        return view('admin.asosiasi.link.index');
     }
 
     public function template(){
-        return view('admin.prosiding.template');
+        return view('admin.asosiasi.template');
     }
 }

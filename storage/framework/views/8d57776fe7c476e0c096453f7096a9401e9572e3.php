@@ -28,7 +28,7 @@
             </li>
             <li class="<?php echo e(request()->routeIs('asosiasi.bukti-pembayaran') ? 'active' : ''); ?> nav-item"><a class="d-flex align-items-center" href="<?php echo e(route('asosiasi.bukti-pembayaran')); ?>"><i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="User">Bukti Pembayaran</span></a>
             </li>
-            <li class="<?php echo e(request()->routeIs('asosiasi.seminar') ? 'active' : ''); ?> nav-item"><a class="d-flex align-items-center" href="<?php echo e(route('asosiasi.seminar')); ?>"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="User">Seminar</span></a>
+            <li class="<?php echo e(request()->routeIs('asosiasi.seminar') ? 'active' : ''); ?> nav-item"><a class="d-flex align-items-center" href="<?php echo e(route('asosiasi.seminar')); ?>"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama</span></a>
             </li>
             <li class="<?php echo e(request()->routeIs('asosiasi.sertifikat') ? 'active' : ''); ?> nav-item"><a class="d-flex align-items-center" href="<?php echo e(route('asosiasi.sertifikat')); ?>"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
             </li>

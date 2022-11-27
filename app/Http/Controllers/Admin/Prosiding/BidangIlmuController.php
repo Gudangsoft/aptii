@@ -10,7 +10,7 @@ class BidangIlmuController extends Controller
 
     public function index()
     {
-        return view('admin.prosiding.bidang-ilmu.index');
+        return view('admin.asosiasi.bidang-ilmu.index');
     }
 
 

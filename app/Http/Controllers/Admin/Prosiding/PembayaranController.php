@@ -13,12 +13,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 class PembayaranController extends Controller
 {
     public function index(){
-        return view('admin.prosiding.pembayaran');
+        return view('admin.asosiasi.pembayaran');
     }
 
     public function create()
     {
-        return view('admin.prosiding.bukti-pembayaran.create', [
+        return view('admin.asosiasi.bukti-pembayaran.create', [
             'dataNaskah' => ProsidingNaskah::where('user_id', auth()->user()->id)->where('status', 5)->get(),
             'dataRekening' => Rekening::where('status', true)->get()
         ]);
@@ -55,7 +55,7 @@ class PembayaranController extends Controller
             $save->save();
 
             Alert::success('Success', 'Bukti pembayaran berhasil diupload !');
-            return redirect()->route('prosiding.bukti-pembayaran');
+            return redirect()->route('asosiasi.bukti-pembayaran');
 
         } catch (Exception $error) {
             dd($error->getMessage());
@@ -94,7 +94,7 @@ class PembayaranController extends Controller
     }
 
     public function uploadPembayaran(){
-        return view('admin.prosiding.bukti-pembayaran.index');
+        return view('admin.asosiasi.bukti-pembayaran.index');
     }
 
 }

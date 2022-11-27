@@ -10,12 +10,12 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Detail Seminar</h2>
+                            <h2 class="content-header-title float-left mb-0">Kerjasama Lembaga Jurnal dengan Asosiasi</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                     </li>
-                                    <li class="breadcrumb-item active"><a href="{{ route('prosiding.seminar') }}">Seminar</a>
+                                    <li class="breadcrumb-item active"><a href="{{ route('asosiasi.seminar') }}">Seminar</a>
                                     </li>
                                     <li class="breadcrumb-item active">Detail</a>
                                     </li>
