@@ -1,98 +1,133 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+<x-frontend-master>
 
-        <x-jet-validation-errors class="mb-4" />
+<section class="woocommerce single page-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-xl-7">
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-            <div class="mt-4">
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+                <div class="signup-form">
+                    <div class="form-header">
+                        <h2 class="font-weight-bold mb-3">Registrasi Anggota</h2>
+                        <p class="woocommerce-register">
+                            Sudah memiliki akun ? <a href="#" class="text-decoration-underline">Log in</a>
+                        </p>
+                        <ul class="mt-3 list-disc list-inside text-sm text-danger">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('HP/WA') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="number" name="phone" :value="old('phone')" required />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Asal Institusi') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="company" :value="old('company')" required />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('NIK (opsional)') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="nik" :value="old('nik')" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('ID Sinta') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="sinta_id" :value="old('sinta_id')" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('ID GS') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="gs_id" :value="old('gs_id')" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('ID Scopus') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="scopus_id" :value="old('scopus_id')" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="gender" value="{{ __('Jenis Kelamin') }}" />
-                <select name="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>-- Pilih --</option>
-                    <option value="l">Laki-laki</option>
-                    <option value="p">Perempuan</option>
-                  </select>
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
-
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="woocommerce-form woocommerce-form-register register">
+                        @csrf
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>Nama Lengkap&nbsp;<span class="required">*</span></label>
+                                    <input type="text" class="form-control" name="name" :value="old('name')" placeholder="Jarwonozt" required autofocus>
+                                </p>
                             </div>
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>Email&nbsp;<span class="required">*</span></label>
+                                    <input type="email" class="form-control" name="email" :value="old('email')" placeholder="jarwonozt@gmail.com" required>
+                                </p>
+                            </div>
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>No HP&nbsp;<span class="required">*</span></label>
+                                    <input type="number" class="form-control" name="phone" :value="old('phone')" placeholder="+6282145999" required>
+                                </p>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>Afiliasi/Institusi&nbsp;<span class="required">*</span></label>
+                                    <input type="text" class="form-control" name="company" :value="old('company')" placeholder="Universitas Islam" required>
+                                </p>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>NIK&nbsp;<span class="required"></span></label>
+                                    <input type="number" class="form-control" name="nik" :value="old('nik')">
+                                </p>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>ID Sinta&nbsp;<span class="required"></span></label>
+                                    <input type="text" class="form-control" name="sinta_id" :value="old('sinta_id')">
+                                </p>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>ID GS&nbsp;<span class="required"></span></label>
+                                    <input type="text" class="form-control" name="gs_id" :value="old('gs_id')">
+                                </p>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>ID Scopus&nbsp;<span class="required"></span></label>
+                                    <input type="text" class="form-control" name="scopus_id" :value="old('scopus_id')">
+                                </p>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>Foto Profil &nbsp;<span class="required">*</span></label>
+                                    <input class="form-control form-control-lg" id="formFileLg" name="image" type="file" accept="image/*">
+                                </p>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>Jenis Kelamin&nbsp;<span class="required">*</span></label>
+                                    <select name="gender" class="form-control" id="">
+                                        <option selected>-- Pilih --</option>
+                                        <option value="l">Laki-laki</option>
+                                        <option value="p">Perempuan</option>
+                                    </select>
+                                </p>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>Password&nbsp;<span class="required">*</span></label>
+                                    <input type="password" class="form-control" type="password" name="password" required autocomplete="new-password">
+                                </p>
+                            </div>
+                            <div class="col-xl-6">
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label>Re-Enter Password&nbsp;<span class="required">*</span></label>
+                                    <input type="password" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password">
+                                </p>
+                            </div>
+
+                            {{-- <div class="col-xl-12">
+                                <div class="d-flex align-items-center justify-content-between py-2">
+                                    <p class="form-row">
+                                        <label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__policy">
+                                            <input class="woocommerce-form__input woocommerce-form__input-checkbox" name="policy" type="checkbox" id="policy" value="forever"> <span>Accept the Terms and Privacy Policy</span>
+                                        </label>
+                                    </p>
+
+                                    <p class="woocommerce-LostPassword lost_password">
+                                        <a href="#">Forgot password?</a>
+                                    </p>
+                               </div>
+                            </div> --}}
                         </div>
-                    </x-jet-label>
+
+                        <p class="woocommerce-FormRow form-row">
+                            <button type="submit" class="woocommerce-button button" name="register" value="Register">Register</button>
+                        </p>
+                    </form>
                 </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
             </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+        </div>
+    </div>
+</section>
+</x-frontend-master>

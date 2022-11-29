@@ -13,7 +13,7 @@
             <li class="<?php echo e(request()->routeIs('dashboard') ? 'active' : ''); ?> nav-item"><a class="d-flex align-items-center" href="<?php echo e(route('dashboard')); ?>"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span></a>
             </li>
 
-            <?php if(auth()->check() && auth()->user()->hasRole('anggota|admin|super admin')): ?>
+            <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'anggota|admin|super admin')): ?>
                 <?php
                     $paymentCheck = \App\Models\Prosiding\ProsidingPembayaran::where('user_id', auth()->user()->id)->latest()->first();
                 ?>
@@ -41,7 +41,7 @@
             </li>
             <?php endif; ?>
 
-            <?php if(auth()->check() && auth()->user()->hasRole('admin|super admin|writer')): ?>
+            <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'admin|super admin|writer')): ?>
             <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Data</span><i data-feather="more-horizontal"></i>
             </li>
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Data Asosiasi</span></a>
@@ -83,7 +83,7 @@
 
             <?php endif; ?>
 
-            <?php if(auth()->check() && auth()->user()->hasRole('super admin')): ?>
+            <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'super admin')): ?>
             <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Admin</span><i data-feather="more-horizontal"></i>
             </li>
             <li class="<?php echo e(request()->routeIs('users.index') ? 'active' : ''); ?> nav-item"><a class="d-flex align-items-center" href="<?php echo e(route('users.index')); ?>"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>

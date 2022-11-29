@@ -22,7 +22,7 @@ class HomeController extends Controller
             'naskah' => ProsidingNaskah::where('status', true)->get()->count(),
         ];
         // dd(PagesController::prosidingInfo());
-        return view('frontend.home', [
+        return view('client.home', [
             'recent'        => PagesController::recentArticles(4),
             'headline'      => PagesController::headlineArticles(),
             'events'        => PagesController::events(),

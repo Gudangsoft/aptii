@@ -23,10 +23,15 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
+
+        // dd($input);
+        $imageName = time().'.'.$input['image']->extension();
+        $input['image']->storeAs('public/images/users/',$imageName);
 
         return User::create([
             'name' => $input['name'],
@@ -39,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
             'gs_id' => $input['gs_id'],
             'scopus_id' => $input['scopus_id'],
             'password' => Hash::make($input['password']),
-            'profile_photo_path' => 'default.jpg',
+            'profile_photo_path' => $imageName,
             'status' => 1,
 
         ])->assignRole('anggota');

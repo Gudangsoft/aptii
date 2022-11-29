@@ -14,14 +14,14 @@ FULL SCREEN MODE: http://salehriaz.com/404Page/404.html
 DRIBBBLE: https://dribbble.com/shots/4330167-404-Page-Lost-In-Space
 */
 
-@import  url('https://fonts.googleapis.com/css?family=Dosis:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500');
 
 @-moz-keyframes rocket-movement { 100% {-moz-transform: translate(1200px,-600px);} }
 @-webkit-keyframes rocket-movement {100% {-webkit-transform: translate(1200px,-600px); } }
-@keyframes  rocket-movement { 100% {transform: translate(1200px,-600px);} }
+@keyframes rocket-movement { 100% {transform: translate(1200px,-600px);} }
 @-moz-keyframes spin-earth { 100% { -moz-transform: rotate(-360deg); transition: transform 20s;  } }
 @-webkit-keyframes spin-earth { 100% { -webkit-transform: rotate(-360deg); transition: transform 20s;  } }
-@keyframes  spin-earth{ 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); transition: transform 20s; } }
+@keyframes spin-earth{ 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); transition: transform 20s; } }
 
 @-moz-keyframes move-astronaut {
     100% { -moz-transform: translate(-160px, -160px);}
@@ -29,7 +29,7 @@ DRIBBBLE: https://dribbble.com/shots/4330167-404-Page-Lost-In-Space
 @-webkit-keyframes move-astronaut {
     100% { -webkit-transform: translate(-160px, -160px);}
 }
-@keyframes  move-astronaut{
+@keyframes move-astronaut{
     100% { -webkit-transform: translate(-160px, -160px); transform:translate(-160px, -160px); }
 }
 @-moz-keyframes rotate-astronaut {
@@ -38,7 +38,7 @@ DRIBBBLE: https://dribbble.com/shots/4330167-404-Page-Lost-In-Space
 @-webkit-keyframes rotate-astronaut {
     100% { -webkit-transform: rotate(-720deg);}
 }
-@keyframes  rotate-astronaut{
+@keyframes rotate-astronaut{
     100% { -webkit-transform: rotate(-720deg); transform:rotate(-720deg); }
 }
 
@@ -50,7 +50,7 @@ DRIBBBLE: https://dribbble.com/shots/4330167-404-Page-Lost-In-Space
     40% { -webkit-opacity: 0.3;}
     90%,100% { -webkit-opacity: 1; -webkit-transform: scale(1.2);}
 }
-@keyframes  glow-star{
+@keyframes glow-star{
     40% { -webkit-opacity: 0.3; opacity: 0.3;  }
     90%,100% { -webkit-opacity: 1; opacity: 1; -webkit-transform: scale(1.2); transform: scale(1.2); border-radius: 999999px;}
 }
@@ -283,7 +283,7 @@ li a:hover {
     animation: glow-star 2s infinite ease-in-out alternate 9s;
 }
 
-@media  only screen and (max-width: 600px){
+@media only screen and (max-width: 600px){
     .navbar-links{
         display: none;
     }

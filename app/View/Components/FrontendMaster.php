@@ -23,6 +23,6 @@ class FrontendMaster extends Component
      */
     public function render()
     {
-        return view('frontend.layouts.master');
+        return view('client.layouts.master');
     }
 }

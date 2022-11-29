@@ -1,2 +1,0 @@
-<?php echo $__env->make('errors.404', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php /**PATH /home/jarwonozt/Desktop/WEB/aptii/data/resources/views/errors/403.blade.php ENDPATH**/ ?>
