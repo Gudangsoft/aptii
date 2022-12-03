@@ -30,7 +30,18 @@
                             <a href="/contact">Kontak</a>
                             
                         </li>
-
+                        <?php if(Auth::check()): ?>
+                            <li class="d-none d-sm-block d-md-block d-xl-none">
+                                <a href="<?php echo e(route('dashboard')); ?>" class="login"><i class="fa fa-cog"></i> Dashboard</a>
+                            </li>
+                        <?php else: ?>
+                            <li class="d-none d-sm-block d-md-block d-xl-none">
+                                <a href="<?php echo e(route('login')); ?>" class="login">Login</a>
+                            </li>
+                            <li class="d-none d-sm-block d-md-block d-xl-none">
+                                <a href="<?php echo e(route('register')); ?>" class="login">Register</a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
 
                     <a href="#" class="nav-close"><i class="fal fa-times"></i></a>
@@ -43,7 +54,7 @@
 
                     <?php else: ?>
                         <a href="<?php echo e(route('login')); ?>" class="login">Login</a>
-                        <a href="<?php echo e(route('register')); ?>" class="btn btn-main-2 btn-sm-2 rounded">Sign up</a>
+                        <a href="<?php echo e(route('register')); ?>" class="btn btn-main-2 btn-sm-2 rounded">Register</a>
                     <?php endif; ?>
                 </div>
             </div>
