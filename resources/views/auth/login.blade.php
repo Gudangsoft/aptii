@@ -1,4 +1,47 @@
-<x-guest-layout>
+<x-frontend-master>
+    <section class="page-wrapper woocommerce single">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-xl-5">
+                    <div class="woocommerce-notices-wrapper"></div>
+                    <div class="login-form">
+                        <div class="form-header">
+                            <h2 class="font-weight-bold mb-3">Login</h2>
+
+                            <p class="woocommerce-register">
+                                Belum memiliki akun ? <a href="{{ route('register') }}" class="text-decoration-underline">Registrasi sekarang</a>
+                            </p>
+                            <ul class="mt-3 list-disc list-inside text-sm text-danger">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <form class="woocommerce-form woocommerce-form-login login" {{ route('login') }} method="post">
+                            @csrf
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="username">Email &nbsp;<span class="required">*</span></label>
+                                <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" type="email" name="email" value="{{ old('email') }}" required autofocus>
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="password">Password&nbsp;<span class="required">*</span></label>
+                                <input class="woocommerce-Input woocommerce-Input--text input-text form-control" type="password" name="password" id="password" autocomplete="current-password" placeholder="Password">
+                            </p>
+
+                           <p class="form-row">
+                                <input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="a414dce984"><input type="hidden" name="_wp_http_referer" value="/my-account/">
+                                <button type="submit" class="woocommerce-button button woocommerce-form-login__submit" name="login" value="Log in">Log in</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</x-frontend-master>
+
+{{-- <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -45,4 +88,4 @@
             </div>
         </form>
     </x-jet-authentication-card>
-</x-guest-layout>
+</x-guest-layout> --}}
