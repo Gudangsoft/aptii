@@ -20,16 +20,29 @@
                 </div>
 
                 <nav class="site-navbar ms-auto">
+                        <?php
+                            $menu = \App\Models\Menu::where('status', 1)->orderBy('order', 'ASC')->get();
+                        ?>
                     <ul class="primary-menu">
-                        <li class="current">
-                            <a href="/">Home</a>
-                        </li>
-                        <li><a href="/posts">Berita</a></li>
+                        <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($item->parent_id == 0 && $item->category_id == 1): ?>
+                                <li>
+                                    <a href="<?php echo e($item->slug); ?>">
+                                        <?php echo e($item->name); ?>
 
-                        <li>
-                            <a href="/contact">Kontak</a>
-                            
-                        </li>
+                                    </a>
+                                <?php if($item->type == 1): ?>
+                                    <ul class="submenu">
+                                        <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($value->parent_id == $item->id): ?>
+                                                <li><a href="<?php echo e($value->slug); ?>"><?php echo e($value->name); ?></a></li>
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </ul>
+                                </li>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php if(Auth::check()): ?>
                             <li class="d-none d-sm-block d-md-block d-xl-none">
                                 <a href="<?php echo e(route('dashboard')); ?>" class="login"><i class="fa fa-cog"></i> Dashboard</a>

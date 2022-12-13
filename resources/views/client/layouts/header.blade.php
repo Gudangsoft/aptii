@@ -20,32 +20,28 @@
                 </div>
 
                 <nav class="site-navbar ms-auto">
+                        @php
+                            $menu = \App\Models\Menu::where('status', 1)->orderBy('order', 'ASC')->get();
+                        @endphp
                     <ul class="primary-menu">
-                        <li class="current">
-                            <a href="/">Home</a>
-                        </li>
-                        <li><a href="/posts">Berita</a></li>
-
-                        <li>
-                            <a href="/contact">Kontak</a>
-                            {{-- <ul class="submenu">
-                                <li><a href="courses.html">Courses</a></li>
-                                <li><a href="courses-2.html">Course Grid 2 </a></li>
-                                <li><a href="courses-3.html">Course Grid 3</a></li>
-                                <li><a href="courses-4.html">Course Grid 4</a></li>
-                                <li><a href="courses-5-list.html">Course List</a></li>
+                        @foreach ($menu as $item)
+                            @if ($item->parent_id == 0 && $item->category_id == 1)
                                 <li>
-                                    <a href="#">Single Layout</a>
+                                    <a href="{{ $item->slug }}">
+                                        {{ $item->name }}
+                                    </a>
+                                @if ($item->type == 1)
                                     <ul class="submenu">
-                                        <li><a href="course-single.html">Course Single 1</a></li>
-                                        <li><a href="course-single-2.html">Course Single 2</a></li>
-                                        <li><a href="course-single-3.html">Course Single 3</a></li>
-                                        <li><a href="course-single-4.html">Course Single 4</a></li>
-                                        <li><a href="course-single-5.html">Course Single 5</a></li>
+                                        @foreach ($menu as $value)
+                                            @if($value->parent_id == $item->id)
+                                                <li><a href="{{ $value->slug }}">{{ $value->name }}</a></li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </li>
-                            </ul> --}}
-                        </li>
+                                @endif
+                            @endif
+                        @endforeach
                         @if (Auth::check())
                             <li class="d-none d-sm-block d-md-block d-xl-none">
                                 <a href="{{ route('dashboard') }}" class="login"><i class="fa fa-cog"></i> Dashboard</a>

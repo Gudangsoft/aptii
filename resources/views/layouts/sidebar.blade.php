@@ -62,6 +62,8 @@
                     </li>
                 </ul>
             </li>
+            <li class="{{ request()->routeIs('managers.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('managers.index') }}"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Pages">Pengurus</span></a>
+            </li>
             <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="Pages">Kerjasama Lembaga</span></a>
             </li>
 

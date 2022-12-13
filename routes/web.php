@@ -21,6 +21,7 @@ use App\Http\Controllers\Frontend\ScreensController;
 use App\Http\Controllers\Admin\Jobs\JobsController;
 use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Asosiasi\AsosiasiController;
+use App\Http\Controllers\Admin\Asosiasi\ManagerController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\Prosiding\AgendaController;
 use App\Http\Controllers\Admin\Prosiding\NaskahController;
@@ -96,6 +97,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
                 Route::resource('agenda', AgendaController::class);
                 Route::resource('certificate', Certificate::class);
                 Route::resource('rekening', RekeningController::class);
+                Route::resource('managers', ManagerController::class);
 
             });
         });

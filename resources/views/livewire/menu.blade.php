@@ -127,7 +127,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                                                    <div class="btn-group btn-group-sm" role="group" aria-label="Action" wire:ignore>
                                                         @if($value->order != 1)
                                                         <button wire:click.prevent="moveUp({{ $value->id }})" class="btn btn-primary" title="Up"><i class="fas fa-chevron-up"></i></button>
                                                         @endif
