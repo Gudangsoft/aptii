@@ -21,6 +21,7 @@ use App\Http\Controllers\Frontend\ScreensController;
 use App\Http\Controllers\Admin\Jobs\JobsController;
 use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Asosiasi\AsosiasiController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\Prosiding\AgendaController;
 use App\Http\Controllers\Admin\Prosiding\NaskahController;
 use App\Http\Controllers\Admin\Prosiding\PembayaranController;
@@ -111,6 +112,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
             Route::get('/profile', 'index')->name('profile.index');
         });
 
+        Route::resource('menu', MenuController::class);
         Route::resource('configuration', ConfigurationController::class);
     });
 

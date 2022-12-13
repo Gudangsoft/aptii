@@ -90,6 +90,8 @@
             </li>
             <li class="<?php echo e(request()->routeIs('role-permission.index') ? 'active' : ''); ?> nav-item"><a class="d-flex align-items-center" href="<?php echo e(route('role-permission.index')); ?>"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="User">Manajemen User</span></a>
             </li>
+            <li class="<?php echo e(request()->routeIs('menu.index') ? 'active' : ''); ?> nav-item"><a class="d-flex align-items-center" href="<?php echo e(route('menu.index')); ?>"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Configuration">Menu</span></a>
+            </li>
             <li class="<?php echo e(request()->routeIs('configuration.index') ? 'active' : ''); ?> nav-item"><a class="d-flex align-items-center" href="<?php echo e(route('configuration.index')); ?>"><i data-feather="globe"></i><span class="menu-title text-truncate" data-i18n="Configuration">Web Setting</span></a>
             </li>
             <?php endif; ?>
