@@ -51,17 +51,7 @@
     <script src="<?php echo e(asset('frontend')); ?>/vendors/bootstrap/popper.min.js"></script>
     <script src="<?php echo e(asset('frontend')); ?>/vendors/bootstrap/bootstrap.js"></script>
     <!-- Counterup -->
-    <script src="<?php echo e(asset('frontend')); ?>/vendors/counterup/waypoint.js"></script>
-    <script src="<?php echo e(asset('frontend')); ?>/vendors/counterup/jquery.counterup.min.js"></script>
-    <!--  Owl Carousel -->
-    <script src="<?php echo e(asset('frontend')); ?>/vendors/owl/owl.carousel.min.js"></script>
-    <!-- Isotope -->
-    <script src="<?php echo e(asset('frontend')); ?>/vendors/isotope/jquery.isotope.js"></script>
-    <script src="<?php echo e(asset('frontend')); ?>/vendors/isotope/imagelaoded.min.js"></script>
-    <!-- Animated Headline -->
-    <script src="<?php echo e(asset('frontend')); ?>/vendors/animated-headline/animated-headline.js"></script>
-    <!-- Magnific Popup -->
-    <script src="<?php echo e(asset('frontend')); ?>/vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
+    
 
     <script src="<?php echo e(asset('frontend')); ?>/js/script.js"></script>
 

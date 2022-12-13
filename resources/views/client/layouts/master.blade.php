@@ -50,7 +50,7 @@
     <script src="{{ asset('frontend') }}/vendors/bootstrap/popper.min.js"></script>
     <script src="{{ asset('frontend') }}/vendors/bootstrap/bootstrap.js"></script>
     <!-- Counterup -->
-    <script src="{{ asset('frontend') }}/vendors/counterup/waypoint.js"></script>
+    {{-- <script src="{{ asset('frontend') }}/vendors/counterup/waypoint.js"></script>
     <script src="{{ asset('frontend') }}/vendors/counterup/jquery.counterup.min.js"></script>
     <!--  Owl Carousel -->
     <script src="{{ asset('frontend') }}/vendors/owl/owl.carousel.min.js"></script>
@@ -60,7 +60,7 @@
     <!-- Animated Headline -->
     <script src="{{ asset('frontend') }}/vendors/animated-headline/animated-headline.js"></script>
     <!-- Magnific Popup -->
-    <script src="{{ asset('frontend') }}/vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="{{ asset('frontend') }}/vendors/magnific-popup/jquery.magnific-popup.min.js"></script> --}}
 
     <script src="{{ asset('frontend') }}/js/script.js"></script>
 
