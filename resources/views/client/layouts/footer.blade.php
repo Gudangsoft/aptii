@@ -1,14 +1,17 @@
+@php
+    $config = \App\Models\Admin\Configuration::latest()->first();
+@endphp
 <section class="footer">
 	<div class="footer-mid">
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-3 me-auto col-sm-8">
 					<div class="footer-logo mb-3">
-						<img src="{{ asset('frontend') }}/images/logo-white.png" alt="" class="img-fluid">
+						{{-- <img src="{{ asset('frontend') }}/images/logo-white.png" alt="" class="img-fluid"> --}}
+                        <h2>{{ $config->name }}</h2>
 					</div>
 					<div class="widget footer-widget mb-5 mb-lg-0">
-						<p>Edumel is a Bootstrap Template for online courses
-							education websites support multiple courses</p>
+						{!! $config->address !!}
 					</div>
 				</div>
 
@@ -71,14 +74,10 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-xl-6 col-sm-12 col-lg-6">
-					<p class="mb-0 copyright text-sm-center text-lg-start">© 2021 Edumel All rights reserved by <a href="https://themeturn.com" rel="nofollow">Dreambuzz</a> </p>
+					<p class="mb-0 copyright text-sm-center text-lg-start">© {{ date('Y') }} APTII All rights reserved </p>
 				</div>
 				<div class="col-xl-6 col-sm-12 col-lg-6">
-					<div class="footer-btm-links text-start text-sm-center text-lg-end">
-						<a href="#">Legal</a>
-						<a href="#">Supports</a>
-						<a href="#">Terms</a>
-					</div>
+
 				</div>
 			</div>
 		</div>
