@@ -59,6 +59,7 @@
                                     <th>Rekening Tujuan</th>
                                     <th>Keterangan</th>
                                     <th>Status Bayar</th>
+                                    <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,6 +83,9 @@
                                             @else
                                                 <span class="badge badge-glow badge-danger">MENUNGGU</span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-primary" wire:click="confirmPayment({{ $row->id }})">KONFIRMASI</a>
                                         </td>
                                     </tr>
                                 @empty

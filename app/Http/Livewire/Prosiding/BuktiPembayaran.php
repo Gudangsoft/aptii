@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Prosiding;
 
+use App\Models\Admin\Configuration;
 use Livewire\Component;
 use App\Models\Jobs\Jobs;
 use Livewire\WithPagination;
@@ -101,5 +102,18 @@ class BuktiPembayaran extends Component
         $this->alert('success', 'Data berhasil dihapus', [
             'position' => 'center',
         ]);
+    }
+
+    public function confirmPayment($id){
+        $wa = Configuration::latest()->first()->whatsapp;
+        $data = ProsidingPembayaran::where('id', $id)->where('user_id', auth()->user()->id)->first();
+        if($data->naskah_id == null){
+            $status = 'Pendaftaran Asosiasi';
+        }else{
+            $status = 'Jurnal';
+        }
+
+        $url = 'https://api.whatsapp.com/send?phone='.$wa.'&text=*Konfirmasi%20Pembayaran..!!*%0A%0ANama:%20'.$data->getUser->name.'%0APembayaran:%20'.$status.'%0ATanggal:%20'.$data->tanggal_bayar.'%0AJumlah:%20'.$data->jumlah.'*%0A%0ALink Nota:%20'.config('app.url').'nota/'.$data->no_transaksi;
+        return redirect($url);
     }
 }

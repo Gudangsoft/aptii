@@ -50,6 +50,7 @@ Route::get('/post/{slug}', [ScreenController::class, 'post']);
 Route::get('/seminar/{slug}', [ScreenController::class, 'seminar']);
 Route::post('apply', [FrontendJobsController::class, 'store'])->name('jobs-apply');
 Route::get('/tag/{slug}', [ScreensController::class, 'tags']);
+Route::get('/nota/{id}', [ScreenController::class, 'nota']);
 
 // menu
 Route::get('/seminar-nasional', [ScreensController::class, 'seminarNasional']);
