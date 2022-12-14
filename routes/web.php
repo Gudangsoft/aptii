@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\ChatsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Event\EventController;
@@ -74,6 +75,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
             // menu peserta
             Route::resource('upload-naskah', NaskahController::class);
             Route::resource('upload-pembayaran', PembayaranController::class);
+            Route::resource('activity', ActivityController::class);
 
             Route::get('info', [AsosiasiController::class, 'info'])->name('asosiasi.info');
             Route::get('info/{slug}', [AsosiasiController::class, 'infoDetail'])->name('asosiasi.info-detail');

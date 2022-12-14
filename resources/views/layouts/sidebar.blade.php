@@ -31,9 +31,11 @@
                         </li>
                         <li class="{{ request()->routeIs('asosiasi.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.upload-naskah') }}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="User">Naskah</span></a>
                         </li>
-                        <li class="{{ request()->routeIs('asosiasi.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.seminar') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama</span></a>
+                        <li class="{{ request()->routeIs('asosiasi.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.seminar') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="User">Webinar</span></a>
                         </li>
                         <li class="{{ request()->routeIs('asosiasi.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
+                        </li>
+                        <li class="{{ request()->routeIs('activity.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('activity.index') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama</span></a>
                         </li>
                     @endif
                 @endisset

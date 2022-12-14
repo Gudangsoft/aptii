@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Livewire\Prosiding;
+namespace App\Http\Livewire\Asosiasi;
 
-use App\Models\Admin\Configuration;
+use App\Models\Activity as ModelsActivity;
 use Livewire\Component;
-use App\Models\Jobs\Jobs;
+use App\Models\Jobs\JobsApplied;
+use App\Models\User;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use App\Models\Prosiding\ProsidingPembayaran;
-use App\Models\User;
 
-class BuktiPembayaran extends Component
+
+class ActivityTable extends Component
 {
     use WithPagination, LivewireAlert;
     protected $paginationTheme = 'bootstrap';
@@ -19,6 +19,7 @@ class BuktiPembayaran extends Component
     public $selectAll = false;
     public $bulkDisabled = true;
     public $statusSelected = false;
+    public $jobTitle, $jobRole, $jobType, $jobExperience, $jobLocation, $jobBudgetMin, $jobBudgetMax, $jobDescription;
     public $search, $limitPerPage = 10, $changeLimitPage;
 
     protected $queryString = ['search' => ['except' => '']];
@@ -37,19 +38,22 @@ class BuktiPembayaran extends Component
             $this->limitPerPage = $this->changeLimitPage;
         }
 
-        $data = ProsidingPembayaran::where('user_id', auth()->user()->id)->orderByDesc('created_at')->paginate($this->limitPerPage);
+        $data = ModelsActivity::orderByDesc('created_at')->paginate($this->limitPerPage);
+        if($this->search != null){
+            $data = ModelsActivity::where('name', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate($this->limitPerPage);
+        }
 
         $this->emit('postStore');
         $this->dispatchBrowserEvent('iconLoad');
 
         $this->bulkDisabled = count($this->selectData) < 1;
-        return view('livewire.prosiding.bukti-pembayaran', [
+        return view('livewire.asosiasi.activity-table', [
             'data' => $data,
         ]);
     }
 
     public function deleteSelected(){
-        ProsidingPembayaran::query()
+        ModelsActivity::query()
             ->whereIn('id', $this->selectData)
             ->delete();
         $this->selectData = [];
@@ -58,7 +62,7 @@ class BuktiPembayaran extends Component
 
     public function selectAll(){
         if($this->selectAll == true){
-            $this->selectData = ProsidingPembayaran::pluck('id');
+            $this->selectData = JobsApplied::pluck('id');
             $this->statusSelected = true;
         }else{
             $this->selectData = [];
@@ -73,7 +77,7 @@ class BuktiPembayaran extends Component
     }
 
     public function updateStatus($value){
-        ProsidingPembayaran::query()
+        ModelsActivity::query()
             ->whereIn('id', $this->selectData)
             ->update([
                 'status' => $value
@@ -84,36 +88,32 @@ class BuktiPembayaran extends Component
         $this->statusSelected = false;
     }
 
-    public function updateStatusPembayaran($value, $id){
-        ProsidingPembayaran::query()
-            ->where('id', $id)
-            ->update([
-                'status' => $value
-            ]);
-
-        $this->selectData = [];
-        $this->selectAll = false;
-        $this->statusSelected = false;
-        $this->dispatchBrowserEvent('closeEditModal', ['id' => $id]);
+    public function create()
+    {
+        $this->dispatchBrowserEvent('openFormModal');
     }
 
-    public function deleteConfirmed(){
-        ProsidingPembayaran::findOrFail($this->selected_id)->delete();
-        $this->alert('success', 'Data berhasil dihapus', [
+    public function saveJobs(){
+        dd($this->jobTitle.$this->jobRole.$this->jobType.$this->jobExperience.$this->jobLocation.$this->jobBudgetMin.$this->jobBudgetMax.$this->jobDescription);
+    }
+
+    public function deleteSingleSelected($id){
+        $this->selected_id = $id;
+
+        $this->alert('question', 'Yakin data akan dihapus?', [
+            'showConfirmButton' => true,
+            'showCancelButton' => true,
+            'confirmButtonText' => 'Hapus',
+            'onConfirmed' => 'deleteConfirmed',
             'position' => 'center',
+            'timer' => null,
         ]);
     }
 
-    public function confirmPayment($id){
-        $wa = Configuration::latest()->first()->whatsapp;
-        $data = ProsidingPembayaran::where('id', $id)->where('user_id', auth()->user()->id)->first();
-        if($data->naskah_id == null){
-            $status = 'Pendaftaran Asosiasi';
-        }else{
-            $status = 'Jurnal';
-        }
-
-        $url = 'https://api.whatsapp.com/send?phone='.$wa.'&text=*Konfirmasi%20Pembayaran..!!*%0A%0ANama:%20'.$data->getUser->name.'%0APembayaran:%20'.$status.'%0ATanggal:%20'.$data->tanggal_bayar.'%0AJumlah:%20'.$data->jumlah.'*%0A%0ALink Nota:%20'.config('app.url').'/nota/'.$data->no_transaksi;
-        return redirect($url);
+    public function deleteConfirmed(){
+        ModelsActivity::findOrFail($this->selected_id)->delete();
+        $this->alert('success', 'Data berhasil dihapus', [
+            'position' => 'center',
+        ]);
     }
 }
