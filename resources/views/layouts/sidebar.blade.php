@@ -1,8 +1,11 @@
+@php
+    $config = \App\Models\Admin\Configuration::orderBy('created_at')->first();
+@endphp
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="/dashboard"><span class="brand-logo">
-                <h2 class="brand-text">APTII</h2>
+                <h2 class="brand-text">{{ $config->name }}</h2>
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
         </ul>
@@ -31,9 +34,11 @@
                         </li>
                         <li class="{{ request()->routeIs('asosiasi.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.upload-naskah') }}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="User">Naskah</span></a>
                         </li>
-                        <li class="{{ request()->routeIs('asosiasi.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.seminar') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama</span></a>
+                        <li class="{{ request()->routeIs('asosiasi.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.seminar') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="User">Webinar</span></a>
                         </li>
                         <li class="{{ request()->routeIs('asosiasi.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
+                        </li>
+                        <li class="{{ request()->routeIs('activity.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('activity.index') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama</span></a>
                         </li>
                     @endif
                 @endisset

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\ArticleExport;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Crypt;
@@ -14,12 +15,12 @@ use RobertSeghedi\News\Models\Article;
 use Illuminate\Support\Str;
 use RobertSeghedi\News\Models\News;
 use App\Exports\UsersExport;
-use Maatwebsite\Excel\Facades\Excel;
-use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
+use App\Models\Post\PostArticles;
+use Maatwebsite\Excel\Facades\Excel; use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
 class ArticlesTable extends DataTableComponent
 {
-    protected $model = Article::class;
+    // protected $model = PostArticles::class;
     public $selected_id;
     public $title, $slug, $category, $status, $content, $date, $tags, $image;
 
@@ -41,7 +42,7 @@ class ArticlesTable extends DataTableComponent
             Column::make('Title')
             ->searchable()
             ->format(function($value){
-                return '<strong>'.Str::words($value, 5).'</strong>';
+                return '<strong>'.Str::words($value, 5, '...').'</strong>';
             })
             ->html(),
             Column::make('Category')
@@ -106,11 +107,11 @@ class ArticlesTable extends DataTableComponent
     public function builder(): Builder
     {
         if(auth()->user()->roles->pluck('name')->implode(',') == 'writer'){
-            return Article::query()
+            return PostArticles::query()
                 ->where('author', auth()->user()->id)
                 ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('articles.title', 'like', '%' . $title . '%'));
         }else{
-            return Article::query()
+            return PostArticles::query()
                 ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('articles.title', 'like', '%' . $title . '%'));
         }
     }
@@ -125,7 +126,7 @@ class ArticlesTable extends DataTableComponent
         $articles = $this->getSelected();
         $this->clearSelected();
 
-        return Excel::download(new UsersExport($articles), 'articles.xlsx');
+        // return Excel::download(new ArticleExport($articles), 'articles.xlsx');
     }
 
     public function deleteModal($id)
@@ -135,12 +136,12 @@ class ArticlesTable extends DataTableComponent
     }
 
     public function deleteStatus(){
-        Article::findOrFail($this->selected_id)->delete();
+        PostArticles::findOrFail($this->selected_id)->delete();
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 
     public function delete(){
-        Article::whereIn('id', $this->getSelected())->delete();
+        PostArticles::whereIn('id', $this->getSelected())->delete();
         $message = 'Articles deleted successfully !';
         $this->dispatchBrowserEvent('success', ['message' => $message]);
     }

@@ -7,10 +7,10 @@
 			<div class="row">
 				<div class="col-xl-3 me-auto col-sm-8">
 					<div class="footer-logo mb-3">
-						{{-- <img src="{{ asset('frontend') }}/images/logo-white.png" alt="" class="img-fluid"> --}}
-                        <h2>{{ $config->name }}</h2>
+						<img src="{{ asset('storage') }}/assets/{{ $config->logo }}" alt="" class="img-fluid">
+                        {{-- <h2>{{ $config->name }}</h2> --}}
 					</div>
-					<div class="widget footer-widget mb-5 mb-lg-0">
+					<div class="widget footer-widget mb-5 mb-lg-0 text-white">
 						{!! $config->address !!}
 					</div>
 				</div>
@@ -74,7 +74,7 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-xl-6 col-sm-12 col-lg-6">
-					<p class="mb-0 copyright text-sm-center text-lg-start">© {{ date('Y') }} APTII All rights reserved </p>
+					<p class="mb-0 copyright text-sm-center text-lg-start text-white">© {{ date('Y') }} APTII All rights reserved </p>
 				</div>
 				<div class="col-xl-6 col-sm-12 col-lg-6">
 

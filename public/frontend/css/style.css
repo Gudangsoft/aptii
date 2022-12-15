@@ -483,10 +483,10 @@ textarea.form-control {
 Page Banner Area
 ======================*/
 .page-header {
-  padding: 90px 0px;
+  padding: 20px;
   background: #F4F5F8;
   position: relative;
-  background: url("../images/bg/page-title.jpg");
+  background: #152e4e;
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 1;
@@ -2004,7 +2004,7 @@ Testiomonial
 }
 
 /*----------------------
-Team Style 
+Team Style
 ------------------------*/
 .team-item {
   border-radius: 5px;
@@ -2753,7 +2753,7 @@ portflio filter
 }
 
 .course-grid .course-title {
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .course-grid .course-price {
@@ -4442,7 +4442,7 @@ Footer Section
 .footer {
   padding: 100px 0px 20px;
   position: relative;
-  background: #000000;
+  background: #555555;
 }
 
 .footer .footer-widget .widget-title {
@@ -4837,7 +4837,7 @@ Single Blog POSt
   z-index: 1;
   font-size: 30px;
   font-style: italic;
-  color: #000000;
+  color: #555555;
   line-height: 1.4;
   border-left: 5px solid var(--theme-secondary-color);
 }
@@ -5044,7 +5044,7 @@ Footer Section
 .footer {
   padding: 100px 0px 20px;
   position: relative;
-  background: #000000;
+  background: #555555;
 }
 
 .footer .footer-widget .widget-title {

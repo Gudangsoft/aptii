@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use RobertSeghedi\News\Models\Article;
 use Illuminate\Support\Str;
+use App\Models\Post\PostArticles as PostArticle;
 use RobertSeghedi\News\Models\Category;
 
 class PagesController extends Controller
 {
     public static function articles($limit, $page = null){
         $data = Cache::remember("articles-$page", 60 * 60 * 12, function () use($limit) {
-            $category = Category::where('slug', 'prosiding')->first();
-            $rows = Article::whereNot('category', $category->id)->orderByDesc('created_at')->paginate($limit)->withQueryString();
+            $rows = PostArticle::orderByDesc('created_at')->paginate($limit)->withQueryString();
             return $rows;
         });
         return $data;
@@ -25,18 +25,18 @@ class PagesController extends Controller
 
     public static function articlesTag($limit, $slug){
         $tag  = Tag::where('slug', $slug)->first()->id;
-        $rows = Article::where('tags', 'like', '%' . $tag . '%')->orderByDesc('created_at')->paginate($limit);
+        $rows = PostArticle::where('tags', 'like', '%' . $tag . '%')->orderByDesc('created_at')->paginate($limit);
         return $rows;
     }
 
     public static function popularArticle(){
-        $data = Article::orderByDesc('counter')->paginate(4);
+        $data = PostArticle::orderByDesc('counter')->paginate(4);
         return $data;
     }
 
     public static function recentArticles($limit){
         $data = Cache::rememberForever('recent-articles', function () use($limit) {
-            $rows = Article::orderByDesc('created_at')->paginate($limit);
+            $rows = PostArticle::orderByDesc('created_at')->paginate($limit);
             return $rows;
         });
         return $data;
@@ -44,7 +44,7 @@ class PagesController extends Controller
 
     public static function headlineArticles(){
         $data = Cache::rememberForever('headline', function () {
-            $rows = Article::where('type', 1)->where('status', true)->orderByDesc('created_at')->get();
+            $rows = PostArticle::where('type', 1)->where('status', true)->orderByDesc('created_at')->get();
             return $rows;
         });
         return $data;
@@ -52,7 +52,7 @@ class PagesController extends Controller
 
     public static function sliderArticles(){
         $data = Cache::rememberForever('slider', function () {
-            $rows = Article::where('type', 2)->orderByDesc('created_at')->get();
+            $rows = PostArticle::where('type', 2)->orderByDesc('created_at')->get();
             return $rows;
         });
         return $data;
@@ -69,7 +69,7 @@ class PagesController extends Controller
     public static function prosidingInfo(){
         $category = Category::where('slug', 'prosiding')->first();
         if($category != null){
-            $rows = Article::orderByDesc('created_at')
+            $rows = PostArticle::orderByDesc('created_at')
                     ->where('category', $category->id)
                     ->whereNot('type', 1)
                     ->where('status', true)

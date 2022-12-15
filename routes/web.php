@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\ChatsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Event\EventController;
@@ -50,12 +51,17 @@ Route::get('/post/{slug}', [ScreenController::class, 'post']);
 Route::get('/seminar/{slug}', [ScreenController::class, 'seminar']);
 Route::post('apply', [FrontendJobsController::class, 'store'])->name('jobs-apply');
 Route::get('/tag/{slug}', [ScreensController::class, 'tags']);
+Route::get('/nota/{id}', [ScreenController::class, 'nota']);
 
 // menu
 Route::get('/seminar-nasional', [ScreensController::class, 'seminarNasional']);
 Route::get('/seminar-internasional', [ScreensController::class, 'seminarInternasional']);
 Route::get('/posts', [ScreensController::class, 'posts']);
+Route::get('/post/{slug}', [ScreenController::class, 'post'])->name('post.detail');
+Route::get('/jurnal', [ScreensController::class, 'journals']);
+Route::get('/jurnal-detail', [ScreenController::class, 'journal'])->name('journal.detail');
 Route::get('/contact', [ScreenController::class, 'contact']);
+Route::get('/author', [ScreenController::class, 'author'])->name('author');
 
 // BACKEND DASHBOARD
 Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']], function () {
@@ -73,6 +79,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
             // menu peserta
             Route::resource('upload-naskah', NaskahController::class);
             Route::resource('upload-pembayaran', PembayaranController::class);
+            Route::resource('activity', ActivityController::class);
 
             Route::get('info', [AsosiasiController::class, 'info'])->name('asosiasi.info');
             Route::get('info/{slug}', [AsosiasiController::class, 'infoDetail'])->name('asosiasi.info-detail');

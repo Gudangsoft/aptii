@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Models\Admin\Configuration;
+use App\Models\Prosiding\ProsidingNaskah;
 use Butschster\Head\Facades\Meta;
 use RobertSeghedi\News\Models\Article;
 
 class ScreensController extends Controller
 {
     public function posts(Request $request, PagesController $page){
-        HomeController::meta('Artikel');
-        return view('frontend.articles.index', [
+        HomeController::meta('Artikel Asosiasi');
+        return view('client.screens.posts', [
             'data'      => $page->articles(12, $request->page),
             'headline'  => $page->headlineArticles(),
         ]);
@@ -38,6 +39,16 @@ class ScreensController extends Controller
         HomeController::meta('Seminar Internasional');
 
         return view('frontend.events.internasional');
+    }
+
+    public function journals(){
+        HomeController::meta('Jurnal');
+
+        $data = ProsidingNaskah::orderByDesc('created_at')->paginate(12);
+
+        return view('client.screens.journals', [
+            'data' => $data
+        ]);
     }
 
 

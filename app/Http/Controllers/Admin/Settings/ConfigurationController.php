@@ -93,10 +93,8 @@ class ConfigurationController extends Controller
             }
 
             $image = $request->file('logo');
-            $filePath = 'public/images/logo';
-            $imageName = time().'.'.$image->extension();
-            $image->storeAs($filePath, $imageName);
-            chmod($image, 0755);
+            $imageName = 'logo.'.$image->extension();
+            $request->logo->storeAs('public/assets', $imageName);
         }
 
         try {

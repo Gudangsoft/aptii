@@ -33,4 +33,8 @@ class ProsidingNaskah extends Model
         $file = config('app.url').'/storage/files/naskah/'.$this->file_naskah;
         return $file;
     }
+
+    public function getDateAttribute(){
+        return Carbon::parse($this->created_at)->isoFormat('dddd, D MMMM Y');
+    }
 }
