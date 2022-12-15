@@ -1,37 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Post;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ActivityRequest;
-use App\Models\Activity;
-use Exception;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class ActivityController extends Controller
+class TagController extends Controller
 {
 
     public function index()
     {
-        return view('admin.asosiasi.activity.index');
+        return view('admin.article.tags.index');
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('admin.asosiasi.activity.create');
+        //
     }
 
-    public function store(ActivityRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        try {
-            Activity::create($request->all());
-            Alert::success('Success', 'Data kegiatan berhasil ditambahkan.');
-            return redirect()->route('activity.index');
-        } catch (Exception $error) {
-            Alert::toast($error->getMessage(), 'error');
-            return redirect()->back();
-        }
+        //
     }
 
     /**

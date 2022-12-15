@@ -38,9 +38,15 @@ class ActivityTable extends Component
             $this->limitPerPage = $this->changeLimitPage;
         }
 
-        $data = ModelsActivity::orderByDesc('created_at')->paginate($this->limitPerPage);
+        $data = ModelsActivity::where('created_by', auth()->user()->id)
+                ->orderByDesc('created_at')
+                ->paginate($this->limitPerPage);
+
         if($this->search != null){
-            $data = ModelsActivity::where('name', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate($this->limitPerPage);
+            $data = ModelsActivity::where('name', 'like', '%'.$this->search.'%')
+                    ->where('created_by', auth()->user()->id)
+                    ->orderByDesc('created_at')
+                    ->paginate($this->limitPerPage);
         }
 
         $this->emit('postStore');

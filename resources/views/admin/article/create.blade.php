@@ -125,7 +125,7 @@
                                                     <div class="media-body">
                                                         <div class="d-inline-block">
                                                             <div class="form-group mb-0">
-                                                                <input class="w-50" type="file" id="pic-form" name="image" enctype="multipart/form-data">
+                                                                <input class="w-50" type="file" id="pic-form" name="image" accept="image/*">
                                                                 <input type="hidden" name="16_9_width" id="16_9_width"/>
                                                                 <input type="hidden" name="16_9_height" id="16_9_height"/>
                                                                 <input type="hidden" name="16_9_x" id="16_9_x"/>

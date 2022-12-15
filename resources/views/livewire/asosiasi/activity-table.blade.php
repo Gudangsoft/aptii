@@ -99,16 +99,16 @@
                                             {{ $row->institution }}
                                         </td>
                                         <td>
-                                            {{ number_format($row->budget) }}
+                                            {{ \Carbon\Carbon::parse($row->date)->isoFormat('dddd, D MMMM Y') }}
+                                        </td>
+                                        <td>
+                                            Rp {{ number_format($row->budget) }}
                                         </td>
                                         <td>
                                             {{ $row->no_rekening }}
                                         </td>
                                         <td>
-                                            <span class="font-weight-bold">{{ $row->user->name }}</span>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-primary mr-1"> {{ $row->user->email }}</span>
+                                            <span class="badge badge-light-primary mr-1"> {{ ucfirst($row->user->name) }}</span>
                                         </td>
                                         <td class="text-right">
                                             <div class="btn-group">
@@ -117,6 +117,7 @@
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
                                                     <a class="dropdown-item" href="#">Detail</a>
+                                                    <a class="dropdown-item" href="{{ route('activity.edit', $row->id) }}">Edit</a>
                                                     <a class="dropdown-item" wire:click="deleteSingleSelected({{ $row->id }})">Delete</a>
                                                 </div>
                                             </div>

@@ -5,10 +5,9 @@
                 <div class="site-logo">
                     @php
                         $config = \App\Models\Admin\Configuration::orderBy('created_at')->first();
-                        $logo = asset('storage/images/logo').'/'.$config->logo;
                     @endphp
                     <a href="/">
-                        <img alt="" class="img-fluid" src="{{ $logo }}" />
+                        <img alt="" class="img-fluid" src="{{ asset('storage') }}/assets/{{ $config->logo }}" />
                     </a>
                 </div>
 

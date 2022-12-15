@@ -113,7 +113,7 @@
                                                 <div class="media flex-column flex-md-row">
                                                     <div class="media-body">
                                                         @if (isset($data->logo))
-                                                            <img src="{{ asset('storage/images/logo').'/'.$data->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" alt="Blog Featured Image" />
+                                                            <img src="{{ asset('storage') }}/assets/{{ $data->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" alt="Blog Featured Image" />
                                                         @endif
                                                         <p class="my-50">
                                                             <small class="text-muted">Required 228px x 36px Image max size 2MB.</small>
@@ -122,21 +122,7 @@
                                                         </p>
                                                         <div class="d-inline-block">
                                                             <div class="form-group mb-0">
-                                                                    <input class="w-50" type="file" id="pic-form" name="logo" enctype="image/*">
-                                                                    <input type="hidden" name="16_9_width" id="16_9_width"/>
-                                                                    <input type="hidden" name="16_9_height" id="16_9_height"/>
-                                                                    <input type="hidden" name="16_9_x" id="16_9_x"/>
-                                                                    <input type="hidden" name="16_9_y" id="16_9_y"/>
-
-                                                                    <input type="hidden" name="4_3_width" id="4_3_width"/>
-                                                                    <input type="hidden" name="4_3_height" id="4_3_height"/>
-                                                                    <input type="hidden" name="4_3_x" id="4_3_x"/>
-                                                                    <input type="hidden" name="4_3_y" id="4_3_y"/>
-
-                                                                    <input type="hidden" name="1_1_width" id="1_1_width"/>
-                                                                    <input type="hidden" name="1_1_height" id="1_1_height"/>
-                                                                    <input type="hidden" name="1_1_x" id="1_1_x"/>
-                                                                    <input type="hidden" name="1_1_y" id="1_1_y"/>
+                                                                    <input class="w-50" type="file" id="pic-form" name="logo" accept="image/*">
                                                             </div>
                                                         </div>
                                                     </div>

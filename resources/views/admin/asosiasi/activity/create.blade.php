@@ -44,13 +44,15 @@
                                             <p class="card-text">{{ \Carbon\Carbon::now()->format('D, d M Y') }}</p>
                                         </div>
                                     </div>
-                                    <!-- Form -->
+
                                     <form action="{{ route('activity.store') }}" method="POST" enctype="multipart/form-data" class="mt-2">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group mb-2">
                                                     <h5>Nama Kegiatan</h3>
+                                                    <input type="hidden" name="created_by" value="{{ auth()->user()->id }}" class="form-control">
+                                                    <input type="hidden" name="status" value="1" class="form-control">
                                                     <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
                                                 </div>
                                             </div>
@@ -94,4 +96,34 @@
             </div>
         </div>
     </div>
+    @push('vendor-css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/forms/select/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/pickers/pickadate/pickadate.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/pickers/flatpickr/flatpickr.min.css">
+    @endpush
+    @push('page-css')
+    <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-fileinput/css/fileinput.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets') }}/vendors/cropperjs/cropper.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/form-quill-editor.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/pickers/form-flat-pickr.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/plugins/forms/pickers/form-pickadate.css">
+    @endpush
+    @push('custom-scripts')
+    <script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.js"></script>
+    <script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.date.js"></script>
+    <script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/picker.time.js"></script>
+    <script src="{{ asset('assets') }}/vendors/js/pickers/pickadate/legacy.js"></script>
+    <script src="{{ asset('assets') }}/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+    <script src="{{ asset('assets') }}/vendors/js/forms/select/select2.full.min.js"></script>
+    @endpush
+    @push('page-js')
+    <script src="{{asset('backend/plugins/bootstrap-fileinput/js/fileinput.js')}}"></script>
+    <script src="{{asset('backend/plugins/bootstrap-fileinput/themes/fa/theme.js')}}"></script>
+    <script src="{{ asset('assets') }}/vendors/cropperjs/cropper.js"></script>
+    <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
+    <script src="{{ asset('assets') }}/js/scripts/forms/pickers/form-pickers.js"></script>
+    <script src="{{ asset('assets') }}/js/scripts/forms/form-select2.js"></script>
+    @endpush
 </x-master-layouts>
