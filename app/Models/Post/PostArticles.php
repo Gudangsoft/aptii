@@ -16,7 +16,7 @@ class PostArticles extends Model
 
     protected $table = 'articles';
     protected $guarded = [];
-    protected $appends = ['date', 'thumbnail', 'des'];
+    protected $appends = ['date'];
     protected $hidden = ['author_ip', 'author_browser', 'author_os'];
 
     public function getUser(){
@@ -41,6 +41,7 @@ class PostArticles extends Model
     }
 
     public function getThumbnailAttribute(){
-        return asset(config('app.POST_BIG')).'/'.$this->image;
+        return asset(config('app.POST_MID')).'/'.$this->image;
+        // return asset(config('app.POST_BIG')).'/'.$this->image;
     }
 }

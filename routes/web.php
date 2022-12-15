@@ -57,6 +57,7 @@ Route::get('/nota/{id}', [ScreenController::class, 'nota']);
 Route::get('/seminar-nasional', [ScreensController::class, 'seminarNasional']);
 Route::get('/seminar-internasional', [ScreensController::class, 'seminarInternasional']);
 Route::get('/posts', [ScreensController::class, 'posts']);
+Route::get('/post/{slug}', [ScreenController::class, 'post'])->name('post.detail');
 Route::get('/jurnal', [ScreensController::class, 'journals']);
 Route::get('/jurnal-detail', [ScreenController::class, 'journal'])->name('journal.detail');
 Route::get('/contact', [ScreenController::class, 'contact']);

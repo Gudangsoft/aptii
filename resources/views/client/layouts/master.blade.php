@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="description" content="Edumel- Education Html Template by dreambuzz">
-  <meta name="keywords" content="education,edumel,instructor,lms,online,instructor,dreambuzz,bootstrap,kindergarten,tutor,e learning">
-  <meta name="author" content="dreambuzz">
 
-  <title>Asosiasi Jurnal</title>
+  {!! Meta::toHtml() !!}
 
-  <!-- Mobile Specific Meta-->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- bootstrap.min css -->
   <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/bootstrap/bootstrap.css">
   <!-- Iconfont Css -->
   <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/awesome/css/fontawesome-all.min.css">

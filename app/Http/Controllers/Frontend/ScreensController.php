@@ -13,8 +13,8 @@ use RobertSeghedi\News\Models\Article;
 class ScreensController extends Controller
 {
     public function posts(Request $request, PagesController $page){
-        HomeController::meta('Artikel');
-        return view('frontend.articles.index', [
+        HomeController::meta('Artikel Asosiasi');
+        return view('client.screens.posts', [
             'data'      => $page->articles(12, $request->page),
             'headline'  => $page->headlineArticles(),
         ]);
@@ -46,7 +46,7 @@ class ScreensController extends Controller
 
         $data = ProsidingNaskah::orderByDesc('created_at')->paginate(12);
 
-        return view('client.screens.journals.index', [
+        return view('client.screens.journals', [
             'data' => $data
         ]);
     }

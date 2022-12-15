@@ -3,7 +3,7 @@
 namespace App\Models\Post;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model, Illuminate\Http\Request, Auth;
+use Illuminate\Database\Eloquent\Model, Illuminate\Http\Request;
 use RobertSeghedi\LAS\Models\LAS;
 use RobertSeghedi\News\Models\Article;
 use RobertSeghedi\News\Models\Category;
@@ -11,6 +11,7 @@ use RobertSeghedi\News\Models\Comment;
 use RobertSeghedi\News\Models\Like;
 use Illuminate\Support\Facades\Crypt, Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class PostAction extends Model
 {
