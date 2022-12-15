@@ -57,7 +57,10 @@ Route::get('/nota/{id}', [ScreenController::class, 'nota']);
 Route::get('/seminar-nasional', [ScreensController::class, 'seminarNasional']);
 Route::get('/seminar-internasional', [ScreensController::class, 'seminarInternasional']);
 Route::get('/posts', [ScreensController::class, 'posts']);
+Route::get('/jurnal', [ScreensController::class, 'journals']);
+Route::get('/jurnal-detail', [ScreenController::class, 'journal'])->name('journal.detail');
 Route::get('/contact', [ScreenController::class, 'contact']);
+Route::get('/author', [ScreenController::class, 'author'])->name('author');
 
 // BACKEND DASHBOARD
 Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']], function () {

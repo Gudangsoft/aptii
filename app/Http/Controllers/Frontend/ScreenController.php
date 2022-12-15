@@ -7,6 +7,7 @@ use App\Http\Controllers\MetaController;
 use App\Models\Admin\Configuration;
 use App\Models\Prosiding\CustomerCare;
 use App\Models\Prosiding\Event;
+use App\Models\Prosiding\ProsidingNaskah;
 use App\Models\Prosiding\ProsidingPembayaran;
 use Illuminate\Http\Request;
 use Butschster\Head\Facades\Meta;
@@ -68,6 +69,16 @@ class ScreenController extends Controller
             'configuration' => Configuration::orderBy('created_at')->first(),
             'data'          => $data
         ]);
+    }
+
+    public function journal(Request $request){
+        $data = ProsidingNaskah::findOrFail($request->id);
+        HomeController::meta($data->judul);
+
+        return view('client.screen.journal-detail', [
+            'data' => $data
+        ]);
+
     }
 
 

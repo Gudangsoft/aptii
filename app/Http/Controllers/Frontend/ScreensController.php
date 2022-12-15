@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Models\Admin\Configuration;
+use App\Models\Prosiding\ProsidingNaskah;
 use Butschster\Head\Facades\Meta;
 use RobertSeghedi\News\Models\Article;
 
@@ -38,6 +39,16 @@ class ScreensController extends Controller
         HomeController::meta('Seminar Internasional');
 
         return view('frontend.events.internasional');
+    }
+
+    public function journals(){
+        HomeController::meta('Jurnal');
+
+        $data = ProsidingNaskah::orderByDesc('created_at')->paginate(12);
+
+        return view('client.screens.journals.index', [
+            'data' => $data
+        ]);
     }
 
 
