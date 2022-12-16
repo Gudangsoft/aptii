@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MetaController;
 use App\Models\Admin\Configuration;
+use App\Models\PageWeb;
 use App\Models\Post\PostAction;
 use App\Models\Post\PostArticles;
 use App\Models\Prosiding\CustomerCare;
@@ -79,6 +80,17 @@ class ScreenController extends Controller
 
         return view('client.screen.journal-detail', [
             'data' => $data
+        ]);
+
+    }
+
+    public function page($slug){
+        $data = PageWeb::where('slug', $slug)->where('status', true)->first();
+        HomeController::meta($data->title);
+
+        return view('client.screen.page-detail', [
+            'data'          => $data,
+            'popular'       => PagesController::popularArticle(),
         ]);
 
     }

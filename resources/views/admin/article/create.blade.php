@@ -94,7 +94,8 @@
                                         </div>
                                         <div class="col-12 mb-2">
                                             <label for="blog-edit-title">Content</label>
-                                            <textarea name="content" class="ckeditor" id="" cols="30" rows="10">{{ old('content') }}</textarea>
+                                            <textarea name="content" id="content" class="form-control">{{ old('content') }}</textarea>
+                                            {{-- <textarea name="content" class="ckeditor" id="" cols="30" rows="10">{{ old('content') }}</textarea> --}}
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
@@ -212,6 +213,7 @@
         </div>
     </div>
 </div>
+@include('admin.components.texteditor')
 
 @push('vendor-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">

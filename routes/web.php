@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Asosiasi\AsosiasiController;
 use App\Http\Controllers\Admin\Asosiasi\ManagerController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\Prosiding\AgendaController;
 use App\Http\Controllers\Admin\Prosiding\NaskahController;
 use App\Http\Controllers\Admin\Prosiding\PembayaranController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Controllers\Admin\Settings\RolePermissionController;
 use App\Http\Controllers\Admin\Prosiding\CustomerCareController;
 use App\Http\Controllers\Admin\Prosiding\RekeningController;
+use App\Http\Controllers\Frontend\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +54,7 @@ Route::get('/seminar/{slug}', [ScreenController::class, 'seminar']);
 Route::post('apply', [FrontendJobsController::class, 'store'])->name('jobs-apply');
 Route::get('/tag/{slug}', [ScreensController::class, 'tags']);
 Route::get('/nota/{id}', [ScreenController::class, 'nota']);
+Route::get('/page/{slug}', [ScreenController::class, 'page']);
 
 // menu
 Route::get('/seminar-nasional', [ScreensController::class, 'seminarNasional']);
@@ -122,6 +125,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
         });
 
         Route::resource('menu', MenuController::class);
+        Route::resource('pages', PageController::class);
         Route::resource('configuration', ConfigurationController::class);
     });
 

@@ -75,13 +75,16 @@
             @can('edit articles')
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Pages">Posts</span></a>
                 <ul class="menu-content">
-                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('articles.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Info Asosiasi</span></a>
+                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('articles.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Artikel Asosiasi</span></a>
                     </li>
                     <li class="{{ request()->routeIs('categories.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('categories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Kategori</span></a>
                     </li>
                     <li class="{{ request()->routeIs('tags.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('tags.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Tags</span></a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="{{ request()->routeIs('pages.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('pages.index') }}"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Configuration">Page</span></a>
             </li>
             @endcan
 
@@ -91,15 +94,16 @@
             @endrole
 
             @role('super admin')
-            <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Admin</span><i data-feather="more-horizontal"></i>
+            <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Setting</span><i data-feather="more-horizontal"></i>
+            </li>
+
+            <li class="{{ request()->routeIs('menu.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('menu.index') }}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Configuration">Menu</span></a>
+            </li>
+            <li class="{{ request()->routeIs('configuration.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('configuration.index') }}"><i data-feather="globe"></i><span class="menu-title text-truncate" data-i18n="Configuration">Web Setting</span></a>
             </li>
             <li class="{{ request()->routeIs('users.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('users.index') }}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>
             </li>
             <li class="{{ request()->routeIs('role-permission.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('role-permission.index') }}"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="User">Manajemen User</span></a>
-            </li>
-            <li class="{{ request()->routeIs('menu.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('menu.index') }}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Configuration">Menu</span></a>
-            </li>
-            <li class="{{ request()->routeIs('configuration.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('configuration.index') }}"><i data-feather="globe"></i><span class="menu-title text-truncate" data-i18n="Configuration">Web Setting</span></a>
             </li>
             @endrole
 
