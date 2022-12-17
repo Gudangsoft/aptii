@@ -1,5 +1,5 @@
 @section('title')
-    Kerjasama Kegiatan -
+    Kerjasama Jurnal -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">
@@ -14,7 +14,7 @@
         </div>
         @endif
         <div class="content-wrapper">
-            @livewire('asosiasi.activity-table')
+            @livewire('asosiasi.journal-collab')
         </div>
     </div>
 </x-master-layouts>

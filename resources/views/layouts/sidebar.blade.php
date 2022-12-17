@@ -36,7 +36,13 @@
                         </li>
                         <li class="{{ request()->routeIs('asosiasi.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
                         </li>
-                        <li class="{{ request()->routeIs('activity.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('activity.index') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama</span></a>
+                        <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="Pages">Kerjasama</span></a>
+                            <ul class="menu-content">
+                                <li class="{{ request()->routeIs('activity.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('activity.index') }}"><i data-feather="circle"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama Kegiatan</span></a>
+                                </li>
+                                <li class="{{ request()->routeIs('journal_collab.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('journal_collab.index') }}"><i data-feather="circle"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama Jurnal</span></a>
+                                </li>
+                            </ul>
                         </li>
                     @endif
                 @endisset
@@ -71,7 +77,7 @@
             </li>
             {{-- <li class="{{ request()->routeIs('managers.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('managers.index') }}"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Pages">Pengurus</span></a>
             </li> --}}
-            <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="Pages">Kerjasama Lembaga</span></a>
+            <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="Pages">Webinar</span></a>
             </li>
 
             @can('edit articles')

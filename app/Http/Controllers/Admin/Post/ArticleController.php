@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Post;
 
 use App\Http\Controllers\Controller;
 use App\ImageProses;
+use App\Models\Post\PostArticles;
 use App\Models\Tag;
 use Exception;
 use Image;
@@ -112,7 +113,7 @@ class ArticleController extends Controller
         // $image->move($destinationPath, $input['imagename']);
 
         try {
-            $article = News::post(
+            $article = PostArticles::post(
                 $request->title,
                 $request->slug,
                 $request->content,

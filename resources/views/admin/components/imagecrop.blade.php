@@ -39,12 +39,12 @@
         </div>
     </div>
 </div>
-@push('style-components')
+@push('page-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/bootstrap-fileinput/css/fileinput.min.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/cropperjs/cropper.css">
 @endpush
 
-@push('script-components')
+@push('page-js')
 <script src="{{ asset('assets') }}/vendors/bootstrap-fileinput/js/fileinput.js"></script>
 <script src="{{ asset('assets') }}/vendors/cropperjs/cropper.js"></script>
 <script type="text/javascript">

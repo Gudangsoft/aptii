@@ -25,12 +25,12 @@
         </div>
     </div>
 </div>
-@push('style-components')
+@push('page-css')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/bootstrap-fileinput/css/fileinput.min.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/cropperjs/cropper.css">
 @endpush
 
-@push('script-components')
+@push('page-js')
 <script src="{{ asset('assets') }}/vendors/bootstrap-fileinput/js/fileinput.js"></script>
 <script src="{{ asset('assets') }}/vendors/cropperjs/cropper.js"></script>
 <script type="text/javascript">
@@ -43,7 +43,7 @@
         maxImageHeight: '2100',
         browseLabel: "Pilih Image",
         mainClass: "input-group",
-        defaultPreviewContent: '<img src="{{ $data['user']['imagePath'] ?? '/assets/images/dummy-image.jpeg'}}" style="width:100%;" alt="default">',
+        defaultPreviewContent: '<img src="{{ $data['user']['imagePath'] ?? 'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png'}}" style="width:100%;" alt="default">',
         browseIcon: "<i class=\"fa fa-picture-o\"></i> ",
         allowedFileExtensions: ["jpg", "png", "gif", "jpeg", "svg"]
     }).on('fileloaded', function(event, file, previewId, index, reader){

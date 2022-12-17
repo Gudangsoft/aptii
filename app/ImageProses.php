@@ -2,9 +2,10 @@
 
 namespace App;
 
-use Image;
-use File;
-//use Illuminate\Support\Facades\File;
+use Exception;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ImageProses {
   public static function imageCropDimensi($dataImage){
@@ -385,4 +386,204 @@ class ImageProses {
           break;
       }
   }
+
+    public static function imageUser($dataImage){
+
+        $image = $dataImage['file'];
+        $imageExtension     = $image->getClientOriginalExtension();
+        $destinationPath    = $dataImage['path'];
+        $path_big           = $destinationPath.'big';
+        $path_mid           = $destinationPath.'mid';
+        $path_thumb         = $destinationPath.'thumb';
+        $settingSize        = $dataImage['setting'];
+        // dd($settingSize);
+        $modul              = $dataImage['modul'];
+        $imageName          = time().'.'.$image->getClientOriginalExtension();
+
+        // $watermark          = $dataImage['watermark']['status'];
+        // $txt_watermark      = $dataImage['watermark']['text'];
+        // $font_watermark     = $dataImage['watermark']['font'];
+        //echo $dataImage['watermark']['font'];
+
+        $width_1_1      = ceil($dataImage['data']['skala11']['width']);
+        $height_1_1     = ceil($dataImage['data']['skala11']['height']);
+        $x_1_1          = ceil($dataImage['data']['skala11']['x']);
+        $y_1_1          = ceil($dataImage['data']['skala11']['y']);
+
+        self::cekFolder2($destinationPath);
+
+        $img = Image::make($image->getRealPath());
+
+        try{
+            $img = Image::make($image->getRealPath());
+            $img->crop($width_1_1, $height_1_1, $x_1_1, $y_1_1)->save($path_big.'/'.$imageName)->destroy();
+
+            $img = Image::make($image->getRealPath());
+            $img->crop($width_1_1, $height_1_1, $x_1_1, $y_1_1)->save($path_mid.'/'.$imageName)->destroy();
+
+            $img = Image::make($image->getRealPath());
+            $img->crop($width_1_1, $height_1_1, $x_1_1, $y_1_1)->save($path_thumb.'/'.$imageName)->destroy();
+
+            Image::make($path_big.'/'.$imageName)->resize($settingSize['mid_width'], null, function ($constraint) { $constraint->aspectRatio(); })->save($path_big.'/'.$imageName)->destroy();
+
+            Image::make($path_mid.'/'.$imageName)->resize($settingSize['mid_width'], null, function ($constraint) { $constraint->aspectRatio(); })->save($path_mid.'/'.$imageName)->destroy();
+
+            Image::make($path_thumb.'/'.$imageName)->resize($settingSize['thumb_width'], null, function ($constraint) { $constraint->aspectRatio(); })->save($path_thumb.'/'.$imageName)->destroy();
+
+
+            $img->destroy();
+
+            chmod($path_big.'/'.$imageName, 0755);
+            chmod($path_mid.'/'.$imageName, 0755);
+            chmod($path_thumb.'/'.$imageName, 0755);
+
+            self::uploadToStorage($modul,$imageName);
+            return ['status'=>true,'namaImage'=>$imageName];
+        }catch(Exception $e){
+            return ['status'=>false,'namaImage'=>''];
+        }
+    }
+    public static function uploadToStorage($modul,$filename){
+        switch($modul){
+            case 'posts':
+                $path_big_1 = File::get(public_path('storage/pictures').'/posts/1_1/big/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_big_1, $path_big_1);
+                unlink(public_path('storage/pictures').'/posts/1_1/big/'.$filename);
+
+                $path_mid_1 = File::get(public_path('storage/pictures').'/posts/1_1/mid/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_mid_1, $path_mid_1);
+                unlink(public_path('storage/pictures').'/posts/1_1/mid/'.$filename);
+
+                $path_thumb_1 = File::get(public_path('storage/pictures').'/posts/1_1/thumb/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_thumb_1, $path_thumb_1);
+                unlink(public_path('storage/pictures').'/posts/1_1/thumb/'.$filename);
+
+                $path_big_4 = File::get(public_path('storage/pictures').'/posts/4_3/big/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_big_4, $path_big_4);
+                unlink(public_path('storage/pictures').'/posts/4_3/big/'.$filename);
+
+                $path_mid_4 = File::get(public_path('storage/pictures').'/posts/4_3/mid/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_mid_4, $path_mid_4);
+                unlink(public_path('storage/pictures').'/posts/4_3/mid/'.$filename);
+
+                $path_thumb_4 = File::get(public_path('storage/pictures').'/posts/4_3/thumb/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_thumb_4, $path_thumb_4);
+                unlink(public_path('storage/pictures').'/posts/4_3/thumb/'.$filename);
+
+                $path_big_16 = File::get(public_path('storage/pictures').'/posts/16_9/big/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_big_16, $path_big_16);
+                unlink(public_path('storage/pictures').'/posts/16_9/big/'.$filename);
+
+                $path_mid_16 = File::get(public_path('storage/pictures').'/posts/16_9/mid/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_mid_16, $path_mid_16);
+                unlink(public_path('storage/pictures').'/posts/16_9/mid/'.$filename);
+
+                $path_thumb_16 = File::get(public_path('storage/pictures').'/posts/16_9/thumb/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_thumb_16, $path_thumb_16);
+                unlink(public_path('storage/pictures').'/posts/16_9/thumb/'.$filename);
+            break;
+            case 'gallery':
+                $path_big_1 = File::get(public_path('storage/pictures').'/gallery/1_1/big/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_big_1, $path_big_1);
+                unlink(public_path('storage/pictures').'/gallery/1_1/big/'.$filename);
+
+                $path_mid_1 = File::get(public_path('storage/pictures').'/gallery/1_1/mid/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_mid_1, $path_mid_1);
+                unlink(public_path('storage/pictures').'/gallery/1_1/mid/'.$filename);
+
+                $path_thumb_1 = File::get(public_path('storage/pictures').'/gallery/1_1/thumb/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_thumb_1, $path_thumb_1);
+                unlink(public_path('storage/pictures').'/gallery/1_1/thumb/'.$filename);
+
+                $path_big_4 = File::get(public_path('storage/pictures').'/gallery/4_3/big/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_big_4, $path_big_4);
+                unlink(public_path('storage/pictures').'/gallery/4_3/big/'.$filename);
+
+                $path_mid_4 = File::get(public_path('storage/pictures').'/gallery/4_3/mid/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_mid_4, $path_mid_4);
+                unlink(public_path('storage/pictures').'/gallery/4_3/mid/'.$filename);
+
+                $path_thumb_4 = File::get(public_path('storage/pictures').'/gallery/4_3/thumb/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_thumb_4, $path_thumb_4);
+                unlink(public_path('storage/pictures').'/gallery/4_3/thumb/'.$filename);
+
+                $path_big_16 = File::get(public_path('storage/pictures').'/gallery/16_9/big/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_big_16, $path_big_16);
+                unlink(public_path('storage/pictures').'/gallery/16_9/big/'.$filename);
+
+                $path_mid_16 = File::get(public_path('storage/pictures').'/gallery/16_9/mid/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_mid_16, $path_mid_16);
+                unlink(public_path('storage/pictures').'/gallery/16_9/mid/'.$filename);
+
+                $path_thumb_16 = File::get(public_path('storage/pictures').'/gallery/16_9/thumb/'.$filename);
+                Storage::disk('ftp')->put($path_ftp_thumb_16, $path_thumb_16);
+                unlink(public_path('storage/pictures').'/gallery/16_9/thumb/'.$filename);
+            break;
+            case 'archives':
+                $path_local = File::get(public_path('storage/archives/').$filename);
+                Storage::disk('ftp')->put($path_ftp, $path_local);
+                unlink(public_path('storage/archives/').$filename);
+            break;
+            case 'services':
+                $path_local = File::get(public_path('storage/pictures').'/services/'.$filename);
+                Storage::disk('ftp')->put($path_ftp, $path_local);
+                unlink(public_path('storage/pictures').'/services/'.$filename);
+            break;
+            case 'banners':
+                $path_local = File::get(public_path('storage/pictures').'/banners/'.$filename);
+                Storage::disk('ftp')->put($path_ftp, $path_local);
+                unlink(public_path('storage/pictures').'/banners/'.$filename);
+            break;
+            case 'authors':
+                $path_big_1 = File::get(public_path('storage/pictures').'/authors/1_1/big/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_big_1, $path_big_1);
+                unlink(public_path('storage/pictures').'/authors/1_1/big/'.$filename);
+
+                $path_mid_1 = File::get(public_path('storage/pictures').'/authors/1_1/mid/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_mid_1, $path_mid_1);
+                unlink(public_path('storage/pictures').'/authors/1_1/mid/'.$filename);
+
+                $path_thumb_1 = File::get(public_path('storage/pictures').'/authors/1_1/thumb/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_thumb_1, $path_thumb_1);
+                unlink(public_path('storage/pictures').'/authors/1_1/thumb/'.$filename);
+
+                $path_big_4 = File::get(public_path('storage/pictures').'/authors/4_3/big/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_big_4, $path_big_4);
+                unlink(public_path('storage/pictures').'/authors/4_3/big/'.$filename);
+
+                $path_mid_4 = File::get(public_path('storage/pictures').'/authors/4_3/mid/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_mid_4, $path_mid_4);
+                unlink(public_path('storage/pictures').'/authors/4_3/mid/'.$filename);
+
+                $path_thumb_4 = File::get(public_path('storage/pictures').'/authors/4_3/thumb/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_thumb_4, $path_thumb_4);
+                unlink(public_path('storage/pictures').'/authors/4_3/thumb/'.$filename);
+
+                $path_big_16 = File::get(public_path('storage/pictures').'/authors/16_9/big/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_big_16, $path_big_16);
+                unlink(public_path('storage/pictures').'/authors/16_9/big/'.$filename);
+
+                $path_mid_16 = File::get(public_path('storage/pictures').'/authors/16_9/mid/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_mid_16, $path_mid_16);
+                unlink(public_path('storage/pictures').'/authors/16_9/mid/'.$filename);
+
+                $path_thumb_16 = File::get(public_path('storage/pictures').'/authors/16_9/thumb/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_thumb_16, $path_thumb_16);
+                unlink(public_path('storage/pictures').'/authors/16_9/thumb/'.$filename);
+            break;
+            case 'users':
+                $path_big       = File::get(public_path('storage/pictures').'/users/big/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_big, $path_big);
+                unlink(public_path('storage/pictures').'/users/big/'.$filename);
+
+                $path_mid       = File::get(public_path('storage/pictures').'/users/mid/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_mid, $path_mid);
+                unlink(public_path('storage/pictures').'/users/mid/'.$filename);
+
+                $path_thumb       = File::get(public_path('storage/pictures').'/users/thumb/'.$filename);
+                // Storage::disk('ftp')->put($path_ftp_thumb, $path_thumb);
+                unlink(public_path('storage/pictures').'/users/thumb/'.$filename);
+            break;
+        }
+    }
 }

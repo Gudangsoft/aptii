@@ -3,18 +3,18 @@
         <div class="content-header-left col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-7">
-                    <h2 class="content-header-title float-left mb-0">Kegiatan</h2>
+                    <h2 class="content-header-title float-left mb-0">Jurnal Afiliasi</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active">Kegiatan
+                            <li class="breadcrumb-item active">Jurnal Afiliasi
                             </li>
                         </ol>
                     </div>
                 </div>
                 <div class="col-5 d-flex justify-content-end">
-                    <a href="{{ route('activity.create') }}" class="btn btn-primary">Tambah</a>
+                    <a href="{{ route('journal_collab.create') }}" class="btn btn-primary">Tambah</a>
                 </div>
 
                 <div class="modal fade text-left" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4" aria-hidden="true">
@@ -77,12 +77,9 @@
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
-                                    <th>Nama Kegiatan</th>
-                                    <th>Instansi</th>
-                                    <th>Pelaksanaan</th>
-                                    <th>Anggaran</th>
-                                    <th>No Rekening</th>
-                                    <th>Oleh</th>
+                                    <th>Judul</th>
+                                    <th>Afiliasi</th>
+                                    <th>Chif Editor</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -93,22 +90,16 @@
                                             <input type="checkbox" value="{{ $row->id }}" wire:model="selectData" id="a">
                                         </td>
                                         <td>
-                                            {{ $row->name }}
+                                            {{ $row->title }}
                                         </td>
                                         <td>
-                                            {{ $row->institution }}
+                                            {{ $row->afiliasi }}
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             {{ \Carbon\Carbon::parse($row->date)->isoFormat('dddd, D MMMM Y') }}
-                                        </td>
+                                        </td> --}}
                                         <td>
-                                            Rp {{ number_format($row->budget) }}
-                                        </td>
-                                        <td>
-                                            {{ $row->no_rekening }}
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-light-primary mr-1"> {{ ucfirst($row->user->name) }}</span>
+                                            {{ ucwords($row->editor) }}
                                         </td>
                                         <td class="text-right">
                                             <div class="btn-group">
@@ -116,8 +107,8 @@
                                                     Select
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                                    <a class="dropdown-item" href="#">Detail</a>
-                                                    <a class="dropdown-item" href="{{ route('activity.edit', $row->id) }}">Edit</a>
+                                                    <a class="dropdown-item" href="{{ route('journal_collab.show', $row->id) }}">Detail</a>
+                                                    <a class="dropdown-item" href="{{ route('journal_collab.edit', $row->id) }}">Edit</a>
                                                     <a class="dropdown-item" wire:click="deleteSingleSelected({{ $row->id }})">Delete</a>
                                                 </div>
                                             </div>
@@ -143,8 +134,6 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
     @endpush
     @push('page-js')
-        <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
-
         <script type="text/javascript">
             $(document).ready(function () {
                 $('.ckeditor').ckeditor();
