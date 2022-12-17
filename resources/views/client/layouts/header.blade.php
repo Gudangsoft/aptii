@@ -42,14 +42,14 @@
                             @endif
                         @endforeach
                         @if (Auth::check())
-                            <li class="d-none d-sm-block d-md-block d-xl-none">
+                            <li class="d-sm-block d-md-block d-lg-none d-xl-none">
                                 <a href="{{ route('dashboard') }}" class="login"><i class="fa fa-cog"></i> Dashboard</a>
                             </li>
                         @else
-                            <li class="d-none d-sm-block d-md-block d-xl-none">
+                            <li class="d-sm-block d-md-block d-lg-none d-xl-none">
                                 <a href="{{ route('login') }}" class="login">Login</a>
                             </li>
-                            <li class="d-none d-sm-block d-md-block d-xl-none">
+                            <li class="d-sm-block d-md-block d-lg-none d-xl-none">
                                 <a href="{{ route('register') }}" class="login">Register</a>
                             </li>
                         @endif
