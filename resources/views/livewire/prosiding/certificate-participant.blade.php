@@ -49,7 +49,7 @@
                                 @endif
                                 <tr>
                                     <th>Kode/No Seri</th>
-                                    <th><span class="badge badge-light-primary">Naskah</span> <span class="badge badge-light-danger">Seminar</span></th>
+                                    <th>Tanggal</th>
                                     <th>Oleh</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
@@ -59,14 +59,10 @@
                                     <tr>
                                         <td>{{ $row->code }}</td>
                                         <td>
-                                            @if ($row->model == 'naskah')
-                                                <span class="badge badge-light-primary">{{ $row->getNaskah->judul }}</span>
-                                            @else
-                                                <span class="badge badge-light-danger">{{ $row->getEvent->judul }}</span>
-                                            @endif
+                                            {{ $row->created_at }}
                                         <td>{{ $row->getAuthor->name }}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-sm btn-primary" href="/storage/files/certificate/{{ $row->file }}">Detail</a>
+                                            <a class="btn btn-sm btn-primary" href="{{ route('ceritifiate-member.detail', $row->id) }}">Detail</a>
                                         </td>
 
                                     </tr>

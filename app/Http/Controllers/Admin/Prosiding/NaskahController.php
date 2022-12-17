@@ -39,7 +39,7 @@ class NaskahController extends Controller
             $upload->judul = $request->judul;
             $upload->abstrak = $request->judul;
             $upload->file_naskah = $fileName;
-            $upload->status = 0;
+            $upload->status = 1;
             $upload->save();
 
             Alert::success('Success', 'Naskah berhasil diupload !');

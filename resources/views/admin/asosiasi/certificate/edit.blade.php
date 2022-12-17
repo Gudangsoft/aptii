@@ -49,7 +49,7 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label><h5>Model</h5></label>
                                                         <select class="form-control form-control-lg" name="model" id="model">
                                                             <option selected>--- Pilih ---</option>
@@ -78,18 +78,36 @@
                                                     <div class="form-group">
                                                         <label><h5>Sertifikat Peserta (Tipe File PDF)</h5></label>
                                                         <input type="file" name="document" accept=".pdf" class="form-control">
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label><h5>Link Sertifikat Anggota</h5></label>
+                                                                <input type="url" name="sertifikat_anggota" value="{{ $data->sertifikat_anggota }}" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label><h5>Link Sertifikat Afiliasi Jurnal</h5></label>
+                                                                <input type="url" name="sertifikat_afiliasi" value="{{ $data->sertifikat_afiliasi }}" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label><h5>MOU Afiliasi Jurnal</h5></label>
+                                                                <input type="url" name="mou_afiliasi" value="{{ $data->mou_afiliasi }}" class="form-control">
+                                                            </div>
+                                                        </div>
                                                         <div class="col-6">
                                                             <div class="form-group">
                                                                 <label><h5>Link KTA Anggota</h5></label>
-                                                                <input type="url" name="kta_anggota" placeholder="{{ $item->kta_url }}" class="form-control">
+                                                                <input type="url" name="kta_anggota" value="{{ $data->kta_url }}" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-group">
                                                                 <label><h5>Link SK Anggota</h5></label>
-                                                                <input type="url" name="sk_anggota" placeholder="{{ $item->sk_url }}" class="form-control">
+                                                                <input type="url" name="sk_anggota" value="{{ $data->sk_url }}" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>

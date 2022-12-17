@@ -40,11 +40,11 @@
                                                         <label><h5>Kategori Pembayaran</h5></label>
                                                         <select class="select2 form-control form-control-lg select2-hidden-accessible" id="category" name="category">
                                                             <option value="" disabled selected>--- Pilih ---</option>
-                                                            <option value="1">Non Pemakalah</option>
-                                                            <option value="2">Pemakalah</option>
+                                                            <option value="1">Member</option>
+                                                            <option value="2">Penegelola Jurnal</option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group" id="naskah">
+                                                    {{-- <div class="form-group" id="naskah">
                                                         <label><h5>Naskah</h5> Berikut adalah data naskah dengan status <b>Menunggu Pembayaran</b></label>
                                                         <select class="select2 form-control form-control-lg select2-hidden-accessible" name="naskah">
                                                             <option value="" disabled selected>--- Pilih ---</option>
@@ -52,18 +52,24 @@
                                                                 <option value="{{ $item->id }}">{{ $item->judul }}</option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="form-group">
                                                         <label><h5>Nomor Transaksi</h5></label>
                                                         <input type="text" name="no_transaksi" class="form-control" placeholder="Nomor Transaksi Dari Bank" required>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label><h5>Tanggal Bayar</h5></label>
-                                                        <input type="date" name="tanggal_bayar" class="form-control" placeholder="Tanggal Bayar" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><h5>Jumlah Bayar RP</h5></label>
-                                                        <input type="text" name="jumlah_bayar" class="form-control" placeholder="0" required>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label><h5>Tanggal Bayar</h5></label>
+                                                                <input type="date" name="tanggal_bayar" class="form-control" placeholder="Tanggal Bayar" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label><h5>Jumlah Bayar RP</h5></label>
+                                                                <input type="text" name="jumlah_bayar" class="form-control" placeholder="0" required>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label><h5>Nama Pengirim</h5></label>
@@ -89,7 +95,7 @@
                                                     <div class="form-group">
                                                         <label><h5>Bukti Bayar</h5></label>
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" name="photo" id="customFile" />
+                                                            <input type="file" class="custom-file-input" name="photo" id="customFile" accept="image/*"/>
                                                             <label class="custom-file-label" for="customFile">Pilih File</label>
                                                         </div>
                                                     </div>
@@ -128,7 +134,7 @@
                                         }
                                     })
                                 </script>
-                                <script>
+                                {{-- <script>
                                     $('#naskah').hide();
                                     $('#category').on('change', function () {
                                         if (this.value == 2) {
@@ -137,7 +143,7 @@
                                             $('#naskah').hide();
                                         }
                                     });
-                                </script>
+                                </script> --}}
                             @endpush
                         </div>
                     </div>

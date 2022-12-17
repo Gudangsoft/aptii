@@ -57,7 +57,7 @@
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Nama</th>
                                     <th>Kode/No Seri</th>
-                                    <th><span class="badge badge-light-primary">Naskah</span> <span class="badge badge-light-danger">Seminar</span></th>
+                                    {{-- <th><span class="badge badge-light-primary">Naskah</span> <span class="badge badge-light-danger">Seminar</span></th> --}}
                                     <th>Oleh</th>
                                     <th>Status</th>
                                     <th>Opsi</th>
@@ -71,12 +71,13 @@
                                         </td>
                                         <td>{{ $row->getUser->name }}</td>
                                         <td>{{ $row->code }}</td>
-                                        <td>
+                                        {{-- <td>
                                             @if ($row->model == 'naskah')
                                                 <span class="badge badge-light-primary">{{ $row->getNaskah->judul }}</span>
                                             @else
                                                 <span class="badge badge-light-danger">{{ $row->getEvent->judul }}</span>
                                             @endif
+                                        </td> --}}
                                         <td>{{ $row->getAuthor->name }}</td>
                                         <td class="text-center">
                                             @if ($row->status == 1)
@@ -91,7 +92,7 @@
                                                     Pilih
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="/storage/files/certificate/{{ $row->file }}">Detail</a>
+                                                    <a class="dropdown-item" href="{{ route('certificate.show', $row->id) }}">Detail</a>
                                                     <a class="dropdown-item" href="{{ route('certificate.edit', $row->id) }}">Edit</a>
                                                     <a class="dropdown-item" href="javascript:void(0);" wire:click='deleteSingleSelected({{ $row->id }})'>Delete</a>
                                                 </div>

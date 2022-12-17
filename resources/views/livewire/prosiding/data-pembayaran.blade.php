@@ -57,7 +57,7 @@
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
                                     <th>Nama</th>
                                     <th>Institusi</th>
-                                    <th>Judul</th>
+                                    <th>Kategori</th>
                                     <th>Tanggal</th>
                                     <th>Total</th>
                                     <th>Bank</th>
@@ -74,7 +74,7 @@
                                         </td>
                                         <td>{{ $row->getUser->name }}</td>
                                         <td>{{ $row->getUser->company }}</td>
-                                        <td>{!! $row->naskah_id != null ? $row->getNaskah->judul : "<span class='badge badge-danger'>NON PEMAKALAH</span>" !!}</td>
+                                        <td>{!! $row->category == 2 ? "<span class='badge badge-light-success'>PENGELOLA JURNAL</span>" : "<span class='badge badge-light-dark'>MEMBER</span>" !!}</td>
                                         <td>{{ $row->tanggal_bayar }}</td>
                                         <td>Rp {{ number_format($row->jumlah) }}</td>
                                         <td>{{ $row->bank_pengirim }}</td>
@@ -114,7 +114,7 @@
                                                                     </div>
                                                                     <div class="col-1">:</div>
                                                                     <div class="col-5 d-flex justify-content-right">
-                                                                        {!! $row->naskah_id != null ? $row->getNaskah->judul : "<span class='badge badge-danger'>NON PEMAKALAH</span>" !!}
+                                                                        {!! $row->category == 2 ? "<span class='badge badge-light-success'>PENGELOLA JURNAL</span>" : "<span class='badge badge-light-dark'>MEMBER</span>" !!}
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <b>Nomor Transaksi</b>

@@ -89,6 +89,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
             Route::get('seminar', [AsosiasiController::class, 'seminar'])->name('asosiasi.seminar');
             Route::get('seminar/{slug}', [AsosiasiController::class, 'seminarDetail'])->name('asosiasi.seminar-detail');
             Route::get('sertifikat', [AsosiasiController::class, 'sertifikat'])->name('asosiasi.sertifikat');
+            Route::get('sertifikat-member/{id}', [AsosiasiController::class, 'sertifikatDetail'])->name('ceritifiate-member.detail');
             Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('asosiasi.upload-naskah');
             Route::get('bukti-pembayaran', [PembayaranController::class, 'uploadPembayaran'])->name('asosiasi.bukti-pembayaran');
 

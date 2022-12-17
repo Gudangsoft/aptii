@@ -1,5 +1,5 @@
 @section('title')
-    Upload Sertifikat -
+    Detail Sertifikat -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">
@@ -10,7 +10,7 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Upload Sertifikat</h2>
+                            <h2 class="content-header-title float-left mb-0">Detail Sertifikat</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
@@ -19,7 +19,7 @@
                                     </li>
                                     <li class="breadcrumb-item active"><a href="{{ route('certificate.index') }}">Sertifikat</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Upload
+                                    <li class="breadcrumb-item active">Detail
                                     </li>
                                 </ol>
                             </div>
@@ -35,16 +35,17 @@
                                 <div class="row" id="basic-table">
                                     <div class="col-12">
                                         <div class="card">
-                                            <form action="{{ route('certificate.store') }}" method="POST" enctype="multipart/form-data">
+                                            <form action="{{ route('certificate.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
+                                                @method('PUT')
                                                 <div class="card-body">
 
                                                     <div class="form-group">
                                                         <label><h5>Penerima Sertifikat</h5></label>
-                                                        <select class="select2 form-control form-control-lg select2-hidden-accessible" name="user_id" id="user_id">
+                                                        <select class="select2 form-control form-control-lg select2-hidden-accessible" name="user_id" id="user_id" disabled>
                                                             <option selected>--- Pilih ---</option>
                                                             @foreach ($users as $item)
-                                                                <option value="{{ $item->id }}">{{ ucwords($item->name) }}</option>
+                                                                <option value="{{ $item->id }}" {{ $item->id == $data->user_id ? 'selected' : '' }}>{{ ucwords($item->name) }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -52,14 +53,14 @@
                                                         <label><h5>Model</h5></label>
                                                         <select class="form-control form-control-lg" name="model" id="model">
                                                             <option selected>--- Pilih ---</option>
-                                                            <option value="naskah">Makalah/Naskah</option>
-                                                            <option value="seminar">Seminar</option>
+                                                            <option value="naskah" {{ $data->model == 'naskah' ? 'selected' : '' }}>Makalah/Naskah</option>
+                                                            <option value="seminar" {{ $data->model == 'seminar' ? 'selected' : '' }}>Seminar</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group" id="naskah">
                                                         <label><h5>Makalah/Naskah</h5></label>
                                                         <select class="select2 form-control form-control-lg select2-hidden-accessible" name="naskah">
-                                                            <option selected>--- Pilih ---</option>
+                                                            <option value="0" selected>--- Pilih ---</option>
                                                             @foreach (\App\Models\Prosiding\ProsidingNaskah::where('status',true)->get() as $item)
                                                                 <option value="{{ $item->id }}">{{ ucwords($item->judul) }}</option>
                                                             @endforeach
@@ -67,8 +68,8 @@
                                                     </div>
                                                     <div class="form-group" id="seminar">
                                                         <label><h5>Seminar</h5></label>
-                                                        <select class="select2 form-control form-control-lg select2-hidden-accessible" name="naskah">
-                                                            <option selected>--- Pilih ---</option>
+                                                        <select class="select2 form-control form-control-lg select2-hidden-accessible" name="seminar">
+                                                            <option value="0" selected>--- Pilih ---</option>
                                                             @foreach (\App\Models\Prosiding\Event::where('status',true)->get() as $item)
                                                                 <option value="{{ $item->id }}">{{ ucwords($item->judul) }}</option>
                                                             @endforeach
@@ -81,36 +82,35 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                <label><h5>Link Sertifikat Anggota</h5></label>
-                                                                <input type="url" name="sertifikat_anggota" placeholder="https://" class="form-control">
+                                                                <label><h5>Link Sertifikat Anggota</h5></label><br>
+                                                                <a href="{{ $data->sertifikat_anggota }}" class="badge badge-light-primary">{{ $data->sertifikat_anggota ?? 'belum tersedia' }}</a>
                                                             </div>
                                                         </div>
-                                                        <div class="col-6">
+                                                        <div class="col-12">
                                                             <div class="form-group">
-                                                                <label><h5>Link Sertifikat Afiliasi Jurnal</h5></label>
-                                                                <input type="url" name="sertifikat_afiliasi" placeholder="https://" class="form-control">
+                                                                <label><h5>Link Sertifikat Afiliasi Jurnal</h5></label><br>
+                                                                <a href="{{ $data->sertifikat_afiliasi }}" class="badge badge-light-primary">{{ $data->sertifikat_afiliasi ?? 'belum tersedia' }}</a>
                                                             </div>
                                                         </div>
-                                                        <div class="col-6">
+                                                        <div class="col-12">
                                                             <div class="form-group">
-                                                                <label><h5>MOU Afiliasi Jurnal</h5></label>
-                                                                <input type="url" name="mou_afiliasi" placeholder="https://" class="form-control">
+                                                                <label><h5>MOU Afiliasi Jurnal</h5></label><br>
+                                                                <a href="{{ $data->mou_afiliasi }}" class="badge badge-light-primary">{{ $data->mou_afiliasi ?? 'belum tersedia' }}</a>
                                                             </div>
                                                         </div>
-                                                        <div class="col-6">
+                                                        <div class="col-12">
                                                             <div class="form-group">
-                                                                <label><h5>Link KTA Anggota</h5></label>
-                                                                <input type="url" name="kta_anggota" placeholder="https://" class="form-control">
+                                                                <label><h5>Link KTA Anggota</h5></label><br>
+                                                                <a href="{{ $data->kta_url }}" class="badge badge-light-primary">{{ $data->kta_url ?? 'belum tersedia' }}</a>
                                                             </div>
                                                         </div>
-                                                        <div class="col-6">
+                                                        <div class="col-12">
                                                             <div class="form-group">
-                                                                <label><h5>Link SK Anggota</h5></label>
-                                                                <input type="url" name="sk_anggota" placeholder="https://" class="form-control">
+                                                                <label><h5>Link SK Anggota</h5></label><br>
+                                                                <a href="{{ $data->sk_anggota }}" class="badge badge-light-primary">{{ $data->sk_anggota ?? 'belum tersedia' }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary mt-2"><i data-feather="save"></i> SIMPAN</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -147,7 +147,19 @@
 
                             </script>
                             <script>
+
                                 $('#seminar').hide();
+
+                                var select = $('#model').val();
+
+                                if (select == 'seminar') {
+                                    $('#naskah').hide();
+                                    $('#seminar').show();
+                                } else if(select == 'naskah') {
+                                    $('#naskah').show();
+                                    $('#seminar').hide();
+                                }
+
                                 $('#model').on('change', function () {
                                     if (this.value == 'seminar') {
                                         $('#naskah').hide();

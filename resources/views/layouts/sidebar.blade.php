@@ -32,8 +32,6 @@
                         @endphp
                         <li class="nav-item"><a class="d-flex align-items-center" href="{{ $linkasosiasi['data']['group'][0]['url'] }}" target="_blank"><i data-feather="external-link"></i><span class="menu-title text-truncate" data-i18n="User">Jurnal Asosiasi</span></a>
                         </li>
-                        <li class="{{ request()->routeIs('asosiasi.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.upload-naskah') }}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="User">Naskah</span></a>
-                        </li>
                         <li class="{{ request()->routeIs('asosiasi.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.seminar') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="User">Webinar</span></a>
                         </li>
                         <li class="{{ request()->routeIs('asosiasi.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
@@ -51,8 +49,12 @@
             </li>
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Data Asosiasi</span></a>
                 <ul class="menu-content">
-                    <li class="{{ request()->routeIs('asosiasi.naskah') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('asosiasi.naskah') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Naskah</span></a>
+                    <li class="{{ request()->routeIs('asosiasi.upload-naskah') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.upload-naskah') }}"><i data-feather="circle"></i><span class="menu-title text-truncate" data-i18n="User">Naskah Jurnal</span></a>
                     </li>
+                    @role('super admin')
+                    <li class="{{ request()->routeIs('asosiasi.naskah') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('asosiasi.naskah') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Kelola Jurnal</span></a>
+                    </li>
+                    @endrole
                     <li class="{{ request()->routeIs('bidang-ilmu.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('bidang-ilmu.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Bidang Ilmu</span></a>
                     </li>
                     <li class="{{ request()->routeIs('asosiasi.template') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('asosiasi.template') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Template</span></a>
@@ -67,8 +69,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ request()->routeIs('managers.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('managers.index') }}"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Pages">Pengurus</span></a>
-            </li>
+            {{-- <li class="{{ request()->routeIs('managers.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('managers.index') }}"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Pages">Pengurus</span></a>
+            </li> --}}
             <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="Pages">Kerjasama Lembaga</span></a>
             </li>
 

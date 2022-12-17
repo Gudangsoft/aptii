@@ -36,13 +36,7 @@ class PembayaranController extends Controller
 
             $save                   = new ProsidingPembayaran();
             $save->user_id          = auth()->user()->id;
-
-            if($request->category == 2){
-                $save->naskah_id        = $request->naskah;
-            }else{
-                $save->naskah_id        = null;
-            }
-
+            $save->category         = $request->category;
             $save->no_transaksi     = $request->no_transaksi;
             $save->tanggal_bayar    = $request->tanggal_bayar;
             $save->jumlah           = $request->jumlah_bayar;
