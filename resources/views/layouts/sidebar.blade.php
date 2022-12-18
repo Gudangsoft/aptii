@@ -36,6 +36,7 @@
                         </li>
                         <li class="{{ request()->routeIs('asosiasi.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
                         </li>
+                        @role('member|anggota')
                         <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="Pages">Kerjasama</span></a>
                             <ul class="menu-content">
                                 <li class="{{ request()->routeIs('activity.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('activity.index') }}"><i data-feather="circle"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama Kegiatan</span></a>
@@ -44,6 +45,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @endrole
                     @endif
                 @endisset
             <li class="{{ request()->routeIs('asosiasi.bukti-pembayaran') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.bukti-pembayaran') }}"><i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="User">Data Pembayaran</span></a>
@@ -72,6 +74,14 @@
                     <li class="{{ request()->routeIs('asosiasi.nasional') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('asosiasi.nasional') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Link Jurnal Asosiasi</span></a>
                     </li>
                     <li class="{{ request()->routeIs('certificate.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('certificate.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Sertifikat</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="Pages">Kerjasama</span></a>
+                <ul class="menu-content">
+                    <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('activity.index') }}"><i data-feather="circle"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama Kegiatan</span></a>
+                    </li>
+                    <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('journal_collab.index') }}"><i data-feather="circle"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama Jurnal</span></a>
                     </li>
                 </ul>
             </li>

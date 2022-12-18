@@ -42,27 +42,18 @@ class ActivityController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.asosiasi.activity.detail', [
+            'data' => Activity::findOrFail($id)
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        return view('admin.asosiasi.activity.edit', [
+            'data' => Activity::findOrFail($id)
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //

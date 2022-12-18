@@ -38,15 +38,26 @@ class ActivityTable extends Component
             $this->limitPerPage = $this->changeLimitPage;
         }
 
-        $data = ModelsActivity::where('created_by', auth()->user()->id)
-                ->orderByDesc('created_at')
-                ->paginate($this->limitPerPage);
-
-        if($this->search != null){
-            $data = ModelsActivity::where('name', 'like', '%'.$this->search.'%')
-                    ->where('created_by', auth()->user()->id)
+        if(auth()->user()->roles->pluck('name')->implode(',') == 'admin' || auth()->user()->roles->pluck('name')->implode(',') == 'super admin'){
+            $data = ModelsActivity::orderByDesc('created_at')
+                    ->paginate($this->limitPerPage);
+        }else{
+            $data = ModelsActivity::where('created_by', auth()->user()->id)
                     ->orderByDesc('created_at')
                     ->paginate($this->limitPerPage);
+        }
+
+        if($this->search != null){
+            if(auth()->user()->roles->pluck('name')->implode(',') == 'admin' || auth()->user()->roles->pluck('name')->implode(',') == 'super admin'){
+                $data = ModelsActivity::where('name', 'like', '%'.$this->search.'%')
+                        ->orderByDesc('created_at')
+                        ->paginate($this->limitPerPage);
+            }else{
+                $data = ModelsActivity::where('name', 'like', '%'.$this->search.'%')
+                        ->where('created_by', auth()->user()->id)
+                        ->orderByDesc('created_at')
+                        ->paginate($this->limitPerPage);
+            }
         }
 
         $this->emit('postStore');
@@ -68,7 +79,7 @@ class ActivityTable extends Component
 
     public function selectAll(){
         if($this->selectAll == true){
-            $this->selectData = JobsApplied::pluck('id');
+            $this->selectData = ModelsActivity::pluck('id');
             $this->statusSelected = true;
         }else{
             $this->selectData = [];

@@ -41,8 +41,10 @@
                                             Actions
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(0)">Hidden</a>
-                                            <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Show</a>
+                                            @role('admin|super admin')
+                                                <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(1)">Diterima</a>
+                                                <a class="dropdown-item" href="javascript:void(0);" wire:click="updateStatus(0)">Pending</a>
+                                            @endrole
                                             <a class="dropdown-item" href="javascript:void(0);" wire:click="deleteSelected()">Delete</a>
                                         </div>
                                     </div>
@@ -83,6 +85,7 @@
                                     <th>Anggaran</th>
                                     <th>No Rekening</th>
                                     <th>Oleh</th>
+                                    <th>Status</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -110,13 +113,28 @@
                                         <td>
                                             <span class="badge badge-light-primary mr-1"> {{ ucfirst($row->user->name) }}</span>
                                         </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-{{ $row->status == 1 ? 'warning' : 'secondary' }} waves-effect waves-float waves-light">{{ $row->status == 1 ? 'DITERIMA' : 'PENDING' }}</button>
+                                                @role('admin|super admin')
+                                                <button type="button" class="btn btn-sm btn-dark dropdown-toggle dropdown-toggle-split waves-effect waves-float waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" style="">
+                                                    <h6 class="dropdown-header">Ubah Status</h6>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click='updateStatusSingle({{ $row->id}}, 1)'><i data-feather='check'></i> Terima</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click='updateStatusSingle({{ $row->id}}, 0)'><i data-feather='alert-circle'></i> Pending</a>
+                                                </div>
+                                                @endrole
+                                            </div>
+                                        </td>
                                         <td class="text-right">
                                             <div class="btn-group">
                                                 <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Select
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                                    <a class="dropdown-item" href="#">Detail</a>
+                                                    <a class="dropdown-item" href="{{ route('activity.show', $row->id) }}">Detail</a>
                                                     <a class="dropdown-item" href="{{ route('activity.edit', $row->id) }}">Edit</a>
                                                     <a class="dropdown-item" wire:click="deleteSingleSelected({{ $row->id }})">Delete</a>
                                                 </div>
