@@ -84,6 +84,8 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
             Route::resource('upload-naskah', NaskahController::class);
             Route::resource('upload-pembayaran', PembayaranController::class);
             Route::resource('activity', ActivityController::class);
+            Route::resource('journal_collab', JournalCollabController::class);
+
 
             Route::get('info', [AsosiasiController::class, 'info'])->name('asosiasi.info');
             Route::get('info/{slug}', [AsosiasiController::class, 'infoDetail'])->name('asosiasi.info-detail');
@@ -110,7 +112,6 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
                 Route::resource('certificate', Certificate::class);
                 Route::resource('rekening', RekeningController::class);
                 Route::resource('managers', ManagerController::class);
-                Route::resource('journal_collab', JournalCollabController::class);
 
             });
         });

@@ -18,4 +18,8 @@ class JournalCollaboration extends Model
     public function getImageUrlAttribute(){
         return asset('storage/images/cover_journal/mid/'.$this->image);
     }
+
+    public function getPaymentImageAttribute(){
+        return asset('storage/images/cover_journal/mid/'.$this->image);
+    }
 }

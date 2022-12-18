@@ -103,7 +103,9 @@ class JournalCollabController extends Controller
 
     public function show($id)
     {
-        //
+        return view('admin.asosiasi.journal-collabs.detail', [
+            'data' => JournalCollaboration::findOrFail($id)
+        ]);
     }
 
     public function edit($id)

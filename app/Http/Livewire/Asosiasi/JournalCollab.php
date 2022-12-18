@@ -38,15 +38,26 @@ class JournalCollab extends Component
             $this->limitPerPage = $this->changeLimitPage;
         }
 
-        $data = JournalCollaboration::where('created_by', auth()->user()->id)
-                ->orderByDesc('created_at')
+        if(auth()->user()->roles->pluck('name')->implode(',') == 'admin' || auth()->user()->roles->pluck('name')->implode(',') == 'super admin'){
+            $data = JournalCollaboration::orderByDesc('created_at')
                 ->paginate($this->limitPerPage);
-
-        if($this->search != null){
-            $data = JournalCollaboration::where('title', 'like', '%'.$this->search.'%')
-                    ->where('created_by', auth()->user()->id)
+        }else{
+            $data = JournalCollaboration::where('created_by', auth()->user()->id)
                     ->orderByDesc('created_at')
                     ->paginate($this->limitPerPage);
+        }
+
+        if($this->search != null){
+            if(auth()->user()->roles->pluck('name')->implode(',') == 'admin' || auth()->user()->roles->pluck('name')->implode(',') == 'super admin'){
+                $data = JournalCollaboration::where('title', 'like', '%'.$this->search.'%')
+                        ->orderByDesc('created_at')
+                        ->paginate($this->limitPerPage);
+            }else{
+                $data = JournalCollaboration::where('title', 'like', '%'.$this->search.'%')
+                        ->where('created_by', auth()->user()->id)
+                        ->orderByDesc('created_at')
+                        ->paginate($this->limitPerPage);
+            }
         }
 
         $this->emit('postStore');
@@ -68,7 +79,7 @@ class JournalCollab extends Component
 
     public function selectAll(){
         if($this->selectAll == true){
-            $this->selectData = JobsApplied::pluck('id');
+            $this->selectData = JournalCollaboration::pluck('id');
             $this->statusSelected = true;
         }else{
             $this->selectData = [];
@@ -92,6 +103,19 @@ class JournalCollab extends Component
         $this->selectData = [];
         $this->selectAll = false;
         $this->statusSelected = false;
+    }
+
+
+    public function updateStatusSingle($id, $value){
+        JournalCollaboration::query()
+            ->where('id', $id)
+            ->update([
+                'status' => $value
+            ]);
+
+        $this->alert('success', 'Data berhasil update.', [
+            'position' => 'center',
+        ]);
     }
 
     public function create()
