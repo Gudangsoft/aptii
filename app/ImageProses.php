@@ -586,4 +586,16 @@ class ImageProses {
             break;
         }
     }
+
+    public static function uploadImage($dataFile){
+        $file = $dataFile['file'];
+        $imageExtension = $file->getClientOriginalExtension();
+        $destinationPath = $dataFile['path'];
+        $modul = $dataFile['modul'];
+
+        $fileName = time().'.'.$imageExtension;
+        $file->move($destinationPath,$fileName);
+
+        return ['status'=>true,'name'=>$fileName];
+    }
 }

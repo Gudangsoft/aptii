@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Asosiasi\AsosiasiController;
 use App\Http\Controllers\Admin\Asosiasi\JournalCollabController;
 use App\Http\Controllers\Admin\Asosiasi\ManagerController;
+use App\Http\Controllers\Admin\ImageCategoryController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\Prosiding\AgendaController;
@@ -111,6 +113,8 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
                 Route::resource('agenda', AgendaController::class);
                 Route::resource('certificate', Certificate::class);
                 Route::resource('rekening', RekeningController::class);
+                Route::resource('images', ImageController::class);
+                Route::resource('imagecategories', ImageCategoryController::class);
                 Route::resource('managers', ManagerController::class);
 
             });

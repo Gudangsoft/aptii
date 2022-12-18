@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Configuration;
+use App\Models\Image;
 use App\Models\Prosiding\CustomerCare;
 use App\Models\Prosiding\ProsidingNaskah;
 use App\Models\User;
@@ -22,7 +23,16 @@ class HomeController extends Controller
             'naskah' => ProsidingNaskah::where('status', true)->get()->count(),
         ];
         // dd(PagesController::prosidingInfo());
+        $banners = array([
+            'header' => Image::where('status', true)->where('category_id', 1)->orderByDesc('created_at')->get(),
+            'header_right_top' => Image::where('status', true)->where('category_id', 2)->orderByDesc('created_at')->get(),
+            'header_right_bottom' => Image::where('status', true)->where('category_id', 3)->orderByDesc('created_at')->get(),
+            'home_center_left' => Image::where('status', true)->where('category_id', 5)->orderByDesc('created_at')->get(),
+            'home_center_right' => Image::where('status', true)->where('category_id', 6)->orderByDesc('created_at')->get(),
+        ]);
+
         return view('client.home', [
+            'banner'        => $banners,
             'recent'        => PagesController::recentArticles(4),
             'headline'      => PagesController::headlineArticles(),
             'events'        => PagesController::events(),
