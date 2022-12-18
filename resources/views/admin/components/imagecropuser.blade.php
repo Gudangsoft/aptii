@@ -43,7 +43,7 @@
         maxImageHeight: '2100',
         browseLabel: "Pilih Image",
         mainClass: "input-group",
-        defaultPreviewContent: '<img src="{{ $data['user']['imagePath'] ?? 'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png'}}" style="width:100%;" alt="default">',
+        defaultPreviewContent: '<img src="{{ $data->imageUrl ?? 'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png'}}" style="width:100%;" alt="default">',
         browseIcon: "<i class=\"fa fa-picture-o\"></i> ",
         allowedFileExtensions: ["jpg", "png", "gif", "jpeg", "svg"]
     }).on('fileloaded', function(event, file, previewId, index, reader){
