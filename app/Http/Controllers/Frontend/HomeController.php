@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Configuration;
 use App\Models\Image;
+use App\Models\Post\PostArticles;
 use App\Models\Prosiding\CustomerCare;
 use App\Models\Prosiding\ProsidingNaskah;
 use App\Models\User;
@@ -18,7 +19,7 @@ class HomeController extends Controller
     public function index(){
         self::meta('Beranda');
         $statistics = [
-            'posts' => Article::where('status', true)->get()->count(),
+            'posts' => PostArticles::where('status', true)->get()->count(),
             'users' => User::where('status', true)->get()->count(),
             'naskah' => ProsidingNaskah::where('status', true)->get()->count(),
         ];
