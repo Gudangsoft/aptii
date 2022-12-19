@@ -1,7 +1,7 @@
 
 (function ($) {
   "use strict";
-  
+
   //  Main Menu Offcanvas
   $('.primary-menu').find('li a').each(function () {
     if ($(this).next().length > 0) {
@@ -9,7 +9,7 @@
     }
   });
 
- 
+
 
     // expands the dropdown menu on each click
     $('.primary-menu').find('li .menu-trigger').on('click', function (e) {
@@ -18,7 +18,7 @@
       $(this).find("i").toggleClass("fa-angle-up fa-angle-down");
     });
 
-  
+
 
   // check browser width in real-time
   function breakpointCheck() {
@@ -113,9 +113,9 @@ $(window).scroll(function () {
       $('.navbar-sticky').removeClass('menu_fixed animated fadeInDown');
     }
   });
- 
-  
-  
+
+
+
 
 // Testimonial layout 1
 $('.testimonials-slides').owlCarousel({
@@ -226,7 +226,7 @@ $('.popup').magnificPopup({
     removalDelay: 300,
   });
 
-  
+
 
 
 
@@ -237,7 +237,7 @@ $('.popup').magnificPopup({
 	      time: 1000
 	  });
 
-	    
+
 
   /* ---------------------------------------------
         Course filtering
