@@ -34,7 +34,7 @@ class MetaController extends Controller
             ->setDescription(Str::words(html_entity_decode($data->content), 15))
             ->setUrl(config('app.url').'/post/'.$data->slug)
             ->setLocale('id_ID')
-            ->addImage(asset('frontend').'/articles/thumbnail/'.$data->image);
+            ->addImage(asset('storage/pictures/post/16_9/mid/'.$data->image));
 
         $og->toHtml();
         Meta::registerPackage($og);
@@ -46,7 +46,7 @@ class MetaController extends Controller
         ->setTitle($data->title)
         ->setDescription(Str::words(html_entity_decode($data->content), 15))
         ->setCreator('@prosiding_app')
-        ->setImage(asset('frontend').'/articles/thumbnail/'.$data->image)
+        ->setImage(asset('storage/pictures/post/16_9/mid/'.$data->image))
         ->addMeta('image:alt', $data->title);
 
         $card->toHtml();

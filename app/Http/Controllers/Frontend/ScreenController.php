@@ -28,7 +28,8 @@ class ScreenController extends Controller
             'data'          => PageController::article($slug),
             'popular'       => PagesController::popularArticle(),
             'recent'        => PagesController::recentArticles(4),
-            'agendas'       => PagesController::agenda(),
+            'activities'    => PagesController::activities(),
+            'agenda'        => PagesController::agenda(),
             'tags'          => PagesController::tags(),
         ]);
     }

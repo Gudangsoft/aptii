@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-8">
                 <div class="heading mb-2 mt-4 text-center">
-                    <h2 class="text-uppercase">Artikel Asosiasi</h2>
+                    <h4 class="text-uppercase">Artikel Asosiasi</h4>
                 </div>
             </div>
         </div>
