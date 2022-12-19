@@ -35,6 +35,6 @@ class Image extends Model
 
     public function getImageAttribute($value)
     {
-        return '/storage/images/iklan/' . $value;
+        return asset('/storage/images/iklan/'.$value);
     }
 }
