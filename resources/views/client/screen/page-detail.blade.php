@@ -30,39 +30,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-xl-4">
-                    <div class="blog-sidebar mt-5 mt-lg-0">
-                        <div class="widget widget_latest_post">
-                            <h4 class="widget-title">Artikel Populer</h4>
-                            <div class="recent-posts">
-                                @forelse ($popular as $item)
-                                    <div class="single-latest-post">
-                                        <div class="widget-thumb">
-                                            <a href="{{ route('post.detail', $item->slug) }}"><img src="{{ asset(config('app.POST_MID')).'/'.$item->image }}" alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="widget-content">
-                                            <h6> <a href="{{ route('post.detail', $item->slug) }}">{{ $item->title }}</a></h6>
-                                            <span><i class="fa fa-calendar-times"></i>{{ $item->date }}</span>
-                                        </div>
-                                    </div>
-                                @empty
-                                    <h3>Coming Soon.</h3>
-                                @endforelse
-                            </div>
-                        </div>
-
-
-                        {{-- <div class="widget widget_categories">
-                            <h4 class="widget-title">Categories</h4>
-                            <ul>
-                            <li class="cat-item"><a href="#">Web Design</a>(4)</li>
-                            <li class="cat-item"><a href="#">Wordpress</a>(14)</li>
-                            <li class="cat-item"><a href="#">Marketing</a>(24)</li>
-                            <li class="cat-item"><a href="#">Design & dev</a>(6)</li>
-                            </ul>
-                        </div> --}}
-
-
-                    </div>
+                    @include('client.sections.sidebar')
                 </div>
             </div>
         </div>
