@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\Prosiding\Agenda;
 use App\Models\Prosiding\Event;
 use App\Models\Tag;
@@ -16,11 +17,8 @@ use RobertSeghedi\News\Models\Category;
 class PagesController extends Controller
 {
     public static function articles($limit, $page = null){
-        $data = Cache::remember("articles-$page", 60 * 60 * 12, function () use($limit) {
-            $rows = PostArticle::orderByDesc('created_at')->paginate($limit)->withQueryString();
-            return $rows;
-        });
-        return $data;
+        $rows = PostArticle::orderByDesc('created_at')->paginate($limit)->withQueryString();
+        return $rows;
     }
 
     public static function articlesTag($limit, $slug){
@@ -80,8 +78,12 @@ class PagesController extends Controller
         return $rows;
     }
 
-    public static function  agenda(){
+    public static function agenda(){
         return Agenda::orderByDesc('created_at')->where('status', true)->get();
+    }
+
+    public static function  activities(){
+        return Activity::orderByDesc('created_at')->where('status', true)->get();
     }
 
     public static function tags(){

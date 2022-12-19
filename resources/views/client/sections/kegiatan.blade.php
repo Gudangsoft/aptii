@@ -10,10 +10,10 @@
         <div class="list-group">
             @forelse ($data as $item)
                 @if ($loop->index < 6)
-                    <button type="button" class="list-group-item list-group-item-action {{ $loop->first ? 'active' : '' }}"><a href="{{ $item->url }}" class="text-{{ $loop->first ? 'white' : 'dark' }}"><i class="far fa-calendar-edit"></i> - {{ \Illuminate\Support\Str::words($item->title, 15) }}</a> | <span class="fw-light">{{ $item->dateFormat }}</span></button>
+                    <button type="button" class="list-group-item list-group-item-action {{ $loop->first ? 'active' : '' }}"><a href="{{ $item->url }}" class="text-{{ $loop->first ? 'white' : 'dark' }}"><i class="fas fa-check-circle"></i> - {{ \Illuminate\Support\Str::words($item->name, 15) }} | <span class="fw-light">{{ $item->institution }}</span></a></button>
                 @endif
                 @if ($loop->index == 5)
-                    <button type="button" class="list-group-item list-group-item-action text-end"><a href="/agenda" class="text-primary">Lainnya</a></button>
+                    <button type="button" class="list-group-item list-group-item-action text-end"><a href="/kegiatan" class="text-primary">Lainnya</a></button>
                 @endif
             @empty
                 <button type="button" class="list-group-item list-group-item-action">Coming Soon...</button>

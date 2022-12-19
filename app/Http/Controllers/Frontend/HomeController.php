@@ -38,6 +38,7 @@ class HomeController extends Controller
             'headline'      => PagesController::headlineArticles(),
             'events'        => PagesController::events(),
             'agenda'        => PagesController::agenda(),
+            'activities'    => PagesController::activities(),
             'prosidingInfo' => PagesController::prosidingInfo(),
             'posts'         => PagesController::articles(6, null),
             'statistics'    => $statistics,

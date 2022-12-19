@@ -3,6 +3,13 @@
     @include('client.layouts.banner')
     {{-- @include('client.sections.service') --}}
     @include('client.sections.posts', ['data' => $posts])
-    @include('client.sections.agenda', ['title' => 'Agenda', 'data' => $agenda])
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            @include('client.sections.agenda', ['title' => 'Agenda', 'data' => $agenda])
+        </div>
+        <div class="col-lg-6 col-md-6">
+            @include('client.sections.kegiatan', ['title' => 'Kegiatan', 'data' => $activities])
+        </div>
+    </div>
 
 </x-frontend-master>

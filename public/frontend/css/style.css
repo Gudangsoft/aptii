@@ -21,9 +21,10 @@ Version      : 1.0
 -------------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 :root {
-  --theme-heading-font: 'Gilroy', sans-serif;
-  --theme-secondary-font:'Jost', sans-serif;
+  --theme-heading-font: 'Montserrat', sans-serif;
+  --theme-secondary-font:'Montserrat', sans-serif;
   --theme-primary-color: #F14D5D;
   --theme-secondary-color: #015ABD;
   --theme-heading-color: #14133b;
