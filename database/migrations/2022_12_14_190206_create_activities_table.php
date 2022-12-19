@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('institution');
+            $table->text('description')->nullable();
             $table->timestamp('date');
             $table->bigInteger('budget');
             $table->bigInteger('no_rekening');

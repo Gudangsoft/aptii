@@ -57,7 +57,6 @@
                                                 <span class="badge badge-light-dark">{{ $data->institution }}</span>
                                             </div>
                                         </div>
-
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
                                                 <h5>Date & Time</h5>
@@ -84,6 +83,12 @@
                                                 @else
                                                     <span class="badge badge-light-secondary">PENDING</span>
                                                 @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group mb-2">
+                                                <h5>Catatan</h3>
+                                                <tt>{!! $data->description !!}</tt>
                                             </div>
                                         </div>
                                     </div>

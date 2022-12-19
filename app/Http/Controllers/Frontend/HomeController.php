@@ -38,7 +38,7 @@ class HomeController extends Controller
             'events'        => PagesController::events(),
             'agenda'        => PagesController::agenda(),
             'prosidingInfo' => PagesController::prosidingInfo(),
-            'posts'         => PagesController::articles(12, null),
+            'posts'         => PagesController::articles(6, null),
             'statistics'    => $statistics,
             'customerCare'  => CustomerCare::where('status', true)->get(),
         ]);

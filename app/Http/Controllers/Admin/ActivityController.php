@@ -34,12 +34,6 @@ class ActivityController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return view('admin.asosiasi.activity.detail', [
@@ -56,15 +50,24 @@ class ActivityController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        try {
+            Activity::where('id', $id)->update([
+                'name' => $request->name,
+                'institution' => $request->institution,
+                'date' => $request->date,
+                'budget' => $request->budget,
+                'no_rekening' => $request->no_rekening,
+                'description' => $request->description,
+                'status' => $request->status,
+            ]);
+            Alert::success('Success', 'Data kegiatan berhasil ditambahkan.');
+            return redirect()->route('activity.index');
+        } catch (Exception $error) {
+            Alert::toast($error->getMessage(), 'error');
+            return redirect()->back();
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

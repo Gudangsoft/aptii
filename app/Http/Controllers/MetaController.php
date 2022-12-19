@@ -23,7 +23,7 @@ class MetaController extends Controller
                 ->setKeywords(explode(',', $data->tags))
                 ->setRobots('nofollow,noindex')
                 ->addMeta('author', [
-                    'content' => $data->getUser->name,
+                    'content' => 'aptii',
                 ]);
 
         $og = new \Butschster\Head\Packages\Entities\OpenGraphPackage('og_meta');
@@ -65,7 +65,7 @@ class MetaController extends Controller
                 ->setKeywords($data->judul)
                 ->setRobots('nofollow,noindex')
                 ->addMeta('author', [
-                    'content' => $data->getUser->name,
+                    'content' => 'aptii',
                 ]);
 
         $og = new \Butschster\Head\Packages\Entities\OpenGraphPackage('og_meta');

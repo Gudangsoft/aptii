@@ -19,6 +19,7 @@ class ActivityRequest extends FormRequest
             'date' => 'required',
             'budget' => 'required|integer',
             'no_rekening' => 'required',
+            'description' => '',
         ];
     }
 }

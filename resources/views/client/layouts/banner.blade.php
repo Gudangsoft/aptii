@@ -1,7 +1,6 @@
 <section class="banner banner-style-1">
     <div class="container">
         <div class="row">
-            {{-- <div class="col-md-9 col-sm-12 mb-2"> --}}
             <div class="col-md-9 col-sm-12">
                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -24,7 +23,6 @@
                 </div>
             </div>
             <div class="col-md-3 d-none d-md-block hidden_mobile">
-            {{-- <div class="col-md-3 col-sm-12"> --}}
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @foreach ($banner[0]['header_right_top'] as $item)
@@ -65,5 +63,5 @@
                 </div>
             </div>
         </div>
-    </div> <!-- / .container -->
+    </div>
 </section>

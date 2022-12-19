@@ -80,7 +80,7 @@ class PagesController extends Controller
         return $rows;
     }
 
-    public static function agenda(){
+    public static function  agenda(){
         return Agenda::orderByDesc('created_at')->where('status', true)->get();
     }
 

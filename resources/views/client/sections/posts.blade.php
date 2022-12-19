@@ -27,11 +27,13 @@
                     </div>
                 </div>
             @empty
-                <div class="col-12 d-flex jutify-content-cente">
+                <div class="col-12 d-flex justify-content-center">
                     <h3>Coming Soon..</h3>
                 </div>
             @endforelse
-
+            <div class="col-12 d-flex justify-content-center">
+                <a href="/posts" class="btn btn-sm btn-primary">Selengkapnya</a>
+            </div>
         </div>
 
     </div>

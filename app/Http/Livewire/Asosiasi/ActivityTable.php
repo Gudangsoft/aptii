@@ -127,6 +127,19 @@ class ActivityTable extends Component
         ]);
     }
 
+
+    public function updateStatusSingle($id, $value){
+        ModelsActivity::query()
+            ->where('id', $id)
+            ->update([
+                'status' => $value
+            ]);
+
+        $this->alert('success', 'Data berhasil update.', [
+            'position' => 'center',
+        ]);
+    }
+
     public function deleteConfirmed(){
         ModelsActivity::findOrFail($this->selected_id)->delete();
         $this->alert('success', 'Data berhasil dihapus', [

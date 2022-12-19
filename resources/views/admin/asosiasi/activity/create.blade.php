@@ -52,7 +52,7 @@
                                                 <div class="form-group mb-2">
                                                     <h5>Nama Kegiatan</h3>
                                                     <input type="hidden" name="created_by" value="{{ auth()->user()->id }}" class="form-control">
-                                                    <input type="hidden" name="status" value="1" class="form-control">
+                                                    <input type="hidden" name="status" value="0" class="form-control">
                                                     <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
                                                 </div>
                                             </div>
@@ -62,7 +62,6 @@
                                                     <input type="text" name="institution" id="institution" value="{{ old('institution') }}" class="form-control">
                                                 </div>
                                             </div>
-
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group mb-2">
                                                     <label for="fp-date-time">Date & Time</label>
@@ -79,6 +78,12 @@
                                                 <div class="form-group mb-2">
                                                     <h5>No Rekening</h3>
                                                     <input type="number" name="no_rekening" id="no_rekening" value="{{ old('no_rekening') }}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-12">
+                                                <div class="form-group mb-2">
+                                                    <h5>Catatan</h3>
+                                                    <textarea name="description" id="description" class="form-control" rows="5">{{ old('description') }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-12 mt-5 d-flex justify-content-end">

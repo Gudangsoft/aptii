@@ -82,6 +82,12 @@
                                                     <input type="number" name="no_rekening" id="no_rekening" value="{{ $data->no_rekening }}" class="form-control">
                                                 </div>
                                             </div>
+                                            <div class="col-md-12 col-12">
+                                                <div class="form-group mb-2">
+                                                    <h5>Catatan</h3>
+                                                    <textarea name="description" id="description" class="form-control" rows="5">{{ $data->description }}</textarea>
+                                                </div>
+                                            </div>
                                             <div class="col-12 mt-5 d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary mr-1">Save Changes</button>
                                                 <a href="{{ route('activity.index') }}" class="btn btn-outline-secondary">Cancel</a>
