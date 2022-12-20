@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Models\Admin\Configuration;
+use App\Models\JournalCollaboration;
 use App\Models\Prosiding\ProsidingNaskah;
 use Butschster\Head\Facades\Meta;
 use RobertSeghedi\News\Models\Article;
@@ -44,10 +45,14 @@ class ScreensController extends Controller
     public function journals(){
         HomeController::meta('Jurnal');
 
-        $data = ProsidingNaskah::orderByDesc('created_at')->paginate(12);
+        // $data = ProsidingNaskah::orderByDesc('created_at')->paginate(12);
+        $data = JournalCollaboration::orderByDesc('created_at')->paginate(12);
 
         return view('client.screens.journals', [
-            'data' => $data
+            'data'          => $data,
+            'popular'       => PagesController::popularArticle(),
+            'activities'    => PagesController::activities(),
+            'agenda'        => PagesController::agenda(),
         ]);
     }
 

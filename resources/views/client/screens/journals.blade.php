@@ -16,43 +16,28 @@
     </section>
     <section class="section-padding page" >
         <div class="container">
-            <div class="row justify-content-center">
-                @forelse ($data as $item)
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="course-grid course-style-3">
-                            <div class="course-header">
-                                <div class="course-thumb">
-                                    <img src="{{ asset('frontend') }}/images/course/journal.png" alt="" class="img-fluid">
-                                </div>
-                            </div>
-
-                            <div class="course-content">
-                                <div class="course-meta d-flex justify-content-between mb-20">
-                                    <span class="category">{{ $item->getBidangIlmu->judul }}</span>
-                                </div>
-                                <h3 class="course-title mb-20"> <a href="{{ route('journal.detail', ['id' => $item->id]) }}">{{ $item->judul }}</a> </h3>
-
-                                <div class="course-meta-info">
-                                    <div class="d-flex align-items-center">
-                                        <div class="author me-3">
-                                            <img src="{{ asset('storage/images/users').'/'.$item->getUser->profile_photo_path }}" alt="" class="img-fluid">
-                                            Oleh <a href="{{ route('author', ['username' => $item->getUser->username]) }}">{{ $item->getUser->name }}</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+            <div class="row">
+                <div class="col-lg-8 col-xl-8">
+                    <div class="post-single">
+                        <ul class="list-group">
+                            @forelse ($data as $item)
+                            <li class="list-group-item {{ $loop->first ? 'list-group-item-action list-group-item-primary' : '' }}">
+                                <a href="{{ route('journal.detail', ['judul' => $item->slug]) }}" class="text-dark"><i class="fas fa-journal-whills text-primary"></i> - {{ $item->title }}</a>
+                            </li>
+                            @empty
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Coming Soon.
+                                <span class="badge bg-primary rounded-pill">2</span>
+                            </li>
+                            @endforelse
+                        </ul>
                     </div>
-                @empty
-                    <div class="col-12">
-                        <h3>Coming Soon...</h3>
-                    </div>
-                @endforelse
-
-
-
+                  </div>
+                <div class="col-lg-4 col-xl-4">
+                    @include('client.sections.sidebar')
+                </div>
             </div>
+            {{-- {{ route('journal.detail', ['id' => $item->id]) }} --}}
         </div>
         <!--course-->
     </section>

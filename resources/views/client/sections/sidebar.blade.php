@@ -1,6 +1,6 @@
 <div class="blog-sidebar mt-5 mt-lg-0">
     <div class="widget widget_latest_post">
-        <h4 class="widget-title">Artikel Populer</h4>
+        <h4 class="widget-title text-uppercase">Artikel Populer</h4>
         <div class="recent-posts">
             @forelse ($popular as $item)
                 <div class="single-latest-post">

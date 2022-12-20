@@ -1,8 +1,8 @@
 <section class="section-padding pt-0 mt-3">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-xl-8">
-                <div class="heading mb-2 mt-4 text-center">
+                <div class="heading mb-2 mt-4 text-start">
                     <h4 class="text-uppercase">{{ $title }}</h4>
                 </div>
             </div>
