@@ -66,6 +66,7 @@ Route::get('/posts', [ScreensController::class, 'posts']);
 Route::get('/post/{slug}', [ScreenController::class, 'post'])->name('post.detail');
 Route::get('/jurnal', [ScreensController::class, 'journals']);
 Route::get('/jurnal-detail', [ScreenController::class, 'journal'])->name('journal.detail');
+Route::get('/kegiatan', [ScreenController::class, 'kegiatan'])->name('kegiatan.detail');
 Route::get('/contact', [ScreenController::class, 'contact']);
 Route::get('/author', [ScreenController::class, 'author'])->name('author');
 

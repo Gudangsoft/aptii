@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,10 @@ class Activity extends Model
 
     public function getUrlAttribute()
     {
-        return '/kegiatan/'.$this->slug;
+        return route('kegiatan.detail', ['name' => $this->slug]);
+    }
+
+    public function getDateCreateAttribute(){
+        return Carbon::parse($this->created_at)->isoFormat('dddd, D MMMM Y');
     }
 }

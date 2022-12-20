@@ -14,9 +14,18 @@
                                 <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>{{ $data->date }}</span>
                             </div>
                             <h3 class="post-title">{!! $data->title !!}</h3>
-                            <div class="d-flex justify-content-center">
-                                <a href="{{ $data->link_journal }}" class="btn btn-sm btn-primary"><i class="fa fa-link"></i> INDEX JURNAL</a>
-                            </div>
+                            <table>
+                                <tr>
+                                    <td class="fw-bold">Afiliasi</td>
+                                    <td>:</td>
+                                    <td>{{ $data->afiliasi }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Index Jurnal</td>
+                                    <td>:</td>
+                                    <td><a href="{{ $data->link_journal }}" class="bdage bg-primary p-2 rounded text-white"><i class="fa fa-link"></i> INDEX JURNAL</a></td>
+                                </tr>
+                            </table>
 
                             @include('client.sections.journal-linkages', ['title' => 'Jurnal Terkait', 'data' => $journals])
 

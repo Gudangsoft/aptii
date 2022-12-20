@@ -27,17 +27,19 @@
                             @empty
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Coming Soon.
-                                <span class="badge bg-primary rounded-pill">2</span>
                             </li>
                             @endforelse
                         </ul>
+                        <div class="d-flex justify-content-center mt-3">
+                            {{ $data->links() }}
+                        </div>
                     </div>
                   </div>
                 <div class="col-lg-4 col-xl-4">
                     @include('client.sections.sidebar')
                 </div>
+
             </div>
-            {{-- {{ route('journal.detail', ['id' => $item->id]) }} --}}
         </div>
         <!--course-->
     </section>

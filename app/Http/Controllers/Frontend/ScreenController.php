@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MetaController;
+use App\Models\Activity;
 use App\Models\Admin\Configuration;
 use App\Models\JournalCollaboration;
 use App\Models\PageWeb;
@@ -97,6 +98,20 @@ class ScreenController extends Controller
         return view('client.screen.page-detail', [
             'data'          => $data,
             'popular'       => PagesController::popularArticle(),
+        ]);
+
+    }
+
+    public function kegiatan(Request $request){
+        $data = Activity::where('slug', $request->name)->first();
+        HomeController::meta($data->name);
+
+        return view('client.screen.kegiatan-detail', [
+            'data' => $data,
+            'popular'       => PagesController::popularArticle(),
+            'activities'    => PagesController::activities(),
+            'agenda'        => PagesController::agenda(),
+            'journals'      => PagesController::kegiatanLinkages($data->created_by, $data->id),
         ]);
 
     }

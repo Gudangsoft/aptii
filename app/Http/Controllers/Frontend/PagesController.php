@@ -107,12 +107,21 @@ class PagesController extends Controller
         return $data;
     }
 
-    public static function  journalLinkages($userId, $id){
+    public static function journalLinkages($userId, $id){
         return JournalCollaboration::where('created_by', $userId)
                                     ->whereNot('id', $id)
                                     ->where('status', true)
                                     ->orderByDesc('created_at')
                                     ->paginate(10)
                                     ->withQueryString();
+    }
+
+    public static function kegiatanLinkages($userId, $id){
+        return Activity::where('created_by', $userId)
+                        ->whereNot('id', $id)
+                        ->where('status', true)
+                        ->orderByDesc('created_at')
+                        ->paginate(10)
+                        ->withQueryString();
     }
 }
