@@ -1,4 +1,4 @@
-<section class="section-padding pt-0 mt-3">
+<section class="section-padding pt-0">
     <div class="container">
         <div class="row">
             <div class="col-xl-8">

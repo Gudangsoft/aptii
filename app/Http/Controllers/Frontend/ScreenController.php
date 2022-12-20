@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MetaController;
 use App\Models\Admin\Configuration;
+use App\Models\JournalCollaboration;
 use App\Models\PageWeb;
 use App\Models\Post\PostAction;
 use App\Models\Post\PostArticles;
@@ -26,8 +27,8 @@ class ScreenController extends Controller
         PostAction::counter($slug);
         return view('client.screen.post', [
             'data'          => PageController::article($slug),
-            'popular'       => PagesController::popularArticle(),
             'recent'        => PagesController::recentArticles(4),
+            'popular'       => PagesController::popularArticle(),
             'activities'    => PagesController::activities(),
             'agenda'        => PagesController::agenda(),
             'tags'          => PagesController::tags(),
@@ -76,11 +77,15 @@ class ScreenController extends Controller
     }
 
     public function journal(Request $request){
-        $data = ProsidingNaskah::findOrFail($request->id);
-        HomeController::meta($data->judul);
+        $data = JournalCollaboration::where('slug', $request->judul)->first();
+        HomeController::meta($data->title);
 
         return view('client.screen.journal-detail', [
-            'data' => $data
+            'data' => $data,
+            'popular'       => PagesController::popularArticle(),
+            'activities'    => PagesController::activities(),
+            'agenda'        => PagesController::agenda(),
+            'journals'      => PagesController::journalLinkages($data->created_by, $data->id),
         ]);
 
     }

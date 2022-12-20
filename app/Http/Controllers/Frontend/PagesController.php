@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use App\Models\JournalCollaboration;
 use App\Models\Prosiding\Agenda;
 use App\Models\Prosiding\Event;
 use App\Models\Tag;
@@ -104,5 +105,14 @@ class PagesController extends Controller
             return $rows;
         });
         return $data;
+    }
+
+    public static function  journalLinkages($userId, $id){
+        return JournalCollaboration::where('created_by', $userId)
+                                    ->whereNot('id', $id)
+                                    ->where('status', true)
+                                    ->orderByDesc('created_at')
+                                    ->paginate(10)
+                                    ->withQueryString();
     }
 }

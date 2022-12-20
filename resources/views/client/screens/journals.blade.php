@@ -4,10 +4,10 @@
           <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-8">
               <div class="title-block">
-                <h1>Jurnal</h1>
+                <h1>Jurnal Afiliasi</h1>
                 <ul class="header-bradcrumb justify-content-center">
                   <li><a href="/">Home</a></li>
-                  <li class="active" aria-current="page">Jurnal</li>
+                  <li class="active" aria-current="page">Jurnal Afiliasi</li>
                 </ul>
               </div>
             </div>
@@ -22,7 +22,7 @@
                         <ul class="list-group">
                             @forelse ($data as $item)
                             <li class="list-group-item {{ $loop->first ? 'list-group-item-action list-group-item-primary' : '' }}">
-                                <a href="{{ route('journal.detail', ['judul' => $item->slug]) }}" class="text-dark"><i class="fas fa-journal-whills text-primary"></i> - {{ $item->title }}</a>
+                                <a href="{{ route('journal.detail', ['judul' => $item->slug]) }}" class="text-dark"><i class="fas fa-journal-whills text-primary"></i> - <strong>{{ $item->title }}</strong> | {{ $item->afiliasi }}</a>
                             </li>
                             @empty
                             <li class="list-group-item d-flex justify-content-between align-items-center">

@@ -1,41 +1,30 @@
 <x-frontend-master>
-    <section class="page-header">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8 col-xl-8">
-              <div class="title-block">
-                <h1>{{ $data->judul }}</h1>
-                <ul class="header-bradcrumb justify-content-center">
-                  <li><a href="/">Home</a></li>
-                  <li class="active" aria-current="page">Jurnal</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-    </section>
     <div class="page-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-8">
                     <div class="post-single">
                         <div class="post-thumb">
-                            <img src="assets/images/blog/blog-lg1.jpg" alt="" class="img-fluid">
+                            <img src="{{ $data->imageUrl ?? 'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png'}}" alt="" class="img-fluid">
                         </div>
 
                         <div class="single-post-content">
                             <div class="post-meta">
-                                <span class="post-author">Oleh {{ $data->getUser->name }}</span>
+                                <span class="post-author">Editor : <strong>{{ $data->editor }}</strong></span>
                                 <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>{{ $data->date }}</span>
                             </div>
-                            <h3 class="post-title">{!! $data->judul !!}</h3>
-                            <p>{!! $data->abstrak !!}</p>
+                            <h3 class="post-title">{!! $data->title !!}</h3>
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ $data->link_journal }}" class="btn btn-sm btn-primary"><i class="fa fa-link"></i> INDEX JURNAL</a>
+                            </div>
+
+                            @include('client.sections.journal-linkages', ['title' => 'Jurnal Terkait', 'data' => $journals])
 
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <a href="{{ asset('storage/files/naskah/'.$data->file_naskah) }}" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> DOWNLOAD</a>
-                        </div>
                     </div>
+                </div>
+                <div class="col-lg-4 col-xl-4">
+                    @include('client.sections.sidebar-journal')
                 </div>
             </div>
         </div>
