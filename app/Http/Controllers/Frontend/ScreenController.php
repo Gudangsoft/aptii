@@ -79,7 +79,7 @@ class ScreenController extends Controller
 
     public function journal(Request $request){
         $data = JournalCollaboration::where('slug', $request->judul)->first();
-        HomeController::meta($data->title);
+        MetaController::journal($data);
 
         return view('client.screen.journal-detail', [
             'data' => $data,

@@ -42,10 +42,10 @@ class MetaController extends Controller
         $card = new \Butschster\Head\Packages\Entities\TwitterCardPackage('twitter_meta');
 
         $card->setType('summary')
-        ->setSite('@prosiding_app')
+        ->setSite('@aptii')
         ->setTitle($data->title)
         ->setDescription(Str::words(html_entity_decode($data->content), 15))
-        ->setCreator('@prosiding_app')
+        ->setCreator('@aptii')
         ->setImage(asset('storage/pictures/post/16_9/mid/'.$data->image))
         ->addMeta('image:alt', $data->title);
 
@@ -84,12 +84,50 @@ class MetaController extends Controller
         $card = new \Butschster\Head\Packages\Entities\TwitterCardPackage('twitter_meta');
 
         $card->setType('summary')
-        ->setSite('@prosiding_app')
+        ->setSite('@aptii')
         ->setTitle($data->judul)
         ->setDescription(Str::words(html_entity_decode($data->content), 15))
-        ->setCreator('@prosiding_app')
+        ->setCreator('@aptii')
         ->setImage($data->imageFull)
         ->addMeta('image:alt', $data->judul);
+
+        $card->toHtml();
+        Meta::registerPackage($card);
+    }
+
+    public static function journal($data){
+        Meta::prependTitle($data->title)
+                ->setContentType('text/html')
+                ->setViewport('width=device-width, initial-scale=1')
+                ->setDescription(Str::words(html_entity_decode($data->title), 15))
+                ->setKeywords(['jurnal', 'afiliasi', 'aptii'])
+                ->setRobots('nofollow,noindex')
+                ->addMeta('author', [
+                    'content' => 'aptii',
+                ]);
+
+        $og = new \Butschster\Head\Packages\Entities\OpenGraphPackage('og_meta');
+
+        $og->setType('website')
+            ->setSiteName(config('app.name'))
+            ->setTitle($data->title)
+            ->setDescription(Str::words(html_entity_decode($data->title), 15))
+            ->setUrl(route('journal.detail', ['judul' => $data->slug ]))
+            ->setLocale('id_ID')
+            ->addImage($data->imageUrl);
+
+        $og->toHtml();
+        Meta::registerPackage($og);
+
+        $card = new \Butschster\Head\Packages\Entities\TwitterCardPackage('twitter_meta');
+
+        $card->setType('summary')
+        ->setSite('@aptii')
+        ->setTitle($data->title)
+        ->setDescription(Str::words(html_entity_decode($data->title), 15))
+        ->setCreator('@aptii')
+        ->setImage($data->imageUrl)
+        ->addMeta('image:alt', $data->title);
 
         $card->toHtml();
         Meta::registerPackage($card);
