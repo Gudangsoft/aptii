@@ -97,6 +97,8 @@ class ScreenController extends Controller
 
         return view('client.screen.page-detail', [
             'data'          => $data,
+            'activities'    => PagesController::activities(),
+            'agenda'        => PagesController::agenda(),
             'popular'       => PagesController::popularArticle(),
         ]);
 

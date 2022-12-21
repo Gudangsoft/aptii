@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('afiliasi');
             $table->string('link_journal');
             $table->string('editor');
+            $table->text('index_journal')->nullable();
             $table->string('payment_image');
             $table->integer('created_by');
             $table->timestamps();

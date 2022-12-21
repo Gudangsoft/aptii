@@ -46,7 +46,7 @@ class ScreensController extends Controller
         HomeController::meta('Jurnal');
 
         // $data = ProsidingNaskah::orderByDesc('created_at')->paginate(12);
-        $data = JournalCollaboration::orderByDesc('created_at')->paginate(12);
+        $data = JournalCollaboration::orderByDesc('created_at')->paginate(20);
 
         return view('client.screens.journals', [
             'data'          => $data,

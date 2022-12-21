@@ -75,6 +75,12 @@
                                                     </div>
                                                     <div class="col-md-12 col-12">
                                                         <div class="form-group mb-2">
+                                                            <h5>Index Jurnal</h3>
+                                                            <span class="badge badge-light-dark">{{ $data->index_journal ?? 'Tidak tersedia' }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group mb-2">
                                                             <h5>Ditambahkan Oleh</h3>
                                                             <span class="badge badge-light-dark">{{ $data->user->name }}</span>
                                                         </div>

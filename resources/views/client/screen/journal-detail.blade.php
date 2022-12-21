@@ -21,9 +21,14 @@
                                     <td>{{ $data->afiliasi }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Index Jurnal</td>
+                                    <td class="fw-bold">Indexasi</td>
                                     <td>:</td>
-                                    <td><a href="{{ $data->link_journal }}" class="bdage bg-primary p-2 rounded text-white"><i class="fa fa-link"></i> INDEX JURNAL</a></td>
+                                    <td>{!! $data->index_journal ?? 'Tidak tersedia.' !!}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Link Jurnal</td>
+                                    <td>:</td>
+                                    <td><a href="{{ $data->link_journal }}" class="bdage bg-primary p-2 rounded text-white"><i class="fa fa-link"></i> LINK JURNAL</a></td>
                                 </tr>
                             </table>
 

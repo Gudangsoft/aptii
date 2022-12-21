@@ -81,6 +81,12 @@
                                                             <input type="text" name="editor" id="editor" value="{{ old('editor') }}" class="form-control">
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group mb-2">
+                                                            <h5>Index Jurnal</h3>
+                                                            <textarea name="index_journal" id="index_journal" class="form-control" placeholder="Cth: Google Scholar, Portal Garuda, DOI Crossref ; Penerbit Program Studi Ilmu Manajemen FEB Universitas Bhayangkara, Surabaya">{{ old('index_journal') }}</textarea>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label><h5>Bukti Bayar</h5></label>
