@@ -88,6 +88,8 @@
             </li>
             {{-- <li class="{{ request()->routeIs('managers.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('managers.index') }}"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Pages">Pengurus</span></a>
             </li> --}}
+            <li class="{{ request()->routeIs('memberships.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('memberships.index') }}"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Pages">Anggota</span></a>
+            </li>
             <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="Pages">Webinar</span></a>
             </li>
 

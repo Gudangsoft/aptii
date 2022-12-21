@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Asosiasi\AsosiasiController;
 use App\Http\Controllers\Admin\Asosiasi\JournalCollabController;
 use App\Http\Controllers\Admin\Asosiasi\ManagerController;
+use App\Http\Controllers\Admin\Asosiasi\MembershipController;
 use App\Http\Controllers\Admin\ImageCategoryController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\MenuController;
@@ -68,6 +69,8 @@ Route::get('/jurnal', [ScreensController::class, 'journals']);
 Route::get('/jurnal-detail', [ScreenController::class, 'journal'])->name('journal.detail');
 Route::get('/kegiatan', [ScreenController::class, 'kegiatan'])->name('kegiatan.detail');
 Route::get('/agenda', [ScreensController::class, 'agenda'])->name('agenda');
+Route::get('/anggota', [ScreensController::class, 'anggota'])->name('anggota');
+Route::get('/anggota-detail', [ScreenController::class, 'anggota'])->name('anggota.detail');
 Route::get('/contact', [ScreenController::class, 'contact']);
 Route::get('/author', [ScreenController::class, 'author'])->name('author');
 
@@ -119,6 +122,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
                 Route::resource('images', ImageController::class);
                 Route::resource('imagecategories', ImageCategoryController::class);
                 Route::resource('managers', ManagerController::class);
+                Route::resource('memberships', MembershipController::class);
 
             });
         });

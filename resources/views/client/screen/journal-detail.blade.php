@@ -9,10 +9,7 @@
                         </div>
 
                         <div class="single-post-content">
-                            <div class="post-meta">
-                                <span class="post-author">Editor : <strong>{{ $data->editor }}</strong></span>
-                                <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>{{ $data->date }}</span>
-                            </div>
+
                             <h3 class="post-title">{!! $data->title !!}</h3>
                             <table>
                                 <tr>
@@ -24,6 +21,11 @@
                                     <td class="fw-bold">Terdaftar</td>
                                     <td>:</td>
                                     <td>{{ $data->date }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Editor</td>
+                                    <td>:</td>
+                                    <td>{{ $data->editor }}</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Indexasi</td>

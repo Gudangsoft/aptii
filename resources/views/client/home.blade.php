@@ -3,7 +3,7 @@
     @include('client.layouts.banner')
     {{-- @include('client.sections.service') --}}
     @include('client.sections.posts', ['data' => $posts])
-    <section class="section-padding pt-0 mt-4">
+    {{-- <section class="section-padding pt-0 mt-4">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -14,6 +14,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 </x-frontend-master>

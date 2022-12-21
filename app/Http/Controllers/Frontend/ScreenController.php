@@ -7,6 +7,7 @@ use App\Http\Controllers\MetaController;
 use App\Models\Activity;
 use App\Models\Admin\Configuration;
 use App\Models\JournalCollaboration;
+use App\Models\Membership;
 use App\Models\PageWeb;
 use App\Models\Post\PostAction;
 use App\Models\Post\PostArticles;
@@ -14,6 +15,7 @@ use App\Models\Prosiding\CustomerCare;
 use App\Models\Prosiding\Event;
 use App\Models\Prosiding\ProsidingNaskah;
 use App\Models\Prosiding\ProsidingPembayaran;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Arr;
@@ -110,6 +112,20 @@ class ScreenController extends Controller
 
         return view('client.screen.kegiatan-detail', [
             'data' => $data,
+            'popular'       => PagesController::popularArticle(),
+            'activities'    => PagesController::activities(),
+            'agenda'        => PagesController::agenda(),
+            'journals'      => PagesController::kegiatanLinkages($data->created_by, $data->id),
+        ]);
+
+    }
+
+    public function anggota(Request $request){
+        $data = User::find($request->id);
+        HomeController::meta($data->name);
+
+        return view('client.screen.anggota-detail', [
+            'data'          => $data,
             'popular'       => PagesController::popularArticle(),
             'activities'    => PagesController::activities(),
             'agenda'        => PagesController::agenda(),

@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Asosiasi;
 
-use App\Models\Admin\Manager as AdminManager;
+use App\Models\Membership as ModelMember;
 use Livewire\Component;
 use App\Models\User;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Maatwebsite\Excel\Imports\ModelManager;
 
-class Manager extends Component
+
+class Membership extends Component
 {
     use WithPagination, LivewireAlert;
     protected $paginationTheme = 'bootstrap';
@@ -37,13 +37,13 @@ class Manager extends Component
             $this->limitPerPage = $this->changeLimitPage;
         }
 
-        $data = AdminManager::orderByDesc('created_at')->paginate($this->limitPerPage);
+        $data = ModelMember::orderByDesc('created_at')->paginate($this->limitPerPage);
         if($this->search != null){
             $user = User::where('username', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->pluck('id');
             if($user == null){
                 $data = $data;
             }else{
-                $data = AdminManager::whereIn('user_id', $user)->orderByDesc('created_at')->paginate($this->limitPerPage);
+                $data = ModelMember::whereIn('user_id', $user)->orderByDesc('created_at')->paginate($this->limitPerPage);
             }
         }
 
@@ -51,13 +51,13 @@ class Manager extends Component
         $this->dispatchBrowserEvent('iconLoad');
 
         $this->bulkDisabled = count($this->selectData) < 1;
-        return view('livewire.asosiasi.manager', [
+        return view('livewire.asosiasi.membership', [
             'data' => $data,
         ]);
     }
 
     public function deleteSelected(){
-        AdminManager::query()
+        ModelMember::query()
             ->whereIn('id', $this->selectData)
             ->delete();
         $this->selectData = [];
@@ -66,7 +66,7 @@ class Manager extends Component
 
     public function selectAll(){
         if($this->selectAll == true){
-            $this->selectData = ModelManager::pluck('id');
+            $this->selectData = ModelMember::pluck('id');
             $this->statusSelected = true;
         }else{
             $this->selectData = [];
@@ -81,7 +81,7 @@ class Manager extends Component
     }
 
     public function updateStatus($value){
-        AdminManager::query()
+        ModelMember::query()
             ->whereIn('id', $this->selectData)
             ->update([
                 'status' => $value
@@ -115,7 +115,7 @@ class Manager extends Component
     }
 
     public function deleteConfirmed(){
-        ModelManager::findOrFail($this->selected_id)->delete();
+        ModelMember::findOrFail($this->selected_id)->delete();
         $this->alert('success', 'Data berhasil dihapus', [
             'position' => 'center',
         ]);

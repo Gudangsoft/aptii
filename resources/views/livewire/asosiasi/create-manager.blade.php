@@ -67,10 +67,10 @@
                                             {{ count($selectJobs) }} data selected, <button wire:click="unselectedJobs()" class="btn btn-sm btn-primary">Cancel</button>
                                             <div class="btn-group">
                                                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Pilih
+                                                    Pilih Sebagai Pengurus
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="addManager()">Jadikan Pengurus</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click="addMembership()">Tambahkan Pengurus</a>
                                                 </div>
                                             </div>
                                         </p>
@@ -78,31 +78,36 @@
                                 </tr>
                                 @endif
                                 <tr>
-                                    <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
+                                    <td colspan="4">List member yang terdaftar dan sudah melunasi biaya pendaftaran member</td>
+                                </tr>
+                                <tr>
+                                    {{-- <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th> --}}
                                     <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Afiliasi</th>
                                     <th>Status</th>
+                                    <th>Pilih</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($data as $row)
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" value="{{ $row->id }}" wire:model="selectJobs" id="a">
-                                        </td>
+
                                         <td>
                                             <span class="font-weight-bold">{{ $row->name }}</span>
                                             @if ($row->status < 1)
                                                 <i class="text-danger" data-feather="eye-off"></i>
                                             @endif
                                         </td>
-                                        <td>{{ $row->email }}</td>
+                                        <td>{{ $row->company }}</td>
                                         <td>
                                             @if ($row->status == true)
                                                 <span class="badge badge-light-success mr-1"> active</span>
                                             @else
                                                 <span class="badge badge-light-danger mr-1"> hidden</span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" value="{{ $row->id }}" wire:model="selectJobs" id="a">
                                         </td>
                                     </tr>
                                 @empty

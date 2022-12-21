@@ -3,12 +3,12 @@
         <div class="content-header-left col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-7">
-                    <h2 class="content-header-title float-left mb-0">Pengurus</h2>
+                    <h2 class="content-header-title float-left mb-0">Anggota APTII</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active">Pengurus
+                            <li class="breadcrumb-item active">Anggota APTII
                             </li>
                         </ol>
                     </div>
@@ -95,7 +95,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <span class="badge badge-light-primary mr-1"> {{ $row->user->company }}</span>
+                                            <span class="badge badge-light-primary mr-1"> {{ $row->user->company ?? 'Tidak tersedia' }}</span>
                                         </td>
                                         <td class="text-right">
                                             <div class="btn-group">
@@ -103,7 +103,7 @@
                                                     Select
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
-                                                    <a class="dropdown-item" href="#">Detail</a>
+                                                    <a class="dropdown-item" href="{{ route('memberships.show', $row->user_id) }}">Detail</a>
                                                     <a class="dropdown-item" wire:click="deleteSingleSelected({{ $row->id }})">Delete</a>
                                                 </div>
                                             </div>

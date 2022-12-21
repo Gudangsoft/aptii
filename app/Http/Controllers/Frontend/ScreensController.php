@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Models\Admin\Configuration;
 use App\Models\JournalCollaboration;
+use App\Models\Membership;
 use App\Models\Prosiding\Agenda;
 use App\Models\Prosiding\ProsidingNaskah;
 use Butschster\Head\Facades\Meta;
@@ -63,6 +64,19 @@ class ScreensController extends Controller
         $data = Agenda::orderByDesc('created_at')->where('status', true)->paginate(20);
 
         return view('client.screens.agenda', [
+            'data'          => $data,
+            'popular'       => PagesController::popularArticle(),
+            'activities'    => PagesController::activities(),
+            'agenda'        => PagesController::agenda(),
+        ]);
+    }
+
+    public function anggota(){
+        HomeController::meta('Anggota');
+
+        $data = Membership::orderByDesc('created_at')->paginate(20);
+
+        return view('client.screens.anggota', [
             'data'          => $data,
             'popular'       => PagesController::popularArticle(),
             'activities'    => PagesController::activities(),
