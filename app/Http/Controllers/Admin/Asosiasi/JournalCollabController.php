@@ -85,6 +85,7 @@ class JournalCollabController extends Controller
             $save->afiliasi = $request->afiliasi;
             $save->link_journal = $request->link_journal;
             $save->editor = $request->editor;
+            $save->index_journal = $request->index_journal;
             $save->image = $namaImage;
             $save->payment_image = '/storage/images/bukti_bayar_jurnal/'.auth()->user()->id.$request->payment_image->getClientOriginalName();
             $save->created_by = auth()->user()->id;
@@ -177,6 +178,7 @@ class JournalCollabController extends Controller
             $save->afiliasi = $request->afiliasi;
             $save->link_journal = $request->link_journal;
             $save->editor = $request->editor;
+            $save->index_journal = $request->index_journal;
 
             if($request->file('image')){
                 $save->image = $namaImage;
