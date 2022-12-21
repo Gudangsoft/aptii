@@ -11,11 +11,12 @@
 
             @forelse ($data as $item)
                 @if ($loop->index < 6)
-                    <a href="{{ $item->url }}" class="list-group-item list-group-item-action {{ $loop->first ? 'active' : '' }}" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between p-1">
-                            <h6 class="mb-1 text-{{ $loop->first ? 'white' : 'dark' }}"><i class="far fa-calendar-edit"></i> - {{ \Illuminate\Support\Str::words($item->title, 15) }} | <span class="fw-light">{{ $item->dateFormat }}</span></h6>
-                        </div>
-                    </a>
+                <a href="{{ $item->url }}" class="list-group-item list-group-item-action {{ $loop->first ? 'active' : '' }}" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between p-1">
+                        <h6 class="mb-1 lh-base text-{{ $loop->first ? 'white' : 'dark' }}"><i class="far fa-calendar-edit"></i> - {{ \Illuminate\Support\Str::words($item->title, 15) }} | <span class="fw-light">{!! $item->dateFormat !!}</span></h6>
+                    </div>
+                    <span>{!! $item->description !!}</span>
+                </a>
                 @endif
                 @if ($loop->index == 5)
                     <a href="/agenda" class="list-group-item list-group-item-action text-primary text-end">Lainnya</a>

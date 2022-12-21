@@ -37,7 +37,7 @@
                                 </tr>
                             </table>
 
-                            @include('client.sections.journal-linkages', ['title' => 'Jurnal Terkait', 'data' => $journals])
+                            {{-- @include('client.sections.journal-linkages', ['title' => 'Jurnal Terkait', 'data' => $journals]) --}}
 
                         </div>
                     </div>

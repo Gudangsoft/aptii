@@ -7,7 +7,7 @@ return [
      * Meta title section
      */
     'title' => [
-        // 'default' => $web->name,
+        'default' => 'APTII',
         'separator' => '-',
         'max_length' => 255,
     ],

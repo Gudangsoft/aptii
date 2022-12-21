@@ -28,7 +28,7 @@ Version      : 1.0
   --theme-primary-color: #F14D5D;
   --theme-secondary-color: #015ABD;
   --theme-heading-color: #14133b;
-  --theme-text-color: #77838F;
+  --theme-text-color: #555;
   --theme-white-color: #fff;
   --theme-border-color: #ddd;
 }
@@ -1720,7 +1720,7 @@ Feature intro
   position: relative;
   z-index: 2;
   border-radius: 4px;
-  padding: 40px;
+  padding: 0px;
   background: #fff;
   box-shadow: 0 0.25rem 1.75rem rgba(30, 34, 40, 0.07);
   margin-top: -70px;
@@ -4653,7 +4653,7 @@ Fixed top top bottom
 .blog-sidebar .widget {
   margin-bottom: 50px;
   margin-bottom: 30px;
-  border: 1px dashed #eeeeee;
+  border: 1px solid #eeeeee;
   padding: 30px;
   border-radius: 7px;
 }

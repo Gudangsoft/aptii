@@ -1,6 +1,6 @@
-<section class="banner banner-style-1">
+<section class="banner banner-style-1 mb-3">
     <div class="container">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-md-9 col-sm-12">
                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -60,6 +60,20 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="features-intro">
+    <div class="container">
+        <div class="feature-inner">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    @include('client.sections.agenda', ['title' => 'Agenda', 'data' => $agenda])
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    @include('client.sections.kegiatan', ['title' => 'Kegiatan', 'data' => $activities])
                 </div>
             </div>
         </div>
