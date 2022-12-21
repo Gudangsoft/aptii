@@ -122,7 +122,7 @@
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right" style="">
                                                     <h6 class="dropdown-header">Ubah Status</h6>
-                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click='updateStatusSingle({{ $row->id}}, 1)'><i data-feather='check'></i> Terima</a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" wire:click='setBudget({{ $row->id }})'><i data-feather='check'></i> Terima</a>
                                                     <a class="dropdown-item" href="javascript:void(0);" wire:click='updateStatusSingle({{ $row->id}}, 0)'><i data-feather='alert-circle'></i> Pending</a>
                                                 </div>
                                                 @endrole
@@ -157,20 +157,42 @@
             </div>
         </div>
     </div>
+    <div wire:ignore class="modal fade modal-primary" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel160">Masukan Jumlah Anggaran Tersedia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('activity.setBudget') }}" method="post">
+                @csrf
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div class="form-group mb-2">
+                            <h5 for="blog-edit-title">Anggaran Tersedia</h5>
+                            <input type="hidden" name='selectId' id="selectId">
+                            <input type="number" name="max_budget" id="max_budget" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type='submit' value="Simpan" class="btn btn-primary">
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
     @push('vendor-css')
         <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/vendors/css/vendors.min.css">
     @endpush
     @push('page-js')
-        <script src="{{ asset('assets') }}/ckeditorx/ckeditor.js"></script>
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.ckeditor').ckeditor();
-            });
-        </script>
         <script>
-            window.addEventListener('openFormModal', event => {
-                $("#create-modal").modal('show');
+            window.addEventListener('openModalStatus', event => {
+                $("#status-modal").modal('show');
+                $("#selectId").val(event.detail.id);
             })
 
             window.addEventListener('closeFormModal', event => {

@@ -100,7 +100,7 @@ class ActivityController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
-            Alert::success('Success', 'Data kegiatan berhasil ditambahkan.');
+            Alert::success('Success', 'Data kegiatan berhasil diupdate.');
             return redirect()->route('activity.index');
         } catch (Exception $error) {
             Alert::toast($error->getMessage(), 'error');
@@ -111,5 +111,16 @@ class ActivityController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function setBudget(Request $request){
+        Activity::where('id', $request->selectId)
+            ->update([
+                'max_budget' => $request->max_budget,
+                'status' => 1,
+            ]);
+
+        Alert::success('Success', 'Anggaran berhasil diupdate.');
+        return redirect()->route('activity.index');
     }
 }

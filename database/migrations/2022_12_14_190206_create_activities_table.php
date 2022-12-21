@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamp('date');
             $table->bigInteger('budget');
+            $table->bigInteger('max_budget');
             $table->bigInteger('no_rekening');
             $table->integer('created_by');
             $table->integer('status');

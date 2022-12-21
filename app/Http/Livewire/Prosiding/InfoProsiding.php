@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Prosiding;
 
+use App\Models\Post\PostArticles;
 use Livewire\Component;
 use RobertSeghedi\News\Models\Article;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -14,7 +15,7 @@ class InfoProsiding extends Component
 
     public function render()
     {
-        $data = Article::where('status', true)->orderByDesc('created_at')->paginate(12);
+        $data = PostArticles::where('status', true)->orderByDesc('created_at')->paginate(12);
         return view('livewire.prosiding.info-prosiding', [
             'data' => $data
         ]);

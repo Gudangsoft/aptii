@@ -19,6 +19,7 @@ class ActivityTable extends Component
     public $selectAll = false;
     public $bulkDisabled = true;
     public $statusSelected = false;
+    public $max_budget, $selectId;
     public $jobTitle, $jobRole, $jobType, $jobExperience, $jobLocation, $jobBudgetMin, $jobBudgetMax, $jobDescription;
     public $search, $limitPerPage = 10, $changeLimitPage;
 
@@ -138,6 +139,15 @@ class ActivityTable extends Component
         $this->alert('success', 'Data berhasil update.', [
             'position' => 'center',
         ]);
+    }
+
+    public function setBudget($id){
+        $this->selectId = $id;
+        $this->dispatchBrowserEvent('openModalStatus', ['id' => $id]);
+    }
+
+    public function setBudgetSave($maxBudget, $id, $status){
+        dd($maxBudget.'-'.$id.'-'.$status);
     }
 
     public function deleteConfirmed(){

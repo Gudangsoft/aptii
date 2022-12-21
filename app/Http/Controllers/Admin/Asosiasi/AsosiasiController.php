@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Asosiasi;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post\PostArticles;
 use App\Models\Prosiding\Certificate;
 use Illuminate\Http\Request;
 use App\Models\Prosiding\Event as ProsidingEvent;
@@ -19,7 +20,7 @@ class AsosiasiController extends Controller
     public function infoDetail($slug)
     {
         return view('admin.asosiasi.info.detail', [
-            'data' => Article::where('slug', $slug)->first()
+            'data' => PostArticles::where('slug', $slug)->first()
         ]);
     }
 

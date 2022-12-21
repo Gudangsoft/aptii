@@ -64,10 +64,19 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
-                                            <div class="form-group mb-2">
-                                                <h5>Anggaran</h3>
-                                                <span class="badge badge-light-dark">{{ number_format($data->budget) }}</span>
-                                            </div>
+                                            <h5>Anggaran</h3>
+                                            <table class="mb-2">
+                                                <tr>
+                                                    <td>Pengajuan</td>
+                                                    <td>:</td>
+                                                    <td><span class="badge badge-light-dark">Rp {{ number_format($data->budget) }}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tersedia</td>
+                                                    <td>:</td>
+                                                    <td><span class="badge badge-primary">Rp {{ number_format($data->max_budget) }}</span></td>
+                                                </tr>
+                                            </table>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mb-2">
