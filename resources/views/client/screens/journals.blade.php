@@ -22,7 +22,7 @@
                         <ul class="list-group">
                             @forelse ($data as $item)
                             <li class="list-group-item {{ $loop->first ? 'list-group-item-action list-group-item-primary' : '' }}">
-                                <a href="{{ route('journal.detail', ['judul' => $item->slug]) }}" class="text-dark"><i class="fas fa-journal-whills text-primary"></i> - <strong>{{ $item->title }}</strong>;</a> {!! $item->index_jorunal !!}
+                                <a href="{{ route('journal.detail', ['judul' => $item->slug]) }}" class="text-dark"><i class="fas fa-journal-whills text-primary"></i> - <strong>{{ $item->title }}</strong>;</a> {!! $item->index_journal !!}
                             </li>
                             @empty
                             <li class="list-group-item d-flex justify-content-between align-items-center">
