@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Post\PostCategories;
 use Carbon\Carbon;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -14,7 +15,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class ArticleCategoriesTable extends DataTableComponent
 {
-    protected $model = Category::class;
+    protected $model = PostCategories::class;
     public $selected_id, $name;
 
     public $columnSearch = [
@@ -83,7 +84,7 @@ class ArticleCategoriesTable extends DataTableComponent
     }
 
     public function createStatus(){
-        $save = Category::findOrFail($this->selected_id);
+        $save = PostCategories::findOrFail($this->selected_id);
         dd($save);
         $this->dispatchBrowserEvent('closeModalCreate');
     }
@@ -91,7 +92,7 @@ class ArticleCategoriesTable extends DataTableComponent
     public function openEditModal($id)
     {
         $this->selected_id = $id;
-        $data = Category::findOrFail($id);
+        $data = PostCategories::findOrFail($id);
         $this->name = $data->name;
 
         $this->dispatchBrowserEvent('openModalEdit');
@@ -99,7 +100,7 @@ class ArticleCategoriesTable extends DataTableComponent
 
     public function editCategorySave()
     {
-        $save = Category::findOrFail($this->selected_id);
+        $save = PostCategories::findOrFail($this->selected_id);
         $save->name = $this->name;
         $save->slug = Str::slug($this->name);
         $save->save();
@@ -114,13 +115,13 @@ class ArticleCategoriesTable extends DataTableComponent
     }
 
     public function deleteStatus(){
-        Category::findOrFail($this->selected_id)->delete();
+        PostCategories::findOrFail($this->selected_id)->delete();
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 
     public function builder(): Builder
     {
-        return Category::query()
+        return PostCategories::query()
             ->when($this->columnSearch['name'] ?? null, fn ($query, $title) => $query->where('categories.name', 'like', '%' . $title . '%'));
     }
 
