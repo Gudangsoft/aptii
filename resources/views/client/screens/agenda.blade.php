@@ -22,7 +22,8 @@
                         <ul class="list-group">
                             @forelse ($data as $item)
                             <li class="list-group-item {{ $loop->first ? 'list-group-item-action list-group-item-primary' : '' }}">
-                                <a href="{{ $item->url }}" class="text-dark"><i class="far fa-calendar-edit text-primary"></i> - <strong>{{ $item->title }}</strong></a> | {!! $item->dateFormat !!}
+                                <a href="{{ $item->url }}" class="text-dark"><i class="far fa-calendar-edit text-primary"></i> - <strong>{{ $item->title }}</strong></a>
+                                <span class="badge bg-{{ $loop->first ? 'dark' : 'primary' }} text-white fw-bold">{!! $item->dateFormat !!}</span>
                             </li>
                             @empty
                             <li class="list-group-item d-flex justify-content-between align-items-center">
