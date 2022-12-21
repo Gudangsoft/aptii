@@ -27,4 +27,8 @@ class JournalCollaboration extends Model
     public function getDateAttribute(){
         return Carbon::parse($this->created_at)->isoFormat('dddd, D MMMM Y');
     }
+
+    public function getDateUpdateAttribute(){
+        return Carbon::parse($this->update_at)->isoFormat('dddd, D MMMM Y');
+    }
 }

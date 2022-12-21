@@ -44,7 +44,7 @@ class ScreensController extends Controller
     }
 
     public function journals(){
-        HomeController::meta('Jurnal');
+        HomeController::meta('Jurnal Terafiliasi Asosiasi APTII');
 
         // $data = ProsidingNaskah::orderByDesc('created_at')->paginate(12);
         $data = JournalCollaboration::orderByDesc('created_at')->where('status', true)->paginate(20);

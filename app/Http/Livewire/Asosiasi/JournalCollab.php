@@ -6,6 +6,7 @@ use App\Models\JournalCollaboration;
 use Livewire\Component;
 use App\Models\Jobs\JobsApplied;
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -110,7 +111,8 @@ class JournalCollab extends Component
         JournalCollaboration::query()
             ->where('id', $id)
             ->update([
-                'status' => $value
+                'status' => $value,
+                'created_at' => Carbon::now()
             ]);
 
         $this->alert('success', 'Data berhasil update.', [

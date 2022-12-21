@@ -21,6 +21,11 @@
                                     <td>{{ $data->afiliasi }}</td>
                                 </tr>
                                 <tr>
+                                    <td class="fw-bold">Terdaftar</td>
+                                    <td>:</td>
+                                    <td>{{ $data->date }}</td>
+                                </tr>
+                                <tr>
                                     <td class="fw-bold">Indexasi</td>
                                     <td>:</td>
                                     <td>{!! $data->index_journal ?? 'Tidak tersedia.' !!}</td>
