@@ -36,12 +36,14 @@ class UserTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make("Key", "id")
                 ->sortable()
                 ->format(fn($value, $row, Column $column) =>
                 "<span class='badge badge-light-dark'>".$value."</span>
                 <span class='badge badge-light-primary'>".$row->roles->pluck('name')->implode(',')."</span>"
             )->html(),
+            Column::make('ID', 'code')
+            ->sortable(),
             Column::make('Name')
             ->searchable(),
             Column::make('Email')

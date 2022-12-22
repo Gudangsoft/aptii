@@ -5,6 +5,19 @@
 	<div class="footer-mid">
 		<div class="container">
 			<div class="row">
+
+				<div class="col-xl-3 col-md-3 d-flex justify-content-center">
+                    <div class="footer-widget mb-5 mb-xl-0">
+                        <h5 class="widget-title">Tentang APTII</h5>
+                        <div class="footer-logo mb-3">
+                            <img src="{{ asset('storage') }}/assets/{{ $config->logo }}" alt="" class="img-fluid">
+                        </div>
+                        <div class="widget footer-widget mb-5 mb-lg-0 text-white">
+                            {!! $config->address !!}
+                        </div>
+                    </div>
+				</div>
+
                 <div class="col-xl-3 col-md-3 d-flex justify-content-center">
 					<div class="footer-widget mb-5 mb-xl-0">
 						<h5 class="widget-title">Menu</h5>
@@ -17,18 +30,6 @@
                             @endforeach
 						</ul>
 					</div>
-				</div>
-
-				<div class="col-xl-3 col-md-3 d-flex justify-content-center">
-                    <div class="footer-widget mb-5 mb-xl-0">
-                        <h5 class="widget-title">Tentang APTII</h5>
-                        <div class="footer-logo mb-3">
-                            <img src="{{ asset('storage') }}/assets/{{ $config->logo }}" alt="" class="img-fluid">
-                        </div>
-                        <div class="widget footer-widget mb-5 mb-lg-0 text-white">
-                            {!! $config->address !!}
-                        </div>
-                    </div>
 				</div>
 
 				<div class="col-xl-3 col-md-3 d-flex justify-content-center">

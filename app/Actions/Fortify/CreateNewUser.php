@@ -33,7 +33,17 @@ class CreateNewUser implements CreatesNewUsers
         $imageName = time().'.'.$input['image']->extension();
         $input['image']->storeAs('public/images/users/',$imageName);
 
+        $before = User::where('status', 1)->latest()->first();
+        if($before->code == null){
+            $code = '1.'.date('d.m.Y').'.1';
+        }else{
+            $arr  = explode('.', $before->code);
+            $id   = (int)$arr[0] + 1;
+            $code = $id.'.'.date('d.m.Y').'.'.$id;
+        }
+
         return User::create([
+            'code' => $code,
             'name' => $input['name'],
             'username' => Str::slug($input['name']),
             'email' => $input['email'],

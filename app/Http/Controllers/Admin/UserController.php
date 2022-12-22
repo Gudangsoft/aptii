@@ -34,16 +34,29 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        $before = User::where('status', 1)->latest()->first();
+        if($before->code == null){
+            $code = '1.'.date('d.m.Y').'.1';
+        }else{
+            $arr  = explode('.', $before->code);
+            $id   = (int)$arr[0] + 1;
+            $code = $id.'.'.date('d.m.Y').'.'.$id;
+        }
+
+        // dd($code);
+
         try {
             $input                  = $request->except(['_token', 'role', 'password']);
             $user                   = new User();
+            $user->code             = $code;
+            $user->status             = 1;
             $user->username         = Str::slug($request->name);
-            $user->password         = Hash::make('Prosiding123oke');
+            $user->password         = Hash::make('Apti@123');
             $user->remember_token   = Str::random(8);
             $user->fill($input)->save();
 
             if($request->role == 0){
-                $user->assignRole('writer');
+                $user->assignRole('guest');
             }else{
                 $user->assignRole($request->role);
             }
