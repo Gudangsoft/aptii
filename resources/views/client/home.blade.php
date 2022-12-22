@@ -3,6 +3,7 @@
     @include('client.layouts.banner')
     {{-- @include('client.sections.service') --}}
     @include('client.sections.posts', ['data' => $posts])
+    @include('client.sections.videos', ['data' => $videos])
     {{-- <section class="section-padding pt-0 mt-4">
         <div class="container">
             <div class="row">

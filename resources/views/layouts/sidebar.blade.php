@@ -77,7 +77,6 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ request()->routeIs('images.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('images.index') }}"><i data-feather="layout"></i><span class="menu-title text-truncate" data-i18n="Pages">Iklan</h5></a></li>
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="repeat"></i><span class="menu-title text-truncate" data-i18n="Pages">Kerjasama</span></a>
                 <ul class="menu-content">
                     <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('activity.index') }}"><i data-feather="circle"></i><span class="menu-title text-truncate" data-i18n="User">Kerjasama Kegiatan</span></a>
@@ -111,6 +110,8 @@
 
             <li class="{{ request()->routeIs('agenda.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('agenda.index') }}"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Pages">Agenda</span></a>
             </li>
+            <li class="{{ request()->routeIs('images.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('images.index') }}"><i data-feather="layout"></i><span class="menu-title text-truncate" data-i18n="Pages">Iklan</h5></a></li>
+            <li class="{{ request()->routeIs('videos.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('videos.index') }}"><i data-feather="video"></i><span class="menu-title text-truncate" data-i18n="Pages">Video</h5></a></li>
 
             @endrole
 

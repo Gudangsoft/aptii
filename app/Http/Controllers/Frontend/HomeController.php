@@ -9,6 +9,7 @@ use App\Models\Post\PostArticles;
 use App\Models\Prosiding\CustomerCare;
 use App\Models\Prosiding\ProsidingNaskah;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Butschster\Head\Facades\Meta;
 use Butschster\Head\Packages\Entities\OpenGraphPackage;
@@ -43,6 +44,7 @@ class HomeController extends Controller
             'posts'         => PagesController::articles(6, null),
             'statistics'    => $statistics,
             'customerCare'  => CustomerCare::where('status', true)->get(),
+            'videos'        => Video::where('status', 1)->orderByDesc('created_at')->paginate(3),
         ]);
     }
 

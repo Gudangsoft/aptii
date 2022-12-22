@@ -39,6 +39,7 @@ use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Controllers\Admin\Settings\RolePermissionController;
 use App\Http\Controllers\Admin\Prosiding\CustomerCareController;
 use App\Http\Controllers\Admin\Prosiding\RekeningController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Frontend\PagesController;
 
 /*
@@ -59,6 +60,8 @@ Route::post('apply', [FrontendJobsController::class, 'store'])->name('jobs-apply
 Route::get('/tag/{slug}', [ScreensController::class, 'tags']);
 Route::get('/nota/{id}', [ScreenController::class, 'nota']);
 Route::get('/page/{slug}', [ScreenController::class, 'page']);
+Route::get('/videos', [ScreensController::class, 'videos']);
+Route::get('/video', [ScreenController::class, 'video'])->name('videos.detail');
 
 // menu
 Route::get('/seminar-nasional', [ScreensController::class, 'seminarNasional']);
@@ -121,6 +124,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
                 Route::resource('rekening', RekeningController::class);
                 Route::resource('images', ImageController::class);
                 Route::resource('imagecategories', ImageCategoryController::class);
+                Route::resource('videos', VideoController::class);
                 Route::resource('managers', ManagerController::class);
                 Route::resource('memberships', MembershipController::class);
 

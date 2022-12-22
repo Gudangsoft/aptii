@@ -10,6 +10,7 @@ use App\Models\JournalCollaboration;
 use App\Models\Membership;
 use App\Models\Prosiding\Agenda;
 use App\Models\Prosiding\ProsidingNaskah;
+use App\Models\Video;
 use Butschster\Head\Facades\Meta;
 use RobertSeghedi\News\Models\Article;
 
@@ -81,6 +82,16 @@ class ScreensController extends Controller
             'popular'       => PagesController::popularArticle(),
             'activities'    => PagesController::activities(),
             'agenda'        => PagesController::agenda(),
+        ]);
+    }
+
+    public function videos(){
+        HomeController::meta('Video');
+
+        $data = Video::orderByDesc('created_at')->paginate(12);
+
+        return view('client.screens.videos', [
+            'data'          => $data,
         ]);
     }
 

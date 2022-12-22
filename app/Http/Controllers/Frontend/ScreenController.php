@@ -16,6 +16,7 @@ use App\Models\Prosiding\Event;
 use App\Models\Prosiding\ProsidingNaskah;
 use App\Models\Prosiding\ProsidingPembayaran;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Arr;
@@ -130,6 +131,19 @@ class ScreenController extends Controller
             'activities'    => PagesController::activities(),
             'agenda'        => PagesController::agenda(),
             'journals'      => PagesController::kegiatanLinkages($data->created_by, $data->id),
+        ]);
+
+    }
+
+    public function video(Request $request){
+        $data = Video::where('slug', $request->name)->first();
+        HomeController::meta($data->title);
+
+        return view('client.screen.video', [
+            'data'          => $data,
+            'popular'       => PagesController::popularArticle(),
+            'activities'    => PagesController::activities(),
+            'agenda'        => PagesController::agenda(),
         ]);
 
     }
