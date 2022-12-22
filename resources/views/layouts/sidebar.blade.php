@@ -32,7 +32,7 @@
                         @endphp
                         <li class="nav-item"><a class="d-flex align-items-center" href="{{ $linkasosiasi['data']['group'][0]['url'] }}" target="_blank"><i data-feather="external-link"></i><span class="menu-title text-truncate" data-i18n="User">Jurnal Asosiasi</span></a>
                         </li>
-                        <li class="{{ request()->routeIs('asosiasi.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.seminar') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="User">Webinar</span></a>
+                        <li class="{{ request()->routeIs('asosiasi.seminar') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.seminar') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="User">Event Acara</span></a>
                         </li>
                         <li class="{{ request()->routeIs('asosiasi.sertifikat') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('asosiasi.sertifikat') }}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="User">Sertifikat</span></a>
                         </li>
@@ -90,7 +90,7 @@
             </li> --}}
             <li class="{{ request()->routeIs('memberships.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('memberships.index') }}"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Pages">Anggota</span></a>
             </li>
-            <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="Pages">Webinar</span></a>
+            <li class="{{ request()->routeIs('event.index') ? 'active' : '' }} nav-item"><a class="d-flex align-items-center" href="{{ route('event.index') }}"><i data-feather="tv"></i><span class="menu-title text-truncate" data-i18n="Pages">Event Acara</span></a>
             </li>
 
             @can('edit articles')

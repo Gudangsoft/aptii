@@ -16,7 +16,8 @@
                                     <div class="col-lg-8 col-md-8">
                                         <div class="instructor-content">
                                             <h4><a href="#">{{ $data->name }}</a></h4>
-                                            <span class="sub-title fw-bold">Afiliasi {{ $data->company ?? 'Tidak tersedia'  }}</span>
+                                            <span class="sub-title fw-bold">Afiliasi {{ $data->company ?? 'Tidak tersedia'  }}</span><br>
+                                            ID : <strong>{{ $data->code }}</strong>
 
                                             <div class="mt-3">{!! $data->bio !!}</div>
 

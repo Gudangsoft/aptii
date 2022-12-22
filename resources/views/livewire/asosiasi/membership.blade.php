@@ -77,6 +77,7 @@
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" wire:click="selectAll()" wire:model="selectAll"></th>
+                                    <th>ID</th>
                                     <th>Username</th>
                                     <th>Afiliasi</th>
                                     <th class="text-center">Actions</th>
@@ -87,6 +88,9 @@
                                     <tr>
                                         <td>
                                             <input type="checkbox" value="{{ $row->id }}" wire:model="selectData" id="a">
+                                        </td>
+                                        <td>
+                                            <strong class="mr-1"> {{ $row->user->code }}</strong>
                                         </td>
                                         <td>
                                             <span class="font-weight-bold">{{ $row->user->name }}</span>
