@@ -2,7 +2,7 @@
     <div class="page-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-8">
+                <div class="col-lg-8 col-xl-8">
                     <div class="post-single">
                         <div class="post-thumb">
                             <iframe width="100%" height="415" src="https://www.youtube.com/embed/{{ $data->youtube_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

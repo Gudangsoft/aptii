@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="row">
 
-				<div class="col-xl-3 col-md-3 d-flex justify-content-center">
+				<div class="col-xl-3 col-md-3">
                     <div class="footer-widget mb-5 mb-xl-0">
                         <h5 class="widget-title">Tentang APTII</h5>
                         <div class="footer-logo mb-3">
@@ -18,7 +18,7 @@
                     </div>
 				</div>
 
-                <div class="col-xl-3 col-md-3 d-flex justify-content-center">
+                <div class="col-xl-3 col-md-3">
 					<div class="footer-widget mb-5 mb-xl-0">
 						<h5 class="widget-title">Menu</h5>
                         @php
@@ -32,19 +32,21 @@
 					</div>
 				</div>
 
-				<div class="col-xl-3 col-md-3 d-flex justify-content-center">
+				<div class="col-xl-3 col-md-3">
 					<div class="footer-widget mb-5 mb-xl-0">
 						<h5 class="widget-title ">Youtube APTII</h5>
+                        @php
+                            $video = \App\Models\Video::where('status', 1)->orderByDesc('created_at')->limit(4)->get()
+                        @endphp
 						<ul class="list-unstyled footer-links">
-							<li><a href="#">SEO Business</a></li>
-							<li><a href="#">Digital Marketing</a></li>
-							<li><a href="#">Graphic Design</a></li>
-							<li><a href="#">Social Marketing</a></li>
+                            @foreach ($video as $item)
+                                <li><a href="{{ route('videos.detail', ['name' => $item->slug]) }}">{{ $item->title }}</a></li>
+                            @endforeach
 						</ul>
 					</div>
 				</div>
 
-				<div class="col-xl-3 col-md-3 d-flex justify-content-center">
+				<div class="col-xl-3 col-md-3">
 					<div class="footer-widget mb-5 mb-xl-0">
 						<h5 class="widget-title">Kontak</h5>
 						<ul class="list-unstyled footer-links">

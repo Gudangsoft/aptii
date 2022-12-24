@@ -1,6 +1,7 @@
 <div class="card">
     <div class="card-body">
         <h4 class="text-primary">Kontak Narahubung</h4>
+
         @foreach ($data as $row)
             <div class="d-flex justify-content-start align-items-center mt-2">
                 <div class="avatar mr-75">
