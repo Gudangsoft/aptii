@@ -22,6 +22,7 @@ use App\Http\Controllers\Frontend\ScreensController;
 use App\Http\Controllers\Admin\Jobs\JobsController;
 use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Asosiasi\AsosiasiController;
+use App\Http\Controllers\Admin\Asosiasi\FinanceController;
 use App\Http\Controllers\Admin\Asosiasi\JournalCollabController;
 use App\Http\Controllers\Admin\Asosiasi\ManagerController;
 use App\Http\Controllers\Admin\Asosiasi\MembershipController;
@@ -116,6 +117,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
 
                 Route::get('info-prosiding', [ArticleController::class, 'infoProsiding'])->name('asosiasi.table-info-prosiding');
                 Route::get('template', [AsosiasiController::class, 'template'])->name('asosiasi.template');
+                Route::resource('finance', FinanceController::class);
                 Route::resource('event', EventController::class);
                 Route::resource('bidang-ilmu', BidangIlmuController::class);
                 Route::resource('customer-care', CustomerCareController::class);

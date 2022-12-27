@@ -1,5 +1,5 @@
 @section('title')
-    Data Pembayaran Prosiding -
+    Data Pembayaran Asosiasi -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">
@@ -10,12 +10,12 @@
                 <div class="content-header-left col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Pembayaran Prosiding</h2>
+                            <h2 class="content-header-title float-left mb-0">Pembayaran Asosiasi</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Prosiding
+                                    <li class="breadcrumb-item active">Asosiasi
                                     </li>
                                     <li class="breadcrumb-item active"><a href="{{ route('asosiasi.pembayaran') }}">Pembayaran</a>
                                     </li>

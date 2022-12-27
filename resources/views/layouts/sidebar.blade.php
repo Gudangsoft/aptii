@@ -69,6 +69,8 @@
                     </li> --}}
                     <li class="{{ request()->routeIs('asosiasi.pembayaran') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('asosiasi.pembayaran') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Pembayaran</span></a>
                     </li>
+                    <li class="{{ request()->routeIs('finance.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('finance.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Laporan Keuangan</span></a>
+                    </li>
                     <li class="{{ request()->routeIs('customer-care.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('customer-care.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Kontak Narahubung</span></a>
                     </li>
                     <li class="{{ request()->routeIs('asosiasi.nasional') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('asosiasi.nasional') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Link Jurnal Asosiasi</span></a>
