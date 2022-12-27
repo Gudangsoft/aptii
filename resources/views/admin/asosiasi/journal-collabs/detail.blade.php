@@ -93,6 +93,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group mb-2">
+                                                            <h5>Total Bayar</h3>
+                                                            <span class="badge badge-light-dark">Rp {{ number_format($data->price) }}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-sm-12 col-md-12">

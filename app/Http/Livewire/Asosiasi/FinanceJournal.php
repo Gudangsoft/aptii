@@ -4,12 +4,10 @@ namespace App\Http\Livewire\Asosiasi;
 
 use App\Exports\FinanceExport;
 use App\Exports\FinanceExportByDate;
-use App\Exports\ReportExport;
-use App\Exports\ReportExportView;
+use App\Exports\FinanceJournal as ExportsFinanceJournal;
+use App\Exports\FinanceJournalByDate;
+use App\Models\JournalCollaboration;
 use App\Models\Prosiding\ProsidingPembayaran as Payment;
-use App\Models\Store\Book;
-use App\Models\Store\CartDetail;
-use App\Models\Store\Report as StoreReport;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Livewire\Component;
@@ -17,7 +15,7 @@ use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Maatwebsite\Excel\Facades\Excel;
 
-class Finance extends Component
+class FinanceJournal extends Component
 {
     use WithPagination, LivewireAlert;
     protected $paginationTheme = 'bootstrap';
@@ -47,28 +45,20 @@ class Finance extends Component
             $this->limitPerPage = $this->changeLimitPage;
         }
 
-        $data = Payment::where('status', 1)->orderByDesc('created_at')->get();
-        if($this->search != null){
-            $user = User::where('name', 'like', '%'.$this->search.'%')->pluck('id');
-            if($user == null){
-                $data = $data;
-            }else{
-                $data = Payment::whereIn('user_id', $user)->orderByDesc('created_at')->get();
-            }
-        }
+        $data = JournalCollaboration::where('status', 1)->orderByDesc('created_at')->get();
 
         if(!empty($this->rangeDate)){
             $dateStart = substr($this->rangeDate, 0, 10);
             $dateEnd   = substr($this->rangeDate, -10);
 
-            $data = Payment::where('status', 1)->orderByDesc('tanggal_bayar')->whereBetween('tanggal_bayar', [$dateStart, $dateEnd])->get();
+            $data = JournalCollaboration::where('status', 1)->orderByDesc('created_at')->whereBetween('created_at', [$dateStart, $dateEnd])->get();
         }
 
         $this->emit('postStore');
         $this->dispatchBrowserEvent('iconLoad');
 
         $this->bulkDisabled = count($this->selectData) < 1;
-        return view('livewire.asosiasi.finance', [
+        return view('livewire.asosiasi.finance-journal', [
             'data' => $data,
         ]);
     }
@@ -78,11 +68,11 @@ class Finance extends Component
     {
         $id = Arr::pluck($data, 'id');
 
-        return Excel::download(new FinanceExportByDate($id), 'laporan_keuangan_member_date.xlsx');
+        return Excel::download(new FinanceJournalByDate($id), 'laporan_keuangan_jurnal_afiliasi_date.xlsx');
     }
 
     public function allData(){
-        return Excel::download(new FinanceExport, 'laporan_keuangan_member.xlsx');
+        return Excel::download(new ExportsFinanceJournal, 'laporan_keuangan_jurnal_afiliasi.xlsx');
     }
 
 }

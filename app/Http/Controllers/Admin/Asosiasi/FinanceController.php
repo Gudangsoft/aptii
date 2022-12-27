@@ -78,4 +78,8 @@ class FinanceController extends Controller
     {
         //
     }
+
+    public function journal(){
+        return view('admin.asosiasi.finances.journal');
+    }
 }

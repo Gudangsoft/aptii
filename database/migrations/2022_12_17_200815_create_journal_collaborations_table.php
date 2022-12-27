@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('editor');
             $table->text('index_journal')->nullable();
             $table->string('payment_image');
+            $table->bigInteger('price');
             $table->integer('created_by');
             $table->timestamps();
         });

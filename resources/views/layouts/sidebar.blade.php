@@ -69,13 +69,19 @@
                     </li> --}}
                     <li class="{{ request()->routeIs('asosiasi.pembayaran') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('asosiasi.pembayaran') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Pembayaran</span></a>
                     </li>
-                    <li class="{{ request()->routeIs('finance.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('finance.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Laporan Keuangan</span></a>
-                    </li>
                     <li class="{{ request()->routeIs('customer-care.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('customer-care.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Kontak Narahubung</span></a>
                     </li>
                     <li class="{{ request()->routeIs('asosiasi.nasional') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('asosiasi.nasional') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Link Jurnal Asosiasi</span></a>
                     </li>
                     <li class="{{ request()->routeIs('certificate.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('certificate.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Data Sertifikat</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='dollar-sign'></i><span class="menu-title text-truncate" data-i18n="Pages">Laporan Keuangan</span></a>
+                <ul class="menu-content">
+                    <li class="{{ request()->routeIs('finance.journal-afiliasi') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('finance.journal-afiliasi') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Jurnal Afiliasi</span></a>
+                    </li>
+                    <li class="{{ request()->routeIs('finance.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('finance.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Member</span></a>
                     </li>
                 </ul>
             </li>

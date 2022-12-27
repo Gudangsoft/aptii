@@ -42,6 +42,7 @@ use App\Http\Controllers\Admin\Prosiding\CustomerCareController;
 use App\Http\Controllers\Admin\Prosiding\RekeningController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Frontend\PagesController;
+use App\Models\JournalCollaboration;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +118,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
 
                 Route::get('info-prosiding', [ArticleController::class, 'infoProsiding'])->name('asosiasi.table-info-prosiding');
                 Route::get('template', [AsosiasiController::class, 'template'])->name('asosiasi.template');
+                Route::get('journal-finance', [FinanceController::class, 'journal'])->name('finance.journal-afiliasi');
                 Route::resource('finance', FinanceController::class);
                 Route::resource('event', EventController::class);
                 Route::resource('bidang-ilmu', BidangIlmuController::class);
@@ -171,3 +173,9 @@ Route::middleware([
 });
 
 Route::get('phpinfo', fn () => phpinfo());
+Route::get('test', function(){
+    $data = JournalCollaboration::where('status', 1)->orderByDesc('created_at')->get();
+        return view('admin.asosiasi.finances.export-finance-journal', [
+            'data' => $data,
+        ]);
+});

@@ -28,33 +28,39 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th colspan="3"><h4>Jumlah Dana Masuk</></th>
-                                    <th colspan="5" class="text-right"><h4>Rp {{ number_format($data->sum('jumlah')) }}</></th>
+                                    <th colspan="3"><h4>Total Dana Jurnal Afiliasi</></th>
+                                    <th colspan="2" class="text-right"><h4>Rp {{ number_format($data->sum('price')) }}</></th>
                                 </tr>
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>Institusi</th>
-                                    <th>Kategori</th>
-                                    <th>Tanggal</th>
-                                    <th>Total</th>
-                                    <th>Bank</th>
-                                    <th>Keterangan</th>
+                                    <th>Judul</th>
+                                    <th>Afiliasi</th>
+                                    <th>Chif Editor</th>
+                                    <th>Bukti Bayar</th>
+                                    <th>Total Bayar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($data as $row)
                                     <tr>
-                                        <td>{{ $row->getUser->name }}</td>
-                                        <td>{{ $row->getUser->company }}</td>
-                                        <td>{!! $row->category == 2 ? "<span class='badge badge-light-success'>PENGELOLA JURNAL</span>" : "<span class='badge badge-light-dark'>MEMBER</span>" !!}</td>
-                                        <td>{{ $row->tanggal_bayar }}</td>
-                                        <td>Rp {{ number_format($row->jumlah) }}</td>
-                                        <td>{{ $row->bank_pengirim }}</td>
-                                        <td>{{ $row->keterangan }}</td>
+                                        <td>
+                                            {{ $row->title }}
+                                        </td>
+                                        <td>
+                                            {{ $row->afiliasi }}
+                                        </td>
+                                        <td>
+                                            {{ ucwords($row->editor) }}
+                                        </td>
+                                        <td>
+                                            {{ asset($row->payment_image) }}
+                                        </td>
+                                        <td>
+                                            Rp {{ number_format($row->price) }}
+                                        </td>
                                     </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="9" class="pt-2 pb-1 text-center"><h4>Data tidak ditemukan !</h5></td>
+                                    <td colspan="8" class="text-center pt-2 pb-1"><strong>Data not found !</strong></td>
                                 </tr>
                                 @endforelse
 

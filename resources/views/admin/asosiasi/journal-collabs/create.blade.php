@@ -96,6 +96,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-group mb-2 mt-2">
+                                                            <h5>Masukan Jumlah Transfer</h3>
+                                                            <i>harap sesuaikan nominal dengan bukti transfer</i>
+                                                            <input type="number" name="price" id="price" value="{{ old('price') }}" class="form-control" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-sm-12 col-md-12">

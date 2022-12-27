@@ -87,6 +87,7 @@ class JournalCollabController extends Controller
             $save->editor = $request->editor;
             $save->index_journal = $request->index_journal;
             $save->image = $namaImage;
+            $save->price = $request->price;
             $save->payment_image = '/storage/images/bukti_bayar_jurnal/'.auth()->user()->id.$request->payment_image->getClientOriginalName();
             $save->created_by = auth()->user()->id;
             $save->save();
@@ -188,6 +189,7 @@ class JournalCollabController extends Controller
                 $save->payment_image = '/storage/images/bukti_bayar_jurnal/'.auth()->user()->id.$request->payment_image->getClientOriginalName();
             }
 
+            $save->price = $request->price;
             $save->created_by = auth()->user()->id;
             $save->save();
 
