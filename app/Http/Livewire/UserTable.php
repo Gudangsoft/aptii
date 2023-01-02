@@ -86,7 +86,7 @@ class UserTable extends DataTableComponent
     public function export()
     {
         $users = $this->getSelected();
-
+        // dd($users);
         $this->clearSelected();
 
         return Excel::download(new UsersExport($users), 'users.xlsx');
