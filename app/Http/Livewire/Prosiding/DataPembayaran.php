@@ -110,4 +110,12 @@ class DataPembayaran extends Component
             'position' => 'center',
         ]);
     }
+
+    public function changeRole($id, $value)
+    {
+        ProsidingPembayaran::findOrfail($id)->update(['category' => $value]);
+        $this->alert('success', 'Data berhasil diubah.', [
+            'position' => 'center',
+        ]);
+    }
 }

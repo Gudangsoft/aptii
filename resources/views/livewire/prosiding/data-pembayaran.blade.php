@@ -74,7 +74,14 @@
                                         </td>
                                         <td>{{ $row->getUser->name }}</td>
                                         <td>{{ $row->getUser->company }}</td>
-                                        <td>{!! $row->category == 2 ? "<span class='badge badge-light-success'>PENGELOLA JURNAL</span>" : "<span class='badge badge-light-dark'>MEMBER</span>" !!}</td>
+                                        <td>
+                                            @if ($row->category == 2)
+                                                <a href='#' wire:click='changeRole({{ $row->id }}, 1)' class='badge badge-light-success'>PENGELOLA JURNAL</a>
+                                            @else
+                                                <a href="#" wire:click='changeRole({{ $row->id }}, 2)' class='badge badge-light-dark'>MEMBER</a>
+                                            @endif
+                                        </td>
+                                        {{-- <td>{!! $row->category == 2 ? "<span class='badge badge-light-success'>PENGELOLA JURNAL</span>" : "<span class='badge badge-light-dark'>MEMBER</span>" !!}</td> --}}
                                         <td>{{ $row->tanggal_bayar }}</td>
                                         <td>Rp {{ number_format($row->jumlah) }}</td>
                                         <td>{{ $row->bank_pengirim }}</td>
