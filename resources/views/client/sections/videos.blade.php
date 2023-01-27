@@ -14,7 +14,7 @@
                     <div class="course-grid course-style-3">
                         <div class="course-header">
                             <div class="course-thumb">
-                                <img src="https://img.youtube.com/vi/{{ $item->youtube_id }}/maxresdefault.jpg" alt="" class="img-fluid">
+                                <img src="https://img.youtube.com/vi/{{ $item->youtube_id }}/mqdefault.jpg" alt="" class="img-fluid">
                             </div>
                         </div>
 

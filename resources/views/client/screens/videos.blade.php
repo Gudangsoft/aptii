@@ -8,7 +8,7 @@
                             <div class="col-xl-4">
                                 <div class="blog-item mb-30">
                                     <div class="post-thumb">
-                                        <a href="{{ route('videos.detail', ['name' => $item->slug]) }}"><img src="https://img.youtube.com/vi/{{ $item->youtube_id }}/maxresdefault.jpg" alt="" class="img-fluid"></a>
+                                        <a href="{{ route('videos.detail', ['name' => $item->slug]) }}"><img src="https://img.youtube.com/vi/{{ $item->youtube_id }}/mqdefault.jpg" alt="" class="img-fluid"></a>
                                     </div>
                                     <div class="blog-content">
                                         <div class="post-meta">
