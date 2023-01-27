@@ -73,7 +73,7 @@
                                         <td>{{ $row->tanggal_bayar }}</td>
                                         <td>{{ $row->bank_pengirim }}</td>
                                         <td>Rp {{ number_format($row->jumlah) }}</td>
-                                        <td>{{ $row->getRekeningTujuan->bank }} - {{ $row->getRekeningTujuan->rekening }} -{{ $row->getRekeningTujuan->nama }}</td>
+                                        <td>{{ $row->getRekeningTujuan->bank ?? '' }} - {{ $row->getRekeningTujuan->rekening ?? '' }} -{{ $row->getRekeningTujuan->nama ?? '' }}</td>
                                         <td>{{ $row->keterangan }}</td>
                                         <td class="text-center">
                                             @if ($row->status == 1)
