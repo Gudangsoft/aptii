@@ -41,7 +41,7 @@
                                                         <select class="select2 form-control form-control-lg select2-hidden-accessible" id="category" name="category">
                                                             <option value="" disabled selected>--- Pilih ---</option>
                                                             <option value="1">Member</option>
-                                                            <option value="2">Penegelola Jurnal</option>
+                                                            <option value="2">Pengelola Jurnal</option>
                                                         </select>
                                                     </div>
                                                     {{-- <div class="form-group" id="naskah">
