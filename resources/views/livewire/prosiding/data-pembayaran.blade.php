@@ -163,9 +163,9 @@
                                                                     </div>
                                                                     <div class="col-1">:</div>
                                                                     <div class="col-5 d-flex justify-content-right">
-                                                                        {{ $row->getRekeningTujuan->bank }}
-                                                                        {{ $row->getRekeningTujuan->rekening }} a.n
-                                                                        {{ $row->getRekeningTujuan->nama }}
+                                                                        {{ $row->getRekeningTujuan->bank ?? ''}}
+                                                                        {{ $row->getRekeningTujuan->rekening ?? ''}} a.n
+                                                                        {{ $row->getRekeningTujuan->nama ?? ''}}
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <b>Keterangan</b>
