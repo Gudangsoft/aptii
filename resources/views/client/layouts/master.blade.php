@@ -8,13 +8,13 @@
   <!-- Iconfont Css -->
   <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/awesome/css/fontawesome-all.min.css">
   <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/flaticon/flaticon.css">
-  <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/magnific-popup/magnific-popup.css">
+  {{-- <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/magnific-popup/magnific-popup.css"> --}}
   <!-- animate.css -->
-  <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/animate-css/animate.css">
-  <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/animated-headline/animated-headline.css">
+  {{-- <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/animate-css/animate.css"> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/animated-headline/animated-headline.css"> --}}
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="{{ asset('frontend') }}/css/woocomerce.css">
+  {{-- <link rel="stylesheet" href="{{ asset('frontend') }}/css/woocomerce.css"> --}}
   <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css">
   <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css">
 
