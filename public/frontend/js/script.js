@@ -117,125 +117,125 @@ $(window).scroll(function () {
 
 
 
-// Testimonial layout 1
-$('.testimonials-slides').owlCarousel({
-  loop: true,
-  dots:false,
-  nav: false,
-  margin: 10,
-  autoplayHoverPause: true,
-  autoplay: false,
-  navContainer: '#carousel-arrow',
-  navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
-  // center: true,
-  responsiveClass:true,
-  responsive: {
-      0: {
-          items: 1,
-          dots:true,
-          nav:false
-      },
-      576: {
-          items: 1,
-          dots:true,
-          nav:false
-      },
-      768: {
-          items: 2,
-      },
-      1000: {
-          items:2,
-      },
-      1200: {
-          items: 3,
-      }
-  }
-});
+// // Testimonial layout 1
+// $('.testimonials-slides').owlCarousel({
+//   loop: true,
+//   dots:false,
+//   nav: false,
+//   margin: 10,
+//   autoplayHoverPause: true,
+//   autoplay: false,
+//   navContainer: '#carousel-arrow',
+//   navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+//   // center: true,
+//   responsiveClass:true,
+//   responsive: {
+//       0: {
+//           items: 1,
+//           dots:true,
+//           nav:false
+//       },
+//       576: {
+//           items: 1,
+//           dots:true,
+//           nav:false
+//       },
+//       768: {
+//           items: 2,
+//       },
+//       1000: {
+//           items:2,
+//       },
+//       1200: {
+//           items: 3,
+//       }
+//   }
+// });
 
 
-// Testimonial layout 2
-$('.testimonials-slides-2').owlCarousel({
-    loop: true,
-    dots: true,
-    nav:false,
-    autoplayHoverPause: true,
-    autoplay: false,
-    responsiveClass:true,
-    responsive: {
-        0: {
-            items: 1,
-        },
-        576: {
-            items: 1,
-        },
-        768: {
-            items: 1,
-        },
-        1000: {
-            items:2,
-        },
-        1200: {
-            items:2,
-        }
-    }
-});
+// // Testimonial layout 2
+// $('.testimonials-slides-2').owlCarousel({
+//     loop: true,
+//     dots: true,
+//     nav:false,
+//     autoplayHoverPause: true,
+//     autoplay: false,
+//     responsiveClass:true,
+//     responsive: {
+//         0: {
+//             items: 1,
+//         },
+//         576: {
+//             items: 1,
+//         },
+//         768: {
+//             items: 1,
+//         },
+//         1000: {
+//             items:2,
+//         },
+//         1200: {
+//             items:2,
+//         }
+//     }
+// });
 
 
 
-// Testimonial layout 2
-$('.testimonials-slides-3').owlCarousel({
-  loop: true,
-  dots:true,
-  nav: false,
-  margin: 10,
-  autoplayHoverPause: true,
-  autoplay: false,
-  navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
-  // center: true,
-  responsiveClass:true,
-  responsive: {
-      0: {
-          items: 1,
-          dots:true,
-          nav:false
-      },
-      576: {
-          items: 1,
-          dots:true,
-          nav:false
-      },
-      768: {
-          items: 1,
-      },
-      1000: {
-          items:3,
-      },
-      1200: {
-          items: 4,
-      }
-  }
-});
+// // Testimonial layout 2
+// $('.testimonials-slides-3').owlCarousel({
+//   loop: true,
+//   dots:true,
+//   nav: false,
+//   margin: 10,
+//   autoplayHoverPause: true,
+//   autoplay: false,
+//   navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+//   // center: true,
+//   responsiveClass:true,
+//   responsive: {
+//       0: {
+//           items: 1,
+//           dots:true,
+//           nav:false
+//       },
+//       576: {
+//           items: 1,
+//           dots:true,
+//           nav:false
+//       },
+//       768: {
+//           items: 1,
+//       },
+//       1000: {
+//           items:3,
+//       },
+//       1200: {
+//           items: 4,
+//       }
+//   }
+// });
 
 
 //  Lightbox
-$('.popup').magnificPopup({
-    type: 'image',
-    gallery:{
-      enabled:true
-    },
-    removalDelay: 300,
-  });
+// $('.popup').magnificPopup({
+//     type: 'image',
+//     gallery:{
+//       enabled:true
+//     },
+//     removalDelay: 300,
+//   });
 
 
 
 
 
-	// Counter
+// 	// Counter
 
-	$('.counter').counterUp({
-	      delay: 10,
-	      time: 1000
-	  });
+// 	$('.counter').counterUp({
+// 	      delay: 10,
+// 	      time: 1000
+// 	  });
 
 
 

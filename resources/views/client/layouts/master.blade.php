@@ -4,11 +4,10 @@
 
   {!! Meta::toHtml() !!}
 
-  <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/bootstrap/style.css">
   <!-- Iconfont Css -->
   <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/awesome/css/fontawesome-all.min.css">
   <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/flaticon/flaticon.css">
-  <link rel="stylesheet" href="{{ asset('frontend') }}/fonts/gilroy/font-gilroy.css">
   <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/magnific-popup/magnific-popup.css">
   <!-- animate.css -->
   <link rel="stylesheet" href="{{ asset('frontend') }}/vendors/animate-css/animate.css">
