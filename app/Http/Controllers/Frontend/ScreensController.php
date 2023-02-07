@@ -75,7 +75,7 @@ class ScreensController extends Controller
     public function anggota(){
         HomeController::meta('Anggota');
 
-        $data = Membership::orderByDesc('created_at')->paginate(20);
+        $data = Membership::orderBy('created_at')->paginate(20);
 
         return view('client.screens.anggota', [
             'data'          => $data,

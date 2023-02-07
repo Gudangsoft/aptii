@@ -21,9 +21,11 @@
                     <div class="post-single">
                         <ul class="list-group">
                             @forelse ($data as $item)
-                            <li class="list-group-item {{ $loop->first ? 'list-group-item-action list-group-item-primary' : '' }}">
-                                <a href="{{ route('anggota.detail', ['id' => $item->user_id]) }}" class="text-dark">{{ $loop->index + 1 }}. <strong>{{ $item->user->name }}</strong></a>
-                                <span class="badge bg-{{ $loop->first ? 'dark' : 'primary' }} text-white fw-bold">{{  $item->user->company  }}</span>
+                            <li class="list-group-item {{ $data->firstItem() + $loop->index == 1 ? 'list-group-item-action list-group-item-primary' : '' }}">
+                                <a href="{{ route('anggota.detail', ['id' => $item->user_id]) }}" class="text-dark">
+                                    {{ $data->firstItem() + $loop->index }}.
+                                <strong> {{ $item->user->name }}</strong></a>
+                                <span class="badge bg-{{ $data->firstItem() + $loop->index == 1 ? 'dark' : 'primary' }} text-white fw-bold">{{  $item->user->company  }}</span>
                             </li>
                             @empty
                             <li class="list-group-item d-flex justify-content-between align-items-center">
