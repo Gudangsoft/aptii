@@ -10,6 +10,7 @@ use App\Models\JournalCollaboration;
 use App\Models\Membership;
 use App\Models\Prosiding\Agenda;
 use App\Models\Prosiding\ProsidingNaskah;
+use App\Models\User;
 use App\Models\Video;
 use Butschster\Head\Facades\Meta;
 use RobertSeghedi\News\Models\Article;
@@ -72,10 +73,16 @@ class ScreensController extends Controller
         ]);
     }
 
-    public function anggota(){
+    public function anggota(Request $request){
         HomeController::meta('Anggota');
 
-        $data = Membership::orderBy('created_at')->paginate(20);
+        if($request->search){
+            $uid  = User::where('name', 'LIKE', "%{$request->search}%")->pluck('id');
+            $data = Membership::whereIn('user_id', $uid)->orderBy('created_at')->paginate(20);
+            // dd($uid);
+        }else{
+            $data = Membership::orderBy('created_at')->paginate(20);
+        }
 
         return view('client.screens.anggota', [
             'data'          => $data,

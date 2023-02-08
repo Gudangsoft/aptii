@@ -17,7 +17,18 @@
     <section class="section-padding page" >
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-xl-8">
+                <div class="col-lg-8 col-xl-8 col-12">
+                    <form class="row g-2" method="get" action="{{ route('anggota') }}">
+                        <div class="col-10">
+                            <label for="search" class="visually-hidden">Password</label>
+                            <input type="text" name="search" class="form-control" id="search" placeholder="Cari Anggota">
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary mb-3">Cari</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-8 col-xl-8 col-12">
                     <div class="post-single">
                         <ul class="list-group">
                             @forelse ($data as $item)
@@ -38,7 +49,7 @@
                         </div>
                     </div>
                   </div>
-                <div class="col-lg-4 col-xl-4">
+                <div class="col-lg-4 col-xl-4 col-12">
                     @include('client.sections.sidebar')
                 </div>
 
