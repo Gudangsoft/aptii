@@ -46,11 +46,15 @@ class ScreensController extends Controller
         return view('frontend.events.internasional');
     }
 
-    public function journals(){
+    public function journals(Request $request){
         HomeController::meta('Jurnal Terafiliasi Asosiasi APTII');
 
-        // $data = ProsidingNaskah::orderByDesc('created_at')->paginate(12);
-        $data = JournalCollaboration::orderByDesc('created_at')->where('status', true)->paginate(20);
+        if($request->search){
+            $data = JournalCollaboration::where('title', 'LIKE', "%{$request->search}%")->orderByDesc('created_at')->where('status', true)->paginate(20);
+            // dd($uid);
+        }else{
+            $data = JournalCollaboration::orderByDesc('created_at')->where('status', true)->paginate(20);
+        }
 
         return view('client.screens.journals', [
             'data'          => $data,
