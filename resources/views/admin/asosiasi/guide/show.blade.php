@@ -28,7 +28,7 @@
             </div>
             <div class="content-body">
                 <div class="blog-list-wrapper">
-                    panduan user
+                    <iframe src="{{ asset('storage/files/guide').'/'.$data->file }}" align="top" height="620" width="100%" frameborder="0" scrolling="auto"></iframe>
                 </div>
             </div>
         </div>

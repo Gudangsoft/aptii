@@ -44,9 +44,16 @@ class DashboardController extends Controller
     }
 
     public function guide(){
-        dd(auth()->user()->roles->pluck('name')->implode(','));
-        return view('admin.asosiasi.guide.show', [
-            'data' => Guide::all()
-        ]);
+        $role = auth()->user()->roles->pluck('id')->implode(',');
+        $data = Guide::where('category','like',"%".$role."%")->first();
+
+        if($data){
+            return view('admin.asosiasi.guide.show', [
+                'data' => $data
+            ]);
+        }else{
+            Alert::warning('Peringatan', 'Data tidak ditemukan');
+            return back();
+        }
     }
 }
