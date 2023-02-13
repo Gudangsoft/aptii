@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\Jobs\JobsController;
 use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Asosiasi\AsosiasiController;
 use App\Http\Controllers\Admin\Asosiasi\FinanceController;
+use App\Http\Controllers\Admin\Asosiasi\GudieController;
 use App\Http\Controllers\Admin\Asosiasi\JournalCollabController;
 use App\Http\Controllers\Admin\Asosiasi\ManagerController;
 use App\Http\Controllers\Admin\Asosiasi\MembershipController;
@@ -108,6 +109,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
             Route::get('sertifikat-member/{id}', [AsosiasiController::class, 'sertifikatDetail'])->name('ceritifiate-member.detail');
             Route::get('upload-naskah', [NaskahController::class, 'upload'])->name('asosiasi.upload-naskah');
             Route::get('bukti-pembayaran', [PembayaranController::class, 'uploadPembayaran'])->name('asosiasi.bukti-pembayaran');
+            Route::get('panduan-user', [DashboardController::class, 'guide'])->name('user.guide');
 
             // admin access
             Route::group(['middleware' => ['role:admin|super admin|writer']], function () {
@@ -147,6 +149,7 @@ Route::group(['middleware' => ['role:anggota|super admin|writer|admin|peserta']]
             Route::get('/profile', 'index')->name('profile.index');
         });
 
+        Route::resource('guides', GudieController::class);
         Route::resource('menu', MenuController::class);
         Route::resource('pages', PageController::class);
         Route::resource('configuration', ConfigurationController::class);

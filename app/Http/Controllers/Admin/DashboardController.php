@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Configuration;
 use Illuminate\Http\Request;
 use App\Models\Friends;
+use App\Models\Guide;
 use App\Models\Prosiding\Agenda;
 use App\Models\Prosiding\CustomerCare;
 use App\Models\User;
@@ -17,7 +18,7 @@ use Stevebauman\Location\Facades\Location;
 class DashboardController extends Controller
 {
     public function index(Request $request){
-       
+
         $ip = $request->ip();
 
         $friendListId = Friends::where('user_id', auth()->user()->id)->pluck('friend_id');
@@ -39,6 +40,13 @@ class DashboardController extends Controller
             'agendas' => Agenda::orderByDesc('created_at')->where('status', true)->where('date', '>=', Carbon::now())->get(),
         ]);
 
-        
+
+    }
+
+    public function guide(){
+        dd(auth()->user()->roles->pluck('name')->implode(','));
+        return view('admin.asosiasi.guide.show', [
+            'data' => Guide::all()
+        ]);
     }
 }
