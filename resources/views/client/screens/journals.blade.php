@@ -4,7 +4,7 @@
           <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-8">
               <div class="title-block">
-                <h1>Jurnal Terafiliasi Asosiasi APTII </h1>
+                <h1>Jurnal Terafiliasi Asosiasi {{ website()->name }} </h1>
                 <ul class="header-bradcrumb justify-content-center">
                   <li><a href="/">Home</a></li>
                   <li class="active" aria-current="page">Jurnal Afiliasi</li>
