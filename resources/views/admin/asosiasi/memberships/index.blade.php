@@ -1,5 +1,5 @@
 @section('title')
-    Anggota APTII -
+    DAFTAR ANGGOTA -
 @endsection
 <x-master-layouts>
     <div class="app-content content ">
